@@ -1,0 +1,38 @@
+{
+  "name": "foundry-gamesystem-ashford",
+  "version": "0.1.0",
+  "description": "Ashford Adventures game system for Foundry VTT",
+  "main": "ashford.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate:portraits": "node scripts/generate-placeholder-portraits.mjs",
+    "generate:packs": "node scripts/generate-pack-sources.mjs",
+    "pack:npcs": "fvtt package pack -n codex-npcs -t Actor --in packs/_source/npcs --out packs -v",
+    "pack:buildings": "fvtt package pack -n codex-buildings -t JournalEntry --in packs/_source/buildings --out packs -v",
+    "pack:missions": "fvtt package pack -n codex-missions -t JournalEntry --in packs/_source/missions --out packs -v",
+    "pack:talents": "fvtt package pack -n talents -t Item --in packs/_source/talents --out packs -v",
+    "pack:traits": "fvtt package pack -n traits -t Item --in packs/_source/traits --out packs -v",
+    "pack:creatures": "fvtt package pack -n creatures -t Actor --in packs/_source/creatures --out packs -v",
+    "build:packs": "npm run generate:packs && npm run pack:npcs && npm run pack:buildings && npm run pack:missions && npm run pack:talents && npm run pack:traits",
+    "unpack:npcs": "fvtt package unpack -n codex-npcs -t Actor --in packs --out packs/_source/npcs -c -v",
+    "unpack:buildings": "fvtt package unpack -n codex-buildings -t JournalEntry --in packs --out packs/_source/buildings -c -v",
+    "unpack:missions": "fvtt package unpack -n codex-missions -t JournalEntry --in packs --out packs/_source/missions -c -v",
+    "unpack:talents": "fvtt package unpack -n talents -t Item --in packs --out packs/_source/talents -c -v",
+    "unpack:traits": "fvtt package unpack -n traits -t Item --in packs --out packs/_source/traits -c -v"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PatrickSeilheimer/foundry-gamesystem-ashford.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/PatrickSeilheimer/foundry-gamesystem-ashford/issues"
+  },
+  "homepage": "https://github.com/PatrickSeilheimer/foundry-gamesystem-ashford#readme",
+  "devDependencies": {
+    "@foundryvtt/foundryvtt-cli": "^3.0.4"
+  }
+}

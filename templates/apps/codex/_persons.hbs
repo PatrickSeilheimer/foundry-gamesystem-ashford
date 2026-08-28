@@ -1,0 +1,21 @@
+<h2 class="ashford-codex-section-title">{{localize "ASHFORD.Codex.persons"}}</h2>
+{{#if persons.length}}
+<div class="ashford-codex-grid">
+  {{#each persons}}
+  <div class="ashford-codex-card ashford-codex-card--person" data-person-id="{{this.id}}">
+    <div class="ashford-codex-person-head">
+      {{#if this.img}}
+        <img class="ashford-codex-avatar-img" src="{{this.img}}" alt="{{this.name}}">
+      {{else}}
+        <div class="ashford-codex-avatar">{{this.initials}}</div>
+      {{/if}}
+      <h3>{{this.name}}</h3>
+      <div class="ashford-codex-person-role">{{this.role}}</div>
+    </div>
+    <p>{{this.excerpt}}</p>
+  </div>
+  {{/each}}
+</div>
+{{else}}
+<p class="ashford-codex-empty">{{localize "ASHFORD.Codex.emptyPersons"}}</p>
+{{/if}}

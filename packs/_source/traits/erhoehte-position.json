@@ -1,0 +1,28 @@
+{
+  "_id": "f35c99718a1e64bd",
+  "_key": "!items!f35c99718a1e64bd",
+  "name": "Erhöhte Position",
+  "type": "trait",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "<p>Wer von oben kämpft oder beobachtet, hat den Vorteil – gilt nur für die aktuelle Situation, solange die Position tatsächlich hält.</p>",
+    "kind": "strength",
+    "permanent": false
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

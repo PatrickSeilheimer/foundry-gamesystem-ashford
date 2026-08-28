@@ -1,0 +1,28 @@
+{
+  "_id": "77ca0a404e0e7eca",
+  "_key": "!items!77ca0a404e0e7eca",
+  "name": "Adrenalinschub",
+  "type": "trait",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "<p>Der Kampf- oder Fluchtreflex kickt gerade voll ein: ein zusätzlicher Würfel für diesen einen, besonders hitzigen Moment.</p>",
+    "kind": "strength",
+    "permanent": false
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

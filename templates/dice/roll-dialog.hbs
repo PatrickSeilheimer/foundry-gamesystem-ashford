@@ -1,0 +1,39 @@
+<form class="ashford-roll-dialog">
+  <p>Basis-Pool: <strong>3 W6</strong>, jede aktive Stärke +1, jede aktive Schwäche −1 (Minimum 1 Würfel).</p>
+
+  <fieldset>
+    <legend>Permanente Stärken</legend>
+    {{#each permanentStrengths}}
+      <label class="ashford-trait-toggle">
+        <input type="checkbox" data-kind="strength" data-name="{{this.name}}" checked>
+        {{this.name}}
+      </label>
+    {{else}}
+      <p class="hint">Keine permanenten Stärken.</p>
+    {{/each}}
+  </fieldset>
+
+  <fieldset>
+    <legend>Permanente Schwächen</legend>
+    {{#each permanentWeaknesses}}
+      <label class="ashford-trait-toggle">
+        <input type="checkbox" data-kind="weakness" data-name="{{this.name}}" checked>
+        {{this.name}}
+      </label>
+    {{else}}
+      <p class="hint">Keine permanenten Schwächen.</p>
+    {{/each}}
+  </fieldset>
+
+  <fieldset>
+    <legend>Situativ (diese Probe)</legend>
+    <label>
+      Zusätzliche Stärken
+      <input type="number" name="extraStrengths" value="0" min="0">
+    </label>
+    <label>
+      Zusätzliche Schwächen
+      <input type="number" name="extraWeaknesses" value="0" min="0">
+    </label>
+  </fieldset>
+</form>

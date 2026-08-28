@@ -1,0 +1,82 @@
+{
+  "_id": "bb584fb4cbc95013",
+  "_key": "!actors!bb584fb4cbc95013",
+  "name": "Finn",
+  "type": "npc",
+  "img": "systems/ashford/assets/portraits/finn.svg",
+  "system": {
+    "role": "Waisenjunge mit künstlerischer Begabung",
+    "buildingId": "",
+    "note": "<p>Kind der Siedlung, kein offizieller Posten, wird von mehreren Erwachsenen mit umsorgt.</p>",
+    "facts": [
+      {
+        "label": "Alter",
+        "value": "13"
+      },
+      {
+        "label": "Vor der Apokalypse",
+        "value": "Verlor seine Eltern im ersten harten Jahr nach dem Fall, kaum eigene Erinnerung an sie"
+      },
+      {
+        "label": "Familie",
+        "value": "Keine leiblichen Angehörigen mehr; wächst informell in der Obhut der Siedlung auf"
+      },
+      {
+        "label": "Aussehen",
+        "value": "Farbverschmierte Finger, trägt immer ein selbstgebundenes Skizzenbuch aus Fundpapier bei sich"
+      }
+    ],
+    "story": "<p>Finn verlor seine Eltern noch im chaotischen ersten Jahr nach dem Fall und ist seither ohne engste Familie in Ashford aufgewachsen, informell von mehreren Erwachsenen der Siedlung mit umsorgt. Sein Talent fürs Zeichnen zeigte sich früh, mit Kohle, Naturfarben und jedem Fetzen Papier, den er finden kann, hält er die Welt um sich herum fest. Problematisch wird es, wenn seine Neugier ihn zu nah an die eigentliche Gefahr der Welt heranzieht, er ist dafür bekannt, sich gefährlich nah an Zombies heranzuwagen, nur um sie in Ruhe skizzieren zu können.</p>",
+    "portraitPrompt": "Photorealistic portrait of a 13-year-old American boy, paint-stained fingers, holding a handmade sketchbook made of found paper, curious wide eyes, tousled hair, sitting on a fallen log at the edge of an overgrown forest, soft natural light, ultra-detailed, 8k",
+    "isCodexEntry": true,
+    "initials": "F",
+    "meta": {
+      "gender": "m",
+      "age": 13,
+      "relationship": "Kind",
+      "workplace": "Kind",
+      "nationality": "USA"
+    },
+    "biography": "",
+    "resources": {
+      "health": {
+        "value": 8,
+        "max": 8
+      },
+      "infection": {
+        "value": 0,
+        "max": 10
+      }
+    },
+    "dice": {
+      "basePool": 3
+    }
+  },
+  "items": [],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Finn",
+    "texture": {
+      "src": "systems/ashford/assets/portraits/finn.svg"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": 0
+  },
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

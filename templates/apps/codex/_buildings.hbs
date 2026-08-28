@@ -1,0 +1,25 @@
+<h2 class="ashford-codex-section-title">{{localize "ASHFORD.Codex.buildings"}}</h2>
+{{#if buildings.length}}
+<div class="ashford-codex-grid">
+  {{#each buildings}}
+  <div class="ashford-codex-card" data-building-slug="{{this.slug}}">
+    {{#if this.badge}}<div class="ashford-codex-badge">{{this.badge}}</div>{{/if}}
+    <h3>{{this.name}}</h3>
+    {{#if this.tier}}<div class="ashford-codex-tier">{{this.tier}}</div>{{/if}}
+    <p>{{this.excerpt}}</p>
+    <div class="ashford-codex-responsible">
+      {{localize "ASHFORD.Codex.responsible"}}:
+      {{#if this.responsible}}
+        <a data-person-id="{{this.responsible.id}}">{{this.responsible.name}}</a>
+      {{else if this.npcNote}}
+        {{this.npcNote}}
+      {{else}}
+        {{localize "ASHFORD.Codex.noResponsible"}}
+      {{/if}}
+    </div>
+  </div>
+  {{/each}}
+</div>
+{{else}}
+<p class="ashford-codex-empty">{{localize "ASHFORD.Codex.emptyBuildings"}}</p>
+{{/if}}

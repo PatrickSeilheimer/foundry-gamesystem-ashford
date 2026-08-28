@@ -1,0 +1,82 @@
+{
+  "_id": "9ee856b125936525",
+  "_key": "!actors!9ee856b125936525",
+  "name": "Iris Ford",
+  "type": "npc",
+  "img": "systems/ashford/assets/portraits/iris-ford.svg",
+  "system": {
+    "role": "Daniels Zwillingstochter",
+    "buildingId": "",
+    "note": "<p>Kind der Siedlung, kein offizieller Posten.</p>",
+    "facts": [
+      {
+        "label": "Alter",
+        "value": "7"
+      },
+      {
+        "label": "Vor der Apokalypse",
+        "value": "Geboren erst kurz nach dem Fall, keinerlei eigene Erinnerung an die alte Welt"
+      },
+      {
+        "label": "Familie",
+        "value": "Vater @UUID[Actor.1e5351a12d3e3215]{Daniel Ford}, Zwillingsschwester @UUID[Actor.544bda1f007ebd6b]{Hazel}"
+      },
+      {
+        "label": "Aussehen",
+        "value": "Ruhig, aufmerksame Augen, meist etwas im Hintergrund"
+      }
+    ],
+    "story": "<p>Iris ist die ruhigere und nachdenklichere der beiden Zwillinge, sitzt gerne still neben ihrem Vater oder beobachtet die Erwachsenen bei der Arbeit, statt selbst mittendrin zu sein. Sie und ihre Schwester Hazel sind untrennbar, auch wenn sie kaum unterschiedlicher sein könnten.</p>",
+    "portraitPrompt": "Photorealistic portrait of a quiet 7-year-old American girl, calm observant eyes, neat braided hair, simple patched dress, sitting quietly at the edge of a small settlement scene, soft natural light, ultra-detailed, 8k",
+    "isCodexEntry": true,
+    "initials": "IF",
+    "meta": {
+      "gender": "w",
+      "age": 7,
+      "relationship": "Kind",
+      "workplace": "Kind",
+      "nationality": "USA"
+    },
+    "biography": "",
+    "resources": {
+      "health": {
+        "value": 8,
+        "max": 8
+      },
+      "infection": {
+        "value": 0,
+        "max": 10
+      }
+    },
+    "dice": {
+      "basePool": 3
+    }
+  },
+  "items": [],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Iris Ford",
+    "texture": {
+      "src": "systems/ashford/assets/portraits/iris-ford.svg"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": 0
+  },
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

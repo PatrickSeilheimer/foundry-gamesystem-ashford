@@ -1,0 +1,82 @@
+{
+  "_id": "9894f964919bac97",
+  "_key": "!actors!9894f964919bac97",
+  "name": "Cole",
+  "type": "npc",
+  "img": "systems/ashford/assets/portraits/cole.svg",
+  "system": {
+    "role": "Ehemaliger Häftling, verlässlich, aber verschlossen",
+    "buildingId": "",
+    "note": "<p>Kein offizieller Posten, aber eine feste Größe im Alltag der Siedlung.</p>",
+    "facts": [
+      {
+        "label": "Alter",
+        "value": "39"
+      },
+      {
+        "label": "Vor der Apokalypse",
+        "value": "Saß im Gefängnis, worüber er nie spricht, und niemand in Ashford fragt"
+      },
+      {
+        "label": "Verbindung",
+        "value": "Untrennbar verbunden mit @UUID[Actor.a9dcabe55e87acc9]{Gary Nolan}, dem ehemaligen Wärter, der ihn beim Ausbruch befreite"
+      },
+      {
+        "label": "Aussehen",
+        "value": "Kantiges Gesicht, alte Tätowierungen an den Unterarmen, wacher, ruhiger Blick"
+      }
+    ],
+    "story": "<p>Jeder in Ashford weiß, dass Cole gesessen hat, aber niemand weiß wofür, und in all den Jahren in der Siedlung hat er sich nie das Geringste zuschulden kommen lassen. Als der Fall über das Gefängnis hereinbrach, in dem er einsaß, ignorierte der Wärter Gary Nolan die Anweisung, sämtliche Häftlinge zurückzulassen, und befreite ihn. Auf der gemeinsamen Flucht durch das Chaos retteten sie sich mehrfach gegenseitig das Leben, ein Bund, der bis heute unzertrennlich ist. Cole redet wenig über sich selbst, aber wer ihn kennt, weiß, dass er zuverlässiger ist als die meisten, die viel mehr reden.</p>",
+    "portraitPrompt": "Photorealistic portrait of a rugged 39-year-old American man, angular face, faded prison tattoos on his forearms, calm watchful eyes, simple worn clothing, standing in shadow near a wooden fence, moody low-key lighting, ultra-detailed, 8k",
+    "isCodexEntry": true,
+    "initials": "C",
+    "meta": {
+      "gender": "m",
+      "age": 39,
+      "relationship": "Ledig",
+      "workplace": "Außentrupp",
+      "nationality": "USA"
+    },
+    "biography": "",
+    "resources": {
+      "health": {
+        "value": 8,
+        "max": 8
+      },
+      "infection": {
+        "value": 0,
+        "max": 10
+      }
+    },
+    "dice": {
+      "basePool": 3
+    }
+  },
+  "items": [],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Cole",
+    "texture": {
+      "src": "systems/ashford/assets/portraits/cole.svg"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": 0
+  },
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "_id": "0fd576b56763ad9d",
+  "_key": "!actors!0fd576b56763ad9d",
+  "name": "Arthur Boone",
+  "type": "npc",
+  "img": "systems/ashford/assets/portraits/arthur-boone.svg",
+  "system": {
+    "role": "Einzelgänger-Veteran mit seinem Hund Diesel",
+    "buildingId": "",
+    "note": "<p>Lebt zurückgezogen am Rand der Siedlung, kein offizieller Posten, hilft aber informell bei der Verteidigung.</p>",
+    "facts": [
+      {
+        "label": "Alter",
+        "value": "61"
+      },
+      {
+        "label": "Vor der Apokalypse",
+        "value": "Berufssoldat mit mehreren Auslandseinsätzen"
+      },
+      {
+        "label": "Familie",
+        "value": "Keine bekannte; lebt nur mit seinem Hund Diesel"
+      },
+      {
+        "label": "Aussehen",
+        "value": "Wettergegerbtes Gesicht, geflickte alte Feldjacke, weicht kaum von der Seite seines Hundes"
+      }
+    ],
+    "story": "<p>Arthur diente lange vor dem Fall als Berufssoldat in mehreren Auslandseinsätzen, eine Erfahrung, die ihn misstrauisch gegenüber nahezu jedem Menschen gemacht hat, den er trifft. Sein Hund Diesel, den er kurz nach dem Fall aufgenommen hat, ist die einzige Verbindung, der er vorbehaltlos vertraut. Er hält sich meist abseits, hilft aber zuverlässig aus, wenn es um die Sicherheit von Ashford geht, auch wenn er sich keiner festen Struktur unterordnen will.</p>",
+    "portraitPrompt": "Photorealistic portrait of a weathered 61-year-old American veteran, deeply lined face, patched old field jacket, standing beside a scruffy loyal dog, watchful distant gaze, dusty overgrown wasteland backdrop, natural overcast light, ultra-detailed, 8k",
+    "isCodexEntry": true,
+    "initials": "AB",
+    "meta": {
+      "gender": "m",
+      "age": 61,
+      "relationship": "Ledig",
+      "workplace": "Außentrupp",
+      "nationality": "USA"
+    },
+    "biography": "",
+    "resources": {
+      "health": {
+        "value": 8,
+        "max": 8
+      },
+      "infection": {
+        "value": 0,
+        "max": 10
+      }
+    },
+    "dice": {
+      "basePool": 3
+    }
+  },
+  "items": [],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Arthur Boone",
+    "texture": {
+      "src": "systems/ashford/assets/portraits/arthur-boone.svg"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": 0
+  },
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

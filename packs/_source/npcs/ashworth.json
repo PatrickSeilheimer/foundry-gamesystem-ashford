@@ -1,0 +1,78 @@
+{
+  "_id": "b4b9c452f7188f36",
+  "_key": "!actors!b4b9c452f7188f36",
+  "name": "Henry Ashworth",
+  "type": "npc",
+  "img": "systems/ashford/assets/portraits/henry-ashworth.svg",
+  "system": {
+    "role": "Chef der Verteidigung",
+    "buildingId": "palisaden",
+    "note": "",
+    "facts": [
+      {
+        "label": "Alter",
+        "value": "42"
+      },
+      {
+        "label": "Vor der Apokalypse",
+        "value": "Brite, ehemaliger Soldat der British Army, arbeitete zuletzt als privater Sicherheitsberater in den USA"
+      },
+      {
+        "label": "Aussehen",
+        "value": "Hochgewachsen, durchtrainiert, trägt Reste einer alten Sicherheitsdienst-Uniform, kurzer, grau durchsetzter Bart, immer eine Spur trockener Humor im Gesicht"
+      }
+    ],
+    "story": "<p>Henry war für einen befristeten Auftrag als Sicherheitsberater in den USA, als der Meteorit einschlug, und saß seither auf dem falschen Kontinent fest, weit weg von Zuhause, aber ohne jede Verpflichtung, die ihn dorthin zurückzieht. Seine Ausbildung bei der British Army macht ihn zur naheliegenden Wahl als Chef der Verteidigung von Ashford, auch wenn ihn der Zustand der Palisaden, löchrig, ohne Wachtürme, nachts wachhält. Seinen trockenen britischen Humor hat er sich trotz allem bewahrt, meist auf eigene Kosten, was ihn unter den Wachposten beliebt macht.</p>",
+    "portraitPrompt": "Photorealistic portrait of a 42-year-old tall muscular British man, short beard with grey flecks, remnants of a private security uniform including a tactical vest, faint dry smirk, standing near a rough wooden palisade wall in a post-apocalyptic settlement, overcast diffused daylight, weathered skin, ultra-detailed, 8k",
+    "isCodexEntry": true,
+    "initials": "HA",
+    "meta": {
+      "gender": "m",
+      "age": 42,
+      "relationship": "Ledig",
+      "workplace": "Palisaden",
+      "nationality": "Vereinigtes Königreich"
+    },
+    "biography": "",
+    "resources": {
+      "health": {
+        "value": 8,
+        "max": 8
+      },
+      "infection": {
+        "value": 0,
+        "max": 10
+      }
+    },
+    "dice": {
+      "basePool": 3
+    }
+  },
+  "items": [],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Henry Ashworth",
+    "texture": {
+      "src": "systems/ashford/assets/portraits/henry-ashworth.svg"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": 0
+  },
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

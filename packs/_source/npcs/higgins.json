@@ -1,0 +1,82 @@
+{
+  "_id": "176e26a5ba861d69",
+  "_key": "!actors!176e26a5ba861d69",
+  "name": "Walter \"Sparks\" Higgins",
+  "type": "npc",
+  "img": "systems/ashford/assets/portraits/walter-higgins.svg",
+  "system": {
+    "role": "Der \"Funker\" – bastelt an einer eigenen Radiostation",
+    "buildingId": "",
+    "note": "<p>Bastelt unermüdlich an einer eigenen kleinen Funkstation am Rand der Siedlung, offiziell gehört sie zu keiner Institution.</p>",
+    "facts": [
+      {
+        "label": "Alter",
+        "value": "71"
+      },
+      {
+        "label": "Vor der Apokalypse",
+        "value": "Pensionierter Elektriker und begeisterter Amateurfunker"
+      },
+      {
+        "label": "Familie",
+        "value": "Frau und beide erwachsenen Kinder während des Falls verloren"
+      },
+      {
+        "label": "Aussehen",
+        "value": "Zerzauster weißer Bart, Finger dauerhaft nach Lötzinn riechend, trägt oft nicht angeschlossene Kopfhörer, weil er glaubt, so besser zu \"empfangen\""
+      }
+    ],
+    "story": "<p>Walter war schon vor dem Fall pensionierter Elektriker und begeisterter Amateurfunker, doch seit er beim Fall seine Frau und beide erwachsenen Kinder verlor, hat sich seine alte Leidenschaft in etwas verwandelt, das die Siedlung mit einer Mischung aus Zuneigung und Kopfschütteln beobachtet. Ständig schraubt er an einer improvisierten Funkstation herum und erzählt jedem, der zuhört, und auch vielen, die es nicht wollen, von mysteriösen Signalen, die er angeblich empfängt, von Außerirdischen, geheimen Botschaften und Warnungen aus dem All. Niemand weiß wirklich, wie viel davon er selbst glaubt und wie viel einfach seine Art ist, mit dem Verlust seiner Familie umzugehen, aber sein gutes Herz und seine Hilfsbereitschaft stehen außer Frage, weshalb ihn in Ashford trotz allem jeder irgendwie liebgewonnen hat.</p>",
+    "portraitPrompt": "Photorealistic portrait of a 71-year-old American man, wild unkempt white beard, unplugged headphones draped around his neck, fingers stained with solder, tinkering with an improvised radio antenna at the edge of a settlement, eccentric excited expression, golden hour light, ultra-detailed, 8k",
+    "isCodexEntry": true,
+    "initials": "WH",
+    "meta": {
+      "gender": "m",
+      "age": 71,
+      "relationship": "Verwitwet",
+      "workplace": "Kein fester Posten",
+      "nationality": "USA"
+    },
+    "biography": "",
+    "resources": {
+      "health": {
+        "value": 8,
+        "max": 8
+      },
+      "infection": {
+        "value": 0,
+        "max": 10
+      }
+    },
+    "dice": {
+      "basePool": 3
+    }
+  },
+  "items": [],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Walter \"Sparks\" Higgins",
+    "texture": {
+      "src": "systems/ashford/assets/portraits/walter-higgins.svg"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": 0
+  },
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

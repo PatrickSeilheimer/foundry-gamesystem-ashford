@@ -1,0 +1,23 @@
+<h2 class="ashford-codex-section-title">{{localize "ASHFORD.Codex.missions"}}</h2>
+{{#if missions.length}}
+<div class="ashford-codex-grid">
+  {{#each missions}}
+  <div class="ashford-codex-card ashford-codex-card--mission" data-mission-id="{{this.id}}">
+    <div class="ashford-codex-badge">{{localize "ASHFORD.Codex.missionBadge"}}</div>
+    <h3>{{this.title}}</h3>
+    {{#if this.grobesZiel}}<div class="ashford-codex-tier">{{this.grobesZiel}}</div>{{/if}}
+    <p>{{this.exaktesZiel}}</p>
+    <div class="ashford-codex-responsible">
+      {{localize "ASHFORD.Codex.client"}}:
+      {{#if this.auftraggeberId}}
+        <a data-person-id="{{this.auftraggeberId}}">{{this.auftraggeber}}</a>
+      {{else}}
+        {{this.auftraggeber}}
+      {{/if}}
+    </div>
+  </div>
+  {{/each}}
+</div>
+{{else}}
+<p class="ashford-codex-empty">{{localize "ASHFORD.Codex.emptyMissions"}}</p>
+{{/if}}

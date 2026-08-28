@@ -1,0 +1,28 @@
+{
+  "_id": "2181b02d56c4ee49",
+  "_key": "!items!2181b02d56c4ee49",
+  "name": "Traumatisiert",
+  "type": "trait",
+  "img": "icons/svg/downgrade.svg",
+  "system": {
+    "description": "<p>Ein Erlebnis, das nachwirkt: unter Stress oder in ähnlichen Situationen ein Würfel weniger.</p>",
+    "kind": "weakness",
+    "permanent": true
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

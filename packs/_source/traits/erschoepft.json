@@ -1,0 +1,28 @@
+{
+  "_id": "3349e454258d462f",
+  "_key": "!items!3349e454258d462f",
+  "name": "Erschöpft",
+  "type": "trait",
+  "img": "icons/svg/downgrade.svg",
+  "system": {
+    "description": "<p>Schlaflos, ausgelaugt, am Ende der Kräfte – nur für die aktuelle, besonders anstrengende Situation.</p>",
+    "kind": "weakness",
+    "permanent": false
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

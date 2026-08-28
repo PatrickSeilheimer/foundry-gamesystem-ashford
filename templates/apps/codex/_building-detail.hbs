@@ -1,0 +1,19 @@
+<div class="ashford-codex-back-row">
+  <button type="button" data-back="buildings">&larr; {{localize "ASHFORD.Codex.backToBuildings"}}</button>
+</div>
+<div class="ashford-codex-detail">
+  {{#if badge}}<div class="ashford-codex-badge">{{badge}}</div>{{/if}}
+  <h2>{{name}}</h2>
+  {{#if tier}}<div class="ashford-codex-tier">{{tier}}</div>{{/if}}
+  <div class="ashford-codex-story">{{{contentHTML}}}</div>
+  <div class="ashford-codex-responsible">
+    {{localize "ASHFORD.Codex.responsible"}}:
+    {{#if responsible}}
+      <a data-person-id="{{responsible.id}}">{{responsible.name}}</a>
+    {{else if npcNote}}
+      {{npcNote}}
+    {{else}}
+      {{localize "ASHFORD.Codex.noResponsible"}}
+    {{/if}}
+  </div>
+</div>

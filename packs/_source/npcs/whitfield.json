@@ -1,0 +1,82 @@
+{
+  "_id": "fc45a60c75be46c4",
+  "_key": "!actors!fc45a60c75be46c4",
+  "name": "Eleanor \"Nell\" Whitfield",
+  "type": "npc",
+  "img": "systems/ashford/assets/portraits/eleanor-whitfield.svg",
+  "system": {
+    "role": "Die gute Seele der Siedlung",
+    "buildingId": "wohnbloecke",
+    "note": "",
+    "facts": [
+      {
+        "label": "Alter",
+        "value": "57"
+      },
+      {
+        "label": "Vor der Apokalypse",
+        "value": "Betrieb jahrzehntelang gemeinsam mit ihrem Mann ein Elektro- und Haushaltswarengeschäft in einer Stadt einige Kilometer von Ashford entfernt, die beim Fall vollständig überrannt wurde"
+      },
+      {
+        "label": "Familie",
+        "value": "Ehemann starb bereits kurz vor dem Fall an einer der vielen Ascheerkrankungen; erwachsene Tochter lebte schon lange vor dem Ausbruch in einem anderen Bundesstaat, seit dem Fall kein Kontakt mehr"
+      },
+      {
+        "label": "Aussehen",
+        "value": "Kurz geschnittenes graues Haar, warmes, rundliches Gesicht, trägt oft noch eine alte Schürze aus dem gemeinsamen Laden, hat für jeden ein offenes Ohr"
+      }
+    ],
+    "story": "<p>Nell und ihr Mann führten jahrzehntelang gemeinsam ein kleines Elektro- und Haushaltswarengeschäft in einer Stadt einige Kilometer von Ashford entfernt, eine Stadt, die während des Falls vollständig überrannt wurde und heute nicht mehr existiert. Ihr Mann starb bereits kurz davor an einer der vielen Ascheerkrankungen, sie musste seinen Verlust also schon verarbeiten, bevor die eigentliche Katastrophe überhaupt begann. Ihre erwachsene Tochter war schon lange vorher in einen anderen Bundesstaat gezogen, ein eigenes Leben, von dem Nell seit dem Ausbruch nichts mehr weiß, nicht einmal, ob ihre Tochter überhaupt noch lebt. Diese doppelte Leere füllt sie, indem sie sich um praktisch jeden in Ashford kümmert, als wäre die ganze Siedlung ihre Familie, sie sieht in jedem Menschen zuerst das Gute, teilt was sie hat, auch wenn es kaum etwas ist, und ist trotz allem, was sie verloren hat, auffallend oft die Einzige, die in der Siedlung noch lacht.</p>",
+    "portraitPrompt": "Photorealistic portrait of a 57-year-old American woman, short grey hair, round warm weathered face with kind wrinkles around the eyes, gentle smile, wearing an old worn shopkeeper apron over patched practical clothing, standing among overgrown wooden buildings in a small post-apocalyptic settlement, soft diffused daylight, ultra-detailed, 8k",
+    "isCodexEntry": true,
+    "initials": "EW",
+    "meta": {
+      "gender": "w",
+      "age": 57,
+      "relationship": "Verwitwet",
+      "workplace": "Wohnblock & Läden",
+      "nationality": "USA"
+    },
+    "biography": "",
+    "resources": {
+      "health": {
+        "value": 8,
+        "max": 8
+      },
+      "infection": {
+        "value": 0,
+        "max": 10
+      }
+    },
+    "dice": {
+      "basePool": 3
+    }
+  },
+  "items": [],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Eleanor \"Nell\" Whitfield",
+    "texture": {
+      "src": "systems/ashford/assets/portraits/eleanor-whitfield.svg"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": 0
+  },
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

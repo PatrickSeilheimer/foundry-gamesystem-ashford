@@ -1,0 +1,18 @@
+<div class="ashford-roll-card">
+  <header>
+    <strong>{{label}}</strong>
+    <span class="pool-size">{{poolSize}}W6, Erfolg ab {{threshold}}+</span>
+  </header>
+  <div class="dice-row">
+    {{#each dice}}
+      <span class="die {{#if this.success}}success{{/if}}">{{this.result}}</span>
+    {{/each}}
+  </div>
+  <div class="successes">{{successes}} Erfolg(e)</div>
+  {{#if strengths.length}}
+    <div class="tags strengths">Stärken: {{#each strengths}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}</div>
+  {{/if}}
+  {{#if weaknesses.length}}
+    <div class="tags weaknesses">Schwächen: {{#each weaknesses}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}</div>
+  {{/if}}
+</div>

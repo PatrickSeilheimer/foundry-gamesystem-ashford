@@ -1,0 +1,82 @@
+{
+  "_id": "544bda1f007ebd6b",
+  "_key": "!actors!544bda1f007ebd6b",
+  "name": "Hazel Ford",
+  "type": "npc",
+  "img": "systems/ashford/assets/portraits/hazel-ford.svg",
+  "system": {
+    "role": "Daniels Zwillingstochter",
+    "buildingId": "",
+    "note": "<p>Kind der Siedlung, kein offizieller Posten.</p>",
+    "facts": [
+      {
+        "label": "Alter",
+        "value": "7"
+      },
+      {
+        "label": "Vor der Apokalypse",
+        "value": "Geboren erst kurz nach dem Fall, keinerlei eigene Erinnerung an die alte Welt"
+      },
+      {
+        "label": "Familie",
+        "value": "Vater @UUID[Actor.1e5351a12d3e3215]{Daniel Ford}, Zwillingsschwester @UUID[Actor.9ee856b125936525]{Iris}"
+      },
+      {
+        "label": "Aussehen",
+        "value": "Wild zerzaustes Haar, ständig schmutzige Hände, immer in Bewegung"
+      }
+    ],
+    "story": "<p>Hazel ist die wildere der beiden Zwillinge, ständig unterwegs, ständig neugierig, und hat ihrem Vater Daniel schon mehr graue Haare beschert, als ihm lieb ist. Ohne ihre ruhigere Schwester Iris an ihrer Seite wäre sie vermutlich schon in ernsthaften Schwierigkeiten gelandet.</p>",
+    "portraitPrompt": "Photorealistic portrait of an energetic 7-year-old American girl, wildly tousled hair, dirt-smudged hands and face, caught mid-motion running, bright mischievous eyes, simple patched clothing, dynamic natural light, ultra-detailed, 8k",
+    "isCodexEntry": true,
+    "initials": "HF",
+    "meta": {
+      "gender": "w",
+      "age": 7,
+      "relationship": "Kind",
+      "workplace": "Kind",
+      "nationality": "USA"
+    },
+    "biography": "",
+    "resources": {
+      "health": {
+        "value": 8,
+        "max": 8
+      },
+      "infection": {
+        "value": 0,
+        "max": 10
+      }
+    },
+    "dice": {
+      "basePool": 3
+    }
+  },
+  "items": [],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Hazel Ford",
+    "texture": {
+      "src": "systems/ashford/assets/portraits/hazel-ford.svg"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": 0
+  },
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

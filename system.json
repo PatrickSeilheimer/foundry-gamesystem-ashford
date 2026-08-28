@@ -1,0 +1,108 @@
+{
+  "id": "ashford",
+  "title": "Ashford Adventures",
+  "description": "Eigenständiges Foundry-VTT-System für Ashford Adventures – ein postapokalyptisches Zombie-Endzeit-Pen&Paper mit einem Stärken/Schwächen-Würfelpool, klassenlosem Leveling & Talenten, und einem vollständigen Siedlungs-Kodex von Ashford.",
+  "version": "0.1.0",
+  "compatibility": {
+    "minimum": 13,
+    "verified": 14,
+    "maximum": 14
+  },
+  "authors": [
+    {
+      "name": "Ashford Team"
+    }
+  ],
+  "esmodules": [
+    "ashford.mjs"
+  ],
+  "styles": [
+    "styles/ashford.css",
+    "styles/codex.css"
+  ],
+  "languages": [
+    {
+      "lang": "de",
+      "name": "Deutsch",
+      "path": "lang/de.json"
+    }
+  ],
+  "documentTypes": {
+    "Actor": {
+      "character": {},
+      "npc": {},
+      "creature": {}
+    },
+    "Item": {
+      "trait": {},
+      "talent": {},
+      "weapon": {},
+      "armor": {},
+      "equipment": {},
+      "consumable": {},
+      "condition": {}
+    }
+  },
+  "packs": [
+    {
+      "name": "codex-npcs",
+      "label": "Kodex: Personen von Ashford",
+      "path": "packs/codex-npcs",
+      "type": "Actor",
+      "system": "ashford",
+      "ownership": { "PLAYER": "OBSERVER", "ASSISTANT": "OWNER" },
+      "locked": false
+    },
+    {
+      "name": "codex-buildings",
+      "label": "Kodex: Gebäude von Ashford",
+      "path": "packs/codex-buildings",
+      "type": "JournalEntry",
+      "system": "ashford",
+      "ownership": { "PLAYER": "OBSERVER", "ASSISTANT": "OWNER" },
+      "locked": false
+    },
+    {
+      "name": "codex-missions",
+      "label": "Kodex: Missionen & Schwarzes Brett",
+      "path": "packs/codex-missions",
+      "type": "JournalEntry",
+      "system": "ashford",
+      "ownership": { "PLAYER": "OBSERVER", "ASSISTANT": "OWNER" },
+      "locked": false
+    },
+    {
+      "name": "talents",
+      "label": "Talente",
+      "path": "packs/talents",
+      "type": "Item",
+      "system": "ashford",
+      "ownership": { "PLAYER": "OBSERVER", "ASSISTANT": "OWNER" },
+      "locked": false
+    },
+    {
+      "name": "traits",
+      "label": "Stärken & Schwächen",
+      "path": "packs/traits",
+      "type": "Item",
+      "system": "ashford",
+      "ownership": { "PLAYER": "OBSERVER", "ASSISTANT": "OWNER" },
+      "locked": false
+    },
+    {
+      "name": "creatures",
+      "label": "Kreaturen & Untote",
+      "path": "packs/creatures",
+      "type": "Actor",
+      "system": "ashford",
+      "ownership": { "PLAYER": "OBSERVER", "ASSISTANT": "OWNER" },
+      "locked": false
+    }
+  ],
+  "grid": {
+    "distance": 1,
+    "units": "m"
+  },
+  "primaryTokenAttribute": "resources.health",
+  "secondaryTokenAttribute": "resources.infection"
+}

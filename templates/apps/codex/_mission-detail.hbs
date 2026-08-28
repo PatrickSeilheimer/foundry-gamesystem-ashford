@@ -1,0 +1,32 @@
+<div class="ashford-codex-back-row">
+  <button type="button" data-back="missions">&larr; {{localize "ASHFORD.Codex.backToMissions"}}</button>
+</div>
+<div class="ashford-codex-detail">
+  <div class="ashford-codex-badge">{{localize "ASHFORD.Codex.missionBadge"}}</div>
+  <h2>{{title}}</h2>
+  <dl class="ashford-codex-facts">
+    <dt>{{localize "ASHFORD.Codex.client"}}</dt>
+    <dd>
+      {{#if auftraggeberId}}
+        <a data-person-id="{{auftraggeberId}}">{{auftraggeber}}</a>
+      {{else}}
+        {{auftraggeber}}
+      {{/if}}
+    </dd>
+    <dt>{{localize "ASHFORD.Codex.roughGoal"}}</dt><dd>{{grobesZiel}}</dd>
+    <dt>{{localize "ASHFORD.Codex.exactGoal"}}</dt><dd>{{exaktesZiel}}</dd>
+  </dl>
+  {{#if ereignisse.length}}
+  <div class="ashford-codex-story">
+    <strong>{{localize "ASHFORD.Codex.events"}}:</strong>
+    <ul class="ashford-codex-list">
+      {{#each ereignisse}}<li>{{this}}</li>{{/each}}
+    </ul>
+  </div>
+  {{/if}}
+  {{#if sonstiges}}
+  <div class="ashford-codex-story">
+    <strong>{{localize "ASHFORD.Codex.misc"}}:</strong><br>{{sonstiges}}
+  </div>
+  {{/if}}
+</div>

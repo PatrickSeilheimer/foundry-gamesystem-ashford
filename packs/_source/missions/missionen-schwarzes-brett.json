@@ -1,0 +1,538 @@
+{
+  "_id": "3da683f5ee624cbb",
+  "_key": "!journal!3da683f5ee624cbb",
+  "name": "Missionen & Schwarzes Brett von Ashford",
+  "pages": [
+    {
+      "_id": "9ad788575af28920",
+      "_key": "!journal.pages!3da683f5ee624cbb.9ad788575af28920",
+      "name": "Der Vorrat wird knapp",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "text": {
+        "content": "<p><strong>Auftraggeber:</strong> @UUID[Actor.5445cb8f94b68669]{Elias Vance}</p><p><strong>Grobes Ziel:</strong> Nahrungsbeschaffung – die Vorräte reichen nicht mehr bis zur nächsten Woche.</p><p><strong>Exaktes Ziel:</strong> Ein nahegelegener, bislang ungeplünderter Supermarkt oder ein Lagerhaus muss ausfindig gemacht und geplündert werden, bevor es jemand anderes tut.</p><p><strong>Mögliche Ereignisse &amp; Komplikationen:</strong></p><ul><li>Eine Horde Zombies hat sich zwischen den Regalen verirrt</li><li>Ein rivalisierender Trupp aus einer anderen Enklave ist bereits vor Ort oder trifft während der Plünderung ein</li><li>Teile des Gebäudes sind eingestürzt und versperren den direkten Weg zu den wertvollsten Vorräten</li><li>Verdorbene oder kontaminierte Ware, die auf den ersten Blick brauchbar wirkt</li></ul><p><strong>Sonstiges:</strong> Direkt verknüpft mit dem größten ungelösten Problem der Siedlung, siehe Hühnerstall. Ein guter Wiederkehr-Auftrag, der sich beliebig oft in leicht abgewandelter Form wiederholen lässt.</p>",
+        "format": 1,
+        "markdown": ""
+      },
+      "sort": 100000,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {
+        "ashford": {
+          "auftraggeber": "Elias Vance",
+          "auftraggeberUuid": "Actor.5445cb8f94b68669",
+          "grobesZiel": "Nahrungsbeschaffung – die Vorräte reichen nicht mehr bis zur nächsten Woche.",
+          "exaktesZiel": "Ein nahegelegener, bislang ungeplünderter Supermarkt oder ein Lagerhaus muss ausfindig gemacht und geplündert werden, bevor es jemand anderes tut.",
+          "ereignisse": [
+            "Eine Horde Zombies hat sich zwischen den Regalen verirrt",
+            "Ein rivalisierender Trupp aus einer anderen Enklave ist bereits vor Ort oder trifft während der Plünderung ein",
+            "Teile des Gebäudes sind eingestürzt und versperren den direkten Weg zu den wertvollsten Vorräten",
+            "Verdorbene oder kontaminierte Ware, die auf den ersten Blick brauchbar wirkt"
+          ],
+          "sonstiges": "Direkt verknüpft mit dem größten ungelösten Problem der Siedlung, siehe Hühnerstall. Ein guter Wiederkehr-Auftrag, der sich beliebig oft in leicht abgewandelter Form wiederholen lässt."
+        }
+      },
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      }
+    },
+    {
+      "_id": "2ce21d575ec4c751",
+      "_key": "!journal.pages!3da683f5ee624cbb.2ce21d575ec4c751",
+      "name": "Frisches Werkzeug für den Ärzteschuppen",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "text": {
+        "content": "<p><strong>Auftraggeber:</strong> @UUID[Actor.8468b06abe38ab67]{Dr. Yvette Pham}</p><p><strong>Grobes Ziel:</strong> Ausbau der medizinischen Versorgung von Stufe 1 (Lazarett) zu Stufe 2 (Ärzteschuppen).</p><p><strong>Exaktes Ziel:</strong> Eine nahegelegene Arztpraxis, Tierarztpraxis oder ein kleines Krankenhaus muss nach chirurgischem Werkzeug, Nähmaterial und im besten Fall Antimykotika durchsucht werden.</p><p><strong>Mögliche Ereignisse &amp; Komplikationen:</strong></p><ul><li>Das Gebäude ist ein bekannter, bereits mehrfach geplünderter Ort, an dem sich gerne andere Gruppen aufhalten</li><li>Medizinischer Abfall und biologisches Risiko in alten Quarantäneräumen</li><li>Ein oder mehrere frisch verwandelte Patienten liegen noch in Betten oder Behandlungsräumen</li><li>Ein verschlossener Medikamentenschrank muss aufgebrochen werden</li></ul><p><strong>Sonstiges:</strong> Bei Erfolg denkbarer Auslöser für den Sprung von Stufe 1 zu Stufe 2 laut Institutionen-Katalog. Lässt sich gut mit der Mission \"Ottos Rätsel\" verknüpfen.</p>",
+        "format": 1,
+        "markdown": ""
+      },
+      "sort": 200000,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {
+        "ashford": {
+          "auftraggeber": "Dr. Yvette Pham",
+          "auftraggeberUuid": "Actor.8468b06abe38ab67",
+          "grobesZiel": "Ausbau der medizinischen Versorgung von Stufe 1 (Lazarett) zu Stufe 2 (Ärzteschuppen).",
+          "exaktesZiel": "Eine nahegelegene Arztpraxis, Tierarztpraxis oder ein kleines Krankenhaus muss nach chirurgischem Werkzeug, Nähmaterial und im besten Fall Antimykotika durchsucht werden.",
+          "ereignisse": [
+            "Das Gebäude ist ein bekannter, bereits mehrfach geplünderter Ort, an dem sich gerne andere Gruppen aufhalten",
+            "Medizinischer Abfall und biologisches Risiko in alten Quarantäneräumen",
+            "Ein oder mehrere frisch verwandelte Patienten liegen noch in Betten oder Behandlungsräumen",
+            "Ein verschlossener Medikamentenschrank muss aufgebrochen werden"
+          ],
+          "sonstiges": "Bei Erfolg denkbarer Auslöser für den Sprung von Stufe 1 zu Stufe 2 laut Institutionen-Katalog. Lässt sich gut mit der Mission \"Ottos Rätsel\" verknüpfen."
+        }
+      },
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      }
+    },
+    {
+      "_id": "33548ef0a35515eb",
+      "_key": "!journal.pages!3da683f5ee624cbb.33548ef0a35515eb",
+      "name": "Munition zählen",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "text": {
+        "content": "<p><strong>Auftraggeber:</strong> @UUID[Actor.0565c65fcf13c5a6]{Ron Doyle}</p><p><strong>Grobes Ziel:</strong> Aufwertung der Bewaffnung – die Armory hat kaum noch Munition übrig.</p><p><strong>Exaktes Ziel:</strong> Eine Polizeistation, ein Waffengeschäft oder ein verlassenes Nationalgarde-Depot in der Umgebung muss nach Munition und idealerweise weiteren Schusswaffen durchsucht werden.</p><p><strong>Mögliche Ereignisse &amp; Komplikationen:</strong></p><ul><li>Der Ort ist stark von Zombies frequentiert, darunter ehemalige Officer oder Insassen, die sich dort verwandelt haben</li><li>Ein Waffenschrank ist verschlossen und braucht einen Dietrich oder Sprengstoff</li><li>Eine rivalisierende, schlecht bewaffnete Gruppe versucht, der Truppe die Beute streitig zu machen</li><li>Ein Teil der gefundenen Munition passt gar nicht zu den Waffen der Armory</li></ul><p><strong>Sonstiges:</strong> Ron kommentiert die Mission bei der Rückkehr garantiert mit bitterbösem Humor, unabhängig vom Ausgang.</p>",
+        "format": 1,
+        "markdown": ""
+      },
+      "sort": 300000,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {
+        "ashford": {
+          "auftraggeber": "Ron Doyle",
+          "auftraggeberUuid": "Actor.0565c65fcf13c5a6",
+          "grobesZiel": "Aufwertung der Bewaffnung – die Armory hat kaum noch Munition übrig.",
+          "exaktesZiel": "Eine Polizeistation, ein Waffengeschäft oder ein verlassenes Nationalgarde-Depot in der Umgebung muss nach Munition und idealerweise weiteren Schusswaffen durchsucht werden.",
+          "ereignisse": [
+            "Der Ort ist stark von Zombies frequentiert, darunter ehemalige Officer oder Insassen, die sich dort verwandelt haben",
+            "Ein Waffenschrank ist verschlossen und braucht einen Dietrich oder Sprengstoff",
+            "Eine rivalisierende, schlecht bewaffnete Gruppe versucht, der Truppe die Beute streitig zu machen",
+            "Ein Teil der gefundenen Munition passt gar nicht zu den Waffen der Armory"
+          ],
+          "sonstiges": "Ron kommentiert die Mission bei der Rückkehr garantiert mit bitterbösem Humor, unabhängig vom Ausgang."
+        }
+      },
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      }
+    },
+    {
+      "_id": "a15315ed198808a7",
+      "_key": "!journal.pages!3da683f5ee624cbb.a15315ed198808a7",
+      "name": "Der Wagen soll wieder laufen",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "text": {
+        "content": "<p><strong>Auftraggeber:</strong> @UUID[Actor.2c19157bf65c3a17]{Sebastian Vogler}</p><p><strong>Grobes Ziel:</strong> Fahrzeuge von funktionslos zu einsatzbereit bringen.</p><p><strong>Exaktes Ziel:</strong> Eine Autobatterie, Treibstoff und fehlende Ersatzteile für den einzigen Wagen der Garage müssen beschafft werden, am besten von einer nahegelegenen Tankstelle oder einem Autohändler.</p><p><strong>Mögliche Ereignisse &amp; Komplikationen:</strong></p><ul><li>Die Tankstelle liegt in einem stark verseuchten Gebiet</li><li>Treibstoff ist größtenteils verdunstet oder unbrauchbar, nur wenige Kanister sind noch verwertbar</li><li>Andere abgestellte Fahrzeuge müssen für Ersatzteile ausgeschlachtet werden, was Lärm macht und Zombies anlockt</li><li>Eine alte Falle oder ein verwilderter Wachhund des früheren Besitzers</li></ul><p><strong>Sonstiges:</strong> Sebastian ist bei jedem noch so kleinen Erfolg unverhältnismäßig glücklich, was sich spürbar positiv auf die Stimmung der Siedlung auswirkt.</p>",
+        "format": 1,
+        "markdown": ""
+      },
+      "sort": 400000,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {
+        "ashford": {
+          "auftraggeber": "Sebastian Vogler",
+          "auftraggeberUuid": "Actor.2c19157bf65c3a17",
+          "grobesZiel": "Fahrzeuge von funktionslos zu einsatzbereit bringen.",
+          "exaktesZiel": "Eine Autobatterie, Treibstoff und fehlende Ersatzteile für den einzigen Wagen der Garage müssen beschafft werden, am besten von einer nahegelegenen Tankstelle oder einem Autohändler.",
+          "ereignisse": [
+            "Die Tankstelle liegt in einem stark verseuchten Gebiet",
+            "Treibstoff ist größtenteils verdunstet oder unbrauchbar, nur wenige Kanister sind noch verwertbar",
+            "Andere abgestellte Fahrzeuge müssen für Ersatzteile ausgeschlachtet werden, was Lärm macht und Zombies anlockt",
+            "Eine alte Falle oder ein verwilderter Wachhund des früheren Besitzers"
+          ],
+          "sonstiges": "Sebastian ist bei jedem noch so kleinen Erfolg unverhältnismäßig glücklich, was sich spürbar positiv auf die Stimmung der Siedlung auswirkt."
+        }
+      },
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      }
+    },
+    {
+      "_id": "5d0405b69ff79a77",
+      "_key": "!journal.pages!3da683f5ee624cbb.5d0405b69ff79a77",
+      "name": "Sauberes Wasser",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "text": {
+        "content": "<p><strong>Auftraggeber:</strong> @UUID[Actor.5445cb8f94b68669]{Elias Vance}</p><p><strong>Grobes Ziel:</strong> Wasserversorgung von der improvisierten Turm-Lösung zu einer echten Aufbereitungsanlage ausbauen.</p><p><strong>Exaktes Ziel:</strong> Ein altes, aus der Ferne noch stehend erkennbares Wasserwerk oder eine Kläranlage muss erkundet und für die Siedlung gesichert werden.</p><p><strong>Mögliche Ereignisse &amp; Komplikationen:</strong></p><ul><li>Die Anlage ist teilweise geflutet oder eingestürzt</li><li>Giftige Chemikalien oder Reste alter Aufbereitungsmittel</li><li>Eine andere Splittergruppe hat sich bereits dort eingenistet und beansprucht die Anlage für sich</li><li>Komplexe, kaputte Technik, die ohne Fachwissen kaum zu verstehen ist</li></ul><p><strong>Sonstiges:</strong> Eine der wenigen Missionen mit echtem Langzeit-Wert für die gesamte Siedlung. Eignet sich gut, um sich über mehrere Sessions zu erstrecken: erst Erkundung, dann Sicherung, dann Wiederinbetriebnahme.</p>",
+        "format": 1,
+        "markdown": ""
+      },
+      "sort": 500000,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {
+        "ashford": {
+          "auftraggeber": "Elias Vance",
+          "auftraggeberUuid": "Actor.5445cb8f94b68669",
+          "grobesZiel": "Wasserversorgung von der improvisierten Turm-Lösung zu einer echten Aufbereitungsanlage ausbauen.",
+          "exaktesZiel": "Ein altes, aus der Ferne noch stehend erkennbares Wasserwerk oder eine Kläranlage muss erkundet und für die Siedlung gesichert werden.",
+          "ereignisse": [
+            "Die Anlage ist teilweise geflutet oder eingestürzt",
+            "Giftige Chemikalien oder Reste alter Aufbereitungsmittel",
+            "Eine andere Splittergruppe hat sich bereits dort eingenistet und beansprucht die Anlage für sich",
+            "Komplexe, kaputte Technik, die ohne Fachwissen kaum zu verstehen ist"
+          ],
+          "sonstiges": "Eine der wenigen Missionen mit echtem Langzeit-Wert für die gesamte Siedlung. Eignet sich gut, um sich über mehrere Sessions zu erstrecken: erst Erkundung, dann Sicherung, dann Wiederinbetriebnahme."
+        }
+      },
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      }
+    },
+    {
+      "_id": "4734121b277e4349",
+      "_key": "!journal.pages!3da683f5ee624cbb.4734121b277e4349",
+      "name": "Palisaden dichtmachen",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "text": {
+        "content": "<p><strong>Auftraggeber:</strong> @UUID[Actor.b4b9c452f7188f36]{Henry Ashworth}</p><p><strong>Grobes Ziel:</strong> Verteidigung von Stufe 1 (löchrige Palisade) Richtung Stufe 2 (Wachtürme, feste Tore) ausbauen.</p><p><strong>Exaktes Ziel:</strong> Baumaterial von einer nahegelegenen Baustelle, einem Sägewerk oder Baumarkt muss beschafft werden, um die beiden offenen Lücken in der Palisade endlich zu schließen.</p><p><strong>Mögliche Ereignisse &amp; Komplikationen:</strong></p><ul><li>Eine Zombiehorde nutzt genau eine der beiden offenen Lücken, während die Truppe unterwegs ist</li><li>Instabile Gerüste oder Regale drohen einzustürzen</li><li>Das Material ist schwer und sperrig, was den Rückzug bei Gefahr erschwert</li><li>Ein Späher entdeckt, dass eine andere Gruppe dasselbe Depot ins Auge gefasst hat</li></ul><p><strong>Sonstiges:</strong> Gute Mission, um den Spielern die Konsequenzen einer schlecht gesicherten Heimatbasis konkret vor Augen zu führen, etwa durch einen kleinen Zwischenfall in Ashford während ihrer Abwesenheit.</p>",
+        "format": 1,
+        "markdown": ""
+      },
+      "sort": 600000,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {
+        "ashford": {
+          "auftraggeber": "Henry Ashworth",
+          "auftraggeberUuid": "Actor.b4b9c452f7188f36",
+          "grobesZiel": "Verteidigung von Stufe 1 (löchrige Palisade) Richtung Stufe 2 (Wachtürme, feste Tore) ausbauen.",
+          "exaktesZiel": "Baumaterial von einer nahegelegenen Baustelle, einem Sägewerk oder Baumarkt muss beschafft werden, um die beiden offenen Lücken in der Palisade endlich zu schließen.",
+          "ereignisse": [
+            "Eine Zombiehorde nutzt genau eine der beiden offenen Lücken, während die Truppe unterwegs ist",
+            "Instabile Gerüste oder Regale drohen einzustürzen",
+            "Das Material ist schwer und sperrig, was den Rückzug bei Gefahr erschwert",
+            "Ein Späher entdeckt, dass eine andere Gruppe dasselbe Depot ins Auge gefasst hat"
+          ],
+          "sonstiges": "Gute Mission, um den Spielern die Konsequenzen einer schlecht gesicherten Heimatbasis konkret vor Augen zu führen, etwa durch einen kleinen Zwischenfall in Ashford während ihrer Abwesenheit."
+        }
+      },
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      }
+    },
+    {
+      "_id": "8f465918ec62fc9a",
+      "_key": "!journal.pages!3da683f5ee624cbb.8f465918ec62fc9a",
+      "name": "Sendung, die niemand erwartet",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "text": {
+        "content": "<p><strong>Auftraggeber:</strong> @UUID[Actor.176e26a5ba861d69]{Schwarzes Brett, ursprünglich aufgefallen durch Walter „Sparks\" Higgins}</p><p><strong>Grobes Ziel:</strong> Erkundung eines unklaren Funksignals, das Walter seit Tagen empfängt und ihm niemand so recht glauben will.</p><p><strong>Exaktes Ziel:</strong> Die vermutete Quelle des Signals, ein Lieferwagen, ein automatisierter Sendemast oder eine kleine Station, muss lokalisiert und untersucht werden.</p><p><strong>Mögliche Ereignisse &amp; Komplikationen:</strong></p><ul><li>Das Signal stammt tatsächlich von einer noch aktiven, automatisierten Notfall-Sendestation</li><li>Die Spieler stoßen auf Hinweise einer bislang unbekannten Enklave oder Fraktion</li><li>Eine Falle, die von einer feindseligen Gruppe absichtlich als Köder ausgesendet wird</li><li>Unerwarteter Kontakt mit freundlichen oder auch nicht so freundlichen Überlebenden</li></ul><p><strong>Sonstiges:</strong> Perfekte Gelegenheit, Walters bislang belächelte Theorien mit echtem Spannungsgewinn zu belohnen, unabhängig davon, ob am Ende wirklich etwas Außerirdisches dahintersteckt.</p>",
+        "format": 1,
+        "markdown": ""
+      },
+      "sort": 700000,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {
+        "ashford": {
+          "auftraggeber": "Schwarzes Brett, ursprünglich aufgefallen durch Walter „Sparks\" Higgins",
+          "auftraggeberUuid": "Actor.176e26a5ba861d69",
+          "grobesZiel": "Erkundung eines unklaren Funksignals, das Walter seit Tagen empfängt und ihm niemand so recht glauben will.",
+          "exaktesZiel": "Die vermutete Quelle des Signals, ein Lieferwagen, ein automatisierter Sendemast oder eine kleine Station, muss lokalisiert und untersucht werden.",
+          "ereignisse": [
+            "Das Signal stammt tatsächlich von einer noch aktiven, automatisierten Notfall-Sendestation",
+            "Die Spieler stoßen auf Hinweise einer bislang unbekannten Enklave oder Fraktion",
+            "Eine Falle, die von einer feindseligen Gruppe absichtlich als Köder ausgesendet wird",
+            "Unerwarteter Kontakt mit freundlichen oder auch nicht so freundlichen Überlebenden"
+          ],
+          "sonstiges": "Perfekte Gelegenheit, Walters bislang belächelte Theorien mit echtem Spannungsgewinn zu belohnen, unabhängig davon, ob am Ende wirklich etwas Außerirdisches dahintersteckt."
+        }
+      },
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      }
+    },
+    {
+      "_id": "5c3ee45c9f495f97",
+      "_key": "!journal.pages!3da683f5ee624cbb.5c3ee45c9f495f97",
+      "name": "Ottos Rätsel",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "text": {
+        "content": "<p><strong>Auftraggeber:</strong> @UUID[Actor.8468b06abe38ab67]{Dr. Yvette Pham}</p><p><strong>Grobes Ziel:</strong> Medizinische Forschung – verstehen, warum Otto Hargrove trotz jahrelangem chronischen Husten nicht stirbt oder sich verwandelt.</p><p><strong>Exaktes Ziel:</strong> Ein nahegelegenes Krankenhaus, eine Universitätsklinik oder ein improvisiertes Forschungslabor muss nach altem Datenmaterial, Laborausrüstung oder Blutproben-Kits durchsucht werden, um Ottos Fall wissenschaftlich zu untersuchen.</p><p><strong>Mögliche Ereignisse &amp; Komplikationen:</strong></p><ul><li>Verlassene, halb zerstörte Laborräume voller zerbrochener Proben</li><li>Ein anderer, deutlich weniger glücklicher „Langzeitfall\" wird als mumifizierte oder zombifizierte Leiche entdeckt</li><li>Hinweise auf eine der verstreuten Wissenschaftler-Enklaven, die sich ebenfalls für solche Fälle interessieren könnte</li><li>Ethisch unangenehme Entscheidung, ob eine Blutprobe von Otto selbst nötig ist und was das für ihn bedeutet</li></ul><p><strong>Sonstiges:</strong> Eröffnet eine mögliche Anknüpfung an größere Kampagnen-Handlungsstränge rund um Sporenforschung und andere Enklaven, siehe Institutionen-Katalog Prio D, Forschung.</p>",
+        "format": 1,
+        "markdown": ""
+      },
+      "sort": 800000,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {
+        "ashford": {
+          "auftraggeber": "Dr. Yvette Pham",
+          "auftraggeberUuid": "Actor.8468b06abe38ab67",
+          "grobesZiel": "Medizinische Forschung – verstehen, warum Otto Hargrove trotz jahrelangem chronischen Husten nicht stirbt oder sich verwandelt.",
+          "exaktesZiel": "Ein nahegelegenes Krankenhaus, eine Universitätsklinik oder ein improvisiertes Forschungslabor muss nach altem Datenmaterial, Laborausrüstung oder Blutproben-Kits durchsucht werden, um Ottos Fall wissenschaftlich zu untersuchen.",
+          "ereignisse": [
+            "Verlassene, halb zerstörte Laborräume voller zerbrochener Proben",
+            "Ein anderer, deutlich weniger glücklicher „Langzeitfall\" wird als mumifizierte oder zombifizierte Leiche entdeckt",
+            "Hinweise auf eine der verstreuten Wissenschaftler-Enklaven, die sich ebenfalls für solche Fälle interessieren könnte",
+            "Ethisch unangenehme Entscheidung, ob eine Blutprobe von Otto selbst nötig ist und was das für ihn bedeutet"
+          ],
+          "sonstiges": "Eröffnet eine mögliche Anknüpfung an größere Kampagnen-Handlungsstränge rund um Sporenforschung und andere Enklaven, siehe Institutionen-Katalog Prio D, Forschung."
+        }
+      },
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      }
+    },
+    {
+      "_id": "ba5c65409272d52b",
+      "_key": "!journal.pages!3da683f5ee624cbb.ba5c65409272d52b",
+      "name": "Das Schwarze Brett",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "text": {
+        "content": "<p><strong>Auftraggeber:</strong> Verschiedene – ein tatsächliches schwarzes Brett am zentralen Platz von Ashford, an dem jeder Siedler kleine Zettel mit Bitten anheften kann</p><p><strong>Grobes Ziel:</strong> Diverses – eine Sammlung kleinerer, unabhängiger Gefallen statt einer einzelnen großen Mission.</p><p><strong>Exaktes Ziel:</strong> Die Gruppe wählt einen oder mehrere Zettel aus, zum Beispiel: ein verlorenes Erbstück aus einem alten Zuhause holen, ein streunendes, gefährliches Tier jagen, das nahe der Palisade gesichtet wurde, jemanden zu einem entfernten, isolierten Verwandten begleiten, oder schlicht Feuerholz für den Winter sammeln.</p><p><strong>Mögliche Ereignisse &amp; Komplikationen:</strong></p><ul><li>Variiert stark je nach gewähltem Zettel</li><li>Gut geeignet für kurze Lückenfüller-Sessions</li><li>Idealer, niedrigschwelliger Einstieg für neue Spielercharaktere</li></ul><p><strong>Sonstiges:</strong> Als Spielleiter kannst du das Brett jederzeit mit neuen, situativ passenden Zetteln befüllen, es ist der ideale Ort für Missionen, die keinem der Haupt-NPCs direkt zugeordnet sind.</p>",
+        "format": 1,
+        "markdown": ""
+      },
+      "sort": 900000,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {
+        "ashford": {
+          "auftraggeber": "Verschiedene – ein tatsächliches schwarzes Brett am zentralen Platz von Ashford, an dem jeder Siedler kleine Zettel mit Bitten anheften kann",
+          "auftraggeberUuid": null,
+          "grobesZiel": "Diverses – eine Sammlung kleinerer, unabhängiger Gefallen statt einer einzelnen großen Mission.",
+          "exaktesZiel": "Die Gruppe wählt einen oder mehrere Zettel aus, zum Beispiel: ein verlorenes Erbstück aus einem alten Zuhause holen, ein streunendes, gefährliches Tier jagen, das nahe der Palisade gesichtet wurde, jemanden zu einem entfernten, isolierten Verwandten begleiten, oder schlicht Feuerholz für den Winter sammeln.",
+          "ereignisse": [
+            "Variiert stark je nach gewähltem Zettel",
+            "Gut geeignet für kurze Lückenfüller-Sessions",
+            "Idealer, niedrigschwelliger Einstieg für neue Spielercharaktere"
+          ],
+          "sonstiges": "Als Spielleiter kannst du das Brett jederzeit mit neuen, situativ passenden Zetteln befüllen, es ist der ideale Ort für Missionen, die keinem der Haupt-NPCs direkt zugeordnet sind."
+        }
+      },
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      }
+    },
+    {
+      "_id": "a85026d3718d7000",
+      "_key": "!journal.pages!3da683f5ee624cbb.a85026d3718d7000",
+      "name": "Hochzeitsvorbereitung",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "text": {
+        "content": "<p><strong>Auftraggeber:</strong> @UUID[Actor.f37daf02a79436ea]{Grace Mercer & Phil Anders}</p><p><strong>Grobes Ziel:</strong> Gemeinschaft und Moral – der Siedlung zuliebe soll die bevorstehende Hochzeit der beiden zu einem echten Fest werden.</p><p><strong>Exaktes Ziel:</strong> Passende Kleidung, Dekoration und etwas Besonderes zu essen oder zu trinken (Viktors Selbstgebranntes zählt) müssen aus einem nahegelegenen Brautgeschäft, einer Kirche oder einem gut sortierten Haushalt beschafft werden.</p><p><strong>Mögliche Ereignisse &amp; Komplikationen:</strong></p><ul><li>Ein emotional aufgeladener Fund persönlicher Gegenstände der ursprünglichen Besitzer</li><li>Eine kleine Zombiehorde ausgerechnet im Brautgeschäft</li><li>Eine andere Gruppe durchsucht dieselben Räumlichkeiten nach etwas völlig anderem</li><li>Die Zeit drängt, da die Hochzeit bereits für ein festes Datum geplant ist</li></ul><p><strong>Sonstiges:</strong> Eine der wenigen bewusst unbeschwerten, hoffnungsvollen Missionen der Liste, eignet sich gut als Kontrastmoment zwischen düstereren Aufträgen.</p>",
+        "format": 1,
+        "markdown": ""
+      },
+      "sort": 1000000,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {
+        "ashford": {
+          "auftraggeber": "Grace Mercer & Phil Anders",
+          "auftraggeberUuid": "Actor.f37daf02a79436ea",
+          "grobesZiel": "Gemeinschaft und Moral – der Siedlung zuliebe soll die bevorstehende Hochzeit der beiden zu einem echten Fest werden.",
+          "exaktesZiel": "Passende Kleidung, Dekoration und etwas Besonderes zu essen oder zu trinken (Viktors Selbstgebranntes zählt) müssen aus einem nahegelegenen Brautgeschäft, einer Kirche oder einem gut sortierten Haushalt beschafft werden.",
+          "ereignisse": [
+            "Ein emotional aufgeladener Fund persönlicher Gegenstände der ursprünglichen Besitzer",
+            "Eine kleine Zombiehorde ausgerechnet im Brautgeschäft",
+            "Eine andere Gruppe durchsucht dieselben Räumlichkeiten nach etwas völlig anderem",
+            "Die Zeit drängt, da die Hochzeit bereits für ein festes Datum geplant ist"
+          ],
+          "sonstiges": "Eine der wenigen bewusst unbeschwerten, hoffnungsvollen Missionen der Liste, eignet sich gut als Kontrastmoment zwischen düstereren Aufträgen."
+        }
+      },
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      }
+    },
+    {
+      "_id": "99615e89578e60a3",
+      "_key": "!journal.pages!3da683f5ee624cbb.99615e89578e60a3",
+      "name": "Spuren aus dem Gefängnis",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "text": {
+        "content": "<p><strong>Auftraggeber:</strong> @UUID[Actor.a9dcabe55e87acc9]{Gary Nolan, mit stillschweigender Zustimmung von Cole}</p><p><strong>Grobes Ziel:</strong> Vergangenheitsbewältigung und Erkundung – Rückkehr zu dem Gefängnis, aus dem Gary und Cole einst geflohen sind.</p><p><strong>Exaktes Ziel:</strong> Im Gefängnis sollen persönliche Gegenstände, alte Akten oder möglicherweise noch überlebende, eingeschlossene Häftlinge gefunden werden.</p><p><strong>Mögliche Ereignisse &amp; Komplikationen:</strong></p><ul><li>Verriegelte Zellentrakte mit noch immer eingesperrten, längst verwandelten Insassen</li><li>Hinweise, die endlich Licht auf Coles nie besprochene Vorgeschichte werfen könnten</li><li>Ein versteckter Waffen- oder Ausrüstungscache der ehemaligen Wachmannschaft</li><li>Ein moralisches Dilemma, falls tatsächlich noch lebende, eingesperrte Menschen gefunden werden</li></ul><p><strong>Sonstiges:</strong> Starkes Potenzial für Charakterentwicklung bei Cole und Gary, gut geeignet als emotional aufgeladener Höhepunkt einer Session, unabhängig davon, ob Coles Geheimnis am Ende wirklich aufgedeckt wird.</p>",
+        "format": 1,
+        "markdown": ""
+      },
+      "sort": 1100000,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {
+        "ashford": {
+          "auftraggeber": "Gary Nolan, mit stillschweigender Zustimmung von Cole",
+          "auftraggeberUuid": "Actor.a9dcabe55e87acc9",
+          "grobesZiel": "Vergangenheitsbewältigung und Erkundung – Rückkehr zu dem Gefängnis, aus dem Gary und Cole einst geflohen sind.",
+          "exaktesZiel": "Im Gefängnis sollen persönliche Gegenstände, alte Akten oder möglicherweise noch überlebende, eingeschlossene Häftlinge gefunden werden.",
+          "ereignisse": [
+            "Verriegelte Zellentrakte mit noch immer eingesperrten, längst verwandelten Insassen",
+            "Hinweise, die endlich Licht auf Coles nie besprochene Vorgeschichte werfen könnten",
+            "Ein versteckter Waffen- oder Ausrüstungscache der ehemaligen Wachmannschaft",
+            "Ein moralisches Dilemma, falls tatsächlich noch lebende, eingesperrte Menschen gefunden werden"
+          ],
+          "sonstiges": "Starkes Potenzial für Charakterentwicklung bei Cole und Gary, gut geeignet als emotional aufgeladener Höhepunkt einer Session, unabhängig davon, ob Coles Geheimnis am Ende wirklich aufgedeckt wird."
+        }
+      },
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      }
+    },
+    {
+      "_id": "4c3229e0dd19fb24",
+      "_key": "!journal.pages!3da683f5ee624cbb.4c3229e0dd19fb24",
+      "name": "Handelsweg",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "text": {
+        "content": "<p><strong>Auftraggeber:</strong> @UUID[Actor.5445cb8f94b68669]{Elias Vance, unterstützt von Phil Anders' Bestandsaufzeichnungen}</p><p><strong>Grobes Ziel:</strong> Handel und Diplomatie – einen verlässlichen Kontakt und im besten Fall eine Route zu einer anderen Enklave aufbauen.</p><p><strong>Exaktes Ziel:</strong> Eine aus der Ferne vermutete, andere befestigte Siedlung soll aufgespürt und vorsichtig kontaktiert werden, ohne die eigene Position von Ashford preiszugeben.</p><p><strong>Mögliche Ereignisse &amp; Komplikationen:</strong></p><ul><li>Die andere Siedlung ist misstrauisch oder offen feindselig gegenüber Fremden</li><li>Auf dem Weg dorthin liegt umkämpftes oder von einer dritten Fraktion kontrolliertes Gebiet</li><li>Die Gruppe entdeckt, dass die andere Enklave etwas besitzt, das Ashford dringend braucht, zum Beispiel Antimykotika</li><li>Ein Verräter oder Spitzel innerhalb der fremden Siedlung</li></ul><p><strong>Sonstiges:</strong> Kann der Auftakt zu einer langfristigen Handels- oder Bündnisbeziehung werden und eröffnet die Möglichkeit, weitere Siedlungen als wiederkehrende Handlungsorte einzuführen.</p>",
+        "format": 1,
+        "markdown": ""
+      },
+      "sort": 1200000,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {
+        "ashford": {
+          "auftraggeber": "Elias Vance, unterstützt von Phil Anders' Bestandsaufzeichnungen",
+          "auftraggeberUuid": "Actor.5445cb8f94b68669",
+          "grobesZiel": "Handel und Diplomatie – einen verlässlichen Kontakt und im besten Fall eine Route zu einer anderen Enklave aufbauen.",
+          "exaktesZiel": "Eine aus der Ferne vermutete, andere befestigte Siedlung soll aufgespürt und vorsichtig kontaktiert werden, ohne die eigene Position von Ashford preiszugeben.",
+          "ereignisse": [
+            "Die andere Siedlung ist misstrauisch oder offen feindselig gegenüber Fremden",
+            "Auf dem Weg dorthin liegt umkämpftes oder von einer dritten Fraktion kontrolliertes Gebiet",
+            "Die Gruppe entdeckt, dass die andere Enklave etwas besitzt, das Ashford dringend braucht, zum Beispiel Antimykotika",
+            "Ein Verräter oder Spitzel innerhalb der fremden Siedlung"
+          ],
+          "sonstiges": "Kann der Auftakt zu einer langfristigen Handels- oder Bündnisbeziehung werden und eröffnet die Möglichkeit, weitere Siedlungen als wiederkehrende Handlungsorte einzuführen."
+        }
+      },
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      }
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "categories": [],
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

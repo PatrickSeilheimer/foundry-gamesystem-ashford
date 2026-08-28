@@ -1,0 +1,41 @@
+<form class="{{cssClass}} flexcol">
+  <header class="sheet-header">
+    <img class="profile-img" src="{{actor.img}}" data-edit="img" alt="{{actor.name}}">
+    <div class="header-fields flexcol">
+      <input name="name" type="text" value="{{actor.name}}" placeholder="Name">
+      <div class="resource-row">
+        <label>{{localize "ASHFORD.Sheet.health"}}
+          <input type="number" name="system.resources.health.value" value="{{system.resources.health.value}}">
+          / <input type="number" name="system.resources.health.max" value="{{system.resources.health.max}}">
+        </label>
+        <label>Tier <input type="text" name="system.tier" value="{{system.tier}}"></label>
+        <label>Angriffs-Pool <input type="number" name="system.attackPool" value="{{system.attackPool}}"></label>
+        <label><input type="checkbox" name="system.infectious" {{#if system.infectious}}checked{{/if}}> Infektiös</label>
+      </div>
+      <button type="button" class="ashford-roll-pool">🎲 {{localize "ASHFORD.Sheet.rollPool"}}</button>
+    </div>
+  </header>
+
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="main">Übersicht</a>
+    <a class="item" data-tab="gear">{{localize "ASHFORD.Sheet.gear"}}</a>
+  </nav>
+
+  <section class="sheet-body">
+    <div class="tab" data-group="primary" data-tab="main">
+      {{editor system.biography target="system.biography" button=true engine="prosemirror" collaborate=false}}
+    </div>
+    <div class="tab" data-group="primary" data-tab="gear">
+      <ol class="item-list">
+        {{#each gear as |item|}}
+          <li class="item" data-item-id="{{item.id}}">
+            <span class="item-name">{{item.name}}</span>
+            <a class="item-edit"><i class="fas fa-edit"></i></a>
+            <a class="item-delete"><i class="fas fa-trash"></i></a>
+          </li>
+        {{/each}}
+      </ol>
+      <a class="item-create" data-type="weapon">+ Waffe</a>
+    </div>
+  </section>
+</form>

@@ -1,0 +1,82 @@
+{
+  "_id": "2c19157bf65c3a17",
+  "_key": "!actors!2c19157bf65c3a17",
+  "name": "Sebastian Vogler",
+  "type": "npc",
+  "img": "systems/ashford/assets/portraits/sebastian-vogler.svg",
+  "system": {
+    "role": "KFZ-Verantwortlicher (Garage)",
+    "buildingId": "garage",
+    "note": "",
+    "facts": [
+      {
+        "label": "Alter",
+        "value": "36"
+      },
+      {
+        "label": "Vor der Apokalypse",
+        "value": "Deutscher KFZ-Meister, zog Jahre vor dem Einschlag beruflich in die USA und blieb dort"
+      },
+      {
+        "label": "Familie",
+        "value": "Ehefrau @UUID[Actor.22b7c50692a1b0ef]{Maria} (39) und Adoptivtochter @UUID[Actor.d3dda56d57735913]{Ella} (11) leben mit ihm gemeinsam in Ashford"
+      },
+      {
+        "label": "Aussehen",
+        "value": "Ordentlich und auffallend um Sauberkeit bemüht selbst unter widrigen Umständen, akkurat sortierte improvisierte Werkzeugkiste, spricht mit deutlichem deutschen Akzent"
+      }
+    ],
+    "story": "<p>Sebastian zog schon Jahre vor dem Einschlag beruflich als KFZ-Meister in die USA, wo er Maria kennenlernte, blieb, heiratete und ihre Tochter Ella adoptierte. Als eine der wenigen intakten Familien in Ashford sind die drei so etwas wie ein stilles Versprechen, dass nicht alles verloren ist, was Sebastian jeden Tag aufs Neue antreibt. Als ausgebildeter KFZ-Meister ist er die naheliegende Wahl für die Garage, auch wenn ihn der Zustand dort, ein einziger nicht fahrtüchtiger Wagen ohne Treibstoff, fast körperlich schmerzt. Seine akribische, aufgeräumte Art wirkt manchmal fehl am Platz in einer Welt aus Rost und Verfall, ist aber genau das, was er braucht, um seiner Familie ein Stück Normalität zu bewahren.</p>",
+    "portraitPrompt": "Photorealistic portrait of a neat 36-year-old German man, short tidy hair, clean-shaven, wearing a stained but carefully maintained mechanic jumpsuit, holding a wrench, standing beside a rusted old car inside a dusty garage, dusty light beams cutting through the air, ultra-detailed, 8k",
+    "isCodexEntry": true,
+    "initials": "SV",
+    "meta": {
+      "gender": "m",
+      "age": 36,
+      "relationship": "Verheiratet",
+      "workplace": "Garage",
+      "nationality": "Deutschland"
+    },
+    "biography": "",
+    "resources": {
+      "health": {
+        "value": 8,
+        "max": 8
+      },
+      "infection": {
+        "value": 0,
+        "max": 10
+      }
+    },
+    "dice": {
+      "basePool": 3
+    }
+  },
+  "items": [],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Sebastian Vogler",
+    "texture": {
+      "src": "systems/ashford/assets/portraits/sebastian-vogler.svg"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": 0
+  },
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

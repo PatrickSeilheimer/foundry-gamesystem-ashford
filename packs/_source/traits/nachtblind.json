@@ -1,0 +1,28 @@
+{
+  "_id": "a3dada5e15b7161c",
+  "_key": "!items!a3dada5e15b7161c",
+  "name": "Nachtblind",
+  "type": "trait",
+  "img": "icons/svg/downgrade.svg",
+  "system": {
+    "description": "<p>Im Dunkeln deutlich schlechter zu sehen als andere kostet regelmäßig einen Würfel bei nächtlichen Proben.</p>",
+    "kind": "weakness",
+    "permanent": true
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

@@ -1,0 +1,56 @@
+<form class="{{cssClass}} flexcol">
+  <header class="sheet-header">
+    <img class="profile-img" src="{{item.img}}" data-edit="img" alt="{{item.name}}">
+    <div class="header-fields flexcol">
+      <input name="name" type="text" value="{{item.name}}" placeholder="Name">
+      <span class="item-type-badge">{{localize (concat "ASHFORD.Item." item.type)}}</span>
+    </div>
+  </header>
+
+  <section class="sheet-body">
+    {{#if (eq item.type "trait")}}
+      <label>Art
+        <select name="system.kind">
+          <option value="strength" {{#if (eq system.kind "strength")}}selected{{/if}}>Stärke (+1 Würfel)</option>
+          <option value="weakness" {{#if (eq system.kind "weakness")}}selected{{/if}}>Schwäche (−1 Würfel)</option>
+        </select>
+      </label>
+      <label><input type="checkbox" name="system.permanent" {{#if system.permanent}}checked{{/if}}> Permanent</label>
+    {{/if}}
+
+    {{#if (eq item.type "talent")}}
+      <label>Kategorie <input type="text" name="system.category" value="{{system.category}}"></label>
+      <label>Tier <input type="number" name="system.tier" value="{{system.tier}}"></label>
+      <label>Kosten (Talentpunkte) <input type="number" name="system.cost" value="{{system.cost}}"></label>
+      <h3>Effekt</h3>
+      {{editor system.effect target="system.effect" button=true engine="prosemirror" collaborate=false}}
+    {{/if}}
+
+    {{#if (eq item.type "weapon")}}
+      <label>Schadenswürfel <input type="number" name="system.damageDice" value="{{system.damageDice}}"></label>
+      <label><input type="checkbox" name="system.grantsStrength" {{#if system.grantsStrength}}checked{{/if}}> Gewährt Stärke bei Benutzung</label>
+      <label>Munition <input type="text" name="system.ammo" value="{{system.ammo}}"></label>
+    {{/if}}
+
+    {{#if (eq item.type "armor")}}
+      <label>Schutz <input type="number" name="system.protection" value="{{system.protection}}"></label>
+    {{/if}}
+
+    {{#if (eq item.type "consumable")}}
+      <label>Verbleibende Nutzungen <input type="number" name="system.usesRemaining" value="{{system.usesRemaining}}"></label>
+    {{/if}}
+
+    {{#if (eq item.type "condition")}}
+      <label><input type="checkbox" name="system.grantsWeakness" {{#if system.grantsWeakness}}checked{{/if}}> Verursacht Schwäche</label>
+      <label>Dauer <input type="text" name="system.duration" value="{{system.duration}}"></label>
+    {{/if}}
+
+    {{#if (or (eq item.type "weapon") (eq item.type "armor") (eq item.type "equipment") (eq item.type "consumable"))}}
+      <label>Menge <input type="number" name="system.quantity" value="{{system.quantity}}"></label>
+      <label>Gewicht <input type="number" name="system.weight" value="{{system.weight}}"></label>
+    {{/if}}
+
+    <h3>Beschreibung</h3>
+    {{editor system.description target="system.description" button=true engine="prosemirror" collaborate=false}}
+  </section>
+</form>

@@ -1,0 +1,28 @@
+{
+  "_id": "f4870260ab224f65",
+  "_key": "!items!f4870260ab224f65",
+  "name": "Zäh",
+  "type": "trait",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "<p>Ein Körper, der schon einiges überstanden hat: ein zusätzlicher Würfel, wenn es ums reine Durchhalten geht.</p>",
+    "kind": "strength",
+    "permanent": true
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

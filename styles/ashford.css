@@ -1,0 +1,189 @@
+/* Ashford Adventures — shared palette, taken from the original Lagerakte reference page. */
+:root {
+  --ashford-bg: #191712;
+  --ashford-panel: #242019;
+  --ashford-panel-2: #2d271d;
+  --ashford-edge: #4a4130;
+  --ashford-text: #e9e2cf;
+  --ashford-text-dim: #b3a889;
+  --ashford-accent: #c9832f;
+  --ashford-accent-2: #7a9b6e;
+  --ashford-danger: #a8453a;
+}
+
+.ashford.sheet {
+  color: var(--ashford-text);
+  font-family: "Signika", sans-serif;
+}
+
+.ashford.sheet .sheet-header {
+  display: flex;
+  gap: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--ashford-accent);
+}
+
+.ashford.sheet .profile-img {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border: 1px solid var(--ashford-edge);
+}
+
+.ashford.sheet .header-fields {
+  flex: 1;
+  gap: 6px;
+}
+
+.ashford.sheet .resource-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 12px;
+}
+
+.ashford.sheet .resource-row input[type="number"] {
+  width: 48px;
+}
+
+.ashford.sheet .ashford-roll-pool {
+  align-self: flex-start;
+  background: var(--ashford-panel-2);
+  border: 1px solid var(--ashford-accent);
+  color: var(--ashford-accent);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.ashford.sheet .sheet-tabs .item {
+  color: var(--ashford-text-dim);
+}
+
+.ashford.sheet .sheet-tabs .item.active {
+  color: var(--ashford-accent);
+  font-weight: bold;
+}
+
+.ashford.sheet .item-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ashford.sheet .item-list .item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 4px;
+  border-bottom: 1px solid var(--ashford-edge);
+}
+
+.ashford.sheet .item-list .item-name {
+  flex: 1;
+}
+
+.ashford.sheet .item-create {
+  display: inline-block;
+  margin-top: 6px;
+  margin-right: 10px;
+  color: var(--ashford-accent-2);
+  cursor: pointer;
+}
+
+.ashford.sheet .item-type-badge {
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ashford-accent);
+}
+
+.ashford.sheet .fact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ashford.sheet .fact-list li {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.ashford.sheet .fact-list input[name$=".label"] {
+  width: 30%;
+}
+
+/* Roll dialog */
+.ashford-roll-dialog fieldset {
+  border: 1px solid var(--ashford-edge);
+  margin-bottom: 8px;
+}
+
+.ashford-roll-dialog .ashford-trait-toggle {
+  display: block;
+  padding: 2px 0;
+}
+
+.ashford-roll-dialog .hint {
+  color: var(--ashford-text-dim);
+  font-size: 12px;
+  font-style: italic;
+}
+
+/* Chat roll card */
+.ashford-roll-card {
+  background: var(--ashford-panel);
+  border: 1px solid var(--ashford-edge);
+  border-left: 4px solid var(--ashford-accent);
+  padding: 8px 10px;
+  color: var(--ashford-text);
+}
+
+.ashford-roll-card header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.ashford-roll-card .pool-size {
+  color: var(--ashford-text-dim);
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+}
+
+.ashford-roll-card .dice-row {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.ashford-roll-card .die {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--ashford-edge);
+  background: var(--ashford-panel-2);
+  color: var(--ashford-text-dim);
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+}
+
+.ashford-roll-card .die.success {
+  border-color: var(--ashford-accent-2);
+  color: var(--ashford-accent-2);
+  font-weight: bold;
+}
+
+.ashford-roll-card .successes {
+  font-weight: bold;
+  color: var(--ashford-accent);
+}
+
+.ashford-roll-card .tags {
+  font-size: 11px;
+  color: var(--ashford-text-dim);
+}

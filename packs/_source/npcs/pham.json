@@ -1,0 +1,82 @@
+{
+  "_id": "8468b06abe38ab67",
+  "_key": "!actors!8468b06abe38ab67",
+  "name": "Dr. Yvette Pham",
+  "type": "npc",
+  "img": "systems/ashford/assets/portraits/yvette-pham.svg",
+  "system": {
+    "role": "Chefärztin (Lazarett)",
+    "buildingId": "lazarett",
+    "note": "",
+    "facts": [
+      {
+        "label": "Alter",
+        "value": "33"
+      },
+      {
+        "label": "Vor der Apokalypse",
+        "value": "Assistenzärztin für Chirurgie in einem US-Krankenhaus, in den USA geboren, Kind vietnamesischer Einwanderer"
+      },
+      {
+        "label": "Familie",
+        "value": "Eltern seit dem Fall ohne Kontakt, Verbleib unbekannt; ein jüngerer Bruder, von dem sie seit der Zerstreuung nichts mehr gehört hat"
+      },
+      {
+        "label": "Aussehen",
+        "value": "Schlank, auffallend präzise und aufgeräumte Erscheinung selbst unter widrigen Umständen, dunkles Haar streng zum Zopf gebunden, trägt noch alte OP-Handschuhe als improvisiertes Werkzeug, wenn nötig"
+      }
+    ],
+    "story": "<p>Yvette war mitten in ihrer chirurgischen Ausbildung, als der Fall alles beendete. Als Tochter vietnamesischer Einwanderer in den USA aufgewachsen, hat sie sich ihre Position immer hart erarbeiten müssen, eine Härte, die ihr heute in Ashford zugutekommt. Tatsächliche chirurgische Erfahrung zu haben ist in dieser Welt beinahe ein Luxus, ihr Problem ist nicht mangelndes Wissen, sondern die erbärmliche Ausstattung des Lazaretts, kaum mehr als Verbandsmaterial für jemanden, der eigentlich operieren könnte. Von ihren Eltern und ihrem jüngeren Bruder hat sie seit der Zerstreuung nichts mehr gehört, ein Umstand, den sie mit derselben disziplinierten Konzentration verdrängt, mit der sie auch jeden Patienten angeht.</p>",
+    "portraitPrompt": "Photorealistic portrait of a slender 33-year-old Vietnamese-American woman, dark hair tightly pulled into a bun, sharp precise features, focused calm expression, wearing an improvised medical coat over practical clothing with old surgical gloves tucked in a pocket, standing in a dim improvised infirmary room with shelves of sparse medical supplies, soft warm lantern light, ultra-detailed, 8k",
+    "isCodexEntry": true,
+    "initials": "YP",
+    "meta": {
+      "gender": "w",
+      "age": 33,
+      "relationship": "Ledig",
+      "workplace": "Lazarett",
+      "nationality": "USA"
+    },
+    "biography": "",
+    "resources": {
+      "health": {
+        "value": 8,
+        "max": 8
+      },
+      "infection": {
+        "value": 0,
+        "max": 10
+      }
+    },
+    "dice": {
+      "basePool": 3
+    }
+  },
+  "items": [],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Dr. Yvette Pham",
+    "texture": {
+      "src": "systems/ashford/assets/portraits/yvette-pham.svg"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": 0
+  },
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

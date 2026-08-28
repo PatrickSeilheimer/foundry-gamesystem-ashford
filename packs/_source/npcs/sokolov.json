@@ -1,0 +1,82 @@
+{
+  "_id": "3d722c9b3eb99cff",
+  "_key": "!actors!3d722c9b3eb99cff",
+  "name": "Viktor Sokolov",
+  "type": "npc",
+  "img": "systems/ashford/assets/portraits/viktor-sokolov.svg",
+  "system": {
+    "role": "Chef Werker (Werkstatt)",
+    "buildingId": "werkstatt",
+    "note": "",
+    "facts": [
+      {
+        "label": "Alter",
+        "value": "42"
+      },
+      {
+        "label": "Vor der Apokalypse",
+        "value": "Russischer Ingenieur und Mechaniker, war für ein Industrieprojekt in den USA, als der Einschlag geschah"
+      },
+      {
+        "label": "Familie",
+        "value": "Geschieden; erwachsener Sohn in Russland, kein Kontakt seit dem Fall"
+      },
+      {
+        "label": "Aussehen",
+        "value": "Kräftig, tätowierte Unterarme von Jahrzehnten Werkstattarbeit, immer eine unangezündete Zigarette hinter dem Ohr, weil Tabak zu wertvoll zum Rauchen ist"
+      }
+    ],
+    "story": "<p>Viktor arbeitete als Ingenieur an einem befristeten Industrieprojekt in den USA, als der Meteorit einschlug, und saß seither auf dem falschen Kontinent fest, getrennt von seinem erwachsenen Sohn in Russland, zu dem seit dem Fall jeder Kontakt abgerissen ist. Aufgewachsen mit einer Mentalität, in der Mangel und Improvisation Alltag waren, hat er sich in Ashford den fast legendären Ruf erarbeitet, aus praktisch jedem Schrotthaufen etwas Funktionierendes zu bauen, eine Fähigkeit, die er mit sichtlichem Vergnügen auch auf die Schnapsbrennerei überträgt. Wortkarg und trocken-zynisch, aber verlässlich bis in die letzte Schraube, ist er die Sorte Handwerker, die eine Siedlung wie Ashford buchstäblich zusammenhält, und an ruhigen Abenden gerne mal ein selbstgebranntes Glas mit den anderen teilt.</p>",
+    "portraitPrompt": "Photorealistic portrait of a stocky muscular 42-year-old Russian man, tattooed forearms, an unlit cigarette tucked behind one ear, gruff weathered face, wearing an oil-stained work apron over a flannel shirt, standing in a cluttered wooden workshop full of tools and scrap, warm lantern light, ultra-detailed, 8k",
+    "isCodexEntry": true,
+    "initials": "VS",
+    "meta": {
+      "gender": "m",
+      "age": 42,
+      "relationship": "Geschieden",
+      "workplace": "Werkstatt",
+      "nationality": "Russland"
+    },
+    "biography": "",
+    "resources": {
+      "health": {
+        "value": 8,
+        "max": 8
+      },
+      "infection": {
+        "value": 0,
+        "max": 10
+      }
+    },
+    "dice": {
+      "basePool": 3
+    }
+  },
+  "items": [],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Viktor Sokolov",
+    "texture": {
+      "src": "systems/ashford/assets/portraits/viktor-sokolov.svg"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": 0
+  },
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

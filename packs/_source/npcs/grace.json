@@ -1,0 +1,82 @@
+{
+  "_id": "f37daf02a79436ea",
+  "_key": "!actors!f37daf02a79436ea",
+  "name": "Grace Mercer",
+  "type": "npc",
+  "img": "systems/ashford/assets/portraits/grace-mercer.svg",
+  "system": {
+    "role": "Verlobte, seit dem Fall in Ashford zusammen",
+    "buildingId": "",
+    "note": "<p>Kein offizieller Posten, eines der wenigen fröhlichen Gesichter der Siedlung.</p>",
+    "facts": [
+      {
+        "label": "Alter",
+        "value": "30"
+      },
+      {
+        "label": "Vor der Apokalypse",
+        "value": "Rettungssanitäterin, ausgebildet im Umgang mit Notfällen und Verletzungen"
+      },
+      {
+        "label": "Verbindung",
+        "value": "Verlobt mit @UUID[Actor.c448a3c1069223d6]{Phil}"
+      },
+      {
+        "label": "Aussehen",
+        "value": "Kurze Haare, kräftige Statur, trägt einen Ring aus zusammengeschweißtem Schrott, hilft gelegentlich im Lazarett aus"
+      }
+    ],
+    "story": "<p>Grace arbeitete vor dem Fall als Rettungssanitäterin, eine Erfahrung, die ihr in Ashford gelegentlich zugutekommt, wenn im Lazarett zusätzliche Hände gebraucht werden. Sie kam erst nach dem Fall nach Ashford und lernte Phil kennen, als beide gemeinsam bei der Verteilung besonders knapper Rationen aushalfen, eine unspektakuläre Begegnung, aus der sich über die folgenden Monate eine feste Beziehung entwickelte. Ihre bevorstehende Hochzeit gilt in der Siedlung als eines der wenigen wirklich fröhlichen Ereignisse der letzten Jahre. Ihre Ringe sind aus zusammengeschweißtem Schrott gefertigt, mit tatkräftiger Hilfe von @UUID[Actor.3d722c9b3eb99cff]{Viktor} in der Werkstatt, ein unscheinbares, aber vielsagendes Symbol dafür, dass sich selbst in dieser Welt noch etwas Neues und Gutes aufbauen lässt.</p>",
+    "portraitPrompt": "Photorealistic portrait of a 30-year-old American woman, short practical haircut, sturdy build, wearing a ring made of welded scrap metal, dressed in practical worn medical-adjacent clothing, warm confident smile, standing near an infirmary tent, warm golden light, ultra-detailed, 8k",
+    "isCodexEntry": true,
+    "initials": "GM",
+    "meta": {
+      "gender": "w",
+      "age": 30,
+      "relationship": "Verlobt",
+      "workplace": "Außentrupp",
+      "nationality": "USA"
+    },
+    "biography": "",
+    "resources": {
+      "health": {
+        "value": 8,
+        "max": 8
+      },
+      "infection": {
+        "value": 0,
+        "max": 10
+      }
+    },
+    "dice": {
+      "basePool": 3
+    }
+  },
+  "items": [],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Grace Mercer",
+    "texture": {
+      "src": "systems/ashford/assets/portraits/grace-mercer.svg"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": 0
+  },
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

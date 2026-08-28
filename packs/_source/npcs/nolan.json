@@ -1,0 +1,82 @@
+{
+  "_id": "a9dcabe55e87acc9",
+  "_key": "!actors!a9dcabe55e87acc9",
+  "name": "Gary Nolan",
+  "type": "npc",
+  "img": "systems/ashford/assets/portraits/gary-nolan.svg",
+  "system": {
+    "role": "Ehemaliger Gefängniswärter, Coles engster Verbündeter",
+    "buildingId": "",
+    "note": "<p>Kein offizieller Posten, aber eine feste Größe im Alltag der Siedlung.</p>",
+    "facts": [
+      {
+        "label": "Alter",
+        "value": "38"
+      },
+      {
+        "label": "Vor der Apokalypse",
+        "value": "Wärter in dem Gefängnis, in dem Cole einsaß"
+      },
+      {
+        "label": "Verbindung",
+        "value": "Untrennbar verbunden mit @UUID[Actor.9894f964919bac97]{Cole}, den er beim Ausbruch befreite"
+      },
+      {
+        "label": "Aussehen",
+        "value": "Kurzgeschorenes graues Haar, trägt noch immer den alten Schlüsselbund seines Dienstes als eine Art Andenken"
+      }
+    ],
+    "story": "<p>Gary war Wärter in dem Gefängnis, in dem Cole einsaß, und stand am Tag des Falls vor der Anweisung, sämtliche Häftlinge einfach zurückzulassen. Er warf sämtliche Protokolle über den Haufen und befreite so viele Insassen wie möglich, Cole darunter. Auf der gemeinsamen Flucht retteten die beiden sich mehrfach gegenseitig das Leben, ein Erlebnis, das eine Verbindung geschaffen hat, die enger ist als die meisten Familienbande in Ashford. Gary trägt bis heute seinen alten Schlüsselbund bei sich, nicht aus Nostalgie für den alten Job, sondern als Erinnerung daran, dass er die eine Entscheidung getroffen hat, auf die er wirklich stolz ist.</p>",
+    "portraitPrompt": "Photorealistic portrait of a 38-year-old American man, close-cropped greying hair, wearing a faded former prison guard jacket, an old keyring clipped to his belt, steady serious expression, standing near a wooden settlement gate, overcast diffused light, ultra-detailed, 8k",
+    "isCodexEntry": true,
+    "initials": "GN",
+    "meta": {
+      "gender": "m",
+      "age": 38,
+      "relationship": "Ledig",
+      "workplace": "Außentrupp",
+      "nationality": "USA"
+    },
+    "biography": "",
+    "resources": {
+      "health": {
+        "value": 8,
+        "max": 8
+      },
+      "infection": {
+        "value": 0,
+        "max": 10
+      }
+    },
+    "dice": {
+      "basePool": 3
+    }
+  },
+  "items": [],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Gary Nolan",
+    "texture": {
+      "src": "systems/ashford/assets/portraits/gary-nolan.svg"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": 0
+  },
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

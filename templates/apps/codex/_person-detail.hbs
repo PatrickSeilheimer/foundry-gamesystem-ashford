@@ -1,0 +1,45 @@
+<div class="ashford-codex-back-row">
+  <button type="button" data-back="persons">&larr; {{localize "ASHFORD.Codex.backToPersons"}}</button>
+  <button type="button" data-back="buildings">&larr; {{localize "ASHFORD.Codex.backToBuildings"}}</button>
+</div>
+<div class="ashford-codex-detail">
+  <div class="ashford-codex-person-head">
+    {{#if img}}
+      <img class="ashford-codex-avatar-img ashford-codex-avatar-img--lg" src="{{img}}" alt="{{name}}">
+    {{else}}
+      <div class="ashford-codex-avatar ashford-codex-avatar--lg">{{initials}}</div>
+    {{/if}}
+    <h2>{{name}}</h2>
+    <div class="ashford-codex-person-role">{{role}}</div>
+  </div>
+
+  {{#if facts.length}}
+  <dl class="ashford-codex-facts">
+    {{#each facts}}
+    <dt>{{this.label}}</dt><dd>{{{this.valueHTML}}}</dd>
+    {{/each}}
+  </dl>
+  {{/if}}
+
+  {{#if health}}
+  <div class="ashford-codex-bar-row">
+    <div class="ashford-codex-bar-label">{{localize "ASHFORD.Codex.health"}}</div>
+    <div class="ashford-codex-bar-track"><div class="ashford-codex-bar-fill" style="width:{{health.pct}}%"></div></div>
+    <div class="ashford-codex-bar-value">{{health.value}}/{{health.max}}</div>
+  </div>
+  {{/if}}
+
+  {{#if storyHTML}}
+  <div class="ashford-codex-story">{{{storyHTML}}}</div>
+  {{/if}}
+
+  <p class="ashford-codex-building-note">
+    {{#if buildingLink}}
+      {{localize "ASHFORD.Codex.belongsToBuilding"}}: <a data-building-slug="{{buildingLink.slug}}">{{buildingLink.name}}</a>
+    {{else if noteHTML}}
+      {{{noteHTML}}}
+    {{else}}
+      {{localize "ASHFORD.Codex.noBuilding"}}
+    {{/if}}
+  </p>
+</div>

@@ -1,0 +1,84 @@
+<form class="{{cssClass}} flexcol">
+  <header class="sheet-header">
+    <img class="profile-img" src="{{actor.img}}" data-edit="img" alt="{{actor.name}}">
+    <div class="header-fields flexcol">
+      <input name="name" type="text" value="{{actor.name}}" placeholder="Name">
+      <div class="resource-row">
+        <label>{{localize "ASHFORD.Sheet.health"}}
+          <input type="number" name="system.resources.health.value" value="{{system.resources.health.value}}">
+          / <input type="number" name="system.resources.health.max" value="{{system.resources.health.max}}">
+        </label>
+        <label>{{localize "ASHFORD.Sheet.infection"}}
+          <input type="number" name="system.resources.infection.value" value="{{system.resources.infection.value}}">
+          / <input type="number" name="system.resources.infection.max" value="{{system.resources.infection.max}}">
+        </label>
+      </div>
+      <div class="resource-row">
+        <label>{{localize "ASHFORD.Sheet.level"}} <input type="number" name="system.level" value="{{system.level}}"></label>
+        <label>{{localize "ASHFORD.Sheet.xp"}} <input type="number" name="system.xp" value="{{system.xp}}"></label>
+        <label>{{localize "ASHFORD.Sheet.talentPoints"}} <input type="number" name="system.talentPoints" value="{{system.talentPoints}}"></label>
+      </div>
+      <button type="button" class="ashford-roll-pool">🎲 {{localize "ASHFORD.Sheet.rollPool"}}</button>
+    </div>
+  </header>
+
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="main">Übersicht</a>
+    <a class="item" data-tab="traits">{{localize "ASHFORD.Sheet.traits"}}</a>
+    <a class="item" data-tab="talents">{{localize "ASHFORD.Sheet.talents"}}</a>
+    <a class="item" data-tab="gear">{{localize "ASHFORD.Sheet.gear"}}</a>
+  </nav>
+
+  <section class="sheet-body">
+    <div class="tab" data-group="primary" data-tab="main">
+      <label>Konzept <input type="text" name="system.concept" value="{{system.concept}}"></label>
+      <h3>{{localize "ASHFORD.Sheet.biography"}}</h3>
+      {{editor system.biography target="system.biography" button=true engine="prosemirror" collaborate=false}}
+    </div>
+
+    <div class="tab" data-group="primary" data-tab="traits">
+      <ol class="item-list">
+        {{#each traits as |item|}}
+          <li class="item" data-item-id="{{item.id}}">
+            <span class="item-name">{{item.name}}</span>
+            <span class="item-kind">{{item.system.kind}}</span>
+            <a class="item-edit"><i class="fas fa-edit"></i></a>
+            <a class="item-delete"><i class="fas fa-trash"></i></a>
+          </li>
+        {{/each}}
+      </ol>
+      <a class="item-create" data-type="trait">+ Stärke/Schwäche</a>
+    </div>
+
+    <div class="tab" data-group="primary" data-tab="talents">
+      <ol class="item-list">
+        {{#each talents as |item|}}
+          <li class="item" data-item-id="{{item.id}}">
+            <span class="item-name">{{item.name}}</span>
+            <span class="item-kind">{{item.system.category}}</span>
+            <a class="item-edit"><i class="fas fa-edit"></i></a>
+            <a class="item-delete"><i class="fas fa-trash"></i></a>
+          </li>
+        {{/each}}
+      </ol>
+      <a class="item-create" data-type="talent">+ Talent</a>
+    </div>
+
+    <div class="tab" data-group="primary" data-tab="gear">
+      <ol class="item-list">
+        {{#each gear as |item|}}
+          <li class="item" data-item-id="{{item.id}}">
+            <span class="item-name">{{item.name}}</span>
+            <span class="item-kind">{{item.type}}</span>
+            <a class="item-edit"><i class="fas fa-edit"></i></a>
+            <a class="item-delete"><i class="fas fa-trash"></i></a>
+          </li>
+        {{/each}}
+      </ol>
+      <a class="item-create" data-type="equipment">+ Ausrüstung</a>
+      <a class="item-create" data-type="weapon">+ Waffe</a>
+      <a class="item-create" data-type="armor">+ Rüstung</a>
+      <a class="item-create" data-type="consumable">+ Verbrauchsgegenstand</a>
+    </div>
+  </section>
+</form>

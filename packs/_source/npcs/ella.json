@@ -1,0 +1,82 @@
+{
+  "_id": "d3dda56d57735913",
+  "_key": "!actors!d3dda56d57735913",
+  "name": "Ella Delgado",
+  "type": "npc",
+  "img": "systems/ashford/assets/portraits/ella-delgado.svg",
+  "system": {
+    "role": "Sebastians Adoptivtochter",
+    "buildingId": "garage",
+    "note": "",
+    "facts": [
+      {
+        "label": "Alter",
+        "value": "11"
+      },
+      {
+        "label": "Vor der Apokalypse",
+        "value": "War etwa vier Jahre alt, als der Fall geschah, kaum eigene Erinnerung an die alte Welt"
+      },
+      {
+        "label": "Familie",
+        "value": "Mutter @UUID[Actor.22b7c50692a1b0ef]{Maria Delgado}, Adoptivvater @UUID[Actor.2c19157bf65c3a17]{Sebastian Vogler}"
+      },
+      {
+        "label": "Aussehen",
+        "value": "Meist zerzauste Haare, ständig schmutzige Knie, trägt oft ein kleines, selbstgebasteltes Spielzeug in der Tasche"
+      }
+    ],
+    "story": "<p>Ella kennt die alte Welt nur noch aus vagen, fast traumhaften Erinnerungsfetzen, für sie ist Ashford einfach die Welt, wie sie ist. Weil sie mit beiden Elternteilen aufwächst, eine Seltenheit in der Siedlung, gilt sie unter den wenigen anderen Kindern fast als privilegiert. Neugierig und altersuntypisch pragmatisch, wie es Kinder werden, die in einer solchen Welt großwerden, schleicht sie sich trotzdem gerne dorthin, wo sie eigentlich nicht hin soll, sehr zum Leidwesen ihrer Eltern.</p>",
+    "portraitPrompt": "Photorealistic portrait of an 11-year-old Mexican-American girl, tousled dark hair, dirty knees, holding a small handmade toy, curious expression, standing in a dusty overgrown settlement street, soft natural daylight, ultra-detailed, 8k",
+    "isCodexEntry": true,
+    "initials": "ED",
+    "meta": {
+      "gender": "w",
+      "age": 11,
+      "relationship": "Kind",
+      "workplace": "Kind",
+      "nationality": "Mexiko"
+    },
+    "biography": "",
+    "resources": {
+      "health": {
+        "value": 8,
+        "max": 8
+      },
+      "infection": {
+        "value": 0,
+        "max": 10
+      }
+    },
+    "dice": {
+      "basePool": 3
+    }
+  },
+  "items": [],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Ella Delgado",
+    "texture": {
+      "src": "systems/ashford/assets/portraits/ella-delgado.svg"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": 0
+  },
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

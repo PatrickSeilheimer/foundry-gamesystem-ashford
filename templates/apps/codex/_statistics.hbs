@@ -1,0 +1,76 @@
+<h2 class="ashford-codex-section-title">{{localize "ASHFORD.Codex.demographyTitle"}}</h2>
+<div class="ashford-codex-stat-tiles">
+  <div class="ashford-codex-stat-tile">
+    <div class="ashford-codex-num">{{total}}</div>
+    <div class="ashford-codex-lbl">{{localize "ASHFORD.Codex.totalPopulation"}}</div>
+  </div>
+  <div class="ashford-codex-stat-tile">
+    <div class="ashford-codex-num">{{female}}</div>
+    <div class="ashford-codex-lbl">{{localize "ASHFORD.Codex.female"}}</div>
+  </div>
+  <div class="ashford-codex-stat-tile">
+    <div class="ashford-codex-num">{{male}}</div>
+    <div class="ashford-codex-lbl">{{localize "ASHFORD.Codex.male"}}</div>
+  </div>
+  <div class="ashford-codex-stat-tile">
+    <div class="ashford-codex-num">{{children}}</div>
+    <div class="ashford-codex-lbl">{{localize "ASHFORD.Codex.children"}}</div>
+  </div>
+</div>
+
+<div class="ashford-codex-chart-block">
+  <h3>{{localize "ASHFORD.Codex.chartGender"}}</h3>
+  {{#each genderBars}}
+  <div class="ashford-codex-bar-row">
+    <div class="ashford-codex-bar-label">{{this.label}}</div>
+    <div class="ashford-codex-bar-track"><div class="ashford-codex-bar-fill" style="width:{{this.pct}}%"></div></div>
+    <div class="ashford-codex-bar-value">{{this.value}}</div>
+  </div>
+  {{/each}}
+</div>
+
+<div class="ashford-codex-chart-block">
+  <h3>{{localize "ASHFORD.Codex.chartAge"}}</h3>
+  {{#each ageBars}}
+  <div class="ashford-codex-bar-row">
+    <div class="ashford-codex-bar-label">{{this.label}}</div>
+    <div class="ashford-codex-bar-track"><div class="ashford-codex-bar-fill" style="width:{{this.pct}}%"></div></div>
+    <div class="ashford-codex-bar-value">{{this.value}}</div>
+  </div>
+  {{/each}}
+</div>
+
+<div class="ashford-codex-chart-block">
+  <h3>{{localize "ASHFORD.Codex.chartRelationship"}}</h3>
+  {{#each relationshipBars}}
+  <div class="ashford-codex-bar-row">
+    <div class="ashford-codex-bar-label">{{this.label}}</div>
+    <div class="ashford-codex-bar-track"><div class="ashford-codex-bar-fill" style="width:{{this.pct}}%"></div></div>
+    <div class="ashford-codex-bar-value">{{this.value}}</div>
+  </div>
+  {{/each}}
+</div>
+
+<div class="ashford-codex-chart-block">
+  <h3>{{localize "ASHFORD.Codex.chartWorkplace"}}</h3>
+  {{#each workplaceBars}}
+  <div class="ashford-codex-bar-row">
+    <div class="ashford-codex-bar-label">{{this.label}}</div>
+    <div class="ashford-codex-bar-track"><div class="ashford-codex-bar-fill" style="width:{{this.pct}}%"></div></div>
+    <div class="ashford-codex-bar-value">{{this.value}}</div>
+  </div>
+  {{/each}}
+</div>
+
+<div class="ashford-codex-chart-block">
+  <h3>{{localize "ASHFORD.Codex.chartNationality"}}</h3>
+  {{#each nationalityBars}}
+  <div class="ashford-codex-bar-row">
+    <div class="ashford-codex-bar-label">{{this.label}}</div>
+    <div class="ashford-codex-bar-track"><div class="ashford-codex-bar-fill" style="width:{{this.pct}}%"></div></div>
+    <div class="ashford-codex-bar-value">{{this.value}}</div>
+  </div>
+  {{/each}}
+</div>
+
+<p class="ashford-codex-note">{{localize "ASHFORD.Codex.statsNote"}}</p>

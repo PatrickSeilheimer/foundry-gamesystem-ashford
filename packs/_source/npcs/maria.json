@@ -1,0 +1,82 @@
+{
+  "_id": "22b7c50692a1b0ef",
+  "_key": "!actors!22b7c50692a1b0ef",
+  "name": "Maria Delgado",
+  "type": "npc",
+  "img": "systems/ashford/assets/portraits/maria-delgado.svg",
+  "system": {
+    "role": "Sebastians Frau, ehemalige Grundschullehrerin",
+    "buildingId": "garage",
+    "note": "",
+    "facts": [
+      {
+        "label": "Alter",
+        "value": "39"
+      },
+      {
+        "label": "Vor der Apokalypse",
+        "value": "Grundschullehrerin, ursprünglich aus Mexiko-Stadt, zog als junge Frau in die USA"
+      },
+      {
+        "label": "Familie",
+        "value": "Tochter @UUID[Actor.d3dda56d57735913]{Ella} (11) aus einer früheren Beziehung; Ehemann @UUID[Actor.2c19157bf65c3a17]{Sebastian Vogler}, den sie in den USA kennenlernte"
+      },
+      {
+        "label": "Aussehen",
+        "value": "Dunkles, meist zum Zopf gebundenes Haar, warme, wache Augen, praktische Kleidung mit unzähligen selbstgenähten Flicken"
+      }
+    ],
+    "story": "<p>Maria unterrichtete in den USA Grundschulkinder, lange nachdem sie als junge Frau aus Mexiko-Stadt ausgewandert war, und lernte dort Sebastian kennen, mit dem sie eine gemeinsame Familie aufbaute. Ihre Tochter Ella stammt aus einer früheren Beziehung, Sebastian hat sie mit Herz adoptiert, als die beiden heirateten. Dass ihre kleine Familie den Fall gemeinsam und unversehrt überstanden hat, macht sie zu einer der wenigen in Ashford, die noch etwas zu verlieren haben, was sie zugleich warmherzig und im Zweifel erstaunlich resolut macht, wenn es um den Schutz ihrer Tochter geht.</p>",
+    "portraitPrompt": "Photorealistic portrait of a 39-year-old Mexican woman, dark hair tied back, warm alert eyes, wearing practical clothing covered in hand-sewn patches, standing near an open garage door, soft natural daylight, ultra-detailed, 8k",
+    "isCodexEntry": true,
+    "initials": "MD",
+    "meta": {
+      "gender": "w",
+      "age": 39,
+      "relationship": "Verheiratet",
+      "workplace": "Außentrupp",
+      "nationality": "Mexiko"
+    },
+    "biography": "",
+    "resources": {
+      "health": {
+        "value": 8,
+        "max": 8
+      },
+      "infection": {
+        "value": 0,
+        "max": 10
+      }
+    },
+    "dice": {
+      "basePool": 3
+    }
+  },
+  "items": [],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Maria Delgado",
+    "texture": {
+      "src": "systems/ashford/assets/portraits/maria-delgado.svg"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": 0
+  },
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "_id": "960c158b48f2ac6d",
+  "_key": "!actors!960c158b48f2ac6d",
+  "name": "Silas Rourke",
+  "type": "npc",
+  "img": "systems/ashford/assets/portraits/silas-rourke.svg",
+  "system": {
+    "role": "Der Fallensteller, lebt lieber im Wald",
+    "buildingId": "",
+    "note": "<p>Offizielles Mitglied der Siedlung mit festem Platz, lebt aber freiwillig etwas außerhalb im Wald.</p>",
+    "facts": [
+      {
+        "label": "Alter",
+        "value": "35"
+      },
+      {
+        "label": "Vor der Apokalypse",
+        "value": "Arbeitete bereits als Wildhüter beziehungsweise Förster"
+      },
+      {
+        "label": "Familie",
+        "value": "Keine bekannte in Ashford"
+      },
+      {
+        "label": "Aussehen",
+        "value": "Sehnig, wettergegerbt, spricht wenig, wachsamer Blick"
+      }
+    ],
+    "story": "<p>Silas ist offiziell Mitglied von Ashford und hat dort jederzeit einen Platz, zieht es aber vor, etwas abseits im Wald zu leben. Regelmäßig bringt er erlegtes Wild in die Siedlung, mehr, als er selbst je verbrauchen würde, und verschwindet nach dem gemeinsamen Essen meist wieder in den Wald. Nur wenn er verletzt ist, gönnt er sich eine Nacht im Lazarett bei @UUID[Actor.8468b06abe38ab67]{Dr. Yvette Pham}, der einzigen, mit der er wirklich offen redet. Insgeheim hegt er schüchterne Gefühle für sie, ohne dass er sich je trauen würde, auch nur andeutungsweise etwas in diese Richtung zu zeigen, für Yvette ist er dagegen einfach ein weiteres Mitglied der Siedlung. Er schätzt es sichtlich, dass er in Ashford immer willkommen ist, auch wenn ihm der Dank, den man ihm für das Fleisch entgegenbringt, grundsätzlich unangenehm ist.</p>",
+    "portraitPrompt": "Photorealistic portrait of a lean weathered 35-year-old American man, sun-worn skin, quiet watchful eyes, wearing forest-ranger-inspired hunting gear with fur trim, standing in a dense misty forest holding a handmade trap, soft diffused forest light, ultra-detailed, 8k",
+    "isCodexEntry": true,
+    "initials": "SR",
+    "meta": {
+      "gender": "m",
+      "age": 35,
+      "relationship": "Ledig",
+      "workplace": "Außentrupp",
+      "nationality": "USA"
+    },
+    "biography": "",
+    "resources": {
+      "health": {
+        "value": 8,
+        "max": 8
+      },
+      "infection": {
+        "value": 0,
+        "max": 10
+      }
+    },
+    "dice": {
+      "basePool": 3
+    }
+  },
+  "items": [],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Silas Rourke",
+    "texture": {
+      "src": "systems/ashford/assets/portraits/silas-rourke.svg"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": 0
+  },
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

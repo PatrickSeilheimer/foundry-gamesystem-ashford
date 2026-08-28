@@ -1,0 +1,319 @@
+{
+  "_id": "6bfd534c61ee4988",
+  "_key": "!journal!6bfd534c61ee4988",
+  "name": "Gebäude von Ashford",
+  "pages": [
+    {
+      "_id": "dcbb3cb9e9106523",
+      "_key": "!journal.pages!6bfd534c61ee4988.dcbb3cb9e9106523",
+      "name": "Der Wasserturm",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "text": {
+        "content": "<p>Ashford ist buchstäblich um einen noch stehenden alten Wasserturm herum entstanden. Ein einfaches Leitungsnetz verteilt sein Wasser, ergänzt durch zahllose Regenfässer und -tonnen zwischen den Gebäuden. Kein Filter, keine Aufbereitung, nur Schwerkraft, Rost und Glück.</p>",
+        "format": 1,
+        "markdown": ""
+      },
+      "sort": 100000,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {
+        "ashford": {
+          "slug": "wasserturm",
+          "badge": "H2O · WASSER",
+          "tier": "Faktisch Stufe 2 (Zisterne) – der Turm bot die Speicherkapazität schon, ohne dass die Siedlung sie bauen musste",
+          "npcUuid": null,
+          "npcNote": "Kein fester Verantwortlicher – gilt als Gemeinschaftsgut."
+        }
+      },
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      }
+    },
+    {
+      "_id": "ce307fe7bcddf98a",
+      "_key": "!journal.pages!6bfd534c61ee4988.ce307fe7bcddf98a",
+      "name": "Wohnblock & Läden",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "text": {
+        "content": "<p>Ashford existierte schon vor der Apokalypse als Ort. Die überlebenden, abgeranzten Wohnhäuser und ehemaligen Ladenflächen wurden notdürftig instand gesetzt und dienen heute sowohl als Unterkünfte als auch als Lagerraum für die spärlichen Vorräte der Siedlung.</p>",
+        "format": 1,
+        "markdown": ""
+      },
+      "sort": 200000,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {
+        "ashford": {
+          "slug": "wohnbloecke",
+          "badge": "HAB · UNTERKUNFT/LAGER",
+          "tier": "Stufe 1–2 (instand gesetzte Bestandsgebäude, kein Neubau)",
+          "npcUuid": "Actor.fc45a60c75be46c4",
+          "npcNote": null
+        }
+      },
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      }
+    },
+    {
+      "_id": "3ee56ea3cd5602bc",
+      "_key": "!journal.pages!6bfd534c61ee4988.3ee56ea3cd5602bc",
+      "name": "Die Palisaden",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "text": {
+        "content": "<p>Aus mittelmäßigem Holz errichtete Palisaden umschließen die Siedlung, allerdings ohne Wachtürme und mit zwei ungesicherten Öffnungen an gegenüberliegenden Seiten. Ein ständiges Sorgenkind.</p>",
+        "format": 1,
+        "markdown": ""
+      },
+      "sort": 300000,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {
+        "ashford": {
+          "slug": "palisaden",
+          "badge": "DEF · VERTEIDIGUNG",
+          "tier": "Stufe 1 – Palisade ohne Wachtürme",
+          "npcUuid": "Actor.b4b9c452f7188f36",
+          "npcNote": null
+        }
+      },
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      }
+    },
+    {
+      "_id": "648faca65e67d917",
+      "_key": "!journal.pages!6bfd534c61ee4988.648faca65e67d917",
+      "name": "Der Hühnerstall",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "text": {
+        "content": "<p>Rund zehn Hühner liefern Eier, mehr Nahrungsproduktion existiert nicht. Der Speiseplan der Siedlung hängt fast vollständig von fast täglichen Beschaffungsmissionen ab, das größte ungelöste Problem von Ashford.</p>",
+        "format": 1,
+        "markdown": ""
+      },
+      "sort": 400000,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {
+        "ashford": {
+          "slug": "huehnerstall",
+          "badge": "FOOD · NAHRUNG",
+          "tier": "Kein echter Ausbau, rein informell",
+          "npcUuid": null,
+          "npcNote": "Kein fester Verantwortlicher – wird von wechselnden Freiwilligen versorgt."
+        }
+      },
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      }
+    },
+    {
+      "_id": "1c2547778b657f91",
+      "_key": "!journal.pages!6bfd534c61ee4988.1c2547778b657f91",
+      "name": "Das Lazarett",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "text": {
+        "content": "<p>Ein kleiner Raum mit Verbandsmaterial und den einfachsten Mitteln. Für alles, was darüber hinausgeht, fehlen sowohl Ausstattung als auch tiefergehendes Wissen.</p>",
+        "format": 1,
+        "markdown": ""
+      },
+      "sort": 500000,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {
+        "ashford": {
+          "slug": "lazarett",
+          "badge": "MED · MEDIZIN",
+          "tier": "Stufe 1 – Verbandsmaterial, kaum mehr",
+          "npcUuid": "Actor.8468b06abe38ab67",
+          "npcNote": null
+        }
+      },
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      }
+    },
+    {
+      "_id": "b949fe7dcef6c448",
+      "_key": "!journal.pages!6bfd534c61ee4988.b949fe7dcef6c448",
+      "name": "Die Werkstatt",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "text": {
+        "content": "<p>Hier entstehen die Holzarbeiten der Siedlung: Bauholz aus dem nahen Wald, reparierte Hausteile, die Palisaden selbst und einfache Ausrüstung wie ein simpler Bogen.</p>",
+        "format": 1,
+        "markdown": ""
+      },
+      "sort": 600000,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {
+        "ashford": {
+          "slug": "werkstatt",
+          "badge": "WRK · HANDWERK",
+          "tier": "Stufe 1–2 – Holzverarbeitung",
+          "npcUuid": "Actor.3d722c9b3eb99cff",
+          "npcNote": null
+        }
+      },
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      }
+    },
+    {
+      "_id": "1f91979b5bb5195e",
+      "_key": "!journal.pages!6bfd534c61ee4988.1f91979b5bb5195e",
+      "name": "Die Armory",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "text": {
+        "content": "<p>Ein paar Handfeuerwaffen, kaum Munition. Trotzdem der Ort, an dem die Verteidigung der Siedlung im Ernstfall überhaupt erst kampffähig wird.</p>",
+        "format": 1,
+        "markdown": ""
+      },
+      "sort": 700000,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {
+        "ashford": {
+          "slug": "armory",
+          "badge": "GUN · BEWAFFNUNG",
+          "tier": "Stufe 1 – schlecht ausgestattet",
+          "npcUuid": "Actor.0565c65fcf13c5a6",
+          "npcNote": null
+        }
+      },
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      }
+    },
+    {
+      "_id": "4afb046365979d4b",
+      "_key": "!journal.pages!6bfd534c61ee4988.4afb046365979d4b",
+      "name": "Die Garage",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "text": {
+        "content": "<p>Ein einzelner, nicht fahrtüchtiger PKW steht hier, ganz ohne Treibstoff. Mehr Hoffnung als Werkstatt, aber ein Symbol dafür, dass Ashford eines Tages wieder mobil werden könnte.</p>",
+        "format": 1,
+        "markdown": ""
+      },
+      "sort": 800000,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {
+        "ashford": {
+          "slug": "garage",
+          "badge": "KFZ · FAHRZEUGE",
+          "tier": "Stufe 1 – funktionslos",
+          "npcUuid": "Actor.2c19157bf65c3a17",
+          "npcNote": null
+        }
+      },
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      }
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "categories": [],
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}
