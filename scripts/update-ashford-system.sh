@@ -16,6 +16,13 @@
 
 set -euo pipefail
 
+# Falls das Script aus dem Zielordner selbst (oder einem Unterordner davon)
+# aufgerufen wird, würde das spätere `rm -rf "${TARGET_DIR}"` das aktuelle
+# Arbeitsverzeichnis unter dem eigenen Prozess wegreißen -- node/pm2 stürzt
+# dann beim Start mit "ENOENT: process.cwd failed" ab. Deshalb zuerst in ein
+# garantiert stabiles Verzeichnis wechseln, bevor irgendetwas gelöscht wird.
+cd "${HOME}"
+
 REPO_OWNER="PatrickSeilheimer"
 REPO_NAME="foundry-gamesystem-ashford"
 REPO_BRANCH="${REPO_BRANCH:-main}"
