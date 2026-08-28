@@ -1,9 +1,9 @@
 {
   "_id": "9894f964919bac97",
   "_key": "!actors!9894f964919bac97",
-  "name": "Cole",
+  "name": "Miguel Vega",
   "type": "npc",
-  "img": "systems/ashford/assets/portraits/cole.svg",
+  "img": "systems/ashford/assets/portraits/miguel-vega.png",
   "system": {
     "role": "Ehemaliger Häftling, verlässlich, aber verschlossen",
     "buildingId": "",
@@ -26,10 +26,10 @@
         "value": "Kantiges Gesicht, alte Tätowierungen an den Unterarmen, wacher, ruhiger Blick"
       }
     ],
-    "story": "<p>Jeder in Ashford weiß, dass Cole gesessen hat, aber niemand weiß wofür, und in all den Jahren in der Siedlung hat er sich nie das Geringste zuschulden kommen lassen. Als der Fall über das Gefängnis hereinbrach, in dem er einsaß, ignorierte der Wärter Gary Nolan die Anweisung, sämtliche Häftlinge zurückzulassen, und befreite ihn. Auf der gemeinsamen Flucht durch das Chaos retteten sie sich mehrfach gegenseitig das Leben, ein Bund, der bis heute unzertrennlich ist. Cole redet wenig über sich selbst, aber wer ihn kennt, weiß, dass er zuverlässiger ist als die meisten, die viel mehr reden.</p>",
+    "story": "<p>Jeder in Ashford weiß, dass Miguel gesessen hat, aber niemand weiß wofür, und in all den Jahren in der Siedlung hat er sich nie das Geringste zuschulden kommen lassen. Als der Fall über das Gefängnis hereinbrach, in dem er einsaß, ignorierte der Wärter Gary Nolan die Anweisung, sämtliche Häftlinge zurückzulassen, und befreite ihn. Auf der gemeinsamen Flucht durch das Chaos retteten sie sich mehrfach gegenseitig das Leben, ein Bund, der bis heute unzertrennlich ist. Miguel redet wenig über sich selbst, aber wer ihn kennt, weiß, dass er zuverlässiger ist als die meisten, die viel mehr reden.</p>",
     "portraitPrompt": "Photorealistic portrait of a rugged 39-year-old American man, angular face, faded prison tattoos on his forearms, calm watchful eyes, simple worn clothing, standing in shadow near a wooden fence, moody low-key lighting, ultra-detailed, 8k",
     "isCodexEntry": true,
-    "initials": "C",
+    "initials": "MV",
     "meta": {
       "gender": "m",
       "age": 39,
@@ -61,9 +61,9 @@
   },
   "flags": {},
   "prototypeToken": {
-    "name": "Cole",
+    "name": "Miguel Vega",
     "texture": {
-      "src": "systems/ashford/assets/portraits/cole.svg"
+      "src": "systems/ashford/assets/portraits/miguel-vega.png"
     },
     "width": 1,
     "height": 1,

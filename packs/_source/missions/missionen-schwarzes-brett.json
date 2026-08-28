@@ -442,7 +442,7 @@
         "level": 1
       },
       "text": {
-        "content": "<p><strong>Auftraggeber:</strong> @UUID[Actor.a9dcabe55e87acc9]{Gary Nolan, mit stillschweigender Zustimmung von Cole}</p><p><strong>Grobes Ziel:</strong> Vergangenheitsbewältigung und Erkundung – Rückkehr zu dem Gefängnis, aus dem Gary und Cole einst geflohen sind.</p><p><strong>Exaktes Ziel:</strong> Im Gefängnis sollen persönliche Gegenstände, alte Akten oder möglicherweise noch überlebende, eingeschlossene Häftlinge gefunden werden.</p><p><strong>Mögliche Ereignisse &amp; Komplikationen:</strong></p><ul><li>Verriegelte Zellentrakte mit noch immer eingesperrten, längst verwandelten Insassen</li><li>Hinweise, die endlich Licht auf Coles nie besprochene Vorgeschichte werfen könnten</li><li>Ein versteckter Waffen- oder Ausrüstungscache der ehemaligen Wachmannschaft</li><li>Ein moralisches Dilemma, falls tatsächlich noch lebende, eingesperrte Menschen gefunden werden</li></ul><p><strong>Sonstiges:</strong> Starkes Potenzial für Charakterentwicklung bei Cole und Gary, gut geeignet als emotional aufgeladener Höhepunkt einer Session, unabhängig davon, ob Coles Geheimnis am Ende wirklich aufgedeckt wird.</p>",
+        "content": "<p><strong>Auftraggeber:</strong> @UUID[Actor.a9dcabe55e87acc9]{Gary Nolan, mit stillschweigender Zustimmung von Miguel Vega}</p><p><strong>Grobes Ziel:</strong> Vergangenheitsbewältigung und Erkundung – Rückkehr zu dem Gefängnis, aus dem Gary und Miguel einst geflohen sind.</p><p><strong>Exaktes Ziel:</strong> Im Gefängnis sollen persönliche Gegenstände, alte Akten oder möglicherweise noch überlebende, eingeschlossene Häftlinge gefunden werden.</p><p><strong>Mögliche Ereignisse &amp; Komplikationen:</strong></p><ul><li>Verriegelte Zellentrakte mit noch immer eingesperrten, längst verwandelten Insassen</li><li>Hinweise, die endlich Licht auf Miguels nie besprochene Vorgeschichte werfen könnten</li><li>Ein versteckter Waffen- oder Ausrüstungscache der ehemaligen Wachmannschaft</li><li>Ein moralisches Dilemma, falls tatsächlich noch lebende, eingesperrte Menschen gefunden werden</li></ul><p><strong>Sonstiges:</strong> Starkes Potenzial für Charakterentwicklung bei Miguel und Gary, gut geeignet als emotional aufgeladener Höhepunkt einer Session, unabhängig davon, ob Miguels Geheimnis am Ende wirklich aufgedeckt wird.</p>",
         "format": 1,
         "markdown": ""
       },
@@ -452,17 +452,17 @@
       },
       "flags": {
         "ashford": {
-          "auftraggeber": "Gary Nolan, mit stillschweigender Zustimmung von Cole",
+          "auftraggeber": "Gary Nolan, mit stillschweigender Zustimmung von Miguel Vega",
           "auftraggeberUuid": "Actor.a9dcabe55e87acc9",
-          "grobesZiel": "Vergangenheitsbewältigung und Erkundung – Rückkehr zu dem Gefängnis, aus dem Gary und Cole einst geflohen sind.",
+          "grobesZiel": "Vergangenheitsbewältigung und Erkundung – Rückkehr zu dem Gefängnis, aus dem Gary und Miguel einst geflohen sind.",
           "exaktesZiel": "Im Gefängnis sollen persönliche Gegenstände, alte Akten oder möglicherweise noch überlebende, eingeschlossene Häftlinge gefunden werden.",
           "ereignisse": [
             "Verriegelte Zellentrakte mit noch immer eingesperrten, längst verwandelten Insassen",
-            "Hinweise, die endlich Licht auf Coles nie besprochene Vorgeschichte werfen könnten",
+            "Hinweise, die endlich Licht auf Miguels nie besprochene Vorgeschichte werfen könnten",
             "Ein versteckter Waffen- oder Ausrüstungscache der ehemaligen Wachmannschaft",
             "Ein moralisches Dilemma, falls tatsächlich noch lebende, eingesperrte Menschen gefunden werden"
           ],
-          "sonstiges": "Starkes Potenzial für Charakterentwicklung bei Cole und Gary, gut geeignet als emotional aufgeladener Höhepunkt einer Session, unabhängig davon, ob Coles Geheimnis am Ende wirklich aufgedeckt wird."
+          "sonstiges": "Starkes Potenzial für Charakterentwicklung bei Miguel und Gary, gut geeignet als emotional aufgeladener Höhepunkt einer Session, unabhängig davon, ob Miguels Geheimnis am Ende wirklich aufgedeckt wird."
         }
       },
       "_stats": {

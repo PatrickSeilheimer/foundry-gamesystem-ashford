@@ -280,11 +280,11 @@ export const persons = {
     story: "Arthur diente lange vor dem Fall als Berufssoldat in mehreren Auslandseinsätzen, eine Erfahrung, die ihn misstrauisch gegenüber nahezu jedem Menschen gemacht hat, den er trifft. Sein Hund Diesel, den er kurz nach dem Fall aufgenommen hat, ist die einzige Verbindung, der er vorbehaltlos vertraut. Er hält sich meist abseits, hilft aber zuverlässig aus, wenn es um die Sicherheit von Ashford geht, auch wenn er sich keiner festen Struktur unterordnen will."
   },
   cole: {
-    name: "Cole",
+    name: "Miguel Vega",
     role: "Ehemaliger Häftling, verlässlich, aber verschlossen",
     building: null,
     buildingName: null,
-    initials: "C",
+    initials: "MV",
     imagePrompt: "Photorealistic portrait of a rugged 39-year-old American man, angular face, faded prison tattoos on his forearms, calm watchful eyes, simple worn clothing, standing in shadow near a wooden fence, moody low-key lighting, ultra-detailed, 8k",
     meta: { gender: "m", age: 39, relationship: "Ledig", workplace: "Außentrupp", nationality: "USA" },
     facts: {
@@ -294,11 +294,11 @@ export const persons = {
       Aussehen: "Kantiges Gesicht, alte Tätowierungen an den Unterarmen, wacher, ruhiger Blick"
     },
     note: "Kein offizieller Posten, aber eine feste Größe im Alltag der Siedlung.",
-    story: "Jeder in Ashford weiß, dass Cole gesessen hat, aber niemand weiß wofür, und in all den Jahren in der Siedlung hat er sich nie das Geringste zuschulden kommen lassen. Als der Fall über das Gefängnis hereinbrach, in dem er einsaß, ignorierte der Wärter Gary Nolan die Anweisung, sämtliche Häftlinge zurückzulassen, und befreite ihn. Auf der gemeinsamen Flucht durch das Chaos retteten sie sich mehrfach gegenseitig das Leben, ein Bund, der bis heute unzertrennlich ist. Cole redet wenig über sich selbst, aber wer ihn kennt, weiß, dass er zuverlässiger ist als die meisten, die viel mehr reden."
+    story: "Jeder in Ashford weiß, dass Miguel gesessen hat, aber niemand weiß wofür, und in all den Jahren in der Siedlung hat er sich nie das Geringste zuschulden kommen lassen. Als der Fall über das Gefängnis hereinbrach, in dem er einsaß, ignorierte der Wärter Gary Nolan die Anweisung, sämtliche Häftlinge zurückzulassen, und befreite ihn. Auf der gemeinsamen Flucht durch das Chaos retteten sie sich mehrfach gegenseitig das Leben, ein Bund, der bis heute unzertrennlich ist. Miguel redet wenig über sich selbst, aber wer ihn kennt, weiß, dass er zuverlässiger ist als die meisten, die viel mehr reden."
   },
   nolan: {
     name: "Gary Nolan",
-    role: "Ehemaliger Gefängniswärter, Coles engster Verbündeter",
+    role: "Ehemaliger Gefängniswärter, Miguels engster Verbündeter",
     building: null,
     buildingName: null,
     initials: "GN",
@@ -306,12 +306,12 @@ export const persons = {
     meta: { gender: "m", age: 38, relationship: "Ledig", workplace: "Außentrupp", nationality: "USA" },
     facts: {
       Alter: "38",
-      "Vor der Apokalypse": "Wärter in dem Gefängnis, in dem Cole einsaß",
-      Verbindung: `Untrennbar verbunden mit ${personLink("cole", "Cole")}, den er beim Ausbruch befreite`,
+      "Vor der Apokalypse": "Wärter in dem Gefängnis, in dem Miguel einsaß",
+      Verbindung: `Untrennbar verbunden mit ${personLink("cole", "Miguel Vega")}, den er beim Ausbruch befreite`,
       Aussehen: "Kurzgeschorenes graues Haar, trägt noch immer den alten Schlüsselbund seines Dienstes als eine Art Andenken"
     },
     note: "Kein offizieller Posten, aber eine feste Größe im Alltag der Siedlung.",
-    story: "Gary war Wärter in dem Gefängnis, in dem Cole einsaß, und stand am Tag des Falls vor der Anweisung, sämtliche Häftlinge einfach zurückzulassen. Er warf sämtliche Protokolle über den Haufen und befreite so viele Insassen wie möglich, Cole darunter. Auf der gemeinsamen Flucht retteten die beiden sich mehrfach gegenseitig das Leben, ein Erlebnis, das eine Verbindung geschaffen hat, die enger ist als die meisten Familienbande in Ashford. Gary trägt bis heute seinen alten Schlüsselbund bei sich, nicht aus Nostalgie für den alten Job, sondern als Erinnerung daran, dass er die eine Entscheidung getroffen hat, auf die er wirklich stolz ist."
+    story: "Gary war Wärter in dem Gefängnis, in dem Miguel einsaß, und stand am Tag des Falls vor der Anweisung, sämtliche Häftlinge einfach zurückzulassen. Er warf sämtliche Protokolle über den Haufen und befreite so viele Insassen wie möglich, Miguel darunter. Auf der gemeinsamen Flucht retteten die beiden sich mehrfach gegenseitig das Leben, ein Erlebnis, das eine Verbindung geschaffen hat, die enger ist als die meisten Familienbande in Ashford. Gary trägt bis heute seinen alten Schlüsselbund bei sich, nicht aus Nostalgie für den alten Job, sondern als Erinnerung daran, dass er die eine Entscheidung getroffen hat, auf die er wirklich stolz ist."
   },
   finn: {
     name: "Finn",
@@ -604,17 +604,17 @@ export const missions = [
   {
     id: "gefaengnis",
     title: "Spuren aus dem Gefängnis",
-    auftraggeber: "Gary Nolan, mit stillschweigender Zustimmung von Cole",
+    auftraggeber: "Gary Nolan, mit stillschweigender Zustimmung von Miguel Vega",
     auftraggeberId: "nolan",
-    grobesZiel: "Vergangenheitsbewältigung und Erkundung – Rückkehr zu dem Gefängnis, aus dem Gary und Cole einst geflohen sind.",
+    grobesZiel: "Vergangenheitsbewältigung und Erkundung – Rückkehr zu dem Gefängnis, aus dem Gary und Miguel einst geflohen sind.",
     exaktesZiel: "Im Gefängnis sollen persönliche Gegenstände, alte Akten oder möglicherweise noch überlebende, eingeschlossene Häftlinge gefunden werden.",
     ereignisse: [
       "Verriegelte Zellentrakte mit noch immer eingesperrten, längst verwandelten Insassen",
-      "Hinweise, die endlich Licht auf Coles nie besprochene Vorgeschichte werfen könnten",
+      "Hinweise, die endlich Licht auf Miguels nie besprochene Vorgeschichte werfen könnten",
       "Ein versteckter Waffen- oder Ausrüstungscache der ehemaligen Wachmannschaft",
       "Ein moralisches Dilemma, falls tatsächlich noch lebende, eingesperrte Menschen gefunden werden"
     ],
-    sonstiges: "Starkes Potenzial für Charakterentwicklung bei Cole und Gary, gut geeignet als emotional aufgeladener Höhepunkt einer Session, unabhängig davon, ob Coles Geheimnis am Ende wirklich aufgedeckt wird."
+    sonstiges: "Starkes Potenzial für Charakterentwicklung bei Miguel und Gary, gut geeignet als emotional aufgeladener Höhepunkt einer Session, unabhängig davon, ob Miguels Geheimnis am Ende wirklich aufgedeckt wird."
   },
   {
     id: "handelsweg",
