@@ -3,7 +3,7 @@
   "_key": "!actors!960c158b48f2ac6d",
   "name": "Silas Rourke",
   "type": "npc",
-  "img": "systems/ashford/assets/portraits/silas-rourke.svg",
+  "img": "systems/ashford/assets/portraits/silas-rourke.png",
   "system": {
     "role": "Der Fallensteller, lebt lieber im Wald",
     "buildingId": "",
@@ -63,7 +63,7 @@
   "prototypeToken": {
     "name": "Silas Rourke",
     "texture": {
-      "src": "systems/ashford/assets/portraits/silas-rourke.svg"
+      "src": "systems/ashford/assets/portraits/silas-rourke.png"
     },
     "width": 1,
     "height": 1,

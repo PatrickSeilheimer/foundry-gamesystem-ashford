@@ -3,7 +3,7 @@
   "_key": "!actors!b4b9c452f7188f36",
   "name": "Henry Ashworth",
   "type": "npc",
-  "img": "systems/ashford/assets/portraits/henry-ashworth.svg",
+  "img": "systems/ashford/assets/portraits/henry-ashworth.png",
   "system": {
     "role": "Chef der Verteidigung",
     "buildingId": "palisaden",
@@ -59,7 +59,7 @@
   "prototypeToken": {
     "name": "Henry Ashworth",
     "texture": {
-      "src": "systems/ashford/assets/portraits/henry-ashworth.svg"
+      "src": "systems/ashford/assets/portraits/henry-ashworth.png"
     },
     "width": 1,
     "height": 1,

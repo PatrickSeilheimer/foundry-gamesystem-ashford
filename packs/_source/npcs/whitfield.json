@@ -3,7 +3,7 @@
   "_key": "!actors!fc45a60c75be46c4",
   "name": "Eleanor \"Nell\" Whitfield",
   "type": "npc",
-  "img": "systems/ashford/assets/portraits/eleanor-whitfield.svg",
+  "img": "systems/ashford/assets/portraits/eleanor-whitfield.png",
   "system": {
     "role": "Die gute Seele der Siedlung",
     "buildingId": "wohnbloecke",
@@ -63,7 +63,7 @@
   "prototypeToken": {
     "name": "Eleanor \"Nell\" Whitfield",
     "texture": {
-      "src": "systems/ashford/assets/portraits/eleanor-whitfield.svg"
+      "src": "systems/ashford/assets/portraits/eleanor-whitfield.png"
     },
     "width": 1,
     "height": 1,

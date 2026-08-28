@@ -3,7 +3,7 @@
   "_key": "!actors!d3dda56d57735913",
   "name": "Ella Delgado",
   "type": "npc",
-  "img": "systems/ashford/assets/portraits/ella-delgado.svg",
+  "img": "systems/ashford/assets/portraits/ella-delgado.png",
   "system": {
     "role": "Sebastians Adoptivtochter",
     "buildingId": "garage",
@@ -63,7 +63,7 @@
   "prototypeToken": {
     "name": "Ella Delgado",
     "texture": {
-      "src": "systems/ashford/assets/portraits/ella-delgado.svg"
+      "src": "systems/ashford/assets/portraits/ella-delgado.png"
     },
     "width": 1,
     "height": 1,

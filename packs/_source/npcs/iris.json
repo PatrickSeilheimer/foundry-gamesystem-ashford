@@ -3,7 +3,7 @@
   "_key": "!actors!9ee856b125936525",
   "name": "Iris Ford",
   "type": "npc",
-  "img": "systems/ashford/assets/portraits/iris-ford.svg",
+  "img": "systems/ashford/assets/portraits/iris-ford.png",
   "system": {
     "role": "Daniels Zwillingstochter",
     "buildingId": "",
@@ -63,7 +63,7 @@
   "prototypeToken": {
     "name": "Iris Ford",
     "texture": {
-      "src": "systems/ashford/assets/portraits/iris-ford.svg"
+      "src": "systems/ashford/assets/portraits/iris-ford.png"
     },
     "width": 1,
     "height": 1,

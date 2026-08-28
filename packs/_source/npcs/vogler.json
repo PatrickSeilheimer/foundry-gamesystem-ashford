@@ -3,7 +3,7 @@
   "_key": "!actors!2c19157bf65c3a17",
   "name": "Sebastian Vogler",
   "type": "npc",
-  "img": "systems/ashford/assets/portraits/sebastian-vogler.svg",
+  "img": "systems/ashford/assets/portraits/sebastian-vogler.png",
   "system": {
     "role": "KFZ-Verantwortlicher (Garage)",
     "buildingId": "garage",
@@ -63,7 +63,7 @@
   "prototypeToken": {
     "name": "Sebastian Vogler",
     "texture": {
-      "src": "systems/ashford/assets/portraits/sebastian-vogler.svg"
+      "src": "systems/ashford/assets/portraits/sebastian-vogler.png"
     },
     "width": 1,
     "height": 1,

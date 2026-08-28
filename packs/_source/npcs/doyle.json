@@ -3,7 +3,7 @@
   "_key": "!actors!0fd576b56763ad9d",
   "name": "Arthur Boone",
   "type": "npc",
-  "img": "systems/ashford/assets/portraits/arthur-boone.svg",
+  "img": "systems/ashford/assets/portraits/arthur-boone.png",
   "system": {
     "role": "Einzelgänger-Veteran mit seinem Hund Diesel",
     "buildingId": "",
@@ -63,7 +63,7 @@
   "prototypeToken": {
     "name": "Arthur Boone",
     "texture": {
-      "src": "systems/ashford/assets/portraits/arthur-boone.svg"
+      "src": "systems/ashford/assets/portraits/arthur-boone.png"
     },
     "width": 1,
     "height": 1,

@@ -3,7 +3,7 @@
   "_key": "!actors!8468b06abe38ab67",
   "name": "Dr. Yvette Pham",
   "type": "npc",
-  "img": "systems/ashford/assets/portraits/yvette-pham.svg",
+  "img": "systems/ashford/assets/portraits/yvette-pham.png",
   "system": {
     "role": "Chefärztin (Lazarett)",
     "buildingId": "lazarett",
@@ -63,7 +63,7 @@
   "prototypeToken": {
     "name": "Dr. Yvette Pham",
     "texture": {
-      "src": "systems/ashford/assets/portraits/yvette-pham.svg"
+      "src": "systems/ashford/assets/portraits/yvette-pham.png"
     },
     "width": 1,
     "height": 1,

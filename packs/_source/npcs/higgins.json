@@ -3,7 +3,7 @@
   "_key": "!actors!176e26a5ba861d69",
   "name": "Walter \"Sparks\" Higgins",
   "type": "npc",
-  "img": "systems/ashford/assets/portraits/walter-higgins.svg",
+  "img": "systems/ashford/assets/portraits/walter-higgins.png",
   "system": {
     "role": "Der \"Funker\" – bastelt an einer eigenen Radiostation",
     "buildingId": "",
@@ -63,7 +63,7 @@
   "prototypeToken": {
     "name": "Walter \"Sparks\" Higgins",
     "texture": {
-      "src": "systems/ashford/assets/portraits/walter-higgins.svg"
+      "src": "systems/ashford/assets/portraits/walter-higgins.png"
     },
     "width": 1,
     "height": 1,

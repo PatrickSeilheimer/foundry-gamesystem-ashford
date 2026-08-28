@@ -25,6 +25,24 @@ const SYSTEM_ID = "ashford";
 const SYSTEM_VERSION = "0.1.0";
 const CORE_VERSION = "14"; // system.json compatibility.verified
 
+const PORTRAITS_DIR = path.join(ROOT, "assets/portraits");
+const PORTRAIT_EXTENSIONS = ["png", "webp", "jpg", "jpeg", "svg"];
+
+/**
+ * Prefers real delivered artwork over the generated placeholder: looks for
+ * assets/portraits/<slug>.{png,webp,jpg,jpeg} first, falls back to the
+ * placeholder .svg (which generate-placeholder-portraits.mjs always creates)
+ * if no real art has been dropped in yet.
+ */
+function resolvePortraitPath(slug) {
+  for (const ext of PORTRAIT_EXTENSIONS) {
+    if (fs.existsSync(path.join(PORTRAITS_DIR, `${slug}.${ext}`))) {
+      return `systems/ashford/assets/portraits/${slug}.${ext}`;
+    }
+  }
+  return `systems/ashford/assets/portraits/${slug}.svg`;
+}
+
 function stats() {
   return {
     systemId: SYSTEM_ID,
@@ -72,7 +90,7 @@ const npcsDir = ensureCleanDir("packs/_source/npcs");
 for (const [key, person] of Object.entries(persons)) {
   const id = npcId(key);
   const slug = slugifyName(person.name);
-  const img = `systems/ashford/assets/portraits/${slug}.svg`;
+  const img = resolvePortraitPath(slug);
   const facts = Object.entries(person.facts ?? {}).map(([label, value]) => ({ label, value }));
 
   const doc = {

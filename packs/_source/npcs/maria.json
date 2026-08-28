@@ -3,7 +3,7 @@
   "_key": "!actors!22b7c50692a1b0ef",
   "name": "Maria Delgado",
   "type": "npc",
-  "img": "systems/ashford/assets/portraits/maria-delgado.svg",
+  "img": "systems/ashford/assets/portraits/maria-delgado.png",
   "system": {
     "role": "Sebastians Frau, ehemalige Grundschullehrerin",
     "buildingId": "garage",
@@ -63,7 +63,7 @@
   "prototypeToken": {
     "name": "Maria Delgado",
     "texture": {
-      "src": "systems/ashford/assets/portraits/maria-delgado.svg"
+      "src": "systems/ashford/assets/portraits/maria-delgado.png"
     },
     "width": 1,
     "height": 1,

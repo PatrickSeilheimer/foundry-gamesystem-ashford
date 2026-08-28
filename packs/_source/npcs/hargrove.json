@@ -3,7 +3,7 @@
   "_key": "!actors!c552940b14736937",
   "name": "Otto Hargrove",
   "type": "npc",
-  "img": "systems/ashford/assets/portraits/otto-hargrove.svg",
+  "img": "systems/ashford/assets/portraits/otto-hargrove.png",
   "system": {
     "role": "Der Mann, der dem Tod immer wieder von der Schippe springt",
     "buildingId": "",
@@ -63,7 +63,7 @@
   "prototypeToken": {
     "name": "Otto Hargrove",
     "texture": {
-      "src": "systems/ashford/assets/portraits/otto-hargrove.svg"
+      "src": "systems/ashford/assets/portraits/otto-hargrove.png"
     },
     "width": 1,
     "height": 1,

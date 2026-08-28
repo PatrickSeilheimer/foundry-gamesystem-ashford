@@ -3,7 +3,7 @@
   "_key": "!actors!544bda1f007ebd6b",
   "name": "Hazel Ford",
   "type": "npc",
-  "img": "systems/ashford/assets/portraits/hazel-ford.svg",
+  "img": "systems/ashford/assets/portraits/hazel-ford.png",
   "system": {
     "role": "Daniels Zwillingstochter",
     "buildingId": "",
@@ -63,7 +63,7 @@
   "prototypeToken": {
     "name": "Hazel Ford",
     "texture": {
-      "src": "systems/ashford/assets/portraits/hazel-ford.svg"
+      "src": "systems/ashford/assets/portraits/hazel-ford.png"
     },
     "width": 1,
     "height": 1,

@@ -3,7 +3,7 @@
   "_key": "!actors!bb584fb4cbc95013",
   "name": "Finn",
   "type": "npc",
-  "img": "systems/ashford/assets/portraits/finn.svg",
+  "img": "systems/ashford/assets/portraits/finn.png",
   "system": {
     "role": "Waisenjunge mit künstlerischer Begabung",
     "buildingId": "",
@@ -63,7 +63,7 @@
   "prototypeToken": {
     "name": "Finn",
     "texture": {
-      "src": "systems/ashford/assets/portraits/finn.svg"
+      "src": "systems/ashford/assets/portraits/finn.png"
     },
     "width": 1,
     "height": 1,

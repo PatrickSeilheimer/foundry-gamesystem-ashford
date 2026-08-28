@@ -3,7 +3,7 @@
   "_key": "!actors!1e5351a12d3e3215",
   "name": "Daniel Ford",
   "type": "npc",
-  "img": "systems/ashford/assets/portraits/daniel-ford.svg",
+  "img": "systems/ashford/assets/portraits/daniel-ford.png",
   "system": {
     "role": "Vater der Zwillinge Iris und Hazel",
     "buildingId": "",
@@ -63,7 +63,7 @@
   "prototypeToken": {
     "name": "Daniel Ford",
     "texture": {
-      "src": "systems/ashford/assets/portraits/daniel-ford.svg"
+      "src": "systems/ashford/assets/portraits/daniel-ford.png"
     },
     "width": 1,
     "height": 1,

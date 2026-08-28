@@ -3,7 +3,7 @@
   "_key": "!actors!a9dcabe55e87acc9",
   "name": "Gary Nolan",
   "type": "npc",
-  "img": "systems/ashford/assets/portraits/gary-nolan.svg",
+  "img": "systems/ashford/assets/portraits/gary-nolan.png",
   "system": {
     "role": "Ehemaliger Gefängniswärter, Coles engster Verbündeter",
     "buildingId": "",
@@ -63,7 +63,7 @@
   "prototypeToken": {
     "name": "Gary Nolan",
     "texture": {
-      "src": "systems/ashford/assets/portraits/gary-nolan.svg"
+      "src": "systems/ashford/assets/portraits/gary-nolan.png"
     },
     "width": 1,
     "height": 1,

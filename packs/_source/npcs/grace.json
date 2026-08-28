@@ -3,7 +3,7 @@
   "_key": "!actors!f37daf02a79436ea",
   "name": "Grace Mercer",
   "type": "npc",
-  "img": "systems/ashford/assets/portraits/grace-mercer.svg",
+  "img": "systems/ashford/assets/portraits/grace-mercer.png",
   "system": {
     "role": "Verlobte, seit dem Fall in Ashford zusammen",
     "buildingId": "",
@@ -63,7 +63,7 @@
   "prototypeToken": {
     "name": "Grace Mercer",
     "texture": {
-      "src": "systems/ashford/assets/portraits/grace-mercer.svg"
+      "src": "systems/ashford/assets/portraits/grace-mercer.png"
     },
     "width": 1,
     "height": 1,

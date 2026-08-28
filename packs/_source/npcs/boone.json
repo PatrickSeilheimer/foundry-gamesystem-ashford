@@ -3,7 +3,7 @@
   "_key": "!actors!0565c65fcf13c5a6",
   "name": "Ron Doyle",
   "type": "npc",
-  "img": "systems/ashford/assets/portraits/ron-doyle.svg",
+  "img": "systems/ashford/assets/portraits/ron-doyle.png",
   "system": {
     "role": "Waffenmeister (\"Gunfreak\", Armory)",
     "buildingId": "armory",
@@ -63,7 +63,7 @@
   "prototypeToken": {
     "name": "Ron Doyle",
     "texture": {
-      "src": "systems/ashford/assets/portraits/ron-doyle.svg"
+      "src": "systems/ashford/assets/portraits/ron-doyle.png"
     },
     "width": 1,
     "height": 1,

@@ -3,7 +3,7 @@
   "_key": "!actors!5445cb8f94b68669",
   "name": "Elias Vance",
   "type": "npc",
-  "img": "systems/ashford/assets/portraits/elias-vance.svg",
+  "img": "systems/ashford/assets/portraits/elias-vance.png",
   "system": {
     "role": "Anführer von Ashford",
     "buildingId": "",
@@ -63,7 +63,7 @@
   "prototypeToken": {
     "name": "Elias Vance",
     "texture": {
-      "src": "systems/ashford/assets/portraits/elias-vance.svg"
+      "src": "systems/ashford/assets/portraits/elias-vance.png"
     },
     "width": 1,
     "height": 1,

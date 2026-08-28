@@ -3,7 +3,7 @@
   "_key": "!actors!3d722c9b3eb99cff",
   "name": "Viktor Sokolov",
   "type": "npc",
-  "img": "systems/ashford/assets/portraits/viktor-sokolov.svg",
+  "img": "systems/ashford/assets/portraits/viktor-sokolov.png",
   "system": {
     "role": "Chef Werker (Werkstatt)",
     "buildingId": "werkstatt",
@@ -63,7 +63,7 @@
   "prototypeToken": {
     "name": "Viktor Sokolov",
     "texture": {
-      "src": "systems/ashford/assets/portraits/viktor-sokolov.svg"
+      "src": "systems/ashford/assets/portraits/viktor-sokolov.png"
     },
     "width": 1,
     "height": 1,
