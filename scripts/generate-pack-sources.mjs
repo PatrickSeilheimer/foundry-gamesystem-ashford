@@ -105,7 +105,6 @@ for (const [key, person] of Object.entries(persons)) {
       note: person.note ? `<p>${person.note}</p>` : "",
       facts,
       story: person.story ? `<p>${person.story}</p>` : "",
-      portraitPrompt: person.imagePrompt ?? "",
       isCodexEntry: true,
       initials: person.initials ?? "",
       meta: {

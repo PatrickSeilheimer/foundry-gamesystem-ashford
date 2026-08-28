@@ -24,7 +24,6 @@ export default class AshfordNpc extends AshfordActorBase {
         { required: false }
       ),
       story: new HTMLField({ required: false, blank: true }),
-      portraitPrompt: new StringField({ required: false, blank: true }), // Bildgenerierungs-Prompt, GM-Referenz
       isCodexEntry: new BooleanField({ required: true, initial: true }),
       initials: new StringField({ required: false, blank: true }), // Fallback, falls das Portrait mal fehlt
       meta: new SchemaField({

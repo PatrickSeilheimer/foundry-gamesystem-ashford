@@ -107,7 +107,6 @@ export const persons = {
     building: null,
     buildingName: null,
     initials: "EV",
-    imagePrompt: "Photorealistic cinematic portrait of a 46-year-old white American man with an athletic build, calm and authoritative presence, clean-shaven jawline, short greying dark hair neatly kept, piercing steady dark eyes, wearing a patched but carefully maintained canvas jacket over a collared shirt, standing confidently in a sunlit overgrown small-town street with cracked asphalt and creeping vegetation, post-apocalyptic setting, warm late-afternoon light, sharp facial detail, weathered but composed expression, ultra-detailed, 8k",
     meta: { gender: "m", age: 46, relationship: "Verwitwet", workplace: "Führung (kein Gebäude)", nationality: "USA" },
     facts: {
       Alter: "46",
@@ -124,7 +123,6 @@ export const persons = {
     building: "wohnbloecke",
     buildingName: "Wohnblock & Läden",
     initials: "EW",
-    imagePrompt: "Photorealistic portrait of a 57-year-old American woman, short grey hair, round warm weathered face with kind wrinkles around the eyes, gentle smile, wearing an old worn shopkeeper apron over patched practical clothing, standing among overgrown wooden buildings in a small post-apocalyptic settlement, soft diffused daylight, ultra-detailed, 8k",
     meta: { gender: "w", age: 57, relationship: "Verwitwet", workplace: "Wohnblock & Läden", nationality: "USA" },
     facts: {
       Alter: "57",
@@ -140,7 +138,6 @@ export const persons = {
     building: "palisaden",
     buildingName: "Die Palisaden",
     initials: "HA",
-    imagePrompt: "Photorealistic portrait of a 42-year-old tall muscular British man, short beard with grey flecks, remnants of a private security uniform including a tactical vest, faint dry smirk, standing near a rough wooden palisade wall in a post-apocalyptic settlement, overcast diffused daylight, weathered skin, ultra-detailed, 8k",
     meta: { gender: "m", age: 42, relationship: "Ledig", workplace: "Palisaden", nationality: "Vereinigtes Königreich" },
     facts: {
       Alter: "42",
@@ -155,7 +152,6 @@ export const persons = {
     building: "lazarett",
     buildingName: "Das Lazarett",
     initials: "YP",
-    imagePrompt: "Photorealistic portrait of a slender 33-year-old Vietnamese-American woman, dark hair tightly pulled into a bun, sharp precise features, focused calm expression, wearing an improvised medical coat over practical clothing with old surgical gloves tucked in a pocket, standing in a dim improvised infirmary room with shelves of sparse medical supplies, soft warm lantern light, ultra-detailed, 8k",
     meta: { gender: "w", age: 33, relationship: "Ledig", workplace: "Lazarett", nationality: "USA" },
     facts: {
       Alter: "33",
@@ -171,7 +167,6 @@ export const persons = {
     building: "werkstatt",
     buildingName: "Die Werkstatt",
     initials: "VS",
-    imagePrompt: "Photorealistic portrait of a stocky muscular 42-year-old Russian man, tattooed forearms, an unlit cigarette tucked behind one ear, gruff weathered face, wearing an oil-stained work apron over a flannel shirt, standing in a cluttered wooden workshop full of tools and scrap, warm lantern light, ultra-detailed, 8k",
     meta: { gender: "m", age: 42, relationship: "Geschieden", workplace: "Werkstatt", nationality: "Russland" },
     facts: {
       Alter: "42",
@@ -187,7 +182,6 @@ export const persons = {
     building: "armory",
     buildingName: "Die Armory",
     initials: "RD",
-    imagePrompt: "Photorealistic portrait of a stocky 47-year-old American man, permanently expressionless face, thick bushy mustache, wearing a worn tactical vest over a flannel shirt, standing in front of a sparse gun rack in a dim armory room, dim indoor lighting, ultra-detailed, 8k",
     meta: { gender: "m", age: 47, relationship: "Geschieden", workplace: "Armory", nationality: "USA" },
     facts: {
       Alter: "47",
@@ -203,7 +197,6 @@ export const persons = {
     building: "garage",
     buildingName: "Die Garage",
     initials: "SV",
-    imagePrompt: "Photorealistic portrait of a neat 36-year-old German man, short tidy hair, clean-shaven, wearing a stained but carefully maintained mechanic jumpsuit, holding a wrench, standing beside a rusted old car inside a dusty garage, dusty light beams cutting through the air, ultra-detailed, 8k",
     meta: { gender: "m", age: 36, relationship: "Verheiratet", workplace: "Garage", nationality: "Deutschland" },
     facts: {
       Alter: "36",
@@ -219,7 +212,6 @@ export const persons = {
     building: "garage",
     buildingName: "Die Garage",
     initials: "MD",
-    imagePrompt: "Photorealistic portrait of a 39-year-old Mexican woman, dark hair tied back, warm alert eyes, wearing practical clothing covered in hand-sewn patches, standing near an open garage door, soft natural daylight, ultra-detailed, 8k",
     meta: { gender: "w", age: 39, relationship: "Verheiratet", workplace: "Außentrupp", nationality: "Mexiko" },
     facts: {
       Alter: "39",
@@ -235,7 +227,6 @@ export const persons = {
     building: "garage",
     buildingName: "Die Garage",
     initials: "ED",
-    imagePrompt: "Photorealistic portrait of an 11-year-old Mexican-American girl, tousled dark hair, dirty knees, holding a small handmade toy, curious expression, standing in a dusty overgrown settlement street, soft natural daylight, ultra-detailed, 8k",
     meta: { gender: "w", age: 11, relationship: "Kind", workplace: "Kind", nationality: "Mexiko" },
     facts: {
       Alter: "11",
@@ -251,7 +242,6 @@ export const persons = {
     building: null,
     buildingName: null,
     initials: "WH",
-    imagePrompt: "Photorealistic portrait of a 71-year-old American man, wild unkempt white beard, unplugged headphones draped around his neck, fingers stained with solder, tinkering with an improvised radio antenna at the edge of a settlement, eccentric excited expression, golden hour light, ultra-detailed, 8k",
     meta: { gender: "m", age: 71, relationship: "Verwitwet", workplace: "Kein fester Posten", nationality: "USA" },
     facts: {
       Alter: "71",
@@ -268,7 +258,6 @@ export const persons = {
     building: null,
     buildingName: null,
     initials: "AB",
-    imagePrompt: "Photorealistic portrait of a weathered 61-year-old American veteran, deeply lined face, patched old field jacket, standing beside a scruffy loyal dog, watchful distant gaze, dusty overgrown wasteland backdrop, natural overcast light, ultra-detailed, 8k",
     meta: { gender: "m", age: 61, relationship: "Ledig", workplace: "Außentrupp", nationality: "USA" },
     facts: {
       Alter: "61",
@@ -285,7 +274,6 @@ export const persons = {
     building: null,
     buildingName: null,
     initials: "MV",
-    imagePrompt: "Photorealistic portrait of a rugged 39-year-old Hispanic-American man, angular face, prison tattoos all over his body and the side of his face, angry looking facial structure with an emotionless look, simple worn clothing, standing in shadow near a wooden fence, moody low-key lighting, ultra-detailed, 8k",
     meta: { gender: "m", age: 39, relationship: "Ledig", workplace: "Außentrupp", nationality: "Mexiko" },
     facts: {
       Alter: "39",
@@ -302,7 +290,6 @@ export const persons = {
     building: null,
     buildingName: null,
     initials: "GN",
-    imagePrompt: "Photorealistic portrait of a 38-year-old American man, close-cropped greying hair, wearing a faded former prison guard jacket, an old keyring clipped to his belt, steady serious expression, standing near a wooden settlement gate, overcast diffused light, ultra-detailed, 8k",
     meta: { gender: "m", age: 38, relationship: "Ledig", workplace: "Außentrupp", nationality: "USA" },
     facts: {
       Alter: "38",
@@ -319,7 +306,6 @@ export const persons = {
     building: null,
     buildingName: null,
     initials: "F",
-    imagePrompt: "Photorealistic portrait of a 13-year-old American boy, paint-stained fingers, holding a handmade sketchbook made of found paper, curious wide eyes, tousled hair, sitting on a fallen log at the edge of an overgrown forest, soft natural light, ultra-detailed, 8k",
     meta: { gender: "m", age: 13, relationship: "Kind", workplace: "Kind", nationality: "USA" },
     facts: {
       Alter: "13",
@@ -336,7 +322,6 @@ export const persons = {
     building: null,
     buildingName: null,
     initials: "GM",
-    imagePrompt: "Photorealistic portrait of a 30-year-old American woman with a lean, toned athletic physique, long brunette hair, confident posture, almost posing, wearing a ring made of welded scrap metal, dressed in a crop top and shorts as workout clothes, warm confident smile, standing in a rugged outdoor post-apocalyptic setting, warm golden light, ultra-detailed, 8k, square format",
     meta: { gender: "w", age: 30, relationship: "Verlobt", workplace: "Außentrupp", nationality: "USA" },
     facts: {
       Alter: "30",
@@ -353,7 +338,6 @@ export const persons = {
     building: null,
     buildingName: null,
     initials: "PA",
-    imagePrompt: "Photorealistic portrait of a slender 31-year-old American man with a full beard, bent over a desk, staring intently down at open ledgers and books, holding a worn ledger notebook, calm focused expression, standing among stacked supply crates in a dim storeroom, soft indoor light, ultra-detailed, 8k",
     meta: { gender: "m", age: 31, relationship: "Verlobt", workplace: "Außentrupp", nationality: "USA" },
     facts: {
       Alter: "31",
@@ -370,7 +354,6 @@ export const persons = {
     building: null,
     buildingName: null,
     initials: "OH",
-    imagePrompt: "Photorealistic portrait of a gaunt 68-year-old Canadian man, deep facial wrinkles, faint grin despite a persistent cough, wearing loose patched clothing, standing in a hazy dust-lit street of a small settlement, muted overcast light, ultra-detailed, 8k",
     meta: { gender: "m", age: 68, relationship: "Ledig", workplace: "Kein fester Posten", nationality: "Kanada" },
     facts: {
       Alter: "68",
@@ -387,7 +370,6 @@ export const persons = {
     building: null,
     buildingName: null,
     initials: "SR",
-    imagePrompt: "Photorealistic portrait of a lean weathered 35-year-old American man, sun-worn skin, quiet watchful eyes, wearing forest-ranger-inspired hunting gear with fur trim, standing in a dense misty forest holding a handmade trap, soft diffused forest light, ultra-detailed, 8k",
     meta: { gender: "m", age: 35, relationship: "Ledig", workplace: "Außentrupp", nationality: "USA" },
     facts: {
       Alter: "35",
@@ -404,7 +386,6 @@ export const persons = {
     building: null,
     buildingName: null,
     initials: "DF",
-    imagePrompt: "Photorealistic portrait of a tired but gentle-looking 34-year-old American man, holding a small child on his hip, soft exhausted eyes, simple patched clothing, standing in a quiet corner of a small settlement, warm dusk light, ultra-detailed, 8k",
     meta: { gender: "m", age: 34, relationship: "Verwitwet", workplace: "Außentrupp", nationality: "USA" },
     facts: {
       Alter: "34",
@@ -421,7 +402,6 @@ export const persons = {
     building: null,
     buildingName: null,
     initials: "IF",
-    imagePrompt: "Photorealistic portrait of a quiet 7-year-old American girl, calm observant eyes, neat braided hair, simple patched dress, sitting quietly at the edge of a small settlement scene, soft natural light, ultra-detailed, 8k",
     meta: { gender: "w", age: 7, relationship: "Kind", workplace: "Kind", nationality: "USA" },
     facts: {
       Alter: "7",
@@ -438,7 +418,6 @@ export const persons = {
     building: null,
     buildingName: null,
     initials: "HF",
-    imagePrompt: "Photorealistic portrait of an energetic 7-year-old American girl, wildly tousled hair, dirt-smudged hands and face, caught mid-motion running, bright mischievous eyes, simple patched clothing, dynamic natural light, ultra-detailed, 8k",
     meta: { gender: "w", age: 7, relationship: "Kind", workplace: "Kind", nationality: "USA" },
     facts: {
       Alter: "7",
