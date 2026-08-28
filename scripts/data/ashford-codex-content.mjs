@@ -285,16 +285,16 @@ export const persons = {
     building: null,
     buildingName: null,
     initials: "MV",
-    imagePrompt: "Photorealistic portrait of a rugged 39-year-old American man, angular face, faded prison tattoos on his forearms, calm watchful eyes, simple worn clothing, standing in shadow near a wooden fence, moody low-key lighting, ultra-detailed, 8k",
-    meta: { gender: "m", age: 39, relationship: "Ledig", workplace: "Außentrupp", nationality: "USA" },
+    imagePrompt: "Photorealistic portrait of a rugged 39-year-old Hispanic-American man, angular face, prison tattoos all over his body and the side of his face, angry looking facial structure with an emotionless look, simple worn clothing, standing in shadow near a wooden fence, moody low-key lighting, ultra-detailed, 8k",
+    meta: { gender: "m", age: 39, relationship: "Ledig", workplace: "Außentrupp", nationality: "Mexiko" },
     facts: {
       Alter: "39",
       "Vor der Apokalypse": "Saß im Gefängnis, worüber er nie spricht, und niemand in Ashford fragt",
       Verbindung: `Untrennbar verbunden mit ${personLink("nolan", "Gary Nolan")}, dem ehemaligen Wärter, der ihn beim Ausbruch befreite`,
-      Aussehen: "Kantiges Gesicht, alte Tätowierungen an den Unterarmen, wacher, ruhiger Blick"
+      Aussehen: "Kantiges Gesicht mit von Natur aus hart und wütend wirkenden Zügen, dabei aber fast durchgehend ausdruckslose Miene, Gefängnistätowierungen über weite Teile des Körpers bis auf die Gesichtsseite, wacher, ruhiger Blick"
     },
     note: "Kein offizieller Posten, aber eine feste Größe im Alltag der Siedlung.",
-    story: "Jeder in Ashford weiß, dass Miguel gesessen hat, aber niemand weiß wofür, und in all den Jahren in der Siedlung hat er sich nie das Geringste zuschulden kommen lassen. Als der Fall über das Gefängnis hereinbrach, in dem er einsaß, ignorierte der Wärter Gary Nolan die Anweisung, sämtliche Häftlinge zurückzulassen, und befreite ihn. Auf der gemeinsamen Flucht durch das Chaos retteten sie sich mehrfach gegenseitig das Leben, ein Bund, der bis heute unzertrennlich ist. Miguel redet wenig über sich selbst, aber wer ihn kennt, weiß, dass er zuverlässiger ist als die meisten, die viel mehr reden."
+    story: "Jeder in Ashford weiß, dass Miguel gesessen hat, aber niemand weiß wofür, und in all den Jahren in der Siedlung hat er sich nie das Geringste zuschulden kommen lassen. Als der Fall über das Gefängnis hereinbrach, in dem er einsaß, ignorierte der Wärter Gary Nolan die Anweisung, sämtliche Häftlinge zurückzulassen, und befreite ihn. Auf der gemeinsamen Flucht durch das Chaos retteten sie sich mehrfach gegenseitig das Leben, ein Bund, der bis heute unzertrennlich ist. Miguel redet wenig über sich selbst, auch nicht über sein Leben vor der Haft, aber wer ihn kennt, weiß, dass er zuverlässiger ist als die meisten, die viel mehr reden."
   },
   nolan: {
     name: "Gary Nolan",
@@ -336,16 +336,16 @@ export const persons = {
     building: null,
     buildingName: null,
     initials: "GM",
-    imagePrompt: "Photorealistic portrait of a 30-year-old American woman, short practical haircut, sturdy build, wearing a ring made of welded scrap metal, dressed in practical worn medical-adjacent clothing, warm confident smile, standing near an infirmary tent, warm golden light, ultra-detailed, 8k",
+    imagePrompt: "Photorealistic portrait of a 30-year-old American woman with a lean, toned athletic physique, long brunette hair, confident posture, almost posing, wearing a ring made of welded scrap metal, dressed in a crop top and shorts as workout clothes, warm confident smile, standing in a rugged outdoor post-apocalyptic setting, warm golden light, ultra-detailed, 8k, square format",
     meta: { gender: "w", age: 30, relationship: "Verlobt", workplace: "Außentrupp", nationality: "USA" },
     facts: {
       Alter: "30",
-      "Vor der Apokalypse": "Rettungssanitäterin, ausgebildet im Umgang mit Notfällen und Verletzungen",
+      "Vor der Apokalypse": "Erfolgreiche Fitness-Influencerin mit großer Reichweite in sozialen Medien, postete Workout-Routinen und Ernährungstipps",
       Verbindung: `Verlobt mit ${personLink("phil", "Phil")}`,
-      Aussehen: "Kurze Haare, kräftige Statur, trägt einen Ring aus zusammengeschweißtem Schrott, hilft gelegentlich im Lazarett aus"
+      Aussehen: "Durchtrainierter, athletischer Körperbau, lange braune Haare, selbstbewusstes, fast posenhaftes Auftreten, trägt einen Ring aus zusammengeschweißtem Schrott"
     },
     note: "Kein offizieller Posten, eines der wenigen fröhlichen Gesichter der Siedlung.",
-    story: `Grace arbeitete vor dem Fall als Rettungssanitäterin, eine Erfahrung, die ihr in Ashford gelegentlich zugutekommt, wenn im Lazarett zusätzliche Hände gebraucht werden. Sie kam erst nach dem Fall nach Ashford und lernte Phil kennen, als beide gemeinsam bei der Verteilung besonders knapper Rationen aushalfen, eine unspektakuläre Begegnung, aus der sich über die folgenden Monate eine feste Beziehung entwickelte. Ihre bevorstehende Hochzeit gilt in der Siedlung als eines der wenigen wirklich fröhlichen Ereignisse der letzten Jahre. Ihre Ringe sind aus zusammengeschweißtem Schrott gefertigt, mit tatkräftiger Hilfe von ${personLink("sokolov", "Viktor")} in der Werkstatt, ein unscheinbares, aber vielsagendes Symbol dafür, dass sich selbst in dieser Welt noch etwas Neues und Gutes aufbauen lässt.`
+    story: `Vor dem Fall war Grace eine erfolgreiche Fitness-Influencerin mit hunderttausenden Followern, bekannt für ihre Workout-Videos und Ernährungstipps, ein Leben und eine Karriere, die über Nacht bedeutungslos wurden. Ausgerechnet die aus heutiger Sicht fast oberflächlich wirkende Disziplin von damals, tägliches Training, eiserne Routine, ein durchtrainierter Körper, erweist sich in Ashford als überraschend nützlich: Sie gehört zu den fittesten und ausdauerndsten Mitgliedern des Außentrupps und hält im Feld durch, wo andere längst schlappmachen. Sie kam erst nach dem Fall nach Ashford und lernte Phil kennen, als beide gemeinsam bei der Verteilung besonders knapper Rationen aushalfen, eine unspektakuläre Begegnung, aus der sich über die folgenden Monate eine feste Beziehung entwickelte. Ihre bevorstehende Hochzeit gilt in der Siedlung als eines der wenigen wirklich fröhlichen Ereignisse der letzten Jahre. Ihre Ringe sind aus zusammengeschweißtem Schrott gefertigt, mit tatkräftiger Hilfe von ${personLink("sokolov", "Viktor")} in der Werkstatt, ein unscheinbares, aber vielsagendes Symbol dafür, dass sich selbst in dieser Welt noch etwas Neues und Gutes aufbauen lässt.`
   },
   phil: {
     name: "Phil Anders",
@@ -353,13 +353,13 @@ export const persons = {
     building: null,
     buildingName: null,
     initials: "PA",
-    imagePrompt: "Photorealistic portrait of a slender 31-year-old American man, improvised glasses with a taped bridge, holding a worn ledger notebook, calm focused expression, standing among stacked supply crates in a dim storeroom, soft indoor light, ultra-detailed, 8k",
+    imagePrompt: "Photorealistic portrait of a slender 31-year-old American man with a full beard, bent over a desk, staring intently down at open ledgers and books, holding a worn ledger notebook, calm focused expression, standing among stacked supply crates in a dim storeroom, soft indoor light, ultra-detailed, 8k",
     meta: { gender: "m", age: 31, relationship: "Verlobt", workplace: "Außentrupp", nationality: "USA" },
     facts: {
       Alter: "31",
       "Vor der Apokalypse": "Buchhalter, gewissenhaft und genau im Umgang mit Zahlen",
       Verbindung: `Verlobt mit ${personLink("grace", "Grace")}`,
-      Aussehen: "Schmale Statur, trägt eine improvisierte Brille mit notdürftig geflicktem Bügel, führt akribisch Buch über die Vorräte der Siedlung"
+      Aussehen: "Schmale Statur, dichter Vollbart, meist über einen Schreibtisch gebeugt, führt akribisch Buch über die Vorräte der Siedlung"
     },
     note: "Kein offizieller Posten, eines der wenigen fröhlichen Gesichter der Siedlung.",
     story: "Phil war vor dem Fall Buchhalter, eine eher unauffällige Existenz, die sich in Ashford überraschend nützlich gemacht hat, er ist derjenige, der so etwas wie eine inoffizielle Bestandsaufnahme über die knappen Vorräte der Siedlung führt, obwohl es dafür gar keine offizielle Institution gibt. Er lernte Grace kennen, als beide gemeinsam eine besonders angespannte Rationsverteilung organisieren mussten, und war von ihrer ruhigen, praktischen Art rasch angetan. Aus der anfänglichen Zusammenarbeit wurde in den folgenden Monaten mehr, und ihre gemeinsame Verlobung, mit Ringen aus zusammengeschweißtem Schrott, ist für viele in Ashford ein kleines Zeichen der Hoffnung."

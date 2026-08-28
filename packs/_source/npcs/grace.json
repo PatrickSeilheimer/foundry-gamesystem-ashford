@@ -15,7 +15,7 @@
       },
       {
         "label": "Vor der Apokalypse",
-        "value": "Rettungssanitäterin, ausgebildet im Umgang mit Notfällen und Verletzungen"
+        "value": "Erfolgreiche Fitness-Influencerin mit großer Reichweite in sozialen Medien, postete Workout-Routinen und Ernährungstipps"
       },
       {
         "label": "Verbindung",
@@ -23,11 +23,11 @@
       },
       {
         "label": "Aussehen",
-        "value": "Kurze Haare, kräftige Statur, trägt einen Ring aus zusammengeschweißtem Schrott, hilft gelegentlich im Lazarett aus"
+        "value": "Durchtrainierter, athletischer Körperbau, lange braune Haare, selbstbewusstes, fast posenhaftes Auftreten, trägt einen Ring aus zusammengeschweißtem Schrott"
       }
     ],
-    "story": "<p>Grace arbeitete vor dem Fall als Rettungssanitäterin, eine Erfahrung, die ihr in Ashford gelegentlich zugutekommt, wenn im Lazarett zusätzliche Hände gebraucht werden. Sie kam erst nach dem Fall nach Ashford und lernte Phil kennen, als beide gemeinsam bei der Verteilung besonders knapper Rationen aushalfen, eine unspektakuläre Begegnung, aus der sich über die folgenden Monate eine feste Beziehung entwickelte. Ihre bevorstehende Hochzeit gilt in der Siedlung als eines der wenigen wirklich fröhlichen Ereignisse der letzten Jahre. Ihre Ringe sind aus zusammengeschweißtem Schrott gefertigt, mit tatkräftiger Hilfe von @UUID[Actor.3d722c9b3eb99cff]{Viktor} in der Werkstatt, ein unscheinbares, aber vielsagendes Symbol dafür, dass sich selbst in dieser Welt noch etwas Neues und Gutes aufbauen lässt.</p>",
-    "portraitPrompt": "Photorealistic portrait of a 30-year-old American woman, short practical haircut, sturdy build, wearing a ring made of welded scrap metal, dressed in practical worn medical-adjacent clothing, warm confident smile, standing near an infirmary tent, warm golden light, ultra-detailed, 8k",
+    "story": "<p>Vor dem Fall war Grace eine erfolgreiche Fitness-Influencerin mit hunderttausenden Followern, bekannt für ihre Workout-Videos und Ernährungstipps, ein Leben und eine Karriere, die über Nacht bedeutungslos wurden. Ausgerechnet die aus heutiger Sicht fast oberflächlich wirkende Disziplin von damals, tägliches Training, eiserne Routine, ein durchtrainierter Körper, erweist sich in Ashford als überraschend nützlich: Sie gehört zu den fittesten und ausdauerndsten Mitgliedern des Außentrupps und hält im Feld durch, wo andere längst schlappmachen. Sie kam erst nach dem Fall nach Ashford und lernte Phil kennen, als beide gemeinsam bei der Verteilung besonders knapper Rationen aushalfen, eine unspektakuläre Begegnung, aus der sich über die folgenden Monate eine feste Beziehung entwickelte. Ihre bevorstehende Hochzeit gilt in der Siedlung als eines der wenigen wirklich fröhlichen Ereignisse der letzten Jahre. Ihre Ringe sind aus zusammengeschweißtem Schrott gefertigt, mit tatkräftiger Hilfe von @UUID[Actor.3d722c9b3eb99cff]{Viktor} in der Werkstatt, ein unscheinbares, aber vielsagendes Symbol dafür, dass sich selbst in dieser Welt noch etwas Neues und Gutes aufbauen lässt.</p>",
+    "portraitPrompt": "Photorealistic portrait of a 30-year-old American woman with a lean, toned athletic physique, long brunette hair, confident posture, almost posing, wearing a ring made of welded scrap metal, dressed in a crop top and shorts as workout clothes, warm confident smile, standing in a rugged outdoor post-apocalyptic setting, warm golden light, ultra-detailed, 8k, square format",
     "isCodexEntry": true,
     "initials": "GM",
     "meta": {

@@ -3,7 +3,7 @@
   "_key": "!actors!c448a3c1069223d6",
   "name": "Phil Anders",
   "type": "npc",
-  "img": "systems/ashford/assets/portraits/phil-anders.svg",
+  "img": "systems/ashford/assets/portraits/phil-anders.png",
   "system": {
     "role": "Verlobter, seit dem Fall in Ashford zusammen",
     "buildingId": "",
@@ -23,11 +23,11 @@
       },
       {
         "label": "Aussehen",
-        "value": "Schmale Statur, trägt eine improvisierte Brille mit notdürftig geflicktem Bügel, führt akribisch Buch über die Vorräte der Siedlung"
+        "value": "Schmale Statur, dichter Vollbart, meist über einen Schreibtisch gebeugt, führt akribisch Buch über die Vorräte der Siedlung"
       }
     ],
     "story": "<p>Phil war vor dem Fall Buchhalter, eine eher unauffällige Existenz, die sich in Ashford überraschend nützlich gemacht hat, er ist derjenige, der so etwas wie eine inoffizielle Bestandsaufnahme über die knappen Vorräte der Siedlung führt, obwohl es dafür gar keine offizielle Institution gibt. Er lernte Grace kennen, als beide gemeinsam eine besonders angespannte Rationsverteilung organisieren mussten, und war von ihrer ruhigen, praktischen Art rasch angetan. Aus der anfänglichen Zusammenarbeit wurde in den folgenden Monaten mehr, und ihre gemeinsame Verlobung, mit Ringen aus zusammengeschweißtem Schrott, ist für viele in Ashford ein kleines Zeichen der Hoffnung.</p>",
-    "portraitPrompt": "Photorealistic portrait of a slender 31-year-old American man, improvised glasses with a taped bridge, holding a worn ledger notebook, calm focused expression, standing among stacked supply crates in a dim storeroom, soft indoor light, ultra-detailed, 8k",
+    "portraitPrompt": "Photorealistic portrait of a slender 31-year-old American man with a full beard, bent over a desk, staring intently down at open ledgers and books, holding a worn ledger notebook, calm focused expression, standing among stacked supply crates in a dim storeroom, soft indoor light, ultra-detailed, 8k",
     "isCodexEntry": true,
     "initials": "PA",
     "meta": {
@@ -63,7 +63,7 @@
   "prototypeToken": {
     "name": "Phil Anders",
     "texture": {
-      "src": "systems/ashford/assets/portraits/phil-anders.svg"
+      "src": "systems/ashford/assets/portraits/phil-anders.png"
     },
     "width": 1,
     "height": 1,

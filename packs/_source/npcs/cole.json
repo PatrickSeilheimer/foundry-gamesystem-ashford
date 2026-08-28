@@ -23,11 +23,11 @@
       },
       {
         "label": "Aussehen",
-        "value": "Kantiges Gesicht, alte Tätowierungen an den Unterarmen, wacher, ruhiger Blick"
+        "value": "Kantiges Gesicht mit von Natur aus hart und wütend wirkenden Zügen, dabei aber fast durchgehend ausdruckslose Miene, Gefängnistätowierungen über weite Teile des Körpers bis auf die Gesichtsseite, wacher, ruhiger Blick"
       }
     ],
-    "story": "<p>Jeder in Ashford weiß, dass Miguel gesessen hat, aber niemand weiß wofür, und in all den Jahren in der Siedlung hat er sich nie das Geringste zuschulden kommen lassen. Als der Fall über das Gefängnis hereinbrach, in dem er einsaß, ignorierte der Wärter Gary Nolan die Anweisung, sämtliche Häftlinge zurückzulassen, und befreite ihn. Auf der gemeinsamen Flucht durch das Chaos retteten sie sich mehrfach gegenseitig das Leben, ein Bund, der bis heute unzertrennlich ist. Miguel redet wenig über sich selbst, aber wer ihn kennt, weiß, dass er zuverlässiger ist als die meisten, die viel mehr reden.</p>",
-    "portraitPrompt": "Photorealistic portrait of a rugged 39-year-old American man, angular face, faded prison tattoos on his forearms, calm watchful eyes, simple worn clothing, standing in shadow near a wooden fence, moody low-key lighting, ultra-detailed, 8k",
+    "story": "<p>Jeder in Ashford weiß, dass Miguel gesessen hat, aber niemand weiß wofür, und in all den Jahren in der Siedlung hat er sich nie das Geringste zuschulden kommen lassen. Als der Fall über das Gefängnis hereinbrach, in dem er einsaß, ignorierte der Wärter Gary Nolan die Anweisung, sämtliche Häftlinge zurückzulassen, und befreite ihn. Auf der gemeinsamen Flucht durch das Chaos retteten sie sich mehrfach gegenseitig das Leben, ein Bund, der bis heute unzertrennlich ist. Miguel redet wenig über sich selbst, auch nicht über sein Leben vor der Haft, aber wer ihn kennt, weiß, dass er zuverlässiger ist als die meisten, die viel mehr reden.</p>",
+    "portraitPrompt": "Photorealistic portrait of a rugged 39-year-old Hispanic-American man, angular face, prison tattoos all over his body and the side of his face, angry looking facial structure with an emotionless look, simple worn clothing, standing in shadow near a wooden fence, moody low-key lighting, ultra-detailed, 8k",
     "isCodexEntry": true,
     "initials": "MV",
     "meta": {
@@ -35,7 +35,7 @@
       "age": 39,
       "relationship": "Ledig",
       "workplace": "Außentrupp",
-      "nationality": "USA"
+      "nationality": "Mexiko"
     },
     "biography": "",
     "resources": {
