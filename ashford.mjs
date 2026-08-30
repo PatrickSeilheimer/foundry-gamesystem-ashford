@@ -16,6 +16,7 @@ import AshfordItemSheet from "./module/sheets/item-sheet.mjs";
 
 import registerHandlebarsHelpers from "./module/handlebars-helpers.mjs";
 import registerCodexControls from "./module/apps/codex-app.mjs";
+import { TALENTS, POINTS_BUDGET } from "./module/rules/talents.mjs";
 
 Hooks.once("init", () => {
   console.log("Ashford Adventures | Initializing system");
@@ -23,7 +24,7 @@ Hooks.once("init", () => {
   game.ashford = {
     AshfordActor,
     AshfordItem,
-    config: { diceBase: 3 }
+    config: { diceBase: 3, pointsBudget: POINTS_BUDGET, talents: TALENTS }
   };
 
   // Document classes
@@ -59,20 +60,19 @@ Hooks.once("init", () => {
   });
 
   registerHandlebarsHelpers();
-
-  game.settings.register("ashford", "successThreshold", {
-    name: "ASHFORD.Settings.successThreshold.name",
-    hint: "ASHFORD.Settings.successThreshold.hint",
-    scope: "world",
-    config: true,
-    type: Number,
-    choices: { 4: "4+", 5: "5+", 6: "6 (nur Sechsen)" },
-    default: 5
-  });
 });
 
 Hooks.once("ready", () => {
   console.log("Ashford Adventures | Ready");
+});
+
+// Neue Charaktere starten mit allen 20 Talenten der geschlossenen Liste (Abschnitt 5),
+// jeweils mit 0 Stärken/Schwächen — bereit, um das 10-Punkte-Budget (Abschnitt 4) zu verteilen.
+Hooks.on("createActor", (actor, options, userId) => {
+  if (actor.type !== "character") return;
+  if (game.user.id !== userId) return;
+  if (actor.items.size > 0) return;
+  actor.ensureCanonicalTalents();
 });
 
 registerCodexControls();

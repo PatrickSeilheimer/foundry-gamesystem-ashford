@@ -1,0 +1,32 @@
+{
+  "_id": "b6f9a2cb8731765d",
+  "_key": "!items!b6f9a2cb8731765d",
+  "name": "Bögen",
+  "type": "talent",
+  "img": "icons/skills/melee/weapons-crossed-swords-yellow.webp",
+  "system": {
+    "description": "",
+    "talentKey": "boegen",
+    "stufe": 3,
+    "staerken": 0,
+    "schwaechen": 0,
+    "waffentalent": true,
+    "kategorie": "fernkampf"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

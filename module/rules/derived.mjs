@@ -1,0 +1,18 @@
+/**
+ * Abgeleitete Charakterwerte (Abschnitt 4a). Kraft und Athletik bleiben
+ * daneben ganz normal würfelbare Talente — diese vier Werte kommen
+ * zusätzlich obendrauf, gespeist von Stärken−Schwächen auf genau diesen
+ * beiden Talenten.
+ * @param {object} params
+ * @param {number} params.kraftMod - Stärken − Schwächen auf Kraft (-2..+3)
+ * @param {number} params.athletikMod - Stärken − Schwächen auf Athletik (-2..+3)
+ * @param {number} params.waffenBasisschaden - Basisschaden der aktuell geführten Nahkampfwaffe (0, wenn keine)
+ */
+export function deriveCombatStats({ kraftMod = 0, athletikMod = 0, waffenBasisschaden = 0 } = {}) {
+  return {
+    hp: 40 + kraftMod * 5,
+    initiativeMod: athletikMod * 2, // tatsächlicher Wurf ist 1W12 + initiativeMod, nicht explodierend
+    ausweichen: 10 + athletikMod * 3,
+    nahkampfschaden: waffenBasisschaden + kraftMod
+  };
+}

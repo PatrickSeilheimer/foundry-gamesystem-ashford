@@ -1,0 +1,32 @@
+{
+  "_id": "726a8ed359c6af2a",
+  "_key": "!items!726a8ed359c6af2a",
+  "name": "Schlagwaffen",
+  "type": "talent",
+  "img": "icons/skills/melee/weapons-crossed-swords-yellow.webp",
+  "system": {
+    "description": "",
+    "talentKey": "schlagwaffen",
+    "stufe": 3,
+    "staerken": 0,
+    "schwaechen": 0,
+    "waffentalent": true,
+    "kategorie": "nahkampf_schlag"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

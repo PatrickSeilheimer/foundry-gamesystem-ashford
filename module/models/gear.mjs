@@ -1,4 +1,5 @@
 import AshfordItemBase from "./base-item.mjs";
+import { WEAPON_TALENT_KEYS, RANGED_WEAPON_TALENT_KEYS } from "../rules/talents.mjs";
 
 const { BooleanField, NumberField, StringField } = foundry.data.fields;
 
@@ -16,10 +17,17 @@ export class AshfordWeapon extends AshfordPhysicalItem {
   static defineSchema() {
     return {
       ...super.defineSchema(),
-      damageDice: new NumberField({ required: true, integer: true, initial: 1, min: 0 }),
-      grantsStrength: new BooleanField({ required: true, initial: false }), // z.B. ein gutes Werkzeug/Waffe
+      // Fest zugeordnetes Waffentalent (Abschnitt 6): keine Wahl zwischen zwei Skills für dieselbe Waffe.
+      weaponSkill: new StringField({ required: false, blank: true, choices: WEAPON_TALENT_KEYS }),
+      baseDamage: new NumberField({ required: true, integer: true, initial: 1, min: 0 }), // Waffenbasisschaden (Abschnitt 4a)
+      equipped: new BooleanField({ required: true, initial: false }), // geführte Nahkampfwaffe speist Nahkampfschaden
       ammo: new StringField({ required: false, blank: true })
     };
+  }
+
+  /** True for the 4 Fernkampf-Waffentalente (Pistolen/Gewehre/Schrotflinten/Bögen) — has a range-band table. */
+  get isRanged() {
+    return RANGED_WEAPON_TALENT_KEYS.includes(this.weaponSkill);
   }
 }
 

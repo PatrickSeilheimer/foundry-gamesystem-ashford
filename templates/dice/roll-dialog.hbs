@@ -1,5 +1,8 @@
 <form class="ashford-roll-dialog">
-  <p>Basis-Pool: <strong>3 W6</strong>, jede aktive Stärke +1, jede aktive Schwäche −1 (Minimum 1 Würfel).</p>
+  <p class="hint">
+    Basis: <strong>{{baseStaerken}}</strong> Stärke(n), <strong>{{baseSchwaechen}}</strong> Schwäche(n) auf {{talentName}}.
+    Würfelzahl = 3 + Stärken − Schwächen, alle Würfel W6 und explodierend.
+  </p>
 
   <fieldset>
     <legend>Permanente Stärken</legend>
@@ -26,14 +29,50 @@
   </fieldset>
 
   <fieldset>
-    <legend>Situativ (diese Probe)</legend>
+    <legend>Situativ (nur diese Probe)</legend>
     <label>
       Zusätzliche Stärken
-      <input type="number" name="extraStrengths" value="0" min="0">
+      <input type="number" name="extraStaerken" value="0" min="0">
     </label>
     <label>
       Zusätzliche Schwächen
-      <input type="number" name="extraWeaknesses" value="0" min="0">
+      <input type="number" name="extraSchwaechen" value="0" min="0">
     </label>
+    <label>
+      Fester Modifikator (auf die Summe)
+      <input type="number" name="flatModifier" value="0">
+    </label>
+  </fieldset>
+
+  <fieldset>
+    <legend>Zielwert</legend>
+    <label class="ashford-radio-row">
+      <input type="radio" name="targetMode" value="none" checked> Kein Zielwert, nur Ergebnis
+    </label>
+    <label class="ashford-radio-row">
+      <input type="radio" name="targetMode" value="difficulty"> Schwierigkeit
+      <select name="difficulty">
+        {{#each difficulties}}
+          <option value="{{this.key}}">{{this.label}} ({{this.target}})</option>
+        {{/each}}
+      </select>
+    </label>
+    <label class="ashford-radio-row">
+      <input type="radio" name="targetMode" value="custom"> Fester Zielwert
+      <input type="number" name="customTarget" value="12">
+    </label>
+    {{#if isWeapon}}
+      <label class="ashford-radio-row">
+        <input type="radio" name="targetMode" value="attack"> Angriff gegen Ausweichen
+        <input type="number" name="ausweichenValue" value="{{#if targetAusweichen}}{{targetAusweichen}}{{else}}10{{/if}}">
+        {{#if targetName}}<span class="hint">(Ziel: {{targetName}})</span>{{/if}}
+      </label>
+      {{#if isRanged}}
+        <label>
+          Entfernung (Meter)
+          <input type="number" name="rangeMeters" value="0" min="0">
+        </label>
+      {{/if}}
+    {{/if}}
   </fieldset>
 </form>

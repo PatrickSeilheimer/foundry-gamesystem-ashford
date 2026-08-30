@@ -6,37 +6,71 @@
       <div class="resource-row">
         <label>{{localize "ASHFORD.Sheet.health"}}
           <input type="number" name="system.resources.health.value" value="{{system.resources.health.value}}">
-          / <input type="number" name="system.resources.health.max" value="{{system.resources.health.max}}">
+          / <input type="number" value="{{system.resources.health.max}}" disabled title="Fest abgeleitet aus Kraft (40 + Kraft-Mod × 5)">
         </label>
         <label>{{localize "ASHFORD.Sheet.infection"}}
           <input type="number" name="system.resources.infection.value" value="{{system.resources.infection.value}}">
           / <input type="number" name="system.resources.infection.max" value="{{system.resources.infection.max}}">
         </label>
       </div>
-      <div class="resource-row">
-        <label>{{localize "ASHFORD.Sheet.level"}} <input type="number" name="system.level" value="{{system.level}}"></label>
-        <label>{{localize "ASHFORD.Sheet.xp"}} <input type="number" name="system.xp" value="{{system.xp}}"></label>
-        <label>{{localize "ASHFORD.Sheet.talentPoints"}} <input type="number" name="system.talentPoints" value="{{system.talentPoints}}"></label>
+      <div class="stat-tiles">
+        <div class="stat-tile"><div class="num">{{system.derived.ausweichen}}</div><div class="lbl">{{localize "ASHFORD.Sheet.dodge"}}</div></div>
+        <div class="stat-tile"><div class="num">{{signed system.derived.initiativeMod}}</div><div class="lbl">{{localize "ASHFORD.Sheet.initiativeMod"}}</div></div>
+        <div class="stat-tile"><div class="num">{{signed system.derived.nahkampfschaden}}</div><div class="lbl">{{localize "ASHFORD.Sheet.meleeDamage"}}</div></div>
+        <div class="stat-tile"><div class="num">{{signed system.derived.kraftMod}}</div><div class="lbl">Kraft-Mod</div></div>
+        <div class="stat-tile"><div class="num">{{signed system.derived.athletikMod}}</div><div class="lbl">Athletik-Mod</div></div>
+        <div class="stat-tile">
+          <div class="num points-badge {{#if (lt system.pointsRemaining 0)}}negative{{/if}}">{{system.pointsRemaining}} / {{system.pointsBudget}}</div>
+          <div class="lbl">{{localize "ASHFORD.Sheet.pointsRemaining"}}</div>
+        </div>
       </div>
-      <button type="button" class="ashford-roll-pool">🎲 {{localize "ASHFORD.Sheet.rollPool"}}</button>
     </div>
   </header>
 
   <nav class="sheet-tabs tabs" data-group="primary">
     <a class="item" data-tab="main">Übersicht</a>
-    <a class="item" data-tab="traits">{{localize "ASHFORD.Sheet.traits"}}</a>
     <a class="item" data-tab="talents">{{localize "ASHFORD.Sheet.talents"}}</a>
+    <a class="item" data-tab="traits">{{localize "ASHFORD.Sheet.conditions"}}</a>
     <a class="item" data-tab="gear">{{localize "ASHFORD.Sheet.gear"}}</a>
   </nav>
 
   <section class="sheet-body">
     <div class="tab" data-group="primary" data-tab="main">
       <label>Konzept <input type="text" name="system.concept" value="{{system.concept}}"></label>
+      <label>Bonus-Baupunkte (z.B. Meilenstein) <input type="number" name="system.bonusPoints" value="{{system.bonusPoints}}"></label>
       <h3>{{localize "ASHFORD.Sheet.biography"}}</h3>
       {{editor system.biography target="system.biography" button=true engine="prosemirror" collaborate=false}}
     </div>
 
+    <div class="tab" data-group="primary" data-tab="talents">
+      {{#unless hasTalents}}
+        <p class="hint">Noch keine Talente eingerichtet.</p>
+        <a class="item-create ashford-init-talents">+ Alle 20 Talente anlegen</a>
+      {{else}}
+        <a class="item-create ashford-init-talents">Fehlende Talente ergänzen</a>
+        {{#each talentTiers}}
+          <div class="talent-tier-heading">Stufe {{this.stufe}}</div>
+          {{#each this.talents}}
+            <div class="talent-row" data-item-id="{{this.id}}">
+              <span class="talent-name">{{this.name}}</span>
+              <label title="Stärken (0–3)">S+
+                <input type="number" class="talent-field" data-field="staerken" value="{{this.system.staerken}}" min="0" max="3">
+              </label>
+              <label title="Schwächen (0–2)">S−
+                <input type="number" class="talent-field" data-field="schwaechen" value="{{this.system.schwaechen}}" min="0" max="2">
+              </label>
+              <span class="talent-dice">{{this.system.diceCount}}W6</span>
+              <span class="talent-delta {{#if (gte this.system.pointDelta 0)}}positive{{else}}negative{{/if}}">{{signed this.system.pointDelta}}</span>
+              <button type="button" class="ashford-roll-talent">🎲</button>
+              <a class="item-edit"><i class="fas fa-edit"></i></a>
+            </div>
+          {{/each}}
+        {{/each}}
+      {{/unless}}
+    </div>
+
     <div class="tab" data-group="primary" data-tab="traits">
+      <p class="hint">Situative Stärken/Schwächen (z.B. Verwundet, Erhöhte Position) — wirken zusätzlich zu den Stärken/Schwächen eines Talents, wählbar beim Würfeln.</p>
       <ol class="item-list">
         {{#each traits as |item|}}
           <li class="item" data-item-id="{{item.id}}">
@@ -50,26 +84,17 @@
       <a class="item-create" data-type="trait">+ Stärke/Schwäche</a>
     </div>
 
-    <div class="tab" data-group="primary" data-tab="talents">
-      <ol class="item-list">
-        {{#each talents as |item|}}
-          <li class="item" data-item-id="{{item.id}}">
-            <span class="item-name">{{item.name}}</span>
-            <span class="item-kind">{{item.system.category}}</span>
-            <a class="item-edit"><i class="fas fa-edit"></i></a>
-            <a class="item-delete"><i class="fas fa-trash"></i></a>
-          </li>
-        {{/each}}
-      </ol>
-      <a class="item-create" data-type="talent">+ Talent</a>
-    </div>
-
     <div class="tab" data-group="primary" data-tab="gear">
       <ol class="item-list">
         {{#each gear as |item|}}
           <li class="item" data-item-id="{{item.id}}">
             <span class="item-name">{{item.name}}</span>
             <span class="item-kind">{{item.type}}</span>
+            {{#if (eq item.type "weapon")}}
+              <label class="weapon-equipped-toggle" title="Aktuell geführt">
+                <input type="checkbox" class="weapon-equipped" {{#if item.system.equipped}}checked{{/if}}> geführt
+              </label>
+            {{/if}}
             <a class="item-edit"><i class="fas fa-edit"></i></a>
             <a class="item-delete"><i class="fas fa-trash"></i></a>
           </li>

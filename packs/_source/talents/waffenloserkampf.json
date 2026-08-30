@@ -1,0 +1,32 @@
+{
+  "_id": "c2f3cddb54e8db1a",
+  "_key": "!items!c2f3cddb54e8db1a",
+  "name": "Waffenloser Kampf",
+  "type": "talent",
+  "img": "icons/skills/melee/weapons-crossed-swords-yellow.webp",
+  "system": {
+    "description": "",
+    "talentKey": "waffenloserkampf",
+    "stufe": 3,
+    "staerken": 0,
+    "schwaechen": 0,
+    "waffentalent": true,
+    "kategorie": "nahkampf_unbewaffnet"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

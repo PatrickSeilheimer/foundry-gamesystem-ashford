@@ -19,16 +19,34 @@
     {{/if}}
 
     {{#if (eq item.type "talent")}}
-      <label>Kategorie <input type="text" name="system.category" value="{{system.category}}"></label>
-      <label>Tier <input type="number" name="system.tier" value="{{system.tier}}"></label>
-      <label>Kosten (Talentpunkte) <input type="number" name="system.cost" value="{{system.cost}}"></label>
-      <h3>Effekt</h3>
-      {{editor system.effect target="system.effect" button=true engine="prosemirror" collaborate=false}}
+      {{#if isCanonicalTalent}}
+        <p class="hint">Kanonisches Talent aus der geschlossenen Liste (Abschnitt 5) — Stufe und Waffentalent-Status sind fest.</p>
+      {{/if}}
+      <label>Stufe (Kostenmultiplikator)
+        <input type="number" name="system.stufe" value="{{system.stufe}}" min="1" max="3" {{#if isCanonicalTalent}}disabled{{/if}}>
+      </label>
+      <label>Stärken (0–3, je +1 Würfel, kostet Stufe × 1 Punkt)
+        <input type="number" name="system.staerken" value="{{system.staerken}}" min="0" max="3">
+      </label>
+      <label>Schwächen (0–2, je −1 Würfel, gibt Punkte zurück)
+        <input type="number" name="system.schwaechen" value="{{system.schwaechen}}" min="0" max="2">
+      </label>
+      <label><input type="checkbox" name="system.waffentalent" {{#if system.waffentalent}}checked{{/if}} {{#if isCanonicalTalent}}disabled{{/if}}> Waffentalent (Schwächen geben nur +1 Punkt statt Stufe × 1)</label>
+      <label>Kategorie <input type="text" name="system.kategorie" value="{{system.kategorie}}" placeholder="fernkampf, nahkampf_hieb, ..." {{#if isCanonicalTalent}}disabled{{/if}}></label>
+      <p class="hint">Würfelzahl: {{diceCount}}. Punkte-Delta: {{signed pointDelta}} (positiv = Rückerstattung, negativ = Kosten).</p>
     {{/if}}
 
     {{#if (eq item.type "weapon")}}
-      <label>Schadenswürfel <input type="number" name="system.damageDice" value="{{system.damageDice}}"></label>
-      <label><input type="checkbox" name="system.grantsStrength" {{#if system.grantsStrength}}checked{{/if}}> Gewährt Stärke bei Benutzung</label>
+      <label>Waffentalent
+        <select name="system.weaponSkill">
+          <option value="">— keins —</option>
+          {{#each weaponSkillOptions}}
+            <option value="{{this.key}}" {{#if (eq ../system.weaponSkill this.key)}}selected{{/if}}>{{this.name}}</option>
+          {{/each}}
+        </select>
+      </label>
+      <label>Waffenbasisschaden <input type="number" name="system.baseDamage" value="{{system.baseDamage}}" min="0"></label>
+      <label><input type="checkbox" name="system.equipped" {{#if system.equipped}}checked{{/if}}> Aktuell geführt (Nahkampfwaffe speist Nahkampfschaden)</label>
       <label>Munition <input type="text" name="system.ammo" value="{{system.ammo}}"></label>
     {{/if}}
 

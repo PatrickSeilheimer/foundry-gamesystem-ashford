@@ -1,3 +1,7 @@
-2026/08/28-22:25:23.196 62e0 Recovering log #7
-2026/08/28-22:25:23.204 62e0 Delete type=0 #7
-2026/08/28-22:25:23.204 62e0 Delete type=3 #6
+2026/08/30-11:23:18.344 37e0 Recovering log #11
+2026/08/30-11:23:18.351 37e0 Delete type=0 #11
+2026/08/30-11:23:18.351 37e0 Delete type=3 #10
+2026/08/30-11:23:18.368 bac Level-0 table #15: started
+2026/08/30-11:23:18.371 bac Level-0 table #15: 2893 bytes OK
+2026/08/30-11:23:18.374 bac Delete type=0 #13
+2026/08/30-11:23:18.374 bac Manual compaction at level-0 from '!items!0f08cbc31bcc66a0' @ 72057594037927935 : 1 .. '!items!ff6531864ff69cbf' @ 0 : 0; will stop at (end)

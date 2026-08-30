@@ -187,3 +187,151 @@
   font-size: 11px;
   color: var(--ashford-text-dim);
 }
+
+.ashford-roll-card .die.exploded {
+  border-color: var(--ashford-danger);
+  color: var(--ashford-danger);
+  font-weight: bold;
+}
+
+.ashford-roll-card .total-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: baseline;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.ashford-roll-card .grand-total {
+  font-weight: bold;
+  color: var(--ashford-accent);
+  font-size: 14px;
+}
+
+.ashford-roll-card .result-row {
+  font-weight: bold;
+  padding: 2px 6px;
+  margin-top: 2px;
+  display: inline-block;
+}
+
+.ashford-roll-card .result-row.success {
+  color: var(--ashford-accent-2);
+}
+
+.ashford-roll-card .result-row.failure {
+  color: var(--ashford-danger);
+}
+
+.ashford-roll-card .auto-fail {
+  color: var(--ashford-danger);
+  font-weight: bold;
+}
+
+.ashford-roll-dialog .ashford-radio-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 0;
+}
+
+/* Talent list (character sheet) */
+.ashford.sheet .points-badge {
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  padding: 2px 8px;
+  border: 1px solid var(--ashford-edge);
+  background: var(--ashford-panel-2);
+  color: var(--ashford-accent-2);
+}
+
+.ashford.sheet .points-badge.negative {
+  color: var(--ashford-danger);
+  border-color: var(--ashford-danger);
+}
+
+.ashford.sheet .stat-tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.ashford.sheet .stat-tile {
+  background: var(--ashford-panel-2);
+  border: 1px solid var(--ashford-edge);
+  border-left: 3px solid var(--ashford-accent-2);
+  padding: 4px 10px;
+  min-width: 90px;
+}
+
+.ashford.sheet .stat-tile .num {
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.ashford.sheet .stat-tile .lbl {
+  font-size: 10px;
+  color: var(--ashford-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ashford.sheet .talent-tier-heading {
+  font-family: "Courier New", monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 11px;
+  color: var(--ashford-text-dim);
+  border-bottom: 1px solid var(--ashford-edge);
+  margin: 10px 0 4px;
+}
+
+.ashford.sheet .talent-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 0;
+  border-bottom: 1px solid var(--ashford-edge);
+  font-size: 12px;
+}
+
+.ashford.sheet .talent-row .talent-name {
+  flex: 1;
+}
+
+.ashford.sheet .talent-row input[type="number"] {
+  width: 34px;
+}
+
+.ashford.sheet .talent-row .talent-dice {
+  font-family: "Courier New", monospace;
+  color: var(--ashford-text-dim);
+  width: 48px;
+  text-align: right;
+}
+
+.ashford.sheet .talent-row .talent-delta {
+  font-family: "Courier New", monospace;
+  width: 32px;
+  text-align: right;
+}
+
+.ashford.sheet .talent-row .talent-delta.positive {
+  color: var(--ashford-accent-2);
+}
+
+.ashford.sheet .talent-row .talent-delta.negative {
+  color: var(--ashford-danger);
+}
+
+.ashford.sheet .ashford-roll-talent {
+  background: var(--ashford-panel-2);
+  border: 1px solid var(--ashford-accent);
+  color: var(--ashford-accent);
+  cursor: pointer;
+  font-size: 11px;
+  padding: 1px 6px;
+}

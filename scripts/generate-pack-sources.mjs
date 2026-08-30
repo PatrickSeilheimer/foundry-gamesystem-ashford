@@ -17,6 +17,7 @@ import { fileURLToPath } from "node:url";
 import { idFor } from "./ids.mjs";
 import { slugifyName } from "./slug.mjs";
 import { buildings, persons, missions } from "./data/ashford-codex-content.mjs";
+import { TALENTS } from "../module/rules/talents.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -260,6 +261,40 @@ const missionsDir = ensureCleanDir("packs/_source/missions");
 }
 
 /* -------------------------------------------- */
+/*  Talents (the closed 19-entry list, Abschnitt 5) */
+/* -------------------------------------------- */
+
+const talentsDir = ensureCleanDir("packs/_source/talents");
+
+for (const talent of TALENTS) {
+  const id = idFor(`talent-${talent.key}`);
+  const doc = {
+    _id: id,
+    _key: `!items!${id}`,
+    name: talent.name,
+    type: "talent",
+    img: talent.waffentalent ? "icons/skills/melee/weapons-crossed-swords-yellow.webp" : "icons/svg/d20-black.svg",
+    system: {
+      description: "",
+      talentKey: talent.key,
+      stufe: talent.stufe,
+      staerken: 0,
+      schwaechen: 0,
+      waffentalent: !!talent.waffentalent,
+      kategorie: talent.kategorie ?? ""
+    },
+    effects: [],
+    folder: null,
+    sort: 0,
+    ownership: { default: 2 },
+    flags: {},
+    _stats: stats()
+  };
+
+  writeJSON(talentsDir, `${talent.key}.json`, doc);
+}
+
+/* -------------------------------------------- */
 /*  Traits (example Items)                       */
 /* -------------------------------------------- */
 
@@ -349,5 +384,5 @@ for (const trait of EXAMPLE_TRAITS) {
 }
 
 console.log(
-  `\nFertig: ${Object.keys(persons).length} NPCs, ${buildings.length} Gebäude, ${missions.length} Missionen, ${EXAMPLE_TRAITS.length} Traits.`
+  `\nFertig: ${Object.keys(persons).length} NPCs, ${buildings.length} Gebäude, ${missions.length} Missionen, ${TALENTS.length} Talente, ${EXAMPLE_TRAITS.length} Traits.`
 );

@@ -1,0 +1,32 @@
+{
+  "_id": "8934d08033c6b66f",
+  "_key": "!items!8934d08033c6b66f",
+  "name": "Heimlichkeit",
+  "type": "talent",
+  "img": "icons/svg/d20-black.svg",
+  "system": {
+    "description": "",
+    "talentKey": "heimlichkeit",
+    "stufe": 2,
+    "staerken": 0,
+    "schwaechen": 0,
+    "waffentalent": false,
+    "kategorie": ""
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

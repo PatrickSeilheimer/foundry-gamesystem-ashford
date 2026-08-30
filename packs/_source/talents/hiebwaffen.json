@@ -1,0 +1,32 @@
+{
+  "_id": "f9e8d2d8555a7d7e",
+  "_key": "!items!f9e8d2d8555a7d7e",
+  "name": "Hiebwaffen",
+  "type": "talent",
+  "img": "icons/skills/melee/weapons-crossed-swords-yellow.webp",
+  "system": {
+    "description": "",
+    "talentKey": "hiebwaffen",
+    "stufe": 3,
+    "staerken": 0,
+    "schwaechen": 0,
+    "waffentalent": true,
+    "kategorie": "nahkampf_hieb"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

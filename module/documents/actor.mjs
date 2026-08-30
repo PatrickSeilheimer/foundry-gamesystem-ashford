@@ -1,23 +1,56 @@
-import { rollDicePool } from "../dice/dice-pool.mjs";
+import { rollAshfordCheck } from "../dice/dice-pool.mjs";
 import AshfordRollDialog from "../apps/roll-dialog.mjs";
+import { TALENTS } from "../rules/talents.mjs";
 
 export default class AshfordActor extends Actor {
-  /** Open the Stärken/Schwächen roll dialog for this actor. */
-  async rollPool({ label = "Probe" } = {}) {
-    return AshfordRollDialog.prompt(this, { label });
+  /** Open the roll dialog for one embedded talent Item (the normal way to roll in Ashford). */
+  async rollTalent(talentId, options = {}) {
+    const talent = this.items.get(talentId);
+    if (!talent) return ui.notifications?.warn("Talent nicht gefunden.");
+    return AshfordRollDialog.prompt(this, talent, options);
   }
 
-  /** Roll immediately without a dialog, e.g. from a macro or NPC quick-roll. */
-  async quickRollPool({ label = "Probe", extraStrengths = 0, extraWeaknesses = 0 } = {}) {
+  /**
+   * Simple flat-pool roll for actors without a talent list (NPCs, Kreaturen)
+   * or as a quick fallback. Still situational Stärken/Schwächen from
+   * permanent traits, no talent-specific bonuses.
+   */
+  async quickRollPool({ label = "Probe", basePool = 3, extraStrengths = 0, extraWeaknesses = 0, target = null, targetLabel = "" } = {}) {
     const { strengths, weaknesses } = this.system.permanentTraits ?? { strengths: [], weaknesses: [] };
-    return rollDicePool({
+    const staerken = strengths.length + extraStrengths;
+    const schwaechen = weaknesses.length + extraWeaknesses;
+    // basePool ist bei Ashford immer 3 (Abschnitt 2.1); ein davon abweichender Wert (z.B. Kreaturen-Angriffspool)
+    // wird als zusätzliche Stärke/Schwäche gegenüber der Basis von 3 eingerechnet.
+    const delta = basePool - 3;
+    return rollAshfordCheck({
       actor: this,
       label,
-      basePool: this.system.dice?.basePool ?? 3,
-      strengths: strengths.map(i => i.name),
-      weaknesses: weaknesses.map(i => i.name),
-      extraStrengths,
-      extraWeaknesses
+      staerken: staerken + Math.max(0, delta),
+      schwaechen: schwaechen + Math.max(0, -delta),
+      strengthNames: strengths.map(i => i.name),
+      weaknessNames: weaknesses.map(i => i.name),
+      target,
+      targetLabel
     });
+  }
+
+  /** Creates any of the 19 canonical talents this actor doesn't have yet (fresh characters, or repairing an older sheet). */
+  async ensureCanonicalTalents() {
+    const existingKeys = new Set(
+      this.items.filter(i => i.type === "talent").map(i => i.system.talentKey).filter(Boolean)
+    );
+    const missing = TALENTS.filter(t => !existingKeys.has(t.key));
+    if (!missing.length) return [];
+    const toCreate = missing.map(t => ({
+      name: t.name,
+      type: "talent",
+      system: {
+        talentKey: t.key,
+        stufe: t.stufe,
+        waffentalent: !!t.waffentalent,
+        kategorie: t.kategorie ?? ""
+      }
+    }));
+    return this.createEmbeddedDocuments("Item", toCreate);
   }
 }

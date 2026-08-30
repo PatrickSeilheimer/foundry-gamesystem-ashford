@@ -1,0 +1,32 @@
+{
+  "_id": "9fc3ce822689f6d9",
+  "_key": "!items!9fc3ce822689f6d9",
+  "name": "Medizin",
+  "type": "talent",
+  "img": "icons/svg/d20-black.svg",
+  "system": {
+    "description": "",
+    "talentKey": "medizin",
+    "stufe": 1,
+    "staerken": 0,
+    "schwaechen": 0,
+    "waffentalent": false,
+    "kategorie": ""
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}
