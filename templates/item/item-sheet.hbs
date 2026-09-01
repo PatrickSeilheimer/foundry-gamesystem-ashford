@@ -46,16 +46,22 @@
         </select>
       </label>
       <label>Waffenbasisschaden <input type="number" name="system.baseDamage" value="{{system.baseDamage}}" min="0"></label>
-      <label><input type="checkbox" name="system.equipped" {{#if system.equipped}}checked{{/if}}> Aktuell geführt (Nahkampfwaffe speist Nahkampfschaden)</label>
+      <label><input type="checkbox" name="system.equipped" {{#if system.equipped}}checked{{/if}}> Aktuell geführt (belegt den Hände-Slot, speist Nahkampfschaden)</label>
       <label>Munition <input type="text" name="system.ammo" value="{{system.ammo}}"></label>
     {{/if}}
 
     {{#if (eq item.type "armor")}}
-      <label>Schutz <input type="number" name="system.protection" value="{{system.protection}}"></label>
+      <h4>Rüstung (je Schadensart)</h4>
+      <div class="armor-type-grid">
+        <label>🔫 Ballistic <input type="number" name="system.armor.ballistic" value="{{system.armor.ballistic}}" min="0"></label>
+        <label>🗡 Pierce <input type="number" name="system.armor.pierce" value="{{system.armor.pierce}}" min="0"></label>
+        <label>🔨 Blunt <input type="number" name="system.armor.blunt" value="{{system.armor.blunt}}" min="0"></label>
+        <label>⚔ Slash <input type="number" name="system.armor.slash" value="{{system.armor.slash}}" min="0"></label>
+      </div>
       <label>Ausrüstungsslot
         <select name="system.slot">
           <option value="">— keiner —</option>
-          {{#each armorSlotOptions}}
+          {{#each equipSlotOptions}}
             <option value="{{this.key}}" {{#if (eq ../system.slot this.key)}}selected{{/if}}>{{this.name}}</option>
           {{/each}}
         </select>
@@ -63,13 +69,70 @@
       <label><input type="checkbox" name="system.equipped" {{#if system.equipped}}checked{{/if}}> Angelegt</label>
     {{/if}}
 
+    {{#if (or (eq item.type "equipment") (eq item.type "consumable"))}}
+      <label>Kategorie
+        <select name="system.category">
+          {{#each itemCategoryOptions}}
+            <option value="{{this.key}}" {{#if (eq ../system.category this.key)}}selected{{/if}}>{{this.name}}</option>
+          {{/each}}
+        </select>
+      </label>
+    {{/if}}
+
     {{#if (eq item.type "consumable")}}
       <label>Verbleibende Nutzungen <input type="number" name="system.usesRemaining" value="{{system.usesRemaining}}"></label>
+      <label>Aktions-Label <input type="text" name="system.actionLabel" value="{{system.actionLabel}}" placeholder="Benutzen / Essen / Trinken / Anwenden"></label>
     {{/if}}
 
     {{#if (eq item.type "condition")}}
-      <label><input type="checkbox" name="system.grantsWeakness" {{#if system.grantsWeakness}}checked{{/if}}> Verursacht Schwäche</label>
-      <label>Dauer <input type="text" name="system.duration" value="{{system.duration}}"></label>
+      <label>Katalog-Schlüssel (leer = Homebrew) <input type="text" name="system.conditionKey" value="{{system.conditionKey}}"></label>
+      <label>Kategorie
+        <select name="system.category">
+          {{#each conditionCategories}}
+            <option value="{{this.key}}" {{#if (eq ../system.category this.key)}}selected{{/if}}>{{this.label}}</option>
+          {{/each}}
+        </select>
+      </label>
+      <label>Schweregrad
+        <select name="system.severity">
+          {{#each conditionSeverities}}
+            <option value="{{this}}" {{#if (eq ../system.severity this)}}selected{{/if}}>{{this}}</option>
+          {{/each}}
+        </select>
+      </label>
+      <label><input type="checkbox" name="system.active" {{#if system.active}}checked{{/if}}> Aktiv (deaktiviert = archiviert statt gelöscht)</label>
+      <label>Quelle <input type="text" name="system.source" value="{{system.source}}" placeholder="z.B. Zombie-Biss"></label>
+      <label>Notiz <input type="text" name="system.note" value="{{system.note}}"></label>
+
+      <h4>Dauer</h4>
+      <label>Typ
+        <select name="system.duration.type">
+          {{#each conditionDurationTypes}}
+            <option value="{{this.key}}" {{#if (eq ../system.duration.type this.key)}}selected{{/if}}>{{this.label}}</option>
+          {{/each}}
+        </select>
+      </label>
+      <label>Wert <input type="number" name="system.duration.value" value="{{system.duration.value}}" min="0"></label>
+      <label>Ereignis-Text (bei "Bis Ereignis") <input type="text" name="system.duration.eventLabel" value="{{system.duration.eventLabel}}"></label>
+
+      <h4>Auswirkungen</h4>
+      <p class="hint">talentMod wirkt automatisch beim Würfeln dieses Talents. derivedMod verschiebt Ausweichen/initiativeMod/nahkampfschaden/healthMax direkt. note ist rein beschreibend.</p>
+      <ol class="fact-list ashford-effect-list">
+        {{#each system.effects as |effect index|}}
+          <li>
+            <select name="system.effects.{{index}}.mode">
+              <option value="note" {{#if (eq effect.mode "note")}}selected{{/if}}>Notiz</option>
+              <option value="talentMod" {{#if (eq effect.mode "talentMod")}}selected{{/if}}>Talent-Mod.</option>
+              <option value="derivedMod" {{#if (eq effect.mode "derivedMod")}}selected{{/if}}>Wert-Mod.</option>
+            </select>
+            <input type="text" name="system.effects.{{index}}.key" value="{{effect.key}}" placeholder="Talent-Key / Wert-Key">
+            <input type="number" name="system.effects.{{index}}.value" value="{{effect.value}}">
+            <input type="text" name="system.effects.{{index}}.label" value="{{effect.label}}" placeholder="Anzeige-Label">
+            <a class="ashford-effect-remove" data-index="{{index}}" title="Entfernen"><i class="fas fa-trash"></i></a>
+          </li>
+        {{/each}}
+      </ol>
+      <a class="item-create ashford-effect-add">+ Auswirkung</a>
     {{/if}}
 
     {{#if (or (eq item.type "weapon") (eq item.type "armor") (eq item.type "equipment") (eq item.type "consumable"))}}

@@ -25,6 +25,21 @@ export default class AshfordRollDialog {
     const target = game.user?.targets?.size === 1 ? [...game.user.targets][0]?.actor : null;
     const targetAusweichen = target?.system?.derived?.ausweichen ?? null;
 
+    // Aktive Zustände mit einem "talentMod"-Effekt auf genau dieses Talent fließen automatisch
+    // in den Pool ein (module/rules/conditions.mjs) — situativ statt fest im Talent gespeichert,
+    // weil sie nur für die Dauer des Zustands gelten.
+    let conditionStaerken = 0;
+    let conditionSchwaechen = 0;
+    const conditionNames = new Set();
+    for (const condition of actor.system.activeConditions ?? []) {
+      for (const effect of condition.system.effects ?? []) {
+        if (effect.mode !== "talentMod" || effect.key !== talent.system.talentKey) continue;
+        if (effect.value > 0) conditionStaerken += effect.value;
+        else if (effect.value < 0) conditionSchwaechen += -effect.value;
+        conditionNames.add(condition.name);
+      }
+    }
+
     const content = await foundry.applications.handlebars.renderTemplate(
       "systems/ashford/templates/dice/roll-dialog.hbs",
       {
@@ -37,7 +52,9 @@ export default class AshfordRollDialog {
         isWeapon,
         isRanged,
         targetName: target?.name ?? "",
-        targetAusweichen
+        targetAusweichen,
+        conditionNames: [...conditionNames],
+        conditionNet: conditionStaerken - conditionSchwaechen
       }
     );
 
@@ -61,8 +78,8 @@ export default class AshfordRollDialog {
             const extraSchwaechen = Number(form.querySelector('[name="extraSchwaechen"]')?.value ?? 0);
             const flatModifier = Number(form.querySelector('[name="flatModifier"]')?.value ?? 0);
 
-            const staerken = talent.system.staerken + activeStrengthNames.length + extraStaerken;
-            const schwaechen = talent.system.schwaechen + activeWeaknessNames.length + extraSchwaechen;
+            const staerken = talent.system.staerken + activeStrengthNames.length + extraStaerken + conditionStaerken;
+            const schwaechen = talent.system.schwaechen + activeWeaknessNames.length + extraSchwaechen + conditionSchwaechen;
 
             const mode = form.querySelector('[name="targetMode"]')?.value ?? "none";
             let targetValue = null;

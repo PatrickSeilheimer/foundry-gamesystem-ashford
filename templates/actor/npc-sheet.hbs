@@ -16,14 +16,14 @@
   </header>
 
   <nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="main">Übersicht</a>
+    <a class="item" data-tab="character">Übersicht</a>
     <a class="item" data-tab="codex">Kodex-Eintrag</a>
     <a class="item" data-tab="traits">{{localize "ASHFORD.Sheet.traits"}}</a>
     <a class="item" data-tab="gear">{{localize "ASHFORD.Sheet.gear"}}</a>
   </nav>
 
   <section class="sheet-body">
-    <div class="tab" data-group="primary" data-tab="main">
+    <div class="tab" data-group="primary" data-tab="character">
       <label><input type="checkbox" name="system.isCodexEntry" {{#if system.isCodexEntry}}checked{{/if}}> Im Ashford-Kodex sichtbar</label>
       <h3>{{localize "ASHFORD.Sheet.biography"}} (GM-Notizen)</h3>
       {{editor system.biography target="system.biography" button=true engine="prosemirror" collaborate=false}}

@@ -3,12 +3,18 @@
   --ashford-bg: #191712;
   --ashford-panel: #242019;
   --ashford-panel-2: #2d271d;
+  --ashford-panel-3: #34291f;
   --ashford-edge: #4a4130;
   --ashford-text: #e9e2cf;
   --ashford-text-dim: #b3a889;
   --ashford-accent: #c9832f;
   --ashford-accent-2: #7a9b6e;
   --ashford-danger: #a8453a;
+  /* Zustand-Schweregrade, aufsteigend. */
+  --ashford-sev-gering: #7a9b6e;
+  --ashford-sev-mittel: #c9832f;
+  --ashford-sev-schwer: #c9622f;
+  --ashford-sev-kritisch: #a8453a;
 }
 
 .ashford.sheet {
@@ -236,106 +242,6 @@
   padding: 2px 0;
 }
 
-/* Talent list (character sheet) */
-.ashford.sheet .points-badge {
-  font-family: "Courier New", monospace;
-  font-size: 13px;
-  padding: 2px 8px;
-  border: 1px solid var(--ashford-edge);
-  background: var(--ashford-panel-2);
-  color: var(--ashford-accent-2);
-}
-
-.ashford.sheet .points-badge.negative {
-  color: var(--ashford-danger);
-  border-color: var(--ashford-danger);
-}
-
-.ashford.sheet .stat-tiles {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 8px 0;
-}
-
-.ashford.sheet .stat-tile {
-  background: var(--ashford-panel-2);
-  border: 1px solid var(--ashford-edge);
-  border-left: 3px solid var(--ashford-accent-2);
-  padding: 4px 10px;
-  min-width: 90px;
-}
-
-.ashford.sheet .stat-tile .num {
-  font-family: "Courier New", monospace;
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.ashford.sheet .stat-tile .lbl {
-  font-size: 10px;
-  color: var(--ashford-text-dim);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.ashford.sheet .talent-tier-heading {
-  font-family: "Courier New", monospace;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 11px;
-  color: var(--ashford-text-dim);
-  border-bottom: 1px solid var(--ashford-edge);
-  margin: 10px 0 4px;
-}
-
-.ashford.sheet .talent-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 2px 0;
-  border-bottom: 1px solid var(--ashford-edge);
-  font-size: 12px;
-}
-
-.ashford.sheet .talent-row .talent-name {
-  flex: 1;
-}
-
-.ashford.sheet .talent-row input[type="number"] {
-  width: 34px;
-}
-
-.ashford.sheet .talent-row .talent-dice {
-  font-family: "Courier New", monospace;
-  color: var(--ashford-text-dim);
-  width: 48px;
-  text-align: right;
-}
-
-.ashford.sheet .talent-row .talent-delta {
-  font-family: "Courier New", monospace;
-  width: 32px;
-  text-align: right;
-}
-
-.ashford.sheet .talent-row .talent-delta.positive {
-  color: var(--ashford-accent-2);
-}
-
-.ashford.sheet .talent-row .talent-delta.negative {
-  color: var(--ashford-danger);
-}
-
-.ashford.sheet .ashford-roll-talent {
-  background: var(--ashford-panel-2);
-  border: 1px solid var(--ashford-accent);
-  color: var(--ashford-accent);
-  cursor: pointer;
-  font-size: 11px;
-  padding: 1px 6px;
-}
-
 /* Read-only fields (outside edit mode) blend into the sheet like printed text instead of looking like form controls. Checkboxes/radios are excluded so their disabled state stays visible (e.g. locked canonical-talent flags on the item sheet). */
 .ashford.sheet input:disabled:not([type="checkbox"]):not([type="radio"]),
 .ashford.sheet select:disabled {
@@ -348,286 +254,951 @@
 }
 
 .ashford.sheet select:disabled {
-  /* hide the native dropdown chevron once it's read-only text */
   -webkit-appearance: none;
   padding-right: 0;
 }
 
-/* Split header: portrait/name/vitals on top, live combat stats below — the stats row stays identical across every tab. */
-.ashford.sheet .sheet-header-main {
+.ashford.sheet .points-badge {
+  font-family: "Courier New", monospace;
+  color: var(--ashford-accent-2);
+}
+
+.ashford.sheet .points-badge.negative {
+  color: var(--ashford-danger);
+}
+
+/* ============================================================
+   Character Sheet v2 — Zombie-Apokalypse survivor UI
+   ============================================================ */
+
+.ashford.sheet.ashford-v2 {
+  font-size: 13px;
+}
+
+.ashford-v2 button {
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: transform 0.08s ease, box-shadow 0.12s ease, background 0.12s ease, border-color 0.12s ease;
+}
+
+.ashford-v2 button:active {
+  transform: translateY(1px);
+}
+
+.ashford-v2 h3 {
+  font-family: "Courier New", monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
+  color: var(--ashford-text-dim);
+  border-bottom: 1px solid var(--ashford-edge);
+  margin: 14px 0 6px;
+  padding-bottom: 3px;
+}
+
+.ashford-v2 h3:first-child { margin-top: 0; }
+
+.ashford-v2 .hint {
+  color: var(--ashford-text-dim);
+  font-size: 12px;
+  font-style: italic;
+}
+
+/* ---------- Header ---------- */
+
+.ash-header {
+  border-bottom: 2px solid var(--ashford-accent);
+  padding-bottom: 8px;
+  margin-bottom: 4px;
+}
+
+.ash-header-top {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--ashford-edge);
 }
 
-.ashford.sheet .sheet-header-main .identity {
+.ash-identity {
+  display: flex;
+  gap: 12px;
   flex: 1;
-  gap: 4px;
   min-width: 0;
 }
 
-.ashford.sheet .actor-name {
-  font-size: 20px;
+.ash-portrait {
+  width: 88px;
+  height: 88px;
+  object-fit: cover;
+  border: 2px solid var(--ashford-edge);
+  background: var(--ashford-panel-2);
+  flex: 0 0 auto;
+}
+
+.ash-identity-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  justify-content: center;
+}
+
+.ash-name {
+  font-size: 22px;
   font-weight: bold;
+  font-family: "Signika", sans-serif;
   background: transparent;
   border: none;
   border-bottom: 1px solid transparent;
   color: var(--ashford-text);
   padding: 0 0 2px;
+  width: 100%;
 }
 
-.ashford.sheet .actor-name:not(:disabled) {
+.ash-name:not(:disabled) {
   border-bottom-color: var(--ashford-accent);
 }
 
-.ashford.sheet .vitals-row {
+.ash-vitals {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  font-size: 11px;
+  gap: 10px;
+  font-size: 10px;
   color: var(--ashford-text-dim);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-.ashford.sheet .vitals-row label {
+.ash-vitals label {
   display: flex;
   align-items: center;
   gap: 3px;
 }
 
-.ashford.sheet .vitals-row input,
-.ashford.sheet .vitals-row select {
+.ash-vitals input,
+.ash-vitals select {
   font-family: "Courier New", monospace;
   font-size: 12px;
   text-transform: none;
   color: var(--ashford-text);
-  width: 42px;
+  width: 40px;
 }
 
-.ashford.sheet .vitals-row select {
-  width: auto;
+.ash-vitals select { width: auto; }
+.ash-vitals .unit { margin-left: -3px; }
+
+.ash-condition-badges {
+  display: flex;
+  gap: 4px;
+  margin-top: 2px;
 }
 
-.ashford.sheet .vitals-row .unit {
-  margin-left: -2px;
+.condition-badge {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 11px;
+  border: 1px solid var(--ashford-edge);
+  background: var(--ashford-panel-2);
 }
 
-.ashford.sheet .ashford-toggle-edit {
+.condition-badge.severity-gering { color: var(--ashford-sev-gering); border-color: var(--ashford-sev-gering); }
+.condition-badge.severity-mittel { color: var(--ashford-sev-mittel); border-color: var(--ashford-sev-mittel); }
+.condition-badge.severity-schwer { color: var(--ashford-sev-schwer); border-color: var(--ashford-sev-schwer); }
+.condition-badge.severity-kritisch {
+  color: var(--ashford-sev-kritisch);
+  border-color: var(--ashford-sev-kritisch);
+  animation: ashford-badge-pulse 2s ease-in-out infinite;
+}
+
+@keyframes ashford-badge-pulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(168, 69, 58, 0); }
+  50% { box-shadow: 0 0 6px rgba(168, 69, 58, 0.85); }
+}
+
+.ashford-toggle-edit {
   flex: 0 0 auto;
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   background: var(--ashford-panel-2);
   border: 1px solid var(--ashford-edge);
   color: var(--ashford-text-dim);
-  cursor: pointer;
-  transition: color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
 }
 
-.ashford.sheet .ashford-toggle-edit:hover {
+.ashford-toggle-edit:hover {
   color: var(--ashford-accent);
   border-color: var(--ashford-accent);
 }
 
-.ashford.sheet .ashford-toggle-edit.active {
-  color: var(--ashford-accent);
+.ashford-toggle-edit.active {
+  color: var(--ashford-bg);
+  background: var(--ashford-accent);
   border-color: var(--ashford-accent);
-  background: color-mix(in srgb, var(--ashford-accent) 18%, var(--ashford-panel-2));
-  box-shadow: 0 0 6px color-mix(in srgb, var(--ashford-accent) 55%, transparent);
+  box-shadow: 0 0 8px rgba(201, 131, 47, 0.6);
 }
 
-.ashford.sheet .sheet-header-stats {
+/* ---------- Header stat row (persists across all tabs) ---------- */
+
+.ash-header-stats {
   display: flex;
   flex-wrap: wrap;
+  align-items: stretch;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.ash-stat {
+  position: relative;
+  background: var(--ashford-panel-2);
+  border: 1px solid var(--ashford-edge);
+  border-left: 3px solid var(--ashford-accent-2);
+  padding: 5px 12px;
+  min-width: 84px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: inherit;
+  color: var(--ashford-text);
+  text-align: left;
+}
+
+.ash-stat .stat-label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: var(--ashford-text-dim);
+}
+
+.ash-stat .stat-value {
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.ash-stat .stat-value.big { font-size: 20px; }
+
+.health-block {
+  min-width: 150px;
+  border-left-color: var(--ashford-sev-kritisch);
+  cursor: pointer;
+}
+
+.health-bar-track {
+  margin-top: 3px;
+  width: 100%;
+  height: 6px;
+  background: var(--ashford-bg);
+  border: 1px solid var(--ashford-edge);
+  overflow: hidden;
+}
+
+.health-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--ashford-sev-kritisch), var(--ashford-accent-2));
+  transition: width 0.25s ease;
+}
+
+.health-popover {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 20;
+  margin-top: 4px;
+  background: var(--ashford-panel-3);
+  border: 1px solid var(--ashford-accent);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55);
+  padding: 8px;
+  min-width: 240px;
+  cursor: default;
+}
+
+.health-popover.open { display: block; }
+
+.health-popover-row {
+  display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 6px 0 8px;
-  border-bottom: 2px solid var(--ashford-accent);
+  gap: 6px;
   margin-bottom: 6px;
 }
 
-.ashford.sheet .sheet-header-stats .stat-tiles {
-  margin: 0;
-}
+.health-popover-row:last-child { margin-bottom: 0; }
 
-/* Talent tiers (Seite 1) */
-.ashford.sheet .talent-tier-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 6px;
-  margin-bottom: 12px;
-}
+.health-popover-amount { width: 48px; }
 
-.ashford.sheet .talent-card {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+.health-apply-damage,
+.health-apply-heal {
   background: var(--ashford-panel-2);
   border: 1px solid var(--ashford-edge);
-  border-left: 3px solid var(--ashford-accent);
-  padding: 6px 8px;
-  font-size: 12px;
+  color: var(--ashford-text);
+  padding: 3px 8px;
+  font-size: 11px;
+  white-space: nowrap;
 }
 
-.ashford.sheet .talent-card-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 6px;
-}
+.health-apply-damage:hover { border-color: var(--ashford-sev-kritisch); color: var(--ashford-sev-kritisch); }
+.health-apply-heal:hover { border-color: var(--ashford-accent-2); color: var(--ashford-accent-2); }
 
-.ashford.sheet .talent-card-top .talent-name {
+.armor-block .armor-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px 8px;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
   font-weight: bold;
 }
 
-.ashford.sheet .talent-card-top .ashford-roll-talent {
-  border-radius: 0;
-  padding: 2px 5px;
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
+.initiative-block {
+  border-left-color: var(--ashford-accent);
 }
 
-.ashford.sheet .talent-card-top .ashford-roll-talent:hover {
-  transform: scale(1.15);
-  box-shadow: 0 0 5px color-mix(in srgb, var(--ashford-accent) 60%, transparent);
+.initiative-block:hover {
+  background: var(--ashford-panel-3);
+  border-left-color: var(--ashford-accent);
+  box-shadow: 0 0 8px rgba(201, 131, 47, 0.4);
+  transform: translateY(-1px);
 }
 
-.ashford.sheet .talent-pips {
-  display: flex;
-  gap: 8px;
+.initiative-block .roll-hint {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--ashford-accent);
+  margin-top: 1px;
 }
 
-.ashford.sheet .pip-row {
+.melee-block { border-left-color: var(--ashford-sev-schwer); }
+.points-block { border-left-color: var(--ashford-accent); }
+.points-block .stat-value { font-size: 15px; }
+
+/* ---------- Tabs ---------- */
+
+.ash-tabs.sheet-tabs {
   display: flex;
   gap: 2px;
+  margin-top: 6px;
+  border-bottom: 1px solid var(--ashford-edge);
 }
 
-.ashford.sheet .pip {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  border: 1px solid var(--ashford-edge);
-  background: transparent;
-  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-.ashford.sheet .pip-row.staerken .pip.filled {
-  background: var(--ashford-accent-2);
-  border-color: var(--ashford-accent-2);
-  box-shadow: 0 0 4px color-mix(in srgb, var(--ashford-accent-2) 70%, transparent);
-  animation: ashford-pip-pop 0.25s ease;
-}
-
-.ashford.sheet .pip-row.schwaechen .pip.filled {
-  background: var(--ashford-danger);
-  border-color: var(--ashford-danger);
-  box-shadow: 0 0 4px color-mix(in srgb, var(--ashford-danger) 70%, transparent);
-  animation: ashford-pip-pop 0.25s ease;
-}
-
-@keyframes ashford-pip-pop {
-  from { transform: scale(0.4); }
-  to { transform: scale(1); }
-}
-
-.ashford.sheet .talent-edit-fields {
-  display: flex;
-  gap: 8px;
-}
-
-.ashford.sheet .talent-card-bottom {
+.ash-tabs .item {
+  padding: 6px 14px;
+  color: var(--ashford-text-dim);
+  border: 1px solid transparent;
+  border-bottom: none;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  color: var(--ashford-text-dim);
+  gap: 6px;
+}
+
+.ash-tabs .item:hover { color: var(--ashford-text); }
+
+.ash-tabs .item.active {
+  color: var(--ashford-accent);
+  font-weight: bold;
+  background: var(--ashford-panel);
+  border-color: var(--ashford-edge);
+}
+
+.ash-tabs .tab-count {
+  background: var(--ashford-sev-kritisch);
+  color: var(--ashford-text);
+  border-radius: 50%;
+  font-size: 10px;
+  min-width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2px;
+}
+
+.ash-body { padding-top: 8px; }
+
+/* ---------- Talents ---------- */
+
+.talent-tier-heading {
   font-family: "Courier New", monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   font-size: 11px;
+  color: var(--ashford-text-dim);
+  border-bottom: 1px solid var(--ashford-edge);
+  margin: 12px 0 6px;
 }
 
-.ashford.sheet .talent-card-bottom .talent-delta.positive { color: var(--ashford-accent-2); }
-.ashford.sheet .talent-card-bottom .talent-delta.negative { color: var(--ashford-danger); }
+.talent-tier:first-child .talent-tier-heading { margin-top: 0; }
 
-/* Inventory (Seite 2) */
-.ashford.sheet .equipment-slots {
+.talent-tier-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 8px;
-  margin-bottom: 14px;
+  margin-bottom: 6px;
 }
 
-.ashford.sheet .equip-slot {
+.talent-tile {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 2px;
+  background: var(--ashford-panel-2);
+  border: 2px solid var(--ashford-edge);
+  padding: 10px 6px 8px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.1s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.talent-tile:not(.edit-mode):hover {
+  transform: translateY(-2px);
+  border-color: var(--ashford-accent);
+}
+
+.talent-tile:not(.edit-mode):active { transform: translateY(0); }
+
+.talent-tile:not(.edit-mode):hover .talent-tile-roll {
+  opacity: 1;
+  color: var(--ashford-accent);
+}
+
+.talent-tile-icon { font-size: 20px; line-height: 1; }
+
+.talent-tile-name {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  min-height: 2.4em;
+  display: flex;
+  align-items: center;
+}
+
+.talent-tile-level {
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.talent-tile-roll {
+  position: absolute;
+  bottom: 4px;
+  right: 6px;
+  font-size: 11px;
+  opacity: 0.35;
+  transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+/* Talent level colour system — negative reads red/rough, neutral is quiet grey, positive reads green and gets progressively bolder. */
+.talent-tile.level--2 {
+  border-color: var(--ashford-danger);
+  border-style: double;
+  background: color-mix(in srgb, var(--ashford-danger) 12%, var(--ashford-panel-2));
+}
+.talent-tile.level--2 .talent-tile-level { color: var(--ashford-danger); }
+
+.talent-tile.level--1 {
+  border-color: color-mix(in srgb, var(--ashford-danger) 55%, var(--ashford-edge));
+}
+.talent-tile.level--1 .talent-tile-level { color: color-mix(in srgb, var(--ashford-danger) 75%, var(--ashford-text-dim)); }
+
+.talent-tile.level-0 { border-color: var(--ashford-edge); }
+.talent-tile.level-0 .talent-tile-level { color: var(--ashford-text-dim); }
+
+.talent-tile.level-1 {
+  border-color: color-mix(in srgb, var(--ashford-accent-2) 55%, var(--ashford-edge));
+}
+.talent-tile.level-1 .talent-tile-level { color: var(--ashford-accent-2); }
+
+.talent-tile.level-2 {
+  border-color: var(--ashford-accent-2);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--ashford-accent-2) 45%, transparent);
+}
+.talent-tile.level-2 .talent-tile-level { color: var(--ashford-accent-2); }
+
+.talent-tile.level-3 {
+  border-color: var(--ashford-accent-2);
+  border-width: 2px;
+  box-shadow: 0 0 8px color-mix(in srgb, var(--ashford-accent-2) 60%, transparent);
+  animation: ashford-level3-glow 3s ease-in-out infinite;
+}
+.talent-tile.level-3 .talent-tile-level {
+  color: var(--ashford-accent-2);
+  text-shadow: 0 0 6px color-mix(in srgb, var(--ashford-accent-2) 70%, transparent);
+}
+
+@keyframes ashford-level3-glow {
+  0%, 100% { box-shadow: 0 0 6px color-mix(in srgb, var(--ashford-accent-2) 45%, transparent); }
+  50% { box-shadow: 0 0 12px color-mix(in srgb, var(--ashford-accent-2) 75%, transparent); }
+}
+
+.talent-tile.edit-mode { cursor: default; }
+
+.talent-edit-fields {
+  display: flex;
+  align-items: center;
   gap: 4px;
+  margin-top: 4px;
+  font-size: 10px;
+}
+
+.talent-edit-fields input { width: 28px; }
+
+.talent-edit-fields .talent-delta { font-family: "Courier New", monospace; }
+.talent-edit-fields .talent-delta.positive { color: var(--ashford-accent-2); }
+.talent-edit-fields .talent-delta.negative { color: var(--ashford-danger); }
+
+.ashford-roll-talent {
+  background: var(--ashford-panel);
+  border: 1px solid var(--ashford-accent);
+  color: var(--ashford-accent);
+  font-size: 11px;
+  padding: 1px 5px;
+}
+
+.ashford-roll-talent:hover { box-shadow: 0 0 5px rgba(201, 131, 47, 0.6); }
+
+/* ---------- Dossier (Charakterinformationen) ---------- */
+
+.dossier {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.dossier-field.wide { grid-column: 1 / -1; }
+
+.dossier-field label {
+  display: block;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--ashford-text-dim);
+  margin-bottom: 2px;
+}
+
+.dossier-field input[type="text"],
+.dossier-field input[type="number"] {
+  width: 100%;
+  background: var(--ashford-panel-2);
+  border: 1px solid var(--ashford-edge);
+  color: var(--ashford-text);
+  padding: 4px 6px;
+}
+
+.dossier-field input:disabled {
+  background: transparent;
+  border-color: transparent;
+  padding-left: 0;
+}
+
+.dossier-field .editor-content,
+.dossier-field .editor {
+  background: var(--ashford-panel-2);
+  border: 1px solid var(--ashford-edge);
+  padding: 6px 8px;
+  min-height: 60px;
+}
+
+/* ---------- Inventory ---------- */
+
+.equip-silhouette {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 1fr;
+  grid-template-areas:
+    ".    head  ."
+    "arms chest hands"
+    ".    legs  ."
+    ".    feet  .";
+  gap: 8px;
+  max-width: 460px;
+  margin-bottom: 16px;
+}
+
+.equip-slot.slot-head { grid-area: head; }
+.equip-slot.slot-arms { grid-area: arms; }
+.equip-slot.slot-chest { grid-area: chest; }
+.equip-slot.slot-hands { grid-area: hands; }
+.equip-slot.slot-legs { grid-area: legs; }
+.equip-slot.slot-feet { grid-area: feet; }
+
+.equip-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
   background: var(--ashford-panel-2);
   border: 1px dashed var(--ashford-edge);
   padding: 8px 6px;
   text-align: center;
-  min-height: 84px;
+  min-height: 74px;
+  justify-content: center;
+  transition: border-color 0.15s ease, background 0.15s ease;
 }
 
-.ashford.sheet .equip-slot.filled {
+.equip-slot.filled {
   border-style: solid;
   border-color: var(--ashford-accent-2);
+  background: var(--ashford-panel-3);
 }
 
-.ashford.sheet .equip-slot .slot-icon {
-  font-size: 18px;
-  color: var(--ashford-text-dim);
-}
+.equip-slot .slot-icon { font-size: 17px; color: var(--ashford-text-dim); }
+.equip-slot.filled .slot-icon { color: var(--ashford-accent-2); }
 
-.ashford.sheet .equip-slot.filled .slot-icon {
-  color: var(--ashford-accent-2);
-}
-
-.ashford.sheet .equip-slot .slot-label {
-  font-size: 10px;
+.equip-slot .slot-label {
+  font-size: 9px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: var(--ashford-text-dim);
 }
 
-.ashford.sheet .equip-slot .slot-empty {
-  font-size: 10px;
+.equip-slot .slot-empty {
+  font-size: 9px;
   color: var(--ashford-text-dim);
   font-style: italic;
 }
 
-.ashford.sheet .equip-slot .slot-item {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 11px;
-}
-
-.ashford.sheet .equip-slot .slot-item-name {
-  max-width: 70px;
+.equip-slot .slot-item { font-size: 11px; width: 100%; }
+.equip-slot .slot-item-name {
+  display: block;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.ashford.sheet .equip-slot.weapon-slot {
-  flex-direction: column;
-}
-
-.ashford.sheet .equip-slot.weapon-slot .slot-item {
-  width: 100%;
-  justify-content: center;
-}
-
-.ashford.sheet .weapon-equipped-toggle,
-.ashford.sheet .armor-equipped-toggle {
-  font-size: 11px;
+.equip-slot .slot-item-armor {
+  display: block;
+  font-size: 9px;
   color: var(--ashford-text-dim);
+}
+
+.equip-slot .slot-item-actions {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.equip-slot .slot-item-actions a { color: var(--ashford-text-dim); }
+.equip-slot .slot-item-actions a:hover { color: var(--ashford-accent); }
+
+.inventory-panel { margin-bottom: 10px; }
+
+.inventory-toolbar {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.inventory-toolbar input[type="search"] {
+  flex: 1;
+  background: var(--ashford-panel-2);
+  border: 1px solid var(--ashford-edge);
+  color: var(--ashford-text);
+  padding: 4px 8px;
+}
+
+.inventory-toolbar select {
+  background: var(--ashford-panel-2);
+  border: 1px solid var(--ashford-edge);
+  color: var(--ashford-text);
+}
+
+.equippable-list, .misc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.equippable-row {
+  background: var(--ashford-panel-2);
+  border: 1px solid var(--ashford-edge);
+  cursor: grab;
+}
+
+.equippable-row .row-main {
   display: flex;
   align-items: center;
-  gap: 3px;
+  gap: 8px;
+  padding: 4px 8px;
+  cursor: pointer;
 }
 
-.ashford.sheet .armor-slot-select {
+.row-img { width: 24px; height: 24px; object-fit: cover; border: 1px solid var(--ashford-edge); flex: 0 0 auto; }
+.row-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.row-stats {
+  font-family: "Courier New", monospace;
   font-size: 11px;
+  color: var(--ashford-text-dim);
+  white-space: nowrap;
+}
+
+.row-slot {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--ashford-text-dim);
+  white-space: nowrap;
+}
+
+.ashford-equip {
+  background: var(--ashford-panel);
+  border: 1px solid var(--ashford-accent-2);
+  color: var(--ashford-accent-2);
+  font-size: 11px;
+  padding: 2px 8px;
+}
+
+.ashford-equip:hover { background: var(--ashford-accent-2); color: var(--ashford-bg); }
+
+.compare-drawer {
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px 8px 8px 40px;
+  border-top: 1px dashed var(--ashford-edge);
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+}
+
+.equippable-row.expanded .compare-drawer { display: flex; }
+
+.compare-row { display: flex; gap: 10px; }
+.compare-row .compare-key { width: 70px; text-transform: capitalize; color: var(--ashford-text-dim); }
+.compare-row.up .compare-delta { color: var(--ashford-accent-2); font-weight: bold; }
+.compare-row.down .compare-delta { color: var(--ashford-danger); font-weight: bold; }
+
+.misc-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  background: var(--ashford-panel-2);
+  border: 1px solid var(--ashford-edge);
+}
+
+.row-qty, .row-weight, .row-category {
+  font-size: 10px;
+  color: var(--ashford-text-dim);
+  white-space: nowrap;
+}
+
+.ashford-use-consumable {
+  background: var(--ashford-panel);
+  border: 1px solid var(--ashford-accent);
+  color: var(--ashford-accent);
+  font-size: 11px;
+  padding: 2px 8px;
+}
+
+.ashford-use-consumable:hover { background: var(--ashford-accent); color: var(--ashford-bg); }
+
+.row-uses { font-size: 10px; color: var(--ashford-text-dim); }
+
+/* ---------- Zustand (conditions) ---------- */
+
+.condition-toolbar { margin-bottom: 8px; }
+
+.ashford-add-condition {
+  background: var(--ashford-panel-2);
+  border: 1px solid var(--ashford-accent);
+  color: var(--ashford-accent);
+  font-weight: bold;
+  padding: 6px 14px;
+}
+
+.ashford-add-condition:hover { background: var(--ashford-accent); color: var(--ashford-bg); }
+
+.condition-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.condition-card {
+  background: var(--ashford-panel-2);
+  border: 1px solid var(--ashford-edge);
+  border-left: 3px solid var(--ashford-text-dim);
+}
+
+.condition-card.severity-gering { border-left-color: var(--ashford-sev-gering); }
+.condition-card.severity-mittel { border-left-color: var(--ashford-sev-mittel); }
+.condition-card.severity-schwer { border-left-color: var(--ashford-sev-schwer); }
+.condition-card.severity-kritisch { border-left-color: var(--ashford-sev-kritisch); }
+
+.condition-card.archived { opacity: 0.6; }
+
+.card-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.card-icon { font-size: 16px; color: var(--ashford-text-dim); width: 20px; text-align: center; }
+.condition-card.severity-gering .card-icon { color: var(--ashford-sev-gering); }
+.condition-card.severity-mittel .card-icon { color: var(--ashford-sev-mittel); }
+.condition-card.severity-schwer .card-icon { color: var(--ashford-sev-schwer); }
+.condition-card.severity-kritisch .card-icon { color: var(--ashford-sev-kritisch); }
+
+.card-title-block { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.card-name { font-weight: bold; }
+.card-meta { font-size: 10px; color: var(--ashford-text-dim); text-transform: uppercase; letter-spacing: 0.4px; }
+
+.ashford-end-condition,
+.ashford-reactivate-condition {
+  background: var(--ashford-panel);
+  border: 1px solid var(--ashford-edge);
+  color: var(--ashford-text-dim);
+  font-size: 11px;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+
+.ashford-end-condition:hover { border-color: var(--ashford-accent-2); color: var(--ashford-accent-2); }
+.ashford-reactivate-condition:hover { border-color: var(--ashford-accent); color: var(--ashford-accent); }
+
+.card-details {
+  display: none;
+  padding: 0 10px 10px 40px;
+  font-size: 12px;
+  border-top: 1px dashed var(--ashford-edge);
+}
+
+.condition-card.expanded .card-details { display: block; padding-top: 8px; }
+
+.card-effects { margin: 4px 0; padding-left: 16px; }
+.card-source, .card-note { color: var(--ashford-text-dim); font-size: 11px; margin: 2px 0; }
+
+/* ---------- Condition picker dialog ---------- */
+
+.ashford-condition-picker-form .cp-search-row input {
+  width: 100%;
+  background: var(--ashford-panel-2);
+  border: 1px solid var(--ashford-edge);
+  color: var(--ashford-text);
+  padding: 5px 8px;
+  margin-bottom: 8px;
+}
+
+.ashford-condition-picker-form .cp-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.ashford-condition-picker-form .cp-chip {
+  font-size: 11px;
+  padding: 3px 8px;
+  border: 1px solid var(--ashford-edge);
+  color: var(--ashford-text-dim);
+  cursor: pointer;
+}
+
+.ashford-condition-picker-form .cp-chip.active {
+  border-color: var(--ashford-accent);
+  color: var(--ashford-accent);
+}
+
+.ashford-condition-picker-form .cp-condition-list {
+  max-height: 220px;
+  overflow-y: auto;
+  border: 1px solid var(--ashford-edge);
+  margin-bottom: 10px;
+}
+
+.ashford-condition-picker-form .cp-condition-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--ashford-edge);
+  cursor: pointer;
+}
+
+.ashford-condition-picker-form .cp-condition-row:hover { background: var(--ashford-panel-2); }
+.ashford-condition-picker-form .cp-condition-row.selected {
+  background: var(--ashford-panel-3);
+  border-left: 3px solid var(--ashford-accent);
+}
+
+.ashford-condition-picker-form .cp-icon { width: 18px; text-align: center; color: var(--ashford-text-dim); }
+.ashford-condition-picker-form .cp-icon.severity-gering { color: var(--ashford-sev-gering); }
+.ashford-condition-picker-form .cp-icon.severity-mittel { color: var(--ashford-sev-mittel); }
+.ashford-condition-picker-form .cp-icon.severity-schwer { color: var(--ashford-sev-schwer); }
+.ashford-condition-picker-form .cp-icon.severity-kritisch { color: var(--ashford-sev-kritisch); }
+
+.ashford-condition-picker-form .cp-condition-text { flex: 1; display: flex; flex-direction: column; }
+.ashford-condition-picker-form .cp-condition-name { font-weight: bold; font-size: 12px; }
+.ashford-condition-picker-form .cp-condition-desc { font-size: 10px; color: var(--ashford-text-dim); }
+
+.ashford-condition-picker-form .cp-severity-badge {
+  font-size: 9px;
+  text-transform: uppercase;
+  padding: 1px 5px;
+  border: 1px solid currentColor;
+}
+.ashford-condition-picker-form .cp-severity-badge.severity-gering { color: var(--ashford-sev-gering); }
+.ashford-condition-picker-form .cp-severity-badge.severity-mittel { color: var(--ashford-sev-mittel); }
+.ashford-condition-picker-form .cp-severity-badge.severity-schwer { color: var(--ashford-sev-schwer); }
+.ashford-condition-picker-form .cp-severity-badge.severity-kritisch { color: var(--ashford-sev-kritisch); }
+
+.ashford-condition-picker-form .cp-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.ashford-condition-picker-form .cp-details label {
+  display: block;
+  font-size: 10px;
+  color: var(--ashford-text-dim);
+  text-transform: uppercase;
+}
+
+.ashford-condition-picker-form .cp-details input,
+.ashford-condition-picker-form .cp-details select,
+.ashford-condition-picker-form .cp-details textarea {
+  width: 100%;
+  background: var(--ashford-panel-2);
+  border: 1px solid var(--ashford-edge);
+  color: var(--ashford-text);
+  padding: 3px 6px;
+}
+
+/* ---------- Item sheet: armor damage-type grid, effect rows ---------- */
+
+.armor-type-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.ashford-effect-list li {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.ashford-effect-list select { width: 110px; }
+.ashford-effect-list input[type="text"] { flex: 1; }
+.ashford-effect-list input[type="number"] { width: 50px; }
+
+/* ---------- Responsive (Foundry sheets are typically ~1000-1400px wide) ---------- */
+
+@media (max-width: 980px) {
+  .talent-tier-grid { grid-template-columns: repeat(2, 1fr); }
+  .dossier { grid-template-columns: 1fr; }
+  .ash-header-top { flex-wrap: wrap; }
 }

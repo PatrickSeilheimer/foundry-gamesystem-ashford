@@ -28,6 +28,13 @@
     {{/each}}
   </fieldset>
 
+  {{#if conditionNames.length}}
+    <fieldset class="ashford-condition-hint">
+      <legend>Aktive Zustände (automatisch einberechnet)</legend>
+      <p class="hint">{{#each conditionNames}}{{this}}{{#unless @last}}, {{/unless}}{{/each}} → {{signed conditionNet}} Würfel</p>
+    </fieldset>
+  {{/if}}
+
   <fieldset>
     <legend>Situativ (nur diese Probe)</legend>
     <label>

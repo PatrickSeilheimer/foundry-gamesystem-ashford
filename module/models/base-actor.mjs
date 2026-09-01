@@ -45,4 +45,9 @@ export default class AshfordActorBase extends foundry.abstract.TypeDataModel {
       weaknesses: traits.filter(i => i.system.kind === "weakness")
     };
   }
+
+  /** Embedded "condition" Items currently in effect (excludes ones the player/GM archived via `active: false`). */
+  get activeConditions() {
+    return (this.parent?.items ?? []).filter(i => i.type === "condition" && i.system.active);
+  }
 }

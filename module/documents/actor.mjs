@@ -3,6 +3,24 @@ import AshfordRollDialog from "../apps/roll-dialog.mjs";
 import { TALENTS } from "../rules/talents.mjs";
 
 export default class AshfordActor extends Actor {
+  /** Quick damage/heal from the header health popover — clamped to [0, max] by base-actor.mjs#prepareDerivedData. */
+  async applyHealthDelta(delta) {
+    if (!delta) return this;
+    const current = this.system.resources?.health?.value ?? 0;
+    return this.update({ "system.resources.health.value": current + delta });
+  }
+
+  /** 1W12 + Initiative-Mod, nicht explodierend (Abschnitt 4a) — separat vom Ashford-Würfelpool, direkt zu Foundrys Chat. */
+  async rollInitiativeCheck() {
+    const mod = this.system.derived?.initiativeMod ?? 0;
+    const roll = new Roll("1d12 + @mod", { mod });
+    await roll.evaluate();
+    return roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      flavor: "Initiative"
+    });
+  }
+
   /** Open the roll dialog for one embedded talent Item (the normal way to roll in Ashford). */
   async rollTalent(talentId, options = {}) {
     const talent = this.items.get(talentId);
