@@ -700,47 +700,49 @@
   transition: opacity 0.15s ease, color 0.15s ease;
 }
 
-/* Talent level colour system — negative reads red/rough, neutral is quiet grey, positive reads green and gets progressively bolder. */
+/* Talent level colour system — negative reads red/rough, neutral is quiet grey, positive reads green and gets progressively bolder.
+   Uses precomputed static colours instead of color-mix() — that function needs Chromium 111+ and is silently
+   dropped (no color at all, not even a fallback) on older Electron builds some Foundry installs still run. */
 .talent-tile.level--2 {
   border-color: var(--ashford-danger);
   border-style: double;
-  background: color-mix(in srgb, var(--ashford-danger) 12%, var(--ashford-panel-2));
+  background: #423126; /* danger 12% into panel-2 */
 }
 .talent-tile.level--2 .talent-tile-level { color: var(--ashford-danger); }
 
 .talent-tile.level--1 {
-  border-color: color-mix(in srgb, var(--ashford-danger) 55%, var(--ashford-edge));
+  border-color: #9d6050; /* danger 55% into edge */
 }
-.talent-tile.level--1 .talent-tile-level { color: color-mix(in srgb, var(--ashford-danger) 75%, var(--ashford-text-dim)); }
+.talent-tile.level--1 .talent-tile-level { color: #db8b77; /* danger 75% into text-dim */ }
 
 .talent-tile.level-0 { border-color: var(--ashford-edge); }
 .talent-tile.level-0 .talent-tile-level { color: var(--ashford-text-dim); }
 
 .talent-tile.level-1 {
-  border-color: color-mix(in srgb, var(--ashford-accent-2) 55%, var(--ashford-edge));
+  border-color: #647352; /* accent-2 55% into edge */
 }
 .talent-tile.level-1 .talent-tile-level { color: var(--ashford-accent-2); }
 
 .talent-tile.level-2 {
   border-color: var(--ashford-accent-2);
-  box-shadow: 0 0 6px color-mix(in srgb, var(--ashford-accent-2) 45%, transparent);
+  box-shadow: 0 0 6px rgba(122, 155, 110, 0.45);
 }
 .talent-tile.level-2 .talent-tile-level { color: var(--ashford-accent-2); }
 
 .talent-tile.level-3 {
   border-color: var(--ashford-accent-2);
   border-width: 2px;
-  box-shadow: 0 0 8px color-mix(in srgb, var(--ashford-accent-2) 60%, transparent);
+  box-shadow: 0 0 8px rgba(122, 155, 110, 0.6);
   animation: ashford-level3-glow 3s ease-in-out infinite;
 }
 .talent-tile.level-3 .talent-tile-level {
   color: var(--ashford-accent-2);
-  text-shadow: 0 0 6px color-mix(in srgb, var(--ashford-accent-2) 70%, transparent);
+  text-shadow: 0 0 6px rgba(122, 155, 110, 0.7);
 }
 
 @keyframes ashford-level3-glow {
-  0%, 100% { box-shadow: 0 0 6px color-mix(in srgb, var(--ashford-accent-2) 45%, transparent); }
-  50% { box-shadow: 0 0 12px color-mix(in srgb, var(--ashford-accent-2) 75%, transparent); }
+  0%, 100% { box-shadow: 0 0 6px rgba(122, 155, 110, 0.45); }
+  50% { box-shadow: 0 0 12px rgba(122, 155, 110, 0.75); }
 }
 
 .talent-tile.edit-mode { cursor: default; }
