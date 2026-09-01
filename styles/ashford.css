@@ -274,8 +274,14 @@
    Character Sheet v2 — Zombie-Apokalypse survivor UI
    ============================================================ */
 
-.ashford.sheet.ashford-v2 {
+/* Scoped to .ashford-v2 alone (not ".ashford.sheet.ashford-v2") — "ashford"/"sheet" only ever land on
+   the outer window-app wrapper Foundry renders, never on this <form> itself, so a selector requiring
+   all three classes on one element never matches anything. Every other .ashford-v2 rule below already
+   gets this right; this one didn't, which is why the whole v2 sheet was falling back to unstyled markup. */
+.ashford-v2 {
   font-size: 13px;
+  color: var(--ashford-text);
+  font-family: "Signika", sans-serif;
 }
 
 .ashford-v2 button {
