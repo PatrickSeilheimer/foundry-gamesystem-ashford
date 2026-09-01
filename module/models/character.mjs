@@ -4,6 +4,9 @@ import { deriveCombatStats } from "../rules/derived.mjs";
 
 const { NumberField, StringField } = foundry.data.fields;
 
+/** Valid values for `AshfordCharacter#gender` — matches the choice set already used on NPCs (module/models/npc.mjs). */
+export const GENDERS = ["m", "w", "d"];
+
 /**
  * Player character. Ashford Adventures has no attributes and no leveling —
  * a character is exactly the 20-talent list from module/rules/talents.mjs
@@ -20,7 +23,12 @@ export default class AshfordCharacter extends AshfordActorBase {
       ...super.defineSchema(),
       bonusPoints: new NumberField({ required: true, integer: true, initial: 0 }),
       concept: new StringField({ required: false, blank: true }), // "Beruf vor dem Fall", Kurzbeschreibung etc.
-      notes: new StringField({ required: false, blank: true })
+      notes: new StringField({ required: false, blank: true }),
+      // Kompakte Eckdaten (Bogen-Kopf) — reine Beschreibung, ohne Einfluss auf abgeleitete Werte.
+      age: new NumberField({ required: false, integer: true, min: 0 }),
+      gender: new StringField({ required: false, blank: true, choices: GENDERS }),
+      height: new NumberField({ required: false, integer: true, min: 0 }), // cm
+      weight: new NumberField({ required: false, integer: true, min: 0 }) // kg
     };
   }
 

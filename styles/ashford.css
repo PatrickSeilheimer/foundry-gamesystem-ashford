@@ -335,3 +335,299 @@
   font-size: 11px;
   padding: 1px 6px;
 }
+
+/* Read-only fields (outside edit mode) blend into the sheet like printed text instead of looking like form controls. Checkboxes/radios are excluded so their disabled state stays visible (e.g. locked canonical-talent flags on the item sheet). */
+.ashford.sheet input:disabled:not([type="checkbox"]):not([type="radio"]),
+.ashford.sheet select:disabled {
+  border-color: transparent;
+  background: transparent;
+  color: var(--ashford-text);
+  opacity: 1;
+  cursor: default;
+  appearance: none;
+}
+
+.ashford.sheet select:disabled {
+  /* hide the native dropdown chevron once it's read-only text */
+  -webkit-appearance: none;
+  padding-right: 0;
+}
+
+/* Split header: portrait/name/vitals on top, live combat stats below — the stats row stays identical across every tab. */
+.ashford.sheet .sheet-header-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--ashford-edge);
+}
+
+.ashford.sheet .sheet-header-main .identity {
+  flex: 1;
+  gap: 4px;
+  min-width: 0;
+}
+
+.ashford.sheet .actor-name {
+  font-size: 20px;
+  font-weight: bold;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid transparent;
+  color: var(--ashford-text);
+  padding: 0 0 2px;
+}
+
+.ashford.sheet .actor-name:not(:disabled) {
+  border-bottom-color: var(--ashford-accent);
+}
+
+.ashford.sheet .vitals-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 11px;
+  color: var(--ashford-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ashford.sheet .vitals-row label {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.ashford.sheet .vitals-row input,
+.ashford.sheet .vitals-row select {
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  text-transform: none;
+  color: var(--ashford-text);
+  width: 42px;
+}
+
+.ashford.sheet .vitals-row select {
+  width: auto;
+}
+
+.ashford.sheet .vitals-row .unit {
+  margin-left: -2px;
+}
+
+.ashford.sheet .ashford-toggle-edit {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  background: var(--ashford-panel-2);
+  border: 1px solid var(--ashford-edge);
+  color: var(--ashford-text-dim);
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.ashford.sheet .ashford-toggle-edit:hover {
+  color: var(--ashford-accent);
+  border-color: var(--ashford-accent);
+}
+
+.ashford.sheet .ashford-toggle-edit.active {
+  color: var(--ashford-accent);
+  border-color: var(--ashford-accent);
+  background: color-mix(in srgb, var(--ashford-accent) 18%, var(--ashford-panel-2));
+  box-shadow: 0 0 6px color-mix(in srgb, var(--ashford-accent) 55%, transparent);
+}
+
+.ashford.sheet .sheet-header-stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 0 8px;
+  border-bottom: 2px solid var(--ashford-accent);
+  margin-bottom: 6px;
+}
+
+.ashford.sheet .sheet-header-stats .stat-tiles {
+  margin: 0;
+}
+
+/* Talent tiers (Seite 1) */
+.ashford.sheet .talent-tier-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.ashford.sheet .talent-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--ashford-panel-2);
+  border: 1px solid var(--ashford-edge);
+  border-left: 3px solid var(--ashford-accent);
+  padding: 6px 8px;
+  font-size: 12px;
+}
+
+.ashford.sheet .talent-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.ashford.sheet .talent-card-top .talent-name {
+  font-weight: bold;
+}
+
+.ashford.sheet .talent-card-top .ashford-roll-talent {
+  border-radius: 0;
+  padding: 2px 5px;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.ashford.sheet .talent-card-top .ashford-roll-talent:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 5px color-mix(in srgb, var(--ashford-accent) 60%, transparent);
+}
+
+.ashford.sheet .talent-pips {
+  display: flex;
+  gap: 8px;
+}
+
+.ashford.sheet .pip-row {
+  display: flex;
+  gap: 2px;
+}
+
+.ashford.sheet .pip {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--ashford-edge);
+  background: transparent;
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.ashford.sheet .pip-row.staerken .pip.filled {
+  background: var(--ashford-accent-2);
+  border-color: var(--ashford-accent-2);
+  box-shadow: 0 0 4px color-mix(in srgb, var(--ashford-accent-2) 70%, transparent);
+  animation: ashford-pip-pop 0.25s ease;
+}
+
+.ashford.sheet .pip-row.schwaechen .pip.filled {
+  background: var(--ashford-danger);
+  border-color: var(--ashford-danger);
+  box-shadow: 0 0 4px color-mix(in srgb, var(--ashford-danger) 70%, transparent);
+  animation: ashford-pip-pop 0.25s ease;
+}
+
+@keyframes ashford-pip-pop {
+  from { transform: scale(0.4); }
+  to { transform: scale(1); }
+}
+
+.ashford.sheet .talent-edit-fields {
+  display: flex;
+  gap: 8px;
+}
+
+.ashford.sheet .talent-card-bottom {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ashford-text-dim);
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+}
+
+.ashford.sheet .talent-card-bottom .talent-delta.positive { color: var(--ashford-accent-2); }
+.ashford.sheet .talent-card-bottom .talent-delta.negative { color: var(--ashford-danger); }
+
+/* Inventory (Seite 2) */
+.ashford.sheet .equipment-slots {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.ashford.sheet .equip-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: var(--ashford-panel-2);
+  border: 1px dashed var(--ashford-edge);
+  padding: 8px 6px;
+  text-align: center;
+  min-height: 84px;
+}
+
+.ashford.sheet .equip-slot.filled {
+  border-style: solid;
+  border-color: var(--ashford-accent-2);
+}
+
+.ashford.sheet .equip-slot .slot-icon {
+  font-size: 18px;
+  color: var(--ashford-text-dim);
+}
+
+.ashford.sheet .equip-slot.filled .slot-icon {
+  color: var(--ashford-accent-2);
+}
+
+.ashford.sheet .equip-slot .slot-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--ashford-text-dim);
+}
+
+.ashford.sheet .equip-slot .slot-empty {
+  font-size: 10px;
+  color: var(--ashford-text-dim);
+  font-style: italic;
+}
+
+.ashford.sheet .equip-slot .slot-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+}
+
+.ashford.sheet .equip-slot .slot-item-name {
+  max-width: 70px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ashford.sheet .equip-slot.weapon-slot {
+  flex-direction: column;
+}
+
+.ashford.sheet .equip-slot.weapon-slot .slot-item {
+  width: 100%;
+  justify-content: center;
+}
+
+.ashford.sheet .weapon-equipped-toggle,
+.ashford.sheet .armor-equipped-toggle {
+  font-size: 11px;
+  color: var(--ashford-text-dim);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.ashford.sheet .armor-slot-select {
+  font-size: 11px;
+}

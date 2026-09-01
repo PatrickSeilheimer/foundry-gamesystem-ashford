@@ -3,6 +3,9 @@ import { WEAPON_TALENT_KEYS, RANGED_WEAPON_TALENT_KEYS } from "../rules/talents.
 
 const { BooleanField, NumberField, StringField } = foundry.data.fields;
 
+/** The 5 wearable armor slots (Kopf, Brust, Hand, Bein, Fuß) — weapons are equipped separately via `AshfordWeapon#equipped`. */
+export const ARMOR_SLOTS = ["head", "chest", "hands", "legs", "feet"];
+
 class AshfordPhysicalItem extends AshfordItemBase {
   static defineSchema() {
     return {
@@ -35,7 +38,9 @@ export class AshfordArmor extends AshfordPhysicalItem {
   static defineSchema() {
     return {
       ...super.defineSchema(),
-      protection: new NumberField({ required: true, integer: true, initial: 0, min: 0 })
+      protection: new NumberField({ required: true, integer: true, initial: 0, min: 0 }),
+      slot: new StringField({ required: false, blank: true, choices: ARMOR_SLOTS }),
+      equipped: new BooleanField({ required: true, initial: false })
     };
   }
 }

@@ -60,4 +60,4 @@ mv "${EXTRACTED_DIR}" "${TARGET_DIR}"
 
 echo "Fertig. Ashford-System liegt jetzt unter: ${TARGET_DIR}"
 
-pm2 restart 1
+pm2 restart foundry

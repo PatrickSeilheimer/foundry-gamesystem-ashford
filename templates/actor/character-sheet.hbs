@@ -1,29 +1,54 @@
 <form class="{{cssClass}} flexcol">
-  <header class="sheet-header">
-    <img class="profile-img" src="{{actor.img}}" data-edit="img" alt="{{actor.name}}">
-    <div class="header-fields flexcol">
-      <input name="name" type="text" value="{{actor.name}}" placeholder="Name">
-      <div class="resource-row">
-        <label>{{localize "ASHFORD.Sheet.health"}}
-          <input type="number" name="system.resources.health.value" value="{{system.resources.health.value}}">
-          / <input type="number" value="{{system.resources.health.max}}" disabled title="Fest abgeleitet aus Kraft (40 + Kraft-Mod × 5)">
+  <header class="sheet-header-main">
+    <img class="profile-img" src="{{actor.img}}" {{#if editMode}}data-edit="img"{{/if}} alt="{{actor.name}}">
+    <div class="identity flexcol">
+      <input class="actor-name" name="name" type="text" value="{{actor.name}}" placeholder="Name" {{#unless editMode}}disabled{{/unless}}>
+      <div class="vitals-row">
+        <label>{{localize "ASHFORD.Sheet.age"}}
+          <input type="number" name="system.age" value="{{system.age}}" {{#unless editMode}}disabled{{/unless}}>
         </label>
-        <label>{{localize "ASHFORD.Sheet.infection"}}
-          <input type="number" name="system.resources.infection.value" value="{{system.resources.infection.value}}">
-          / <input type="number" name="system.resources.infection.max" value="{{system.resources.infection.max}}">
+        <label>{{localize "ASHFORD.Sheet.gender"}}
+          <select name="system.gender" {{#unless editMode}}disabled{{/unless}}>
+            <option value="" {{#if (eq system.gender "")}}selected{{/if}}>—</option>
+            <option value="m" {{#if (eq system.gender "m")}}selected{{/if}}>{{localize "ASHFORD.Sheet.genderM"}}</option>
+            <option value="w" {{#if (eq system.gender "w")}}selected{{/if}}>{{localize "ASHFORD.Sheet.genderW"}}</option>
+            <option value="d" {{#if (eq system.gender "d")}}selected{{/if}}>{{localize "ASHFORD.Sheet.genderD"}}</option>
+          </select>
+        </label>
+        <label>{{localize "ASHFORD.Sheet.height"}}
+          <input type="number" name="system.height" value="{{system.height}}" {{#unless editMode}}disabled{{/unless}}><span class="unit">cm</span>
+        </label>
+        <label>{{localize "ASHFORD.Sheet.weight"}}
+          <input type="number" name="system.weight" value="{{system.weight}}" {{#unless editMode}}disabled{{/unless}}><span class="unit">kg</span>
         </label>
       </div>
-      <div class="stat-tiles">
-        <div class="stat-tile"><div class="num">{{system.derived.ausweichen}}</div><div class="lbl">{{localize "ASHFORD.Sheet.dodge"}}</div></div>
-        <div class="stat-tile"><div class="num">{{signed system.derived.initiativeMod}}</div><div class="lbl">{{localize "ASHFORD.Sheet.initiativeMod"}}</div></div>
-        <div class="stat-tile"><div class="num">{{signed system.derived.nahkampfschaden}}</div><div class="lbl">{{localize "ASHFORD.Sheet.meleeDamage"}}</div></div>
-        <div class="stat-tile"><div class="num">{{signed system.derived.kraftMod}}</div><div class="lbl">Kraft-Mod</div></div>
-        <div class="stat-tile"><div class="num">{{signed system.derived.athletikMod}}</div><div class="lbl">Athletik-Mod</div></div>
-        <div class="stat-tile">
-          <div class="num points-badge {{#if (lt system.pointsRemaining 0)}}negative{{/if}}">{{system.pointsRemaining}} / {{system.pointsBudget}}</div>
-          <div class="lbl">{{localize "ASHFORD.Sheet.pointsRemaining"}}</div>
-        </div>
+    </div>
+    <button type="button" class="ashford-toggle-edit {{#if editMode}}active{{/if}}" title="{{localize 'ASHFORD.Sheet.editMode'}}">
+      <i class="fas fa-hammer"></i>
+    </button>
+  </header>
+
+  <header class="sheet-header-stats">
+    <div class="resource-row">
+      <label>{{localize "ASHFORD.Sheet.health"}}
+        <input type="number" name="system.resources.health.value" value="{{system.resources.health.value}}">
+        <span class="sep">/</span> <input type="number" value="{{system.resources.health.max}}" disabled title="Fest abgeleitet aus Kraft (40 + Kraft-Mod × 5)">
+      </label>
+      <label>{{localize "ASHFORD.Sheet.infection"}}
+        <input type="number" name="system.resources.infection.value" value="{{system.resources.infection.value}}">
+        <span class="sep">/</span> <input type="number" name="system.resources.infection.max" value="{{system.resources.infection.max}}" {{#unless editMode}}disabled{{/unless}}>
+      </label>
+    </div>
+    <div class="stat-tiles">
+      <div class="stat-tile"><div class="num">{{system.derived.ausweichen}}</div><div class="lbl">{{localize "ASHFORD.Sheet.dodge"}}</div></div>
+      <div class="stat-tile"><div class="num">{{signed system.derived.initiativeMod}}</div><div class="lbl">{{localize "ASHFORD.Sheet.initiativeMod"}}</div></div>
+      <div class="stat-tile"><div class="num">{{signed system.derived.nahkampfschaden}}</div><div class="lbl">{{localize "ASHFORD.Sheet.meleeDamage"}}</div></div>
+      {{#if editMode}}
+      <div class="stat-tile">
+        <div class="num points-badge {{#if (lt system.pointsRemaining 0)}}negative{{/if}}">{{system.pointsRemaining}} / {{system.pointsBudget}}</div>
+        <div class="lbl">{{localize "ASHFORD.Sheet.pointsRemaining"}}</div>
       </div>
+      {{/if}}
     </div>
   </header>
 
@@ -36,8 +61,10 @@
 
   <section class="sheet-body">
     <div class="tab" data-group="primary" data-tab="main">
-      <label>Konzept <input type="text" name="system.concept" value="{{system.concept}}"></label>
-      <label>Bonus-Baupunkte (z.B. Meilenstein) <input type="number" name="system.bonusPoints" value="{{system.bonusPoints}}"></label>
+      <label>Konzept <input type="text" name="system.concept" value="{{system.concept}}" {{#unless editMode}}disabled{{/unless}}></label>
+      {{#if editMode}}
+        <label>Bonus-Baupunkte (z.B. Meilenstein) <input type="number" name="system.bonusPoints" value="{{system.bonusPoints}}"></label>
+      {{/if}}
       <h3>{{localize "ASHFORD.Sheet.biography"}}</h3>
       {{editor system.biography target="system.biography" button=true engine="prosemirror" collaborate=false}}
     </div>
@@ -47,24 +74,50 @@
         <p class="hint">Noch keine Talente eingerichtet.</p>
         <a class="item-create ashford-init-talents">+ Alle 20 Talente anlegen</a>
       {{else}}
-        <a class="item-create ashford-init-talents">Fehlende Talente ergänzen</a>
+        {{#if editMode}}<a class="item-create ashford-init-talents">Fehlende Talente ergänzen</a>{{/if}}
         {{#each talentTiers}}
-          <div class="talent-tier-heading">Stufe {{this.stufe}}</div>
-          {{#each this.talents}}
-            <div class="talent-row" data-item-id="{{this.id}}">
-              <span class="talent-name">{{this.name}}</span>
-              <label title="Stärken (0–3)">S+
-                <input type="number" class="talent-field" data-field="staerken" value="{{this.system.staerken}}" min="0" max="3">
-              </label>
-              <label title="Schwächen (0–2)">S−
-                <input type="number" class="talent-field" data-field="schwaechen" value="{{this.system.schwaechen}}" min="0" max="2">
-              </label>
-              <span class="talent-dice">{{this.system.diceCount}}W6</span>
-              <span class="talent-delta {{#if (gte this.system.pointDelta 0)}}positive{{else}}negative{{/if}}">{{signed this.system.pointDelta}}</span>
-              <button type="button" class="ashford-roll-talent">🎲</button>
-              <a class="item-edit"><i class="fas fa-edit"></i></a>
+          <div class="talent-tier">
+            <div class="talent-tier-heading">Stufe {{this.stufe}}</div>
+            <div class="talent-tier-grid">
+              {{#each this.talents}}
+                <div class="talent-card" data-item-id="{{this.id}}">
+                  <div class="talent-card-top">
+                    <span class="talent-name">{{this.name}}</span>
+                    <button type="button" class="ashford-roll-talent" title="Würfeln"><i class="fas fa-dice-d6"></i></button>
+                  </div>
+                  {{#if @root.editMode}}
+                    <div class="talent-edit-fields">
+                      <label title="Stärken (0–3)">S+
+                        <input type="number" class="talent-field" data-field="staerken" value="{{this.system.staerken}}" min="0" max="3">
+                      </label>
+                      <label title="Schwächen (0–2)">S−
+                        <input type="number" class="talent-field" data-field="schwaechen" value="{{this.system.schwaechen}}" min="0" max="2">
+                      </label>
+                    </div>
+                  {{else}}
+                    <div class="talent-pips" title="{{this.system.staerken}} {{localize 'ASHFORD.Sheet.strengths'}} / {{this.system.schwaechen}} {{localize 'ASHFORD.Sheet.weaknesses'}}">
+                      <div class="pip-row staerken">
+                        <span class="pip {{#if (gte this.system.staerken 1)}}filled{{/if}}"></span>
+                        <span class="pip {{#if (gte this.system.staerken 2)}}filled{{/if}}"></span>
+                        <span class="pip {{#if (gte this.system.staerken 3)}}filled{{/if}}"></span>
+                      </div>
+                      <div class="pip-row schwaechen">
+                        <span class="pip {{#if (gte this.system.schwaechen 1)}}filled{{/if}}"></span>
+                        <span class="pip {{#if (gte this.system.schwaechen 2)}}filled{{/if}}"></span>
+                      </div>
+                    </div>
+                  {{/if}}
+                  <div class="talent-card-bottom">
+                    <span class="talent-dice">{{this.system.diceCount}}W6</span>
+                    {{#if @root.editMode}}
+                      <span class="talent-delta {{#if (gte this.system.pointDelta 0)}}positive{{else}}negative{{/if}}">{{signed this.system.pointDelta}}</span>
+                      <a class="item-edit" title="Talent-Detail"><i class="fas fa-edit"></i></a>
+                    {{/if}}
+                  </div>
+                </div>
+              {{/each}}
             </div>
-          {{/each}}
+          </div>
         {{/each}}
       {{/unless}}
     </div>
@@ -85,14 +138,60 @@
     </div>
 
     <div class="tab" data-group="primary" data-tab="gear">
+      <h3>{{localize "ASHFORD.Sheet.equipmentSlots"}}</h3>
+      <div class="equipment-slots">
+        {{#each armorSlots}}
+          <div class="equip-slot {{#if this.item}}filled{{/if}}">
+            <div class="slot-icon"><i class="{{this.icon}}"></i></div>
+            <div class="slot-label">{{this.label}}</div>
+            {{#if this.item}}
+              <div class="slot-item" data-item-id="{{this.item.id}}">
+                <span class="slot-item-name">{{this.item.name}}</span>
+                <a class="item-edit" title="Öffnen"><i class="fas fa-edit"></i></a>
+                <a class="slot-unequip" title="Ablegen"><i class="fas fa-times"></i></a>
+              </div>
+            {{else}}
+              <div class="slot-empty">{{localize "ASHFORD.Sheet.emptySlot"}}</div>
+            {{/if}}
+          </div>
+        {{/each}}
+        <div class="equip-slot weapon-slot {{#if equippedWeapons.length}}filled{{/if}}">
+          <div class="slot-icon"><i class="fas fa-khanda"></i></div>
+          <div class="slot-label">{{localize "ASHFORD.Sheet.slotWeapon"}}</div>
+          {{#if equippedWeapons.length}}
+            {{#each equippedWeapons}}
+              <div class="slot-item" data-item-id="{{this.id}}">
+                <span class="slot-item-name">{{this.name}}</span>
+                <a class="item-edit" title="Öffnen"><i class="fas fa-edit"></i></a>
+                <a class="slot-unequip" title="Ablegen"><i class="fas fa-times"></i></a>
+              </div>
+            {{/each}}
+          {{else}}
+            <div class="slot-empty">{{localize "ASHFORD.Sheet.emptySlot"}}</div>
+          {{/if}}
+        </div>
+      </div>
+
+      <h3>{{localize "ASHFORD.Sheet.backpack"}}</h3>
       <ol class="item-list">
-        {{#each gear as |item|}}
+        {{#each backpack as |item|}}
           <li class="item" data-item-id="{{item.id}}">
             <span class="item-name">{{item.name}}</span>
             <span class="item-kind">{{item.type}}</span>
             {{#if (eq item.type "weapon")}}
               <label class="weapon-equipped-toggle" title="Aktuell geführt">
-                <input type="checkbox" class="weapon-equipped" {{#if item.system.equipped}}checked{{/if}}> geführt
+                <input type="checkbox" class="weapon-equipped" {{#if item.system.equipped}}checked{{/if}}> {{localize "ASHFORD.Sheet.equipToggle"}}
+              </label>
+            {{/if}}
+            {{#if (eq item.type "armor")}}
+              <select class="armor-slot-select">
+                <option value="">{{localize "ASHFORD.Sheet.chooseSlot"}}</option>
+                {{#each ../armorSlots}}
+                  <option value="{{this.key}}" {{#if (eq item.system.slot this.key)}}selected{{/if}}>{{this.label}}</option>
+                {{/each}}
+              </select>
+              <label class="armor-equipped-toggle" title="Angelegt">
+                <input type="checkbox" class="armor-equipped" {{#if item.system.equipped}}checked{{/if}}> {{localize "ASHFORD.Sheet.equipToggle"}}
               </label>
             {{/if}}
             <a class="item-edit"><i class="fas fa-edit"></i></a>

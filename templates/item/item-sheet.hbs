@@ -52,6 +52,15 @@
 
     {{#if (eq item.type "armor")}}
       <label>Schutz <input type="number" name="system.protection" value="{{system.protection}}"></label>
+      <label>Ausrüstungsslot
+        <select name="system.slot">
+          <option value="">— keiner —</option>
+          {{#each armorSlotOptions}}
+            <option value="{{this.key}}" {{#if (eq ../system.slot this.key)}}selected{{/if}}>{{this.name}}</option>
+          {{/each}}
+        </select>
+      </label>
+      <label><input type="checkbox" name="system.equipped" {{#if system.equipped}}checked{{/if}}> Angelegt</label>
     {{/if}}
 
     {{#if (eq item.type "consumable")}}

@@ -1,4 +1,5 @@
 import { TALENTS, WEAPON_TALENT_KEYS } from "../rules/talents.mjs";
+import { ARMOR_SLOTS } from "../models/gear.mjs";
 
 export default class AshfordItemSheet extends ItemSheet {
   static get defaultOptions() {
@@ -27,6 +28,10 @@ export default class AshfordItemSheet extends ItemSheet {
     context.weaponSkillOptions = WEAPON_TALENT_KEYS.map(key => ({
       key,
       name: TALENTS.find(t => t.key === key)?.name ?? key
+    }));
+    context.armorSlotOptions = ARMOR_SLOTS.map(key => ({
+      key,
+      name: game.i18n.localize(`ASHFORD.Sheet.slot${key.charAt(0).toUpperCase()}${key.slice(1)}`)
     }));
     return context;
   }
