@@ -18,12 +18,17 @@
  * @property {string[]} [speistWerte] - derived values this talent feeds (Abschnitt 4a)
  */
 
-/** @type {TalentDefinition[]} */
+/**
+ * Array order is the canonical display order used by the character sheet (Stufe 1: thematisch
+ * gruppiert; Stufe 3: erst Nahkampf, dann Fernkampf) — see AshfordActorSheet's talent sort,
+ * which looks up each embedded talent's position here via `talentOrderIndex`.
+ * @type {TalentDefinition[]}
+ */
 export const TALENTS = [
-  { key: "menschenkenntnis", name: "Menschenkenntnis", stufe: 1 },
-  { key: "luegen", name: "Lügen", stufe: 1 },
   { key: "charme", name: "Charme", stufe: 1 },
   { key: "einschuechtern", name: "Einschüchtern", stufe: 1 },
+  { key: "menschenkenntnis", name: "Menschenkenntnis", stufe: 1 },
+  { key: "luegen", name: "Lügen", stufe: 1 },
   { key: "medizin", name: "Medizin", stufe: 1 },
   { key: "natur", name: "Natur", stufe: 1 },
   { key: "technik", name: "Technik", stufe: 1 },
@@ -32,15 +37,23 @@ export const TALENTS = [
   { key: "werfen", name: "Werfen", stufe: 2 },
   { key: "heimlichkeit", name: "Heimlichkeit", stufe: 2 },
   { key: "wahrnehmung", name: "Wahrnehmung", stufe: 2 },
+  { key: "waffenloserkampf", name: "Waffenloser Kampf", stufe: 3, waffentalent: true, kategorie: "nahkampf_unbewaffnet" },
+  { key: "hiebwaffen", name: "Hiebwaffen", stufe: 3, waffentalent: true, kategorie: "nahkampf_hieb" },
+  { key: "stichwaffen", name: "Stichwaffen", stufe: 3, waffentalent: true, kategorie: "nahkampf_stich" },
+  { key: "schlagwaffen", name: "Schlagwaffen", stufe: 3, waffentalent: true, kategorie: "nahkampf_schlag" },
   { key: "pistolen", name: "Pistolen", stufe: 3, waffentalent: true, kategorie: "fernkampf" },
   { key: "gewehre", name: "Gewehre", stufe: 3, waffentalent: true, kategorie: "fernkampf" },
   { key: "schrotflinten", name: "Schrotflinten", stufe: 3, waffentalent: true, kategorie: "fernkampf" },
-  { key: "boegen", name: "Bögen", stufe: 3, waffentalent: true, kategorie: "fernkampf" },
-  { key: "schlagwaffen", name: "Schlagwaffen", stufe: 3, waffentalent: true, kategorie: "nahkampf_schlag" },
-  { key: "hiebwaffen", name: "Hiebwaffen", stufe: 3, waffentalent: true, kategorie: "nahkampf_hieb" },
-  { key: "stichwaffen", name: "Stichwaffen", stufe: 3, waffentalent: true, kategorie: "nahkampf_stich" },
-  { key: "waffenloserkampf", name: "Waffenloser Kampf", stufe: 3, waffentalent: true, kategorie: "nahkampf_unbewaffnet" }
+  { key: "boegen", name: "Bögen", stufe: 3, waffentalent: true, kategorie: "fernkampf" }
 ];
+
+/** talentKey → position in TALENTS, for sorting embedded talent Items into the canonical display order. */
+const TALENT_ORDER_INDEX = new Map(TALENTS.map((t, i) => [t.key, i]));
+
+/** Sort index for a talentKey; homebrew talents without one sort after all canonical talents. */
+export function talentOrderIndex(key) {
+  return TALENT_ORDER_INDEX.get(key) ?? Number.MAX_SAFE_INTEGER;
+}
 
 /** Keys of the 8 Waffentalente, in list order — also the valid `weaponSkill` values for AshfordWeapon. */
 export const WEAPON_TALENT_KEYS = TALENTS.filter(t => t.waffentalent).map(t => t.key);

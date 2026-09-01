@@ -76,10 +76,9 @@
         </div>
       </div>
 
-      <button type="button" class="ash-stat initiative-block ashford-roll-initiative">
+      <button type="button" class="ash-stat initiative-block ashford-roll-initiative" title="{{localize 'ASHFORD.Sheet.rollInitiative'}} (1W12 + Mod)">
         <div class="stat-label">{{localize "ASHFORD.Sheet.initiativeMod"}}</div>
-        <div class="stat-value big">{{signed system.derived.initiativeMod}}</div>
-        <div class="roll-hint"><i class="fas fa-dice-d20"></i> {{localize "ASHFORD.Sheet.rollInitiative"}}</div>
+        <div class="stat-value big">{{signed system.derived.initiativeMod}} <i class="fas fa-dice-d20 roll-hint-icon"></i></div>
       </button>
 
       <div class="ash-stat melee-block">

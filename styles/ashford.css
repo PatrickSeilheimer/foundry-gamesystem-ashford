@@ -5,16 +5,19 @@
   --ashford-panel-2: #2d271d;
   --ashford-panel-3: #34291f;
   --ashford-edge: #4a4130;
-  --ashford-text: #e9e2cf;
-  --ashford-text-dim: #b3a889;
+  --ashford-text: #f1ecdd;
+  --ashford-text-dim: #cbbf9e;
   --ashford-accent: #c9832f;
   --ashford-accent-2: #7a9b6e;
-  --ashford-danger: #a8453a;
-  /* Zustand-Schweregrade, aufsteigend. */
+  /* Brighter than a "realistic" blood red on purpose — #a8453a reads at only ~2.5:1 against
+     the panel backgrounds (fails WCAG AA even for large text). This keeps the warning-red
+     identity while staying legible as body text, not just as a border/accent. */
+  --ashford-danger: #e07a6a;
+  /* Zustand-Schweregrade, aufsteigend — jede Stufe einzeln gegen --ashford-panel-2 auf ≥4.5:1 geprüft. */
   --ashford-sev-gering: #7a9b6e;
   --ashford-sev-mittel: #c9832f;
-  --ashford-sev-schwer: #c9622f;
-  --ashford-sev-kritisch: #a8453a;
+  --ashford-sev-schwer: #d9714a;
+  --ashford-sev-kritisch: var(--ashford-danger);
 }
 
 .ashford.sheet {
@@ -363,7 +366,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  font-size: 10px;
+  font-size: 11px;
   color: var(--ashford-text-dim);
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -415,8 +418,8 @@
 }
 
 @keyframes ashford-badge-pulse {
-  0%, 100% { box-shadow: 0 0 0 rgba(168, 69, 58, 0); }
-  50% { box-shadow: 0 0 6px rgba(168, 69, 58, 0.85); }
+  0%, 100% { box-shadow: 0 0 0 rgba(224, 122, 106, 0); }
+  50% { box-shadow: 0 0 6px rgba(224, 122, 106, 0.85); }
 }
 
 .ashford-toggle-edit {
@@ -455,8 +458,8 @@
   background: var(--ashford-panel-2);
   border: 1px solid var(--ashford-edge);
   border-left: 3px solid var(--ashford-accent-2);
-  padding: 5px 12px;
-  min-width: 84px;
+  padding: 4px 10px;
+  min-width: 76px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -466,7 +469,7 @@
 }
 
 .ash-stat .stat-label {
-  font-size: 9px;
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.7px;
   color: var(--ashford-text-dim);
@@ -478,7 +481,7 @@
   font-size: 15px;
 }
 
-.ash-stat .stat-value.big { font-size: 20px; }
+.ash-stat .stat-value.big { font-size: 17px; }
 
 .health-block {
   min-width: 150px;
@@ -553,6 +556,7 @@
 
 .initiative-block {
   border-left-color: var(--ashford-accent);
+  align-items: flex-start;
 }
 
 .initiative-block:hover {
@@ -562,13 +566,15 @@
   transform: translateY(-1px);
 }
 
-.initiative-block .roll-hint {
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+.initiative-block .roll-hint-icon {
+  font-size: 13px;
   color: var(--ashford-accent);
-  margin-top: 1px;
+  opacity: 0.55;
+  margin-left: 2px;
+  transition: opacity 0.15s ease;
 }
+
+.initiative-block:hover .roll-hint-icon { opacity: 1; }
 
 .melee-block { border-left-color: var(--ashford-sev-schwer); }
 .points-block { border-left-color: var(--ashford-accent); }
@@ -609,7 +615,7 @@
   background: var(--ashford-sev-kritisch);
   color: var(--ashford-text);
   border-radius: 50%;
-  font-size: 10px;
+  font-size: 11px;
   min-width: 16px;
   height: 16px;
   display: inline-flex;
@@ -744,7 +750,7 @@
   align-items: center;
   gap: 4px;
   margin-top: 4px;
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .talent-edit-fields input { width: 28px; }
@@ -776,7 +782,7 @@
 
 .dossier-field label {
   display: block;
-  font-size: 10px;
+  font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: var(--ashford-text-dim);
@@ -852,14 +858,14 @@
 .equip-slot.filled .slot-icon { color: var(--ashford-accent-2); }
 
 .equip-slot .slot-label {
-  font-size: 9px;
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: var(--ashford-text-dim);
 }
 
 .equip-slot .slot-empty {
-  font-size: 9px;
+  font-size: 10px;
   color: var(--ashford-text-dim);
   font-style: italic;
 }
@@ -874,7 +880,7 @@
 
 .equip-slot .slot-item-armor {
   display: block;
-  font-size: 9px;
+  font-size: 10px;
   color: var(--ashford-text-dim);
 }
 
@@ -941,7 +947,7 @@
 }
 
 .row-slot {
-  font-size: 10px;
+  font-size: 11px;
   text-transform: uppercase;
   color: var(--ashford-text-dim);
   white-space: nowrap;
@@ -984,7 +990,7 @@
 }
 
 .row-qty, .row-weight, .row-category {
-  font-size: 10px;
+  font-size: 11px;
   color: var(--ashford-text-dim);
   white-space: nowrap;
 }
@@ -999,7 +1005,7 @@
 
 .ashford-use-consumable:hover { background: var(--ashford-accent); color: var(--ashford-bg); }
 
-.row-uses { font-size: 10px; color: var(--ashford-text-dim); }
+.row-uses { font-size: 11px; color: var(--ashford-text-dim); }
 
 /* ---------- Zustand (conditions) ---------- */
 
@@ -1050,7 +1056,7 @@
 
 .card-title-block { display: flex; flex-direction: column; flex: 1; min-width: 0; }
 .card-name { font-weight: bold; }
-.card-meta { font-size: 10px; color: var(--ashford-text-dim); text-transform: uppercase; letter-spacing: 0.4px; }
+.card-meta { font-size: 11px; color: var(--ashford-text-dim); text-transform: uppercase; letter-spacing: 0.4px; }
 
 .ashford-end-condition,
 .ashford-reactivate-condition {
@@ -1138,10 +1144,10 @@
 
 .ashford-condition-picker-form .cp-condition-text { flex: 1; display: flex; flex-direction: column; }
 .ashford-condition-picker-form .cp-condition-name { font-weight: bold; font-size: 12px; }
-.ashford-condition-picker-form .cp-condition-desc { font-size: 10px; color: var(--ashford-text-dim); }
+.ashford-condition-picker-form .cp-condition-desc { font-size: 11px; color: var(--ashford-text-dim); }
 
 .ashford-condition-picker-form .cp-severity-badge {
-  font-size: 9px;
+  font-size: 10px;
   text-transform: uppercase;
   padding: 1px 5px;
   border: 1px solid currentColor;
@@ -1160,7 +1166,7 @@
 
 .ashford-condition-picker-form .cp-details label {
   display: block;
-  font-size: 10px;
+  font-size: 11px;
   color: var(--ashford-text-dim);
   text-transform: uppercase;
 }

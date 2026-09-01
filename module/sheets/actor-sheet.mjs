@@ -1,4 +1,5 @@
 import { EQUIP_SLOTS, ARMOR_TYPES, ITEM_CATEGORIES, ITEM_CATEGORY_LABELS } from "../models/gear.mjs";
+import { talentOrderIndex } from "../rules/talents.mjs";
 import { conditionByKey, conditionCategoryLabel, conditionDurationLabel } from "../rules/conditions.mjs";
 import AshfordConditionPicker from "../apps/condition-picker.mjs";
 
@@ -63,7 +64,10 @@ export default class AshfordActorSheet extends ActorSheet {
       stufe,
       talents: talents
         .filter(t => t.system.stufe === stufe)
-        .sort((a, b) => a.name.localeCompare(b.name, "de"))
+        .sort((a, b) => {
+          const order = talentOrderIndex(a.system.talentKey) - talentOrderIndex(b.system.talentKey);
+          return order !== 0 ? order : a.name.localeCompare(b.name, "de");
+        })
         .map(t => ({
           id: t.id,
           name: t.name,
