@@ -12,12 +12,9 @@
 
   <div class="cp-condition-list">
     {{#each conditions}}
-      <div class="cp-condition-row" data-key="{{this.key}}" data-category="{{this.category}}" data-severity="{{this.severity}}" data-name="{{this.name}}">
+      <div class="cp-condition-row" data-key="{{this.key}}" data-category="{{this.category}}" data-severity="{{this.severity}}" data-name="{{this.name}}" data-description="{{this.description}}">
         <i class="cp-icon {{this.icon}} severity-{{this.severity}}"></i>
-        <div class="cp-condition-text">
-          <span class="cp-condition-name">{{this.name}}</span>
-          <span class="cp-condition-desc">{{this.description}}</span>
-        </div>
+        <span class="cp-condition-name">{{this.name}}</span>
         <span class="cp-severity-badge severity-{{this.severity}}">{{this.severity}}</span>
       </div>
     {{/each}}
@@ -25,29 +22,27 @@
 
   <input type="hidden" name="conditionKey" value="">
 
+  <p class="cp-selected-hint">Kein Zustand ausgewählt.</p>
+
   <fieldset class="cp-details">
     <legend>Details</legend>
-    <div class="cp-details-grid">
-      <label>Schweregrad
-        <select name="severity">
-          {{#each severities}}
-            <option value="{{this}}">{{this}}</option>
-          {{/each}}
-        </select>
-      </label>
-      <label>Quelle <input type="text" name="source" placeholder="z.B. Zombie-Biss"></label>
-    </div>
-    <div class="cp-details-grid">
-      <label>Dauer-Typ
-        <select name="durationType">
-          {{#each durationTypes}}
-            <option value="{{this.key}}">{{this.label}}</option>
-          {{/each}}
-        </select>
-      </label>
-      <label>Wert <input type="number" name="durationValue" value="0" min="0"></label>
-      <label>Ereignis (falls "Bis Ereignis") <input type="text" name="eventLabel" placeholder="z.B. bis behandelt"></label>
-    </div>
+    <label>Schweregrad
+      <select name="severity">
+        {{#each severities}}
+          <option value="{{this}}">{{this}}</option>
+        {{/each}}
+      </select>
+    </label>
+    <label>Quelle <input type="text" name="source" placeholder="z.B. Zombie-Biss"></label>
+    <label>Dauer-Typ
+      <select name="durationType">
+        {{#each durationTypes}}
+          <option value="{{this.key}}">{{this.label}}</option>
+        {{/each}}
+      </select>
+    </label>
+    <label>Dauer-Wert <input type="number" name="durationValue" value="0" min="0"></label>
+    <label>Ereignis-Text (bei "Bis Ereignis") <input type="text" name="eventLabel" placeholder="z.B. bis behandelt"></label>
     <label>Notiz <textarea name="note" rows="2" placeholder="Optional"></textarea></label>
   </fieldset>
 </form>

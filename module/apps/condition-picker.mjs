@@ -37,6 +37,7 @@ class AshfordConditionPickerDialog extends DialogV2 {
         applyFilter();
       });
     });
+    const selectedHint = root.querySelector(".cp-selected-hint");
     rows.forEach(row => {
       row.addEventListener("click", () => {
         rows.forEach(r => r.classList.remove("selected"));
@@ -44,6 +45,7 @@ class AshfordConditionPickerDialog extends DialogV2 {
         if (hiddenKeyInput) hiddenKeyInput.value = row.dataset.key;
         const severitySelect = root.querySelector('[name="severity"]');
         if (severitySelect && row.dataset.severity) severitySelect.value = row.dataset.severity;
+        if (selectedHint) selectedHint.innerHTML = `<strong>${row.dataset.name}</strong> — ${row.dataset.description}`;
       });
     });
   }
@@ -66,7 +68,7 @@ export default class AshfordConditionPicker {
       window: { title: "Zustand hinzufügen" },
       content,
       classes: ["ashford-condition-picker"],
-      position: { width: 520, height: 640 },
+      position: { width: 560, height: 700 },
       buttons: [
         {
           action: "add",

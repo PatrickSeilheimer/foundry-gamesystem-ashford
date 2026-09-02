@@ -330,3 +330,18 @@ export default class AshfordActorSheet extends ActorSheet {
     ]);
   }
 }
+
+/**
+ * Same sheet, same behaviour — the only difference is a background image instead of the plain
+ * procedural texture (see the ".ashford-v2.ashford-wallpaper" rule in styles/ashford.css). Registered
+ * as a second, non-default option for "character" so each player can pick whichever they prefer via
+ * Foundry's "Configure Sheet" dialog, instead of forcing one look on everyone.
+ */
+export class AshfordActorSheetWallpaper extends AshfordActorSheet {
+  /** @override */
+  async getData(options) {
+    const context = await super.getData(options);
+    context.wallpaper = true;
+    return context;
+  }
+}

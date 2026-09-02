@@ -11,7 +11,7 @@ import { AshfordWeapon, AshfordArmor, AshfordEquipment, AshfordConsumable, Ashfo
 import AshfordActor from "./module/documents/actor.mjs";
 import AshfordItem from "./module/documents/item.mjs";
 
-import AshfordActorSheet from "./module/sheets/actor-sheet.mjs";
+import AshfordActorSheet, { AshfordActorSheetWallpaper } from "./module/sheets/actor-sheet.mjs";
 import AshfordItemSheet from "./module/sheets/item-sheet.mjs";
 
 import registerHandlebarsHelpers from "./module/handlebars-helpers.mjs";
@@ -51,7 +51,15 @@ Hooks.once("init", () => {
   foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
   foundry.documents.collections.Actors.registerSheet("ashford", AshfordActorSheet, {
     types: ["character", "npc", "creature"],
-    makeDefault: true
+    makeDefault: true,
+    label: "ASHFORD.Sheet.labelDefault"
+  });
+  // Same character sheet, opt-in background image instead of the plain procedural texture — see
+  // styles/ashford.css (.ashford-wallpaper) and module/sheets/actor-sheet.mjs.
+  foundry.documents.collections.Actors.registerSheet("ashford", AshfordActorSheetWallpaper, {
+    types: ["character"],
+    makeDefault: false,
+    label: "ASHFORD.Sheet.labelWallpaper"
   });
   foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
   foundry.documents.collections.Items.registerSheet("ashford", AshfordItemSheet, {

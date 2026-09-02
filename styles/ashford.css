@@ -296,6 +296,37 @@
   padding: 10px;
 }
 
+/* Second, opt-in sheet variant ("Ashford — Wallpaper") — same markup/behaviour, just the actual
+   Ashford key-art as background instead of the plain procedural texture. Selected per-actor via
+   Foundry's "Configure Sheet" dialog (module/sheets/actor-sheet.mjs exports AshfordActorSheetWallpaper
+   for this). The image is already very dark on its own (night, rain, deep shadow), and every panel/card
+   on top of it (.ash-stat, .talent-tile, etc.) already has its own opaque background — so the wallpaper
+   only ever shows through in the gaps between them. That's why the overlay here is much lighter than
+   the plain variant's: darkening it further would just hide the art without helping legibility. */
+.ashford-v2.ashford-wallpaper {
+  background-image:
+    linear-gradient(180deg, rgba(11, 10, 8, 0.15) 0%, rgba(11, 10, 8, 0.35) 55%, rgba(11, 10, 8, 0.6) 100%),
+    url("../assets/system/ashford_wallpaper.png");
+  background-size: auto, cover;
+  background-position: center, center 35%;
+  background-repeat: no-repeat, no-repeat;
+}
+
+/* Reinforces the ".ashford.sheet input:disabled" rule further up with a version scoped to .ashford-v2
+   itself — that class is confirmed present on this <form> (unlike "ashford"/"sheet", which only ever
+   land on Foundry's outer window wrapper), so this fires no matter how that outer wrapper behaves. */
+.ashford-v2 input:disabled:not([type="checkbox"]):not([type="radio"]),
+.ashford-v2 select:disabled {
+  border: none;
+  background: transparent;
+  color: var(--ashford-text);
+  opacity: 1;
+  cursor: default;
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 0;
+}
+
 .ashford-v2 button {
   font-family: inherit;
   cursor: pointer;
@@ -383,17 +414,33 @@
 .ash-vitals {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  align-items: baseline;
+  gap: 18px;
   font-size: 11px;
   color: var(--ashford-text-dim);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
+/* Pipe separators between vitals ("Mach am besten noch pipes dazwischen") instead of relying on
+   gap alone to read as distinct values. */
+.ash-vitals label:not(:first-child) {
+  position: relative;
+  padding-left: 18px;
+}
+
+.ash-vitals label:not(:first-child)::before {
+  content: "|";
+  position: absolute;
+  left: 0;
+  color: var(--ashford-edge);
+}
+
 .ash-vitals label {
   display: flex;
   align-items: center;
-  gap: 3px;
+  gap: 4px;
+  white-space: nowrap;
 }
 
 .ash-vitals input,
@@ -403,9 +450,17 @@
   text-transform: none;
   color: var(--ashford-text);
   width: 40px;
+  height: auto;
+  line-height: normal;
+  vertical-align: baseline;
 }
 
-.ash-vitals select { width: auto; }
+.ash-vitals select {
+  width: auto;
+  padding: 0;
+  margin: 0;
+}
+
 .ash-vitals .unit { margin-left: -3px; }
 
 .ash-condition-badges {
@@ -469,8 +524,13 @@
   align-items: stretch;
   gap: 8px;
   margin-top: 10px;
+  width: 100%;
 }
 
+/* width/flex-basis/flex-shrink pinned explicitly and !important: Foundry core's own sheet CSS gives
+   plain <button> elements `width: 100%`, which only hits .initiative-block (the one stat that's a
+   button, used so it's keyboard/AT-accessible as an action) and forces it — and everything after it —
+   onto its own full-width row instead of sitting inline with the rest of this bar. */
 .ash-stat {
   position: relative;
   background: var(--ashford-panel-2);
@@ -478,6 +538,8 @@
   border-left: 3px solid var(--ashford-accent-2);
   padding: 4px 10px;
   min-width: 76px;
+  width: auto !important;
+  flex: 0 0 auto !important;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -598,7 +660,20 @@
 .points-block { border-left-color: var(--ashford-accent); }
 .points-block .stat-value { font-size: 15px; }
 
-/* ---------- Tabs ---------- */
+/* ---------- Tabs ----------
+   width/box-sizing/min-width pinned explicitly on the header/nav/body: they're flex children of
+   .ashford-v2 (.flexcol), and a flex item's default min-width is its content's intrinsic width, not
+   0 — so anything wide and unwrapped inside ONE tab (e.g. a long condition description) could inflate
+   that tab's natural width past the others, and with it the whole column (nav bar included) which
+   would otherwise be forced to accommodate the widest child ever rendered. Fixing all three to the
+   parent's actual width regardless of content removes that possibility entirely. */
+.ash-header,
+.ash-tabs.sheet-tabs,
+.ash-body {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
 
 .ash-tabs.sheet-tabs {
   display: flex;
@@ -642,7 +717,11 @@
   padding: 0 2px;
 }
 
-.ash-body { padding-top: 8px; }
+.ash-body {
+  padding-top: 8px;
+  overflow-x: hidden;
+  overflow-wrap: anywhere;
+}
 
 /* ---------- Talents ---------- */
 
@@ -1119,28 +1198,40 @@
 .card-effects { margin: 4px 0; padding-left: 16px; }
 .card-source, .card-note { color: var(--ashford-text-dim); font-size: 11px; margin: 2px 0; }
 
-/* ---------- Condition picker dialog ---------- */
+/* ---------- Condition picker dialog ----------
+   Kept deliberately simple after the first version turned out cramped and hard to use: the
+   catalog list only shows icon/name/severity (the full description moves into a one-line summary
+   below once something is selected), and the whole form scrolls internally with a safety-margin
+   max-height so it can never get clipped by the dialog's own title bar/footer buttons, regardless
+   of exactly how much room DialogV2's chrome leaves for content. */
+.ashford-condition-picker-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 4px;
+}
 
 .ashford-condition-picker-form .cp-search-row input {
   width: 100%;
   background: var(--ashford-panel-2);
   border: 1px solid var(--ashford-edge);
   color: var(--ashford-text);
-  padding: 5px 8px;
-  margin-bottom: 8px;
+  padding: 6px 8px;
 }
 
 .ashford-condition-picker-form .cp-chip-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
-  margin-bottom: 8px;
+  gap: 5px;
 }
 
 .ashford-condition-picker-form .cp-chip {
   font-size: 11px;
-  padding: 3px 8px;
+  padding: 4px 10px;
   border: 1px solid var(--ashford-edge);
+  border-radius: 12px;
   color: var(--ashford-text-dim);
   cursor: pointer;
 }
@@ -1151,17 +1242,16 @@
 }
 
 .ashford-condition-picker-form .cp-condition-list {
-  max-height: 220px;
+  max-height: 240px;
   overflow-y: auto;
   border: 1px solid var(--ashford-edge);
-  margin-bottom: 10px;
 }
 
 .ashford-condition-picker-form .cp-condition-row {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 5px 8px;
+  padding: 6px 8px;
   border-bottom: 1px solid var(--ashford-edge);
   cursor: pointer;
 }
@@ -1172,32 +1262,49 @@
   border-left: 3px solid var(--ashford-accent);
 }
 
-.ashford-condition-picker-form .cp-icon { width: 18px; text-align: center; color: var(--ashford-text-dim); }
+.ashford-condition-picker-form .cp-icon { width: 16px; text-align: center; color: var(--ashford-text-dim); }
 .ashford-condition-picker-form .cp-icon.severity-gering { color: var(--ashford-sev-gering); }
 .ashford-condition-picker-form .cp-icon.severity-mittel { color: var(--ashford-sev-mittel); }
 .ashford-condition-picker-form .cp-icon.severity-schwer { color: var(--ashford-sev-schwer); }
 .ashford-condition-picker-form .cp-icon.severity-kritisch { color: var(--ashford-sev-kritisch); }
 
-.ashford-condition-picker-form .cp-condition-text { flex: 1; display: flex; flex-direction: column; }
-.ashford-condition-picker-form .cp-condition-name { font-weight: bold; font-size: 12px; }
-.ashford-condition-picker-form .cp-condition-desc { font-size: 11px; color: var(--ashford-text-dim); }
+.ashford-condition-picker-form .cp-condition-name { flex: 1; font-size: 12px; }
 
 .ashford-condition-picker-form .cp-severity-badge {
   font-size: 10px;
   text-transform: uppercase;
-  padding: 1px 5px;
+  padding: 1px 6px;
   border: 1px solid currentColor;
+  border-radius: 8px;
 }
 .ashford-condition-picker-form .cp-severity-badge.severity-gering { color: var(--ashford-sev-gering); }
 .ashford-condition-picker-form .cp-severity-badge.severity-mittel { color: var(--ashford-sev-mittel); }
 .ashford-condition-picker-form .cp-severity-badge.severity-schwer { color: var(--ashford-sev-schwer); }
 .ashford-condition-picker-form .cp-severity-badge.severity-kritisch { color: var(--ashford-sev-kritisch); }
 
-.ashford-condition-picker-form .cp-details-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 6px;
-  margin-bottom: 6px;
+.ashford-condition-picker-form .cp-selected-hint {
+  font-size: 12px;
+  color: var(--ashford-text-dim);
+  margin: 0;
+  padding: 6px 8px;
+  background: var(--ashford-panel-2);
+  border-left: 3px solid var(--ashford-accent);
+}
+
+.ashford-condition-picker-form .cp-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid var(--ashford-edge);
+  padding: 8px;
+}
+
+.ashford-condition-picker-form .cp-details legend {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--ashford-text-dim);
+  padding: 0 4px;
 }
 
 .ashford-condition-picker-form .cp-details label {
@@ -1214,7 +1321,9 @@
   background: var(--ashford-panel-2);
   border: 1px solid var(--ashford-edge);
   color: var(--ashford-text);
-  padding: 3px 6px;
+  padding: 4px 6px;
+  margin-top: 2px;
+  font-size: 12px;
 }
 
 /* ---------- Item sheet: armor damage-type grid, effect rows ---------- */
