@@ -101,11 +101,14 @@ export function diceCountForTalent(staerken = 0, schwaechen = 0) {
  * Stärken always cost Stufe points each. The Schwächen-Rückerstattung is purely Stufe-based now
  * (not tied to `waffentalent` anymore) and gets progressively stingier at higher Stufe:
  *   - Stufe 1 & 2: jede Schwäche gibt genau 1 Punkt zurück.
- *   - Stufe 3: nur jede ZWEITE Schwäche gibt einen Punkt zurück (die erste allein gibt nichts).
+ *   - Stufe 3: jede Schwäche gibt nur einen halben Punkt zurück. Das ist bewusst ein Bruchwert statt
+ *     eines Rundens pro Talent — zwei Stufe-3-Schwächen auf UNTERSCHIEDLICHEN Talenten sollen sich
+ *     trotzdem zu einem vollen Punkt aufsummieren (siehe AshfordCharacter#prepareDerivedData, wo die
+ *     Deltas aller Talente addiert werden), nicht nur zwei auf demselben Talent.
  * @param {{stufe:number, staerken?:number, schwaechen?:number}} talent
  */
 export function pointDeltaForTalent({ stufe, staerken = 0, schwaechen = 0 }) {
   const kosten = (staerken ?? 0) * stufe;
-  const rueckerstattung = stufe >= 3 ? Math.floor((schwaechen ?? 0) / 2) : (schwaechen ?? 0);
+  const rueckerstattung = stufe >= 3 ? (schwaechen ?? 0) * 0.5 : (schwaechen ?? 0);
   return rueckerstattung - kosten;
 }
