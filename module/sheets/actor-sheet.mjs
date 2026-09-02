@@ -1,5 +1,5 @@
 import { EQUIP_SLOTS, ARMOR_TYPES, ITEM_CATEGORIES, ITEM_CATEGORY_LABELS } from "../models/gear.mjs";
-import { talentOrderIndex } from "../rules/talents.mjs";
+import { talentOrderIndex, levelToStrengthsWeaknesses } from "../rules/talents.mjs";
 import { conditionByKey, conditionCategoryLabel, conditionDurationLabel } from "../rules/conditions.mjs";
 import AshfordConditionPicker from "../apps/condition-picker.mjs";
 
@@ -228,23 +228,21 @@ export default class AshfordActorSheet extends ActorSheet {
       this.actor.quickRollPool({ label: this.actor.name, basePool: this.actor.system.attackPool ?? 3 })
     );
 
-    // Talente: fertige Kacheln würfeln per Klick, Edit-Modus-Kacheln nur über den eigenen Würfel-Button.
+    // Talente: fertige Kacheln würfeln per Klick; Edit-Modus-Kacheln würfeln nicht (dort geht's nur ums Leveln).
     html.find(".talent-tile:not(.edit-mode)").on("click", ev => {
       const itemId = ev.currentTarget.dataset.itemId;
       this.actor.rollTalent(itemId);
     });
-    html.find(".ashford-roll-talent").on("click", ev => {
+    html.find(".ashford-init-talents").on("click", () => this.actor.ensureCanonicalTalents());
+    html.find(".talent-level-btn").on("click", ev => {
       ev.stopPropagation();
       const itemId = ev.currentTarget.closest("[data-item-id]").dataset.itemId;
-      this.actor.rollTalent(itemId);
-    });
-    html.find(".ashford-init-talents").on("click", () => this.actor.ensureCanonicalTalents());
-    html.find(".talent-field").on("click", ev => ev.stopPropagation());
-    html.find(".talent-field").on("change", ev => {
-      const el = ev.currentTarget;
-      const itemId = el.closest("[data-item-id]").dataset.itemId;
-      const field = el.dataset.field;
-      this.actor.items.get(itemId)?.update({ [`system.${field}`]: Number(el.value) });
+      const item = this.actor.items.get(itemId);
+      if (!item) return;
+      const currentLevel = item.system.staerken - item.system.schwaechen;
+      const delta = ev.currentTarget.dataset.dir === "inc" ? 1 : -1;
+      const { staerken, schwaechen } = levelToStrengthsWeaknesses(currentLevel + delta);
+      item.update({ "system.staerken": staerken, "system.schwaechen": schwaechen });
     });
 
     // Inventar: ausrüsten/ablegen, Vergleichs-Drawer, Verbrauchsgegenstände benutzen, Slot per Item-Sheet.

@@ -1,22 +1,24 @@
-/* Ashford Adventures — shared palette, taken from the original Lagerakte reference page. */
+/* Ashford Adventures — shared palette, taken from the original Lagerakte reference page.
+   Near-black base (not the earlier warm-brown one) — that version tested fine on paper
+   (WCAG contrast math all passed) but still read as visually muddy in practice: everything
+   sat in a narrow brown band with too little separation between background/panel/text to
+   scan quickly. This version pushes the background close to black and the panels/accents
+   further apart from each other, while keeping every value re-checked against panel-2. */
 :root {
-  --ashford-bg: #191712;
-  --ashford-panel: #242019;
-  --ashford-panel-2: #2d271d;
-  --ashford-panel-3: #34291f;
-  --ashford-edge: #4a4130;
-  --ashford-text: #f1ecdd;
-  --ashford-text-dim: #cbbf9e;
-  --ashford-accent: #c9832f;
-  --ashford-accent-2: #7a9b6e;
-  /* Brighter than a "realistic" blood red on purpose — #a8453a reads at only ~2.5:1 against
-     the panel backgrounds (fails WCAG AA even for large text). This keeps the warning-red
-     identity while staying legible as body text, not just as a border/accent. */
-  --ashford-danger: #e07a6a;
+  --ashford-bg: #0b0a08;
+  --ashford-panel: #161310;
+  --ashford-panel-2: #1e1a15;
+  --ashford-panel-3: #272019;
+  --ashford-edge: #6b5d42;
+  --ashford-text: #f5f1e6;
+  --ashford-text-dim: #d6c9a8;
+  --ashford-accent: #d9922f;
+  --ashford-accent-2: #8bb27a;
+  --ashford-danger: #e8877a;
   /* Zustand-Schweregrade, aufsteigend — jede Stufe einzeln gegen --ashford-panel-2 auf ≥4.5:1 geprüft. */
-  --ashford-sev-gering: #7a9b6e;
-  --ashford-sev-mittel: #c9832f;
-  --ashford-sev-schwer: #d9714a;
+  --ashford-sev-gering: #8bb27a;
+  --ashford-sev-mittel: #d9922f;
+  --ashford-sev-schwer: #e0834f;
   --ashford-sev-kritisch: var(--ashford-danger);
 }
 
@@ -279,9 +281,19 @@
    all three classes on one element never matches anything. Every other .ashford-v2 rule below already
    gets this right; this one didn't, which is why the whole v2 sheet was falling back to unstyled markup. */
 .ashford-v2 {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--ashford-text);
   font-family: "Signika", sans-serif;
+  background-color: var(--ashford-bg);
+  /* Self-contained texture, no external image asset: a faint fractal-noise grain (SVG filter, ~4% opacity)
+     over a very subtle top-down vignette. Gives the near-black background some depth instead of a flat
+     fill, without needing a binary asset file or fighting Foundry's own window chrome for an <img>. */
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(217, 146, 47, 0.06), transparent 55%),
+    radial-gradient(ellipse at 100% 100%, rgba(0, 0, 0, 0.5), transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  background-attachment: local, local, local;
+  padding: 10px;
 }
 
 .ashford-v2 button {
@@ -648,8 +660,8 @@
 
 .talent-tier-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 6px;
   margin-bottom: 6px;
 }
 
@@ -658,19 +670,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 1px;
   background: var(--ashford-panel-2);
-  border: 2px solid var(--ashford-edge);
-  padding: 10px 6px 8px;
+  border: 1px solid var(--ashford-edge);
+  border-radius: 10px;
+  padding: 8px 4px 6px;
   text-align: center;
   cursor: pointer;
   user-select: none;
-  transition: transform 0.1s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  transition: transform 0.1s ease, box-shadow 0.15s ease, border-color 0.15s ease, background 0.15s ease;
 }
 
 .talent-tile:not(.edit-mode):hover {
   transform: translateY(-2px);
   border-color: var(--ashford-accent);
+  background: var(--ashford-panel-3);
 }
 
 .talent-tile:not(.edit-mode):active { transform: translateY(0); }
@@ -680,13 +694,14 @@
   color: var(--ashford-accent);
 }
 
-.talent-tile-icon { font-size: 20px; line-height: 1; }
+.talent-tile-icon { font-size: 17px; line-height: 1; }
 
 .talent-tile-name {
-  font-size: 11px;
+  font-size: 10px;
+  font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 0.3px;
-  min-height: 2.4em;
+  letter-spacing: 0.2px;
+  min-height: 2.2em;
   display: flex;
   align-items: center;
 }
@@ -694,14 +709,14 @@
 .talent-tile-level {
   font-family: "Courier New", monospace;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .talent-tile-roll {
   position: absolute;
   bottom: 4px;
   right: 6px;
-  font-size: 11px;
+  font-size: 10px;
   opacity: 0.35;
   transition: opacity 0.15s ease, color 0.15s ease;
 }
@@ -711,69 +726,82 @@
    dropped (no color at all, not even a fallback) on older Electron builds some Foundry installs still run. */
 .talent-tile.level--2 {
   border-color: var(--ashford-danger);
-  border-style: double;
-  background: #423126; /* danger 12% into panel-2 */
+  border-width: 2px;
+  background: #3a2923; /* danger 14% into panel-2 */
 }
 .talent-tile.level--2 .talent-tile-level { color: var(--ashford-danger); }
 
 .talent-tile.level--1 {
-  border-color: #9d6050; /* danger 55% into edge */
+  border-color: #a86e5c; /* danger 55% into edge */
 }
-.talent-tile.level--1 .talent-tile-level { color: #db8b77; /* danger 75% into text-dim */ }
+.talent-tile.level--1 .talent-tile-level { color: #e49483; /* danger 80% into text-dim */ }
 
 .talent-tile.level-0 { border-color: var(--ashford-edge); }
 .talent-tile.level-0 .talent-tile-level { color: var(--ashford-text-dim); }
 
 .talent-tile.level-1 {
-  border-color: #647352; /* accent-2 55% into edge */
+  border-color: #75855c; /* accent-2 55% into edge */
 }
 .talent-tile.level-1 .talent-tile-level { color: var(--ashford-accent-2); }
 
 .talent-tile.level-2 {
   border-color: var(--ashford-accent-2);
-  box-shadow: 0 0 6px rgba(122, 155, 110, 0.45);
+  box-shadow: 0 0 6px rgba(139, 178, 122, 0.45);
 }
 .talent-tile.level-2 .talent-tile-level { color: var(--ashford-accent-2); }
 
 .talent-tile.level-3 {
   border-color: var(--ashford-accent-2);
   border-width: 2px;
-  box-shadow: 0 0 8px rgba(122, 155, 110, 0.6);
+  box-shadow: 0 0 8px rgba(139, 178, 122, 0.6);
   animation: ashford-level3-glow 3s ease-in-out infinite;
 }
 .talent-tile.level-3 .talent-tile-level {
   color: var(--ashford-accent-2);
-  text-shadow: 0 0 6px rgba(122, 155, 110, 0.7);
+  text-shadow: 0 0 6px rgba(139, 178, 122, 0.7);
 }
 
 @keyframes ashford-level3-glow {
-  0%, 100% { box-shadow: 0 0 6px rgba(122, 155, 110, 0.45); }
-  50% { box-shadow: 0 0 12px rgba(122, 155, 110, 0.75); }
+  0%, 100% { box-shadow: 0 0 6px rgba(139, 178, 122, 0.45); }
+  50% { box-shadow: 0 0 12px rgba(139, 178, 122, 0.75); }
 }
 
 .talent-tile.edit-mode { cursor: default; }
 
+/* A single +/- stepper instead of separate Stärken/Schwächen fields — a talent is never both at
+   once (one always sits at 0), so exposing two dials just invited invalid-looking states and made
+   it harder to see the point cost at a glance. This always shows exactly one number: the Level. */
 .talent-edit-fields {
   display: flex;
   align-items: center;
-  gap: 4px;
+  justify-content: center;
+  gap: 6px;
   margin-top: 4px;
-  font-size: 11px;
 }
 
-.talent-edit-fields input { width: 28px; }
-
-.talent-edit-fields .talent-delta { font-family: "Courier New", monospace; }
-.talent-edit-fields .talent-delta.positive { color: var(--ashford-accent-2); }
-.talent-edit-fields .talent-delta.negative { color: var(--ashford-danger); }
-
-.ashford-roll-talent {
+.talent-level-btn {
+  width: 20px;
+  height: 20px;
+  line-height: 1;
+  padding: 0;
   background: var(--ashford-panel);
   border: 1px solid var(--ashford-accent);
+  border-radius: 50%;
   color: var(--ashford-accent);
-  font-size: 11px;
-  padding: 1px 5px;
+  font-weight: bold;
+  font-size: 13px;
 }
+
+.talent-level-btn:hover { background: var(--ashford-accent); color: var(--ashford-bg); }
+
+.talent-edit-fields .talent-delta {
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  min-width: 24px;
+}
+
+.talent-edit-fields .talent-delta.positive { color: var(--ashford-accent-2); }
+.talent-edit-fields .talent-delta.negative { color: var(--ashford-danger); }
 
 .ashford-roll-talent:hover { box-shadow: 0 0 5px rgba(201, 131, 47, 0.6); }
 

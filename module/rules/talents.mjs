@@ -68,6 +68,23 @@ export function talentByKey(key) {
   return TALENTS.find(t => t.key === key) ?? null;
 }
 
+/** A talent's single -2..+3 Level is never both Stärken AND Schwächen at once — one always sits at 0. */
+export const TALENT_LEVEL_MIN = -2;
+export const TALENT_LEVEL_MAX = 3;
+
+/**
+ * Converts a single Level (-2..+3, ashford_system_spezifikation.md Abschnitt 2/4) into the underlying
+ * Stärken/Schwächen pair the schema stores. Used by the sheet's +/- level stepper so a player only ever
+ * sees one number per talent — mixing Stärken and Schwächen on the same talent isn't a real build option,
+ * it would just cancel out into a smaller net Level, so the UI shouldn't offer it as if it were two dials.
+ * @param {number} level
+ * @returns {{staerken: number, schwaechen: number}}
+ */
+export function levelToStrengthsWeaknesses(level) {
+  const clamped = Math.max(TALENT_LEVEL_MIN, Math.min(TALENT_LEVEL_MAX, level));
+  return clamped >= 0 ? { staerken: clamped, schwaechen: 0 } : { staerken: 0, schwaechen: -clamped };
+}
+
 /**
  * Würfelzahl = 3 + Stärken − Schwächen (Abschnitt 2.1). Stufe does NOT factor
  * into the dice count, only into the point cost (pointDeltaForTalent below).

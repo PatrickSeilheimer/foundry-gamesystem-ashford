@@ -121,14 +121,9 @@
                   <div class="talent-tile-level">{{signed this.level}}</div>
                   {{#if @root.editMode}}
                     <div class="talent-edit-fields">
-                      <label title="Stärken (0–3)">S+
-                        <input type="number" class="talent-field" data-field="staerken" value="{{this.staerken}}" min="0" max="3">
-                      </label>
-                      <label title="Schwächen (0–2)">S−
-                        <input type="number" class="talent-field" data-field="schwaechen" value="{{this.schwaechen}}" min="0" max="2">
-                      </label>
+                      <button type="button" class="talent-level-btn" data-dir="dec" title="Level senken">−</button>
                       <span class="talent-delta {{#if (gte this.pointDelta 0)}}positive{{else}}negative{{/if}}">{{signed this.pointDelta}}</span>
-                      <button type="button" class="ashford-roll-talent" title="Würfeln"><i class="fas fa-dice-d6"></i></button>
+                      <button type="button" class="talent-level-btn" data-dir="inc" title="Level erhöhen">+</button>
                     </div>
                   {{else}}
                     <div class="talent-tile-roll"><i class="fas fa-dice-d6"></i></div>
