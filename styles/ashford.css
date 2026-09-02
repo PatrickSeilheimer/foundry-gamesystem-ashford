@@ -280,7 +280,14 @@
    the outer window-app wrapper Foundry renders, never on this <form> itself, so a selector requiring
    all three classes on one element never matches anything. Every other .ashford-v2 rule below already
    gets this right; this one didn't, which is why the whole v2 sheet was falling back to unstyled markup. */
+/* height:100% + overflow:hidden pins this to the window's actual (fixed) height instead of growing
+   or shrinking with whichever tab is open — .ash-body (the only child with flex:1 1 auto) absorbs all
+   the size difference and scrolls internally instead. Keeps header/tabs a constant height across tabs
+   and makes the wallpaper background-size:cover consistent (see .ashford-wallpaper below). */
 .ashford-v2 {
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
   font-size: 14px;
   color: var(--ashford-text);
   font-family: "Signika", sans-serif;
@@ -538,8 +545,8 @@
   border-left: 3px solid var(--ashford-accent-2);
   padding: 4px 10px;
   min-width: 76px;
-  width: auto !important;
-  flex: 0 0 auto !important;
+  width: auto;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -660,20 +667,7 @@
 .points-block { border-left-color: var(--ashford-accent); }
 .points-block .stat-value { font-size: 15px; }
 
-/* ---------- Tabs ----------
-   width/box-sizing/min-width pinned explicitly on the header/nav/body: they're flex children of
-   .ashford-v2 (.flexcol), and a flex item's default min-width is its content's intrinsic width, not
-   0 — so anything wide and unwrapped inside ONE tab (e.g. a long condition description) could inflate
-   that tab's natural width past the others, and with it the whole column (nav bar included) which
-   would otherwise be forced to accommodate the widest child ever rendered. Fixing all three to the
-   parent's actual width regardless of content removes that possibility entirely. */
-.ash-header,
-.ash-tabs.sheet-tabs,
-.ash-body {
-  width: 100%;
-  min-width: 0;
-  box-sizing: border-box;
-}
+/* ---------- Tabs ---------- */
 
 .ash-tabs.sheet-tabs {
   display: flex;
@@ -717,8 +711,15 @@
   padding: 0 2px;
 }
 
+/* flex:1 1 auto + min-height:0 makes this the ONE part of the sheet that scrolls internally, while
+   .ashford-v2 itself stays pinned to the window's actual height (see below) — so header/tabs never
+   grow or shrink with tab content, and the wallpaper's background-size:cover is always computed
+   against the same constant box no matter which tab is open. */
 .ash-body {
   padding-top: 8px;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
   overflow-x: hidden;
   overflow-wrap: anywhere;
 }

@@ -61,6 +61,11 @@
         </div>
       </div>
 
+      <div class="ash-stat melee-block">
+        <div class="stat-label">{{localize "ASHFORD.Sheet.meleeDamage"}}</div>
+        <div class="stat-value big">{{signed system.derived.nahkampfschaden}}</div>
+      </div>
+
       <div class="ash-stat dodge-block">
         <div class="stat-label">{{localize "ASHFORD.Sheet.dodge"}}</div>
         <div class="stat-value big">{{system.derived.ausweichen}}</div>
@@ -80,11 +85,6 @@
         <div class="stat-label">{{localize "ASHFORD.Sheet.initiativeMod"}}</div>
         <div class="stat-value big">{{signed system.derived.initiativeMod}} <i class="fas fa-dice-d20 roll-hint-icon"></i></div>
       </button>
-
-      <div class="ash-stat melee-block">
-        <div class="stat-label">{{localize "ASHFORD.Sheet.meleeDamage"}}</div>
-        <div class="stat-value big">{{signed system.derived.nahkampfschaden}}</div>
-      </div>
 
       {{#if editMode}}
         <div class="ash-stat points-block">
