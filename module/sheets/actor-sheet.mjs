@@ -1,7 +1,12 @@
 import { EQUIP_SLOTS, ARMOR_TYPES, ITEM_CATEGORIES, ITEM_CATEGORY_LABELS } from "../models/gear.mjs";
 import { talentOrderIndex, levelToStrengthsWeaknesses } from "../rules/talents.mjs";
-import { conditionByKey, conditionCategoryLabel, conditionDurationLabel } from "../rules/conditions.mjs";
-import AshfordConditionPicker from "../apps/condition-picker.mjs";
+import {
+  CONDITIONS,
+  CONDITION_CATEGORIES,
+  conditionByKey,
+  conditionCategoryLabel,
+  conditionDurationLabel
+} from "../rules/conditions.mjs";
 
 const SLOT_ICONS = {
   head: "fas fa-hard-hat",
@@ -111,6 +116,23 @@ export default class AshfordActorSheet extends ActorSheet {
       c => HEADER_CRITICAL_CONDITION_KEYS.has(c.conditionKey) || c.severity === "kritisch"
     );
 
+    // Zustands-Katalog als Toggle-Raster (Linksklick = hinzufügen, Rechtsklick = entfernen), gruppiert
+    // nach Kategorie — nur Kategorien mit mindestens einem Katalog-Eintrag werden überhaupt angezeigt.
+    context.conditionCatalogGroups = CONDITION_CATEGORIES.map(cat => ({
+      label: cat.label,
+      conditions: CONDITIONS.filter(entry => entry.category === cat.key).map(entry => {
+        const activeItem = conditions.find(c => c.system.active && c.system.conditionKey === entry.key);
+        return {
+          key: entry.key,
+          name: entry.name,
+          icon: entry.icon,
+          severity: entry.severity,
+          active: !!activeItem,
+          itemId: activeItem?.id ?? null
+        };
+      })
+    })).filter(group => group.conditions.length > 0);
+
     return context;
   }
 
@@ -194,6 +216,32 @@ export default class AshfordActorSheet extends ActorSheet {
       effects: (item.system.effects ?? []).filter(e => e.label),
       active: item.system.active
     };
+  }
+
+  /** Creates a fresh embedded "condition" Item from a catalog entry's defaults — the Zustand-tab grid's left-click action. */
+  _addConditionFromCatalog(key) {
+    const catalogEntry = conditionByKey(key);
+    if (!catalogEntry) return;
+    return this.actor.createEmbeddedDocuments("Item", [
+      {
+        name: catalogEntry.name,
+        type: "condition",
+        img: "icons/svg/skull.svg",
+        system: {
+          conditionKey: catalogEntry.key,
+          category: catalogEntry.category,
+          severity: catalogEntry.severity,
+          active: true,
+          duration: {
+            type: catalogEntry.defaultDuration.type,
+            value: catalogEntry.defaultDuration.value ?? 0,
+            eventLabel: catalogEntry.defaultDuration.eventLabel ?? ""
+          },
+          effects: catalogEntry.effects,
+          description: `<p>${catalogEntry.description}</p>`
+        }
+      }
+    ]);
   }
 
   /** @override */
@@ -284,8 +332,17 @@ export default class AshfordActorSheet extends ActorSheet {
       if (item) item.update({ "system.equipped": true });
     });
 
-    // Zustand-Tab
-    html.find(".ashford-add-condition").on("click", () => AshfordConditionPicker.prompt(this.actor));
+    // Zustand-Tab: Katalog-Raster — linksklick fügt hinzu, rechtsklick entfernt (nur wenn schon aktiv).
+    html.find(".condition-catalog-tile").on("click", ev => {
+      const tile = ev.currentTarget;
+      if (tile.classList.contains("active")) return;
+      this._addConditionFromCatalog(tile.dataset.key);
+    });
+    html.find(".condition-catalog-tile").on("contextmenu", ev => {
+      ev.preventDefault();
+      const tile = ev.currentTarget;
+      if (tile.dataset.itemId) this.actor.items.get(tile.dataset.itemId)?.delete();
+    });
     html.find(".ashford-end-condition").on("click", ev => {
       const itemId = ev.currentTarget.closest("[data-item-id]").dataset.itemId;
       this.actor.items.get(itemId)?.update({ "system.active": false });

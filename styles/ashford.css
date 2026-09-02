@@ -1125,18 +1125,6 @@
 
 /* ---------- Zustand (conditions) ---------- */
 
-.condition-toolbar { margin-bottom: 8px; }
-
-.ashford-add-condition {
-  background: var(--ashford-panel-2);
-  border: 1px solid var(--ashford-accent);
-  color: var(--ashford-accent);
-  font-weight: bold;
-  padding: 6px 14px;
-}
-
-.ashford-add-condition:hover { background: var(--ashford-accent); color: var(--ashford-bg); }
-
 .condition-list {
   display: flex;
   flex-direction: column;
@@ -1199,133 +1187,51 @@
 .card-effects { margin: 4px 0; padding-left: 16px; }
 .card-source, .card-note { color: var(--ashford-text-dim); font-size: 11px; margin: 2px 0; }
 
-/* ---------- Condition picker dialog ----------
-   Kept deliberately simple after the first version turned out cramped and hard to use: the
-   catalog list only shows icon/name/severity (the full description moves into a one-line summary
-   below once something is selected), and the whole form scrolls internally with a safety-margin
-   max-height so it can never get clipped by the dialog's own title bar/footer buttons, regardless
-   of exactly how much room DialogV2's chrome leaves for content. */
-.ashford-condition-picker-form {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  max-height: 60vh;
-  overflow-y: auto;
-  padding-right: 4px;
+/* ---------- Condition catalog grid (Zustand-Tab) ----------
+   Replaces the old "+ Zustand hinzufügen" button + popup dialog entirely — that dialog turned out
+   cramped and fiddly. Left-click a tile to add that condition, right-click an active one to remove
+   it again; no modal round-trip. Fine-tuning (Dauer, Notiz, Quelle...) still happens on the resulting
+   embedded Item's own sheet, opened from the "Aktive Zustände" card list below this grid. */
+.condition-catalog-group { margin-bottom: 10px; }
+
+.condition-catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 6px;
 }
 
-.ashford-condition-picker-form .cp-search-row input {
-  width: 100%;
-  background: var(--ashford-panel-2);
-  border: 1px solid var(--ashford-edge);
-  color: var(--ashford-text);
-  padding: 6px 8px;
-}
-
-.ashford-condition-picker-form .cp-chip-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-}
-
-.ashford-condition-picker-form .cp-chip {
-  font-size: 11px;
-  padding: 4px 10px;
-  border: 1px solid var(--ashford-edge);
-  border-radius: 12px;
-  color: var(--ashford-text-dim);
-  cursor: pointer;
-}
-
-.ashford-condition-picker-form .cp-chip.active {
-  border-color: var(--ashford-accent);
-  color: var(--ashford-accent);
-}
-
-.ashford-condition-picker-form .cp-condition-list {
-  max-height: 240px;
-  overflow-y: auto;
-  border: 1px solid var(--ashford-edge);
-}
-
-.ashford-condition-picker-form .cp-condition-row {
+.condition-catalog-tile {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   padding: 6px 8px;
-  border-bottom: 1px solid var(--ashford-edge);
-  cursor: pointer;
-}
-
-.ashford-condition-picker-form .cp-condition-row:hover { background: var(--ashford-panel-2); }
-.ashford-condition-picker-form .cp-condition-row.selected {
-  background: var(--ashford-panel-3);
-  border-left: 3px solid var(--ashford-accent);
-}
-
-.ashford-condition-picker-form .cp-icon { width: 16px; text-align: center; color: var(--ashford-text-dim); }
-.ashford-condition-picker-form .cp-icon.severity-gering { color: var(--ashford-sev-gering); }
-.ashford-condition-picker-form .cp-icon.severity-mittel { color: var(--ashford-sev-mittel); }
-.ashford-condition-picker-form .cp-icon.severity-schwer { color: var(--ashford-sev-schwer); }
-.ashford-condition-picker-form .cp-icon.severity-kritisch { color: var(--ashford-sev-kritisch); }
-
-.ashford-condition-picker-form .cp-condition-name { flex: 1; font-size: 12px; }
-
-.ashford-condition-picker-form .cp-severity-badge {
-  font-size: 10px;
-  text-transform: uppercase;
-  padding: 1px 6px;
-  border: 1px solid currentColor;
+  background: var(--ashford-panel-2);
+  border: 1px solid var(--ashford-edge);
   border-radius: 8px;
-}
-.ashford-condition-picker-form .cp-severity-badge.severity-gering { color: var(--ashford-sev-gering); }
-.ashford-condition-picker-form .cp-severity-badge.severity-mittel { color: var(--ashford-sev-mittel); }
-.ashford-condition-picker-form .cp-severity-badge.severity-schwer { color: var(--ashford-sev-schwer); }
-.ashford-condition-picker-form .cp-severity-badge.severity-kritisch { color: var(--ashford-sev-kritisch); }
-
-.ashford-condition-picker-form .cp-selected-hint {
-  font-size: 12px;
-  color: var(--ashford-text-dim);
-  margin: 0;
-  padding: 6px 8px;
-  background: var(--ashford-panel-2);
-  border-left: 3px solid var(--ashford-accent);
-}
-
-.ashford-condition-picker-form .cp-details {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  border: 1px solid var(--ashford-edge);
-  padding: 8px;
-}
-
-.ashford-condition-picker-form .cp-details legend {
+  cursor: pointer;
   font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: var(--ashford-text-dim);
-  padding: 0 4px;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.1s ease;
 }
 
-.ashford-condition-picker-form .cp-details label {
-  display: block;
-  font-size: 11px;
-  color: var(--ashford-text-dim);
-  text-transform: uppercase;
-}
+.condition-catalog-tile:hover { transform: translateY(-1px); border-color: var(--ashford-accent); }
+.condition-catalog-tile span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.condition-catalog-tile i { flex: 0 0 auto; color: var(--ashford-text-dim); }
 
-.ashford-condition-picker-form .cp-details input,
-.ashford-condition-picker-form .cp-details select,
-.ashford-condition-picker-form .cp-details textarea {
-  width: 100%;
-  background: var(--ashford-panel-2);
-  border: 1px solid var(--ashford-edge);
-  color: var(--ashford-text);
-  padding: 4px 6px;
-  margin-top: 2px;
-  font-size: 12px;
+.condition-catalog-tile.severity-gering i { color: var(--ashford-sev-gering); }
+.condition-catalog-tile.severity-mittel i { color: var(--ashford-sev-mittel); }
+.condition-catalog-tile.severity-schwer i { color: var(--ashford-sev-schwer); }
+.condition-catalog-tile.severity-kritisch i { color: var(--ashford-sev-kritisch); }
+
+.condition-catalog-tile.active {
+  background: var(--ashford-panel-3);
+  border-color: currentColor;
+  box-shadow: 0 0 0 1px currentColor inset;
 }
+.condition-catalog-tile.active.severity-gering { color: var(--ashford-sev-gering); }
+.condition-catalog-tile.active.severity-mittel { color: var(--ashford-sev-mittel); }
+.condition-catalog-tile.active.severity-schwer { color: var(--ashford-sev-schwer); }
+.condition-catalog-tile.active.severity-kritisch { color: var(--ashford-sev-kritisch); }
+.condition-catalog-tile.active span { color: var(--ashford-text); font-weight: bold; }
 
 /* ---------- Item sheet: armor damage-type grid, effect rows ---------- */
 

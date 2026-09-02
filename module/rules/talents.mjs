@@ -98,11 +98,14 @@ export function diceCountForTalent(staerken = 0, schwaechen = 0) {
 /**
  * Point delta for a single talent's current Stärken/Schwächen (Abschnitt 4).
  * Positive = points gained back into the budget, negative = points spent.
- * Waffentalente refund only +1 per Schwäche instead of the full Stufe.
- * @param {{stufe:number, staerken?:number, schwaechen?:number, waffentalent?:boolean}} talent
+ * Stärken always cost Stufe points each. The Schwächen-Rückerstattung is purely Stufe-based now
+ * (not tied to `waffentalent` anymore) and gets progressively stingier at higher Stufe:
+ *   - Stufe 1 & 2: jede Schwäche gibt genau 1 Punkt zurück.
+ *   - Stufe 3: nur jede ZWEITE Schwäche gibt einen Punkt zurück (die erste allein gibt nichts).
+ * @param {{stufe:number, staerken?:number, schwaechen?:number}} talent
  */
-export function pointDeltaForTalent({ stufe, staerken = 0, schwaechen = 0, waffentalent = false }) {
+export function pointDeltaForTalent({ stufe, staerken = 0, schwaechen = 0 }) {
   const kosten = (staerken ?? 0) * stufe;
-  const rueckerstattung = waffentalent ? (schwaechen ?? 0) * 1 : (schwaechen ?? 0) * stufe;
+  const rueckerstattung = stufe >= 3 ? Math.floor((schwaechen ?? 0) / 2) : (schwaechen ?? 0);
   return rueckerstattung - kosten;
 }

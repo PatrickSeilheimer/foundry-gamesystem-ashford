@@ -286,9 +286,20 @@
     </div>
 
     <div class="tab" data-group="primary" data-tab="condition">
-      <div class="condition-toolbar">
-        <button type="button" class="ashford-add-condition">{{localize "ASHFORD.Sheet.addCondition"}}</button>
-      </div>
+      <p class="hint">Linksklick fügt einen Zustand hinzu, Rechtsklick entfernt ihn wieder.</p>
+      {{#each conditionCatalogGroups}}
+        <div class="condition-catalog-group">
+          <div class="talent-tier-heading">{{this.label}}</div>
+          <div class="condition-catalog-grid">
+            {{#each this.conditions}}
+              <div class="condition-catalog-tile severity-{{this.severity}} {{#if this.active}}active{{/if}}" data-key="{{this.key}}" data-item-id="{{this.itemId}}" title="{{this.name}}">
+                <i class="{{this.icon}}"></i>
+                <span>{{this.name}}</span>
+              </div>
+            {{/each}}
+          </div>
+        </div>
+      {{/each}}
 
       <h3>{{localize "ASHFORD.Sheet.activeConditions"}}</h3>
       <div class="condition-list">

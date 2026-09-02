@@ -28,10 +28,10 @@
       <label>Stärken (0–3, je +1 Würfel, kostet Stufe × 1 Punkt)
         <input type="number" name="system.staerken" value="{{system.staerken}}" min="0" max="3">
       </label>
-      <label>Schwächen (0–2, je −1 Würfel, gibt Punkte zurück)
+      <label>Schwächen (0–2, je −1 Würfel; Stufe 1/2: 1 Punkt pro Schwäche, Stufe 3: 1 Punkt pro 2 Schwächen)
         <input type="number" name="system.schwaechen" value="{{system.schwaechen}}" min="0" max="2">
       </label>
-      <label><input type="checkbox" name="system.waffentalent" {{#if system.waffentalent}}checked{{/if}} {{#if isCanonicalTalent}}disabled{{/if}}> Waffentalent (Schwächen geben nur +1 Punkt statt Stufe × 1)</label>
+      <label><input type="checkbox" name="system.waffentalent" {{#if system.waffentalent}}checked{{/if}} {{#if isCanonicalTalent}}disabled{{/if}}> Waffentalent (bindet dieses Talent an eine Waffen-Kategorie, siehe Feld "Kategorie")</label>
       <label>Kategorie <input type="text" name="system.kategorie" value="{{system.kategorie}}" placeholder="fernkampf, nahkampf_hieb, ..." {{#if isCanonicalTalent}}disabled{{/if}}></label>
       <p class="hint">Würfelzahl: {{diceCount}}. Punkte-Delta: {{signed pointDelta}} (positiv = Rückerstattung, negativ = Kosten).</p>
     {{/if}}
