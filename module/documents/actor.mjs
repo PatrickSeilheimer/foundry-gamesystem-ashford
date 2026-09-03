@@ -55,6 +55,32 @@ export default class AshfordActor extends Actor {
     });
   }
 
+  /**
+   * Rolls a consumable's healing dice (e.g. Adrenalin-Spritze) and adds the total to the CURRENT
+   * Foundry target's health if exactly one token is targeted, otherwise to this actor itself
+   * ("Ziel: anvisiert oder self" — same targeting convention as the attack-roll dialog). Still
+   * ticks down usesRemaining like a normal use, but posts one combined chat message instead of
+   * calling useConsumable() too (which would double up the flavor text).
+   */
+  async rollConsumableHeal(itemId) {
+    const item = this.items.get(itemId);
+    if (!item || item.type !== "consumable") return ui.notifications?.warn("Gegenstand nicht gefunden.");
+    const formula = item.system.healFormula?.trim();
+    if (!formula) return ui.notifications?.warn(`${item.name} hat keinen Heilungswürfel eingetragen.`);
+    if (item.system.usesRemaining <= 0) return ui.notifications?.warn(`${item.name} ist aufgebraucht.`);
+
+    const targetActor = game.user?.targets?.size === 1 ? [...game.user.targets][0]?.actor ?? this : this;
+    const roll = new Roll(formula);
+    await roll.evaluate();
+    await targetActor.applyHealthDelta(roll.total);
+    await item.update({ "system.usesRemaining": item.system.usesRemaining - 1 });
+
+    return roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      flavor: `${item.name} — Heilung für ${targetActor.name} (+${roll.total} LP)`
+    });
+  }
+
   /** Open the roll dialog for one embedded talent Item (the normal way to roll in Ashford). */
   async rollTalent(talentId, options = {}) {
     const talent = this.items.get(talentId);

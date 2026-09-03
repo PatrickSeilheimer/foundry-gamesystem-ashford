@@ -22,10 +22,10 @@
       {{#if isCanonicalTalent}}
         <p class="hint">Kanonisches Talent aus der geschlossenen Liste (Abschnitt 5) — Stufe und Waffentalent-Status sind fest.</p>
       {{/if}}
-      <label>Stufe (Kostenmultiplikator)
+      <label>Stufe (bestimmt die Stärken-Kostenkurve, s.u.)
         <input type="number" name="system.stufe" value="{{system.stufe}}" min="1" max="3" {{#if isCanonicalTalent}}disabled{{/if}}>
       </label>
-      <label>Stärken (0–3, je +1 Würfel, kostet Stufe × 1 Punkt)
+      <label>Stärken (0–3, je +1 Würfel; Kosten steigen pro Punkt — Stufe 1: 1/1/2, Stufe 2: 2/3/4, Stufe 3: 3/5/9)
         <input type="number" name="system.staerken" value="{{system.staerken}}" min="0" max="3">
       </label>
       <label>Schwächen (0–2, je −1 Würfel; Stufe 1/2: 1 Punkt pro Schwäche, Stufe 3: 0,5 Punkte pro Schwäche)
@@ -108,6 +108,9 @@
       <label>Aktions-Label <input type="text" name="system.actionLabel" value="{{system.actionLabel}}" placeholder="Benutzen / Essen / Trinken / Anwenden"></label>
       <label>Infektions-Änderung bei Benutzung (0 = kein Effekt; großer negativer Wert = vollständig heilen)
         <input type="number" name="system.infectionDelta" value="{{system.infectionDelta}}">
+      </label>
+      <label>Heilungswürfel (z.B. 3d6 — eigener Würfel-Button im Rucksack, addiert auf Ziel/self)
+        <input type="text" name="system.healFormula" value="{{system.healFormula}}" placeholder="leer = kein Heilungswurf">
       </label>
 
       <h4>Combi-Item</h4>

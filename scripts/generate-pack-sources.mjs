@@ -515,6 +515,7 @@ for (const c of CONSUMABLE_ITEMS) {
       actionLabel: c.actionLabel,
       comboItems: c.comboItems ?? [],
       infectionDelta: c.infectionDelta ?? 0,
+      healFormula: c.healFormula ?? "",
       quantity: 1,
       weight: 0
     },

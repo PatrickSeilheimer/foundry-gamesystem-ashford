@@ -168,6 +168,10 @@ export default class AshfordActorSheet extends ActorSheet {
       base.accuracyBonus = item.system.accuracyBonus;
       base.initiativeMod = item.system.initiativeMod;
       base.isRanged = item.system.isRanged;
+      // Für den "Treffer"-Button: welches Talent auf diesem Actor zur Waffen-Kategorie gehört.
+      base.talentId = this.actor.items.find(
+        t => t.type === "talent" && t.system.talentKey === item.system.weaponSkill
+      )?.id ?? null;
     }
     return base;
   }
@@ -204,7 +208,8 @@ export default class AshfordActorSheet extends ActorSheet {
       weight: item.system.weight,
       category: item.system.category || "sonstiges",
       usesRemaining: item.type === "consumable" ? item.system.usesRemaining : null,
-      actionLabel: item.type === "consumable" ? item.system.actionLabel || "Benutzen" : null
+      actionLabel: item.type === "consumable" ? item.system.actionLabel || "Benutzen" : null,
+      healFormula: item.type === "consumable" ? item.system.healFormula || "" : ""
     };
   }
 
@@ -322,6 +327,14 @@ export default class AshfordActorSheet extends ActorSheet {
     html.find(".ashford-roll-weapon-damage").on("click", ev => {
       const itemId = ev.currentTarget.closest("[data-item-id]").dataset.itemId;
       this.actor.rollWeaponDamage(itemId);
+    });
+    html.find(".ashford-roll-weapon-attack").on("click", ev => {
+      const talentId = ev.currentTarget.dataset.talentId;
+      if (talentId) this.actor.rollTalent(talentId);
+    });
+    html.find(".ashford-roll-heal").on("click", ev => {
+      const itemId = ev.currentTarget.closest("[data-item-id]").dataset.itemId;
+      this.actor.rollConsumableHeal(itemId);
     });
 
     // Inventar-Suche/Filter: rein clientseitig, kein Re-Render nötig.

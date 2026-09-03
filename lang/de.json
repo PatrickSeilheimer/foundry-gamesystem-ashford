@@ -74,6 +74,8 @@
   "ASHFORD.Sheet.weaponsEquipped": "Geführte Waffen",
   "ASHFORD.Sheet.noWeaponEquipped": "Keine Waffe geführt.",
   "ASHFORD.Sheet.rollDamage": "Schaden",
+  "ASHFORD.Sheet.rollAttack": "Treffer",
+  "ASHFORD.Sheet.rollHeal": "Heilen",
   "ASHFORD.Sheet.equipToggle": "angelegt",
   "ASHFORD.Sheet.chooseSlot": "Slot wählen",
   "ASHFORD.Sheet.endCondition": "Beenden",

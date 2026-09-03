@@ -11,6 +11,7 @@
     "actionLabel": "Injizieren",
     "comboItems": [],
     "infectionDelta": 0,
+    "healFormula": "3d6",
     "quantity": 1,
     "weight": 0
   },

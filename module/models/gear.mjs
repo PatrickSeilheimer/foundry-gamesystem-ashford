@@ -121,7 +121,10 @@ export class AshfordConsumable extends AshfordPhysicalItem {
       // Verschiebt beim Benutzen den (für Spieler unsichtbaren) Infektionswert direkt — z.B. Antimykotikum/
       // Desinfektionsmittel setzen ihn mit einem großen negativen Wert auf 0 (geclamped in base-actor.mjs),
       // ohne dass der Spielleiter eingreifen muss. 0 = kein Effekt (Normalfall für alle anderen Items).
-      infectionDelta: new NumberField({ required: true, integer: true, initial: 0 })
+      infectionDelta: new NumberField({ required: true, integer: true, initial: 0 }),
+      // Falls gefüllt (z.B. Adrenalin-Spritze: "3d6"): eigener Würfel-Button im Rucksack würfelt diese
+      // Formel und addiert das Ergebnis auf die Gesundheit des Ziels (AshfordActor#rollConsumableHeal).
+      healFormula: new StringField({ required: false, blank: true })
     };
   }
 }

@@ -11,6 +11,7 @@
     "actionLabel": "Anlegen",
     "comboItems": [],
     "infectionDelta": 0,
+    "healFormula": "",
     "quantity": 1,
     "weight": 0
   },

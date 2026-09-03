@@ -952,14 +952,14 @@
 
 /* ---------- Inventory ---------- */
 
-/* 5 Körper-Slots, einspaltig gestapelt — Waffen sind bewusst NICHT Teil dieser Silhouette
-   (eigenes .weapons-panel darunter), weil sie unabhängig von jedem Körper-Slot geführt werden. */
+/* 5 Körper-Slots in EINER Reihe statt untereinander — spart deutlich vertikalen Platz. Waffen sind
+   bewusst NICHT Teil dieser Reihe (eigenes .weapons-panel darunter), weil sie unabhängig von jedem
+   Körper-Slot geführt werden. */
 .equip-silhouette {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(5, minmax(80px, 1fr));
   gap: 8px;
-  max-width: 220px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .equip-slot {
@@ -1042,7 +1042,8 @@
 
 .weapon-row .row-name { font-weight: bold; }
 
-.ashford-roll-weapon-damage {
+.ashford-roll-weapon-damage,
+.ashford-roll-weapon-attack {
   background: var(--ashford-panel);
   border: 1px solid var(--ashford-accent);
   color: var(--ashford-accent);
@@ -1051,7 +1052,11 @@
   white-space: nowrap;
 }
 
-.ashford-roll-weapon-damage:hover { background: var(--ashford-accent); color: var(--ashford-bg); }
+.ashford-roll-weapon-damage:hover,
+.ashford-roll-weapon-attack:hover { background: var(--ashford-accent); color: var(--ashford-bg); }
+
+.ashford-roll-weapon-attack { border-color: var(--ashford-accent-2); color: var(--ashford-accent-2); }
+.ashford-roll-weapon-attack:hover { background: var(--ashford-accent-2); color: var(--ashford-bg); }
 
 .inventory-panel { margin-bottom: 10px; }
 
@@ -1154,15 +1159,22 @@
   white-space: nowrap;
 }
 
-.ashford-use-consumable {
+.ashford-use-consumable,
+.ashford-roll-heal {
   background: var(--ashford-panel);
   border: 1px solid var(--ashford-accent);
   color: var(--ashford-accent);
-  font-size: 11px;
-  padding: 2px 8px;
+  font-size: 10px;
+  line-height: 1;
+  padding: 2px 6px;
+  white-space: nowrap;
 }
 
-.ashford-use-consumable:hover { background: var(--ashford-accent); color: var(--ashford-bg); }
+.ashford-use-consumable:hover,
+.ashford-roll-heal:hover { background: var(--ashford-accent); color: var(--ashford-bg); }
+
+.ashford-roll-heal { border-color: var(--ashford-accent-2); color: var(--ashford-accent-2); }
+.ashford-roll-heal:hover { background: var(--ashford-accent-2); color: var(--ashford-bg); }
 
 .row-uses { font-size: 11px; color: var(--ashford-text-dim); }
 
@@ -1302,6 +1314,7 @@
   .talent-tier-grid { grid-template-columns: repeat(2, 1fr); }
   .dossier { grid-template-columns: 1fr; }
   .ash-header-top { flex-wrap: wrap; }
+  .equip-silhouette { grid-template-columns: repeat(3, minmax(70px, 1fr)); }
 }
 
 /* ---------- GM Infektions-Tracker (module/apps/infection-tracker.mjs) ---------- */

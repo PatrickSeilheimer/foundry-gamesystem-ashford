@@ -96,10 +96,30 @@ export function diceCountForTalent(staerken = 0, schwaechen = 0) {
 }
 
 /**
+ * Marginal cost of the 1st/2nd/3rd Stärken-Punkt on a single talent, indexed by Stufe. Each step
+ * costs MORE than the last (bewusst progressiv, um Min-Maxing auf ein einzelnes Talent zu bestrafen) —
+ * e.g. Stufe 3: der 1. Punkt kostet 3, der 2. kostet 5 (5 mehr, macht 8 kumuliert), der 3. kostet 9
+ * (macht 17 kumuliert). Stufe 1 ist am günstigsten und wächst am langsamsten.
+ */
+const STAERKEN_COST_TABLE = {
+  1: [1, 1, 2],
+  2: [2, 3, 4],
+  3: [3, 5, 9]
+};
+
+/** Cumulative cost of raising a talent's Stärken from 0 to `staerken`, via STAERKEN_COST_TABLE. */
+function staerkenCost(stufe, staerken) {
+  const table = STAERKEN_COST_TABLE[stufe] ?? STAERKEN_COST_TABLE[1];
+  let total = 0;
+  for (let i = 0; i < staerken; i++) total += table[Math.min(i, table.length - 1)];
+  return total;
+}
+
+/**
  * Point delta for a single talent's current Stärken/Schwächen (Abschnitt 4).
  * Positive = points gained back into the budget, negative = points spent.
- * Stärken always cost Stufe points each. The Schwächen-Rückerstattung is purely Stufe-based now
- * (not tied to `waffentalent` anymore) and gets progressively stingier at higher Stufe:
+ * Stärken-Kosten steigen pro Punkt progressiv an (STAERKEN_COST_TABLE), nicht mehr linear mit Stufe × Anzahl.
+ * Die Schwächen-Rückerstattung ist weiterhin Stufe-basiert und gets progressively stingier at higher Stufe:
  *   - Stufe 1 & 2: jede Schwäche gibt genau 1 Punkt zurück.
  *   - Stufe 3: jede Schwäche gibt nur einen halben Punkt zurück. Das ist bewusst ein Bruchwert statt
  *     eines Rundens pro Talent — zwei Stufe-3-Schwächen auf UNTERSCHIEDLICHEN Talenten sollen sich
@@ -108,7 +128,7 @@ export function diceCountForTalent(staerken = 0, schwaechen = 0) {
  * @param {{stufe:number, staerken?:number, schwaechen?:number}} talent
  */
 export function pointDeltaForTalent({ stufe, staerken = 0, schwaechen = 0 }) {
-  const kosten = (staerken ?? 0) * stufe;
+  const kosten = staerkenCost(stufe, staerken ?? 0);
   const rueckerstattung = stufe >= 3 ? (schwaechen ?? 0) * 0.5 : (schwaechen ?? 0);
   return rueckerstattung - kosten;
 }

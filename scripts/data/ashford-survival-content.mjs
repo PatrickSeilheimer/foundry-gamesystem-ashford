@@ -20,6 +20,7 @@
  * @property {number} [usesRemaining] - default 1
  * @property {{name:string, quantity:number}[]} [comboItems] - macht daraus ein Combi-Item (siehe oben)
  * @property {number} [infectionDelta] - verschiebt beim Benutzen direkt den (spielerunsichtbaren) Infektionswert
+ * @property {string} [healFormula] - z.B. "3d6": eigener Würfel-Button, addiert das Ergebnis auf das Ziel/self
  */
 
 /** @type {ConsumableEntry[]} */
@@ -46,7 +47,8 @@ export const CONSUMABLE_ITEMS = [
     name: "Adrenalin-Spritze",
     category: "medizin",
     actionLabel: "Injizieren",
-    description: "Heilt sofort 3W6 LP, stabilisiert das Ziel und weckt einen bewusstlosen oder sterbenden Charakter sofort auf."
+    description: "Heilt sofort 3W6 LP, stabilisiert das Ziel und weckt einen bewusstlosen oder sterbenden Charakter sofort auf.",
+    healFormula: "3d6"
   },
   {
     name: "Desinfektionsmittel",

@@ -192,7 +192,7 @@
                   <span class="slot-item-armor">🔫{{this.item.armor.ballistic}} 🗡️{{this.item.armor.pierce}} 🔨{{this.item.armor.blunt}} ⚔️{{this.item.armor.slash}}</span>
                 {{/if}}
                 <div class="slot-item-actions">
-                  <a class="item-edit" title="Öffnen"><i class="fas fa-edit"></i></a>
+                  {{#if @root.isGM}}<a class="item-edit" title="Öffnen"><i class="fas fa-edit"></i></a>{{/if}}
                   <a class="ashford-unequip" title="{{localize 'ASHFORD.Sheet.unequip'}}"><i class="fas fa-times"></i></a>
                 </div>
               </div>
@@ -210,8 +210,11 @@
             <div class="weapon-row" data-item-id="{{this.id}}">
               <span class="row-name">{{this.name}}</span>
               <span class="row-stats">🎲 {{this.damageFormula}}{{#if this.accuracyBonus}} · {{signed this.accuracyBonus}} Treffer{{/if}}{{#if this.initiativeMod}} · {{signed this.initiativeMod}} Ini{{/if}}</span>
+              {{#if this.talentId}}
+                <button type="button" class="ashford-roll-weapon-attack" data-talent-id="{{this.talentId}}" title="Treffer würfeln"><i class="fas fa-crosshairs"></i> {{localize "ASHFORD.Sheet.rollAttack"}}</button>
+              {{/if}}
               <button type="button" class="ashford-roll-weapon-damage" title="Schaden würfeln"><i class="fas fa-dice-d6"></i> {{localize "ASHFORD.Sheet.rollDamage"}}</button>
-              <a class="item-edit" title="Öffnen"><i class="fas fa-edit"></i></a>
+              {{#if @root.isGM}}<a class="item-edit" title="Öffnen"><i class="fas fa-edit"></i></a>{{/if}}
               <a class="ashford-unequip" title="{{localize 'ASHFORD.Sheet.unequip'}}"><i class="fas fa-times"></i></a>
             </div>
           {{else}}
@@ -248,7 +251,7 @@
                   <span class="row-stats">🎲 {{this.damageFormula}}{{#if this.accuracyBonus}} · {{signed this.accuracyBonus}}{{/if}}</span>
                   <button type="button" class="ashford-equip">{{localize "ASHFORD.Sheet.equip"}}</button>
                 {{/if}}
-                <a class="item-edit"><i class="fas fa-edit"></i></a>
+                {{#if @root.isGM}}<a class="item-edit"><i class="fas fa-edit"></i></a>{{/if}}
                 <a class="item-delete"><i class="fas fa-trash"></i></a>
               </div>
               {{#if this.comparison}}
@@ -267,8 +270,10 @@
             <p class="hint">Keine ausrüstbaren Gegenstände im Rucksack.</p>
           {{/each}}
         </div>
-        <a class="item-create" data-type="weapon">+ Waffe</a>
-        <a class="item-create" data-type="armor">+ Rüstung</a>
+        {{#if isGM}}
+          <a class="item-create" data-type="weapon">+ Waffe</a>
+          <a class="item-create" data-type="armor">+ Rüstung</a>
+        {{/if}}
       </div>
 
       <div class="inventory-panel">
@@ -290,19 +295,24 @@
               <span class="row-qty">x{{this.quantity}}</span>
               {{#if this.weight}}<span class="row-weight">{{this.weight}} kg</span>{{/if}}
               <span class="row-category">{{this.category}}</span>
+              {{#if this.healFormula}}
+                <button type="button" class="ashford-roll-heal" title="Heilung würfeln (Ziel: anvisiert oder self)"><i class="fas fa-dice-d6"></i> {{localize "ASHFORD.Sheet.rollHeal"}}</button>
+              {{/if}}
               {{#if this.actionLabel}}
                 <button type="button" class="ashford-use-consumable">{{this.actionLabel}}</button>
                 <span class="row-uses">({{this.usesRemaining}})</span>
               {{/if}}
-              <a class="item-edit"><i class="fas fa-edit"></i></a>
+              {{#if @root.isGM}}<a class="item-edit"><i class="fas fa-edit"></i></a>{{/if}}
               <a class="item-delete"><i class="fas fa-trash"></i></a>
             </div>
           {{else}}
             <p class="hint">Rucksack leer.</p>
           {{/each}}
         </div>
-        <a class="item-create" data-type="equipment">+ Ausrüstung</a>
-        <a class="item-create" data-type="consumable">+ Verbrauchsgegenstand</a>
+        {{#if isGM}}
+          <a class="item-create" data-type="equipment">+ Ausrüstung</a>
+          <a class="item-create" data-type="consumable">+ Verbrauchsgegenstand</a>
+        {{/if}}
       </div>
     </div>
 
