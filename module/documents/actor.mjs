@@ -10,6 +10,17 @@ export default class AshfordActor extends Actor {
     return this.update({ "system.resources.health.value": current + delta });
   }
 
+  /**
+   * Infektions-Gegner (0-7) verschieben — für den GM-Tracker (module/apps/infection-tracker.mjs)
+   * UND für Items wie Antimykotikum/Desinfektionsmittel, die den Wert ohne GM-Eingriff direkt
+   * beeinflussen (module/documents/item.mjs#useConsumable). Clamped 0-7 durch base-actor.mjs.
+   */
+  async applyInfectionDelta(delta) {
+    if (!delta) return this;
+    const current = this.system.resources?.infection?.value ?? 0;
+    return this.update({ "system.resources.infection.value": current + delta });
+  }
+
   /** 1W12 + Initiative-Mod, nicht explodierend (Abschnitt 4a) — separat vom Ashford-Würfelpool, direkt zu Foundrys Chat. */
   async rollInitiativeCheck() {
     const mod = this.system.derived?.initiativeMod ?? 0;

@@ -514,6 +514,7 @@ for (const c of CONSUMABLE_ITEMS) {
       usesRemaining: c.usesRemaining ?? 1,
       actionLabel: c.actionLabel,
       comboItems: c.comboItems ?? [],
+      infectionDelta: c.infectionDelta ?? 0,
       quantity: 1,
       weight: 0
     },

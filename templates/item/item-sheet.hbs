@@ -106,6 +106,9 @@
     {{#if (eq item.type "consumable")}}
       <label>Verbleibende Nutzungen <input type="number" name="system.usesRemaining" value="{{system.usesRemaining}}"></label>
       <label>Aktions-Label <input type="text" name="system.actionLabel" value="{{system.actionLabel}}" placeholder="Benutzen / Essen / Trinken / Anwenden"></label>
+      <label>Infektions-Änderung bei Benutzung (0 = kein Effekt; großer negativer Wert = vollständig heilen)
+        <input type="number" name="system.infectionDelta" value="{{system.infectionDelta}}">
+      </label>
 
       <h4>Combi-Item</h4>
       <p class="hint">Falls gefüllt: Benutzen erzeugt diese Consumables im Inventar und löscht DIESES Item komplett (z.B. Erste-Hilfe-Kasten). Leer lassen für ein normales Einzel-Item.</p>

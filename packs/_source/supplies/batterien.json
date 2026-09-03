@@ -10,6 +10,7 @@
     "usesRemaining": 1,
     "actionLabel": "Wechseln",
     "comboItems": [],
+    "infectionDelta": 0,
     "quantity": 1,
     "weight": 0
   },

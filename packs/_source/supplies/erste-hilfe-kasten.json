@@ -27,6 +27,7 @@
         "quantity": 1
       }
     ],
+    "infectionDelta": 0,
     "quantity": 1,
     "weight": 0
   },

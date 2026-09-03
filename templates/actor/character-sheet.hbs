@@ -51,13 +51,14 @@
             <input type="number" class="health-popover-amount" value="5" min="0">
             <button type="button" class="health-apply-heal" title="{{localize 'ASHFORD.Sheet.applyHeal'}}"><i class="fas fa-plus"></i> {{localize "ASHFORD.Sheet.applyHeal"}}</button>
           </div>
-          <div class="health-popover-row">
-            <label>{{localize "ASHFORD.Sheet.infection"}}
-              <input type="number" name="system.resources.infection.value" value="{{system.resources.infection.value}}">
-              <span class="sep">/</span>
-              <input type="number" name="system.resources.infection.max" value="{{system.resources.infection.max}}" {{#unless editMode}}disabled{{/unless}}>
-            </label>
-          </div>
+          {{#if isGM}}
+            <div class="health-popover-row">
+              <label>{{localize "ASHFORD.Sheet.infection"}} <span class="gm-only-badge">GM</span>
+                <span class="infection-gm-value">{{system.resources.infection.value}} / {{system.resources.infection.max}}</span>
+              </label>
+            </div>
+            <p class="hint infection-gm-hint">Ändern über den Infektions-Tracker (Akteure-Verzeichnis).</p>
+          {{/if}}
         </div>
       </div>
 

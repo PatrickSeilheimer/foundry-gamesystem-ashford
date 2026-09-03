@@ -54,6 +54,9 @@ export default class AshfordActorSheet extends ActorSheet {
     const actor = this.actor;
     context.system = actor.system;
     context.editMode = this._editMode;
+    // Infektion ist absichtlich für Spieler nicht sichtbar (siehe module/apps/infection-tracker.mjs) —
+    // die GM-Zeile im Header-Popover blendet sich nur für den Spielleiter ein.
+    context.isGM = game.user.isGM;
     const health = actor.system.resources?.health ?? { value: 0, max: 1 };
     context.healthPct = health.max ? Math.round((health.value / health.max) * 100) : 0;
 

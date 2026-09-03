@@ -14,9 +14,11 @@ export default class AshfordActorBase extends foundry.abstract.TypeDataModel {
           value: new NumberField({ required: true, integer: true, initial: 10, min: 0 }),
           max: new NumberField({ required: true, integer: true, initial: 10, min: 0 })
         }),
+        // Fixe 0-7-Skala (nicht frei einstellbar) — siehe module/apps/infection-tracker.mjs: unsichtbar
+        // für Spieler, nur der Spielleiter sieht den Wert direkt auf dem Bogen.
         infection: new SchemaField({
           value: new NumberField({ required: true, integer: true, initial: 0, min: 0 }),
-          max: new NumberField({ required: true, integer: true, initial: 10, min: 0 })
+          max: new NumberField({ required: true, integer: true, initial: 7, min: 0 })
         })
       }),
       dice: new SchemaField({
@@ -28,6 +30,7 @@ export default class AshfordActorBase extends foundry.abstract.TypeDataModel {
   /** @override */
   prepareDerivedData() {
     const res = this.resources;
+    res.infection.max = 7; // fest, überschreibt auch ältere Bögen mit dem alten 0-10-Wert
     res.health.value = Math.clamp(res.health.value, 0, res.health.max);
     res.infection.value = Math.clamp(res.infection.value, 0, res.infection.max);
   }

@@ -16,6 +16,7 @@ import AshfordItemSheet from "./module/sheets/item-sheet.mjs";
 
 import registerHandlebarsHelpers from "./module/handlebars-helpers.mjs";
 import registerCodexControls from "./module/apps/codex-app.mjs";
+import registerInfectionTrackerControls from "./module/apps/infection-tracker.mjs";
 import { TALENTS, POINTS_BUDGET } from "./module/rules/talents.mjs";
 
 Hooks.once("init", () => {
@@ -84,3 +85,4 @@ Hooks.on("createActor", (actor, options, userId) => {
 });
 
 registerCodexControls();
+registerInfectionTrackerControls();

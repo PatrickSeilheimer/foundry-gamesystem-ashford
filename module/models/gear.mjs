@@ -117,7 +117,11 @@ export class AshfordConsumable extends AshfordPhysicalItem {
           quantity: new NumberField({ required: true, integer: true, initial: 1, min: 1 })
         }),
         { required: false }
-      )
+      ),
+      // Verschiebt beim Benutzen den (für Spieler unsichtbaren) Infektionswert direkt — z.B. Antimykotikum/
+      // Desinfektionsmittel setzen ihn mit einem großen negativen Wert auf 0 (geclamped in base-actor.mjs),
+      // ohne dass der Spielleiter eingreifen muss. 0 = kein Effekt (Normalfall für alle anderen Items).
+      infectionDelta: new NumberField({ required: true, integer: true, initial: 0 })
     };
   }
 }

@@ -619,6 +619,28 @@
 
 .health-popover-amount { width: 48px; }
 
+/* Infektion: nur der Spielleiter sieht diese Zeile überhaupt (siehe module/apps/infection-tracker.mjs) — für
+   Spieler wird sie im Template komplett weggelassen, nicht nur per CSS versteckt. */
+.gm-only-badge {
+  font-family: "Courier New", monospace;
+  font-size: 9px;
+  color: var(--ashford-bg);
+  background: var(--ashford-sev-schwer);
+  padding: 1px 4px;
+  border-radius: 3px;
+  margin-left: 3px;
+}
+
+.infection-gm-value {
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+}
+
+.infection-gm-hint {
+  font-size: 10px;
+  margin: 2px 0 0;
+}
+
 .health-apply-damage,
 .health-apply-heal {
   background: var(--ashford-panel-2);
@@ -1281,3 +1303,65 @@
   .dossier { grid-template-columns: 1fr; }
   .ash-header-top { flex-wrap: wrap; }
 }
+
+/* ---------- GM Infektions-Tracker (module/apps/infection-tracker.mjs) ---------- */
+
+.ashford-infection-tracker {
+  background: var(--ashford-bg);
+  color: var(--ashford-text);
+  font-family: "Signika", sans-serif;
+}
+
+.ashford-infection-tracker .window-content { background: var(--ashford-bg); padding: 8px; }
+
+.ashford-infection-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.infection-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 8px;
+  background: var(--ashford-panel-2);
+  border: 1px solid var(--ashford-edge);
+  border-left: 3px solid var(--ashford-sev-schwer);
+}
+
+.infection-portrait { width: 28px; height: 28px; object-fit: cover; border: 1px solid var(--ashford-edge); flex: 0 0 auto; }
+.infection-name { flex: 1; font-size: 13px; }
+.infection-value { font-family: "Courier New", monospace; font-weight: bold; min-width: 44px; text-align: center; }
+
+.infection-btn {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  line-height: 1;
+  background: var(--ashford-panel);
+  border: 1px solid var(--ashford-sev-schwer);
+  color: var(--ashford-sev-schwer);
+  border-radius: 50%;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.infection-btn:hover { background: var(--ashford-sev-schwer); color: var(--ashford-bg); }
+
+/* Actor Directory header button (rendered outside any Ashford sheet, so styled standalone). */
+.ashford-infection-open-btn {
+  font-family: "Signika", sans-serif;
+  font-size: 12px;
+  color: var(--ashford-sev-schwer);
+  background: var(--ashford-panel-2);
+  border: 1px solid var(--ashford-sev-schwer);
+  border-radius: 3px;
+  padding: 4px 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ashford-infection-open-btn:hover { background: var(--ashford-sev-schwer); color: var(--ashford-bg); }

@@ -10,6 +10,7 @@
     "usesRemaining": 20,
     "actionLabel": "Entzünden",
     "comboItems": [],
+    "infectionDelta": 0,
     "quantity": 1,
     "weight": 0
   },

@@ -33,6 +33,9 @@ export default class AshfordItem extends Item {
       return null;
     }
     await this.update({ "system.usesRemaining": remaining - 1 });
+    // Wirkt direkt auf den (für Spieler unsichtbaren) Infektionswert, ganz ohne GM — der Effekt bleibt
+    // aus der Chat-Nachricht heraus, damit dort nie eine konkrete Zahl für Spieler sichtbar wird.
+    if (this.system.infectionDelta) await this.actor?.applyInfectionDelta(this.system.infectionDelta);
     const verb = this.system.actionLabel || "benutzt";
     return ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),

@@ -19,6 +19,7 @@
  * @property {string} description
  * @property {number} [usesRemaining] - default 1
  * @property {{name:string, quantity:number}[]} [comboItems] - macht daraus ein Combi-Item (siehe oben)
+ * @property {number} [infectionDelta] - verschiebt beim Benutzen direkt den (spielerunsichtbaren) Infektionswert
  */
 
 /** @type {ConsumableEntry[]} */
@@ -51,13 +52,15 @@ export const CONSUMABLE_ITEMS = [
     name: "Desinfektionsmittel",
     category: "medizin",
     actionLabel: "Anwenden",
-    description: "Heilt eine Infektion vollständig — aber nur, wenn es in derselben oder der direkt folgenden Runde nach der Ansteckung eingesetzt wird."
+    description: "Heilt eine Infektion vollständig — aber nur, wenn es in derselben oder der direkt folgenden Runde nach der Ansteckung eingesetzt wird.",
+    infectionDelta: -7
   },
   {
     name: "Antimykotikum",
     category: "medizin",
     actionLabel: "Einnehmen",
-    description: "Heilt eine bestehende Infektion vollständig, unabhängig vom Zeitpunkt. Seltener als ein gewöhnliches Antibiotikum, da spezialisiert auf die pilzbasierte Infektion."
+    description: "Heilt eine bestehende Infektion vollständig, unabhängig vom Zeitpunkt. Seltener als ein gewöhnliches Antibiotikum, da spezialisiert auf die pilzbasierte Infektion.",
+    infectionDelta: -7
   },
   {
     name: "Immunstimulans",

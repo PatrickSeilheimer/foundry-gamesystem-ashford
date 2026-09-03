@@ -1,0 +1,13 @@
+<div class="ashford-infection-list">
+  {{#each actors}}
+    <div class="infection-row" data-actor-id="{{this.id}}">
+      <img class="infection-portrait" src="{{this.img}}" alt="">
+      <span class="infection-name">{{this.name}}</span>
+      <button type="button" class="infection-btn" data-dir="dec" title="Verringern">−</button>
+      <span class="infection-value">{{this.value}} / {{this.max}}</span>
+      <button type="button" class="infection-btn" data-dir="inc" title="Erhöhen">+</button>
+    </div>
+  {{else}}
+    <p class="hint">Keine Charaktere gefunden.</p>
+  {{/each}}
+</div>
