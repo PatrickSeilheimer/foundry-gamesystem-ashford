@@ -1,0 +1,44 @@
+{
+  "_id": "0ebe8796bf33d59d",
+  "_key": "!items!0ebe8796bf33d59d",
+  "name": "Kletterhandschuhe",
+  "type": "armor",
+  "img": "icons/svg/shield.svg",
+  "system": {
+    "description": "",
+    "armor": {
+      "ballistic": 0,
+      "pierce": 0,
+      "blunt": 0,
+      "slash": 0
+    },
+    "slot": "hands",
+    "equipped": false,
+    "initiativeMod": 0,
+    "meleeDamageBonus": 0,
+    "talentBonuses": [
+      {
+        "talentKey": "athletik",
+        "value": 1
+      }
+    ],
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

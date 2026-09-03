@@ -1,0 +1,32 @@
+{
+  "_id": "98406a9adef46adc",
+  "_key": "!items!98406a9adef46adc",
+  "name": "Verband",
+  "type": "consumable",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "<p>Medizin-Probe gegen Zielwert 4. Bei Erfolg: stoppt den Blutungsstatus des Ziels (anvisiert oder self). Heilt selbst keine LP.</p>",
+    "category": "medizin",
+    "usesRemaining": 1,
+    "actionLabel": "Anwenden",
+    "comboItems": [],
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

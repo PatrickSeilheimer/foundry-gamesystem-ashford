@@ -1,0 +1,34 @@
+{
+  "_id": "34540966eebe29a1",
+  "_key": "!items!34540966eebe29a1",
+  "name": "AK-47",
+  "type": "weapon",
+  "img": "icons/svg/sword.svg",
+  "system": {
+    "description": "",
+    "weaponSkill": "gewehre",
+    "damageFormula": "3d8+10",
+    "accuracyBonus": -2,
+    "initiativeMod": 1,
+    "equipped": false,
+    "ammo": "5.56mm",
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

@@ -5,10 +5,11 @@ import { CONDITION_CATEGORIES, CONDITION_SEVERITIES } from "../rules/conditions.
 const { ArrayField, BooleanField, NumberField, SchemaField, StringField } = foundry.data.fields;
 
 /**
- * The 6 wearable/holdable equipment slots. "hands" is shared between a held weapon and
- * hand-worn armor (gloves) — a survivor only has one free pair of hands (Abschnitt Ausrüstung).
+ * The 5 wearable body-equipment slots. Weapons are equipped independently of these (a held
+ * weapon does NOT compete with the "hands" slot — that's for gloves; you can wear gloves and
+ * hold a weapon at the same time).
  */
-export const EQUIP_SLOTS = ["head", "chest", "arms", "legs", "feet", "hands"];
+export const EQUIP_SLOTS = ["head", "chest", "hands", "legs", "feet"];
 
 /** The 4 fully separate damage types armor protects against. */
 export const ARMOR_TYPES = ["ballistic", "pierce", "blunt", "slash"];
@@ -41,8 +42,15 @@ export class AshfordWeapon extends AshfordPhysicalItem {
       ...super.defineSchema(),
       // Fest zugeordnetes Waffentalent (Abschnitt 6): keine Wahl zwischen zwei Skills für dieselbe Waffe.
       weaponSkill: new StringField({ required: false, blank: true, choices: WEAPON_TALENT_KEYS }),
-      baseDamage: new NumberField({ required: true, integer: true, initial: 1, min: 0 }), // Waffenbasisschaden (Abschnitt 4a)
-      equipped: new BooleanField({ required: true, initial: false }), // geführte Waffe belegt den "hands"-Slot
+      // Absoluter Würfelausdruck (Foundry-Syntax, z.B. "2d6+7") — kein einzelner fester Wert mehr.
+      // Bei Nahkampfwaffen kommt beim tatsächlichen Schadenswurf zusätzlich der charaktereigene
+      // Nahkampfschaden-Bonus obendrauf (AshfordActor#rollWeaponDamage), bei Fernkampfwaffen nicht.
+      damageFormula: new StringField({ required: true, blank: true, initial: "1d6" }),
+      // Treffer-Bonus/-Malus dieser konkreten Waffe, zusätzlich zu Reichweitenklassen-Modifikatoren bei Fernkampfwaffen.
+      accuracyBonus: new NumberField({ required: true, integer: true, initial: 0 }),
+      // Manche Waffen sind schneller/langsamer zu führen als der reine Athletik-Wert.
+      initiativeMod: new NumberField({ required: true, integer: true, initial: 0 }),
+      equipped: new BooleanField({ required: true, initial: false }), // unabhängig von den 5 Körper-Slots
       ammo: new StringField({ required: false, blank: true })
     };
   }
@@ -65,7 +73,20 @@ export class AshfordArmor extends AshfordPhysicalItem {
         slash: new NumberField({ required: true, integer: true, initial: 0, min: 0 })
       }),
       slot: new StringField({ required: false, blank: true, choices: EQUIP_SLOTS }),
-      equipped: new BooleanField({ required: true, initial: false })
+      equipped: new BooleanField({ required: true, initial: false }),
+      // Manche Ausrüstung bremst oder beschleunigt (z.B. schwere Panzerung vs. leichte Schuhe).
+      initiativeMod: new NumberField({ required: true, integer: true, initial: 0 }),
+      // Flacher Bonus auf den Nahkampfschaden-Wert (z.B. Schlagring) — kommt additiv zum Kraft-Bonus dazu.
+      meleeDamageBonus: new NumberField({ required: true, integer: true, initial: 0 }),
+      // Flacher Bonus/Malus aufs ERGEBNIS eines Talentwurfs (nicht auf den Würfelpool!) — angelegte
+      // Ausrüstung addiert sich auf die Würfelsumme, statt zusätzliche Würfel zu geben.
+      talentBonuses: new ArrayField(
+        new SchemaField({
+          talentKey: new StringField({ required: false, blank: true }),
+          value: new NumberField({ required: true, integer: true, initial: 0 })
+        }),
+        { required: false }
+      )
     };
   }
 }
@@ -86,7 +107,17 @@ export class AshfordConsumable extends AshfordPhysicalItem {
       category: new StringField({ required: false, blank: true, initial: "sonstiges", choices: ITEM_CATEGORIES }),
       usesRemaining: new NumberField({ required: true, integer: true, initial: 1, min: 0 }),
       // z.B. "Essen", "Trinken", "Anwenden" statt des generischen "Benutzen" — beschriftet den Aktions-Button im Rucksack.
-      actionLabel: new StringField({ required: false, blank: true, initial: "Benutzen" })
+      actionLabel: new StringField({ required: false, blank: true, initial: "Benutzen" }),
+      // Combi-Item (z.B. Erste-Hilfe-Kasten): beim Benutzen werden diese Einträge als neue
+      // Consumables im Inventar des Nutzers erzeugt, und DIESES Item wird komplett gelöscht statt
+      // nur runtergezählt (siehe AshfordItem#useConsumable). Leer = normales Einzel-Item.
+      comboItems: new ArrayField(
+        new SchemaField({
+          name: new StringField({ required: true, blank: false }),
+          quantity: new NumberField({ required: true, integer: true, initial: 1, min: 1 })
+        }),
+        { required: false }
+      )
     };
   }
 }

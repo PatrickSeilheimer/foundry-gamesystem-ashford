@@ -1,0 +1,32 @@
+{
+  "_id": "0b91eef802ffe932",
+  "_key": "!items!0b91eef802ffe932",
+  "name": "Adrenalin-Spritze",
+  "type": "consumable",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "<p>Heilt sofort 3W6 LP, stabilisiert das Ziel und weckt einen bewusstlosen oder sterbenden Charakter sofort auf.</p>",
+    "category": "medizin",
+    "usesRemaining": 1,
+    "actionLabel": "Injizieren",
+    "comboItems": [],
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

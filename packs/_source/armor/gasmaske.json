@@ -1,0 +1,44 @@
+{
+  "_id": "98500a19b389d643",
+  "_key": "!items!98500a19b389d643",
+  "name": "Gasmaske",
+  "type": "armor",
+  "img": "icons/svg/shield.svg",
+  "system": {
+    "description": "<p>Neue Regel — Immunität gegen Gift-/Sporen-basierte Gefahren.</p>",
+    "armor": {
+      "ballistic": 0,
+      "pierce": 0,
+      "blunt": 0,
+      "slash": 0
+    },
+    "slot": "head",
+    "equipped": false,
+    "initiativeMod": 0,
+    "meleeDamageBonus": 0,
+    "talentBonuses": [
+      {
+        "talentKey": "wahrnehmung",
+        "value": -2
+      }
+    ],
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

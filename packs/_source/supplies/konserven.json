@@ -1,0 +1,32 @@
+{
+  "_id": "510870aff1f02f3c",
+  "_key": "!items!510870aff1f02f3c",
+  "name": "Konserven",
+  "type": "consumable",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "<p>Deckt den Nahrungsbedarf für einen Tag.</p>",
+    "category": "nahrung",
+    "usesRemaining": 1,
+    "actionLabel": "Essen",
+    "comboItems": [],
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

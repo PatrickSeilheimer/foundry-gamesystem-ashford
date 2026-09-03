@@ -1,0 +1,39 @@
+{
+  "_id": "1fc7d2c5b745d629",
+  "_key": "!items!1fc7d2c5b745d629",
+  "name": "Kevlarweste",
+  "type": "armor",
+  "img": "icons/svg/shield.svg",
+  "system": {
+    "description": "",
+    "armor": {
+      "ballistic": 5,
+      "pierce": 0,
+      "blunt": 0,
+      "slash": 0
+    },
+    "slot": "chest",
+    "equipped": false,
+    "initiativeMod": -2,
+    "meleeDamageBonus": 0,
+    "talentBonuses": [],
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "_id": "4d9635d49be5c13a",
+  "_key": "!items!4d9635d49be5c13a",
+  "name": "Seil (10 m)",
+  "type": "equipment",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "<p>Athletik-Probe zum Klettern/Sichern erhält +1 Würfel; verhindert Sturzschaden bei Erfolg.</p>",
+    "category": "werkzeug",
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

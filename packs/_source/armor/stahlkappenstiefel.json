@@ -1,0 +1,39 @@
+{
+  "_id": "575bdf240d6a2cab",
+  "_key": "!items!575bdf240d6a2cab",
+  "name": "Stahlkappenstiefel",
+  "type": "armor",
+  "img": "icons/svg/shield.svg",
+  "system": {
+    "description": "",
+    "armor": {
+      "ballistic": 0,
+      "pierce": 0,
+      "blunt": 1,
+      "slash": 0
+    },
+    "slot": "feet",
+    "equipped": false,
+    "initiativeMod": 0,
+    "meleeDamageBonus": 1,
+    "talentBonuses": [],
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

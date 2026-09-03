@@ -57,21 +57,27 @@ export default class AshfordCharacter extends AshfordActorBase {
     const kraftMod = kraft ? kraft.system.staerken - kraft.system.schwaechen : 0;
     const athletikMod = athletik ? athletik.system.staerken - athletik.system.schwaechen : 0;
 
-    const meleeWeapon = items.find(
-      i => i.type === "weapon" && i.system.equipped && i.system.weaponSkill && !i.system.isRanged
-    );
-    const waffenBasisschaden = meleeWeapon?.system.baseDamage ?? 0;
-
-    this.derived = deriveCombatStats({ kraftMod, athletikMod, waffenBasisschaden });
+    this.derived = deriveCombatStats({ kraftMod, athletikMod });
     this.derived.kraftMod = kraftMod;
     this.derived.athletikMod = athletikMod;
 
     // Rüstung: vier vollständig getrennte Werte, aufsummiert über alle angelegten Rüstungsteile.
+    // Ausrüstung kann außerdem Initiative verschieben (schwere Panzerung bremst, leichte Schuhe helfen)
+    // und/oder einen flachen Bonus auf Nahkampfschaden geben (z.B. Schlagring) — beides pro Item additiv.
     this.armor = Object.fromEntries(ARMOR_TYPES.map(type => [type, 0]));
+    let gearInitiativeMod = 0;
+    let gearMeleeDamageBonus = 0;
     for (const item of items) {
-      if (item.type !== "armor" || !item.system.equipped) continue;
-      for (const type of ARMOR_TYPES) this.armor[type] += item.system.armor[type] ?? 0;
+      if (item.type === "armor" && item.system.equipped) {
+        for (const type of ARMOR_TYPES) this.armor[type] += item.system.armor[type] ?? 0;
+        gearInitiativeMod += item.system.initiativeMod ?? 0;
+        gearMeleeDamageBonus += item.system.meleeDamageBonus ?? 0;
+      } else if (item.type === "weapon" && item.system.equipped) {
+        gearInitiativeMod += item.system.initiativeMod ?? 0;
+      }
     }
+    this.derived.initiativeMod += gearInitiativeMod;
+    this.derived.nahkampfschaden += gearMeleeDamageBonus;
 
     // Aktive Zustände können Ausweichen/Initiative/Nahkampfschaden/max. Gesundheit direkt verschieben
     // (module/rules/conditions.mjs); Talent-Boni/-Mali werden stattdessen situativ beim Würfeln

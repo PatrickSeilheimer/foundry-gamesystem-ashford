@@ -1,0 +1,34 @@
+{
+  "_id": "ff73a84efca8d01a",
+  "_key": "!items!ff73a84efca8d01a",
+  "name": "Kampfaxt",
+  "type": "weapon",
+  "img": "icons/svg/sword.svg",
+  "system": {
+    "description": "",
+    "weaponSkill": "hiebwaffen",
+    "damageFormula": "1d8+4",
+    "accuracyBonus": 0,
+    "initiativeMod": 4,
+    "equipped": false,
+    "ammo": "",
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

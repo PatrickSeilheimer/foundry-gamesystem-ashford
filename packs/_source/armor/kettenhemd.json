@@ -1,0 +1,39 @@
+{
+  "_id": "c2f19a4fa962a2f3",
+  "_key": "!items!c2f19a4fa962a2f3",
+  "name": "Kettenhemd",
+  "type": "armor",
+  "img": "icons/svg/shield.svg",
+  "system": {
+    "description": "",
+    "armor": {
+      "ballistic": 0,
+      "pierce": 3,
+      "blunt": 0,
+      "slash": 4
+    },
+    "slot": "chest",
+    "equipped": false,
+    "initiativeMod": -2,
+    "meleeDamageBonus": 0,
+    "talentBonuses": [],
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "_id": "b2091eeca0a835f0",
+  "_key": "!items!b2091eeca0a835f0",
+  "name": "Feuerwehraxt",
+  "type": "weapon",
+  "img": "icons/svg/sword.svg",
+  "system": {
+    "description": "",
+    "weaponSkill": "hiebwaffen",
+    "damageFormula": "1d10+5",
+    "accuracyBonus": -1,
+    "initiativeMod": 1,
+    "equipped": false,
+    "ammo": "",
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

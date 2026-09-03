@@ -35,6 +35,20 @@
     </fieldset>
   {{/if}}
 
+  {{#if gearNames.length}}
+    <fieldset class="ashford-condition-hint">
+      <legend>Ausrüstung (automatisch einberechnet, aufs Ergebnis)</legend>
+      <p class="hint">{{#each gearNames}}{{this}}{{#unless @last}}, {{/unless}}{{/each}} → {{signed gearFlatBonus}} auf das Ergebnis</p>
+    </fieldset>
+  {{/if}}
+
+  {{#if weaponAccuracyBonus}}
+    <fieldset class="ashford-condition-hint">
+      <legend>Waffe (automatisch einberechnet, aufs Ergebnis)</legend>
+      <p class="hint">{{weaponName}} → {{signed weaponAccuracyBonus}} auf das Ergebnis</p>
+    </fieldset>
+  {{/if}}
+
   <fieldset>
     <legend>Situativ (nur diese Probe)</legend>
     <label>

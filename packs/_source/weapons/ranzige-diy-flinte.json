@@ -1,0 +1,34 @@
+{
+  "_id": "5b86da3955d314a9",
+  "_key": "!items!5b86da3955d314a9",
+  "name": "Ranzige DIY Flinte",
+  "type": "weapon",
+  "img": "icons/svg/sword.svg",
+  "system": {
+    "description": "<p>Anfällig — Bei jedem Einsatz 1W8 würfeln. Bei einer 8 geht die Waffe kaputt.</p>",
+    "weaponSkill": "schrotflinten",
+    "damageFormula": "4d8+5",
+    "accuracyBonus": -2,
+    "initiativeMod": -1,
+    "equipped": false,
+    "ammo": "Schrot",
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

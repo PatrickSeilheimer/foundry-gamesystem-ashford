@@ -1,0 +1,29 @@
+{
+  "_id": "c28407a7af12e426",
+  "_key": "!items!c28407a7af12e426",
+  "name": "Karte & Kompass",
+  "type": "equipment",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "<p>Passiv. Natur-/Wahrnehmungsproben zur Orientierung erhalten +1.</p>",
+    "category": "sonstiges",
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

@@ -38,6 +38,7 @@ export default class AshfordItemSheet extends ItemSheet {
     context.conditionCategories = CONDITION_CATEGORIES;
     context.conditionSeverities = CONDITION_SEVERITIES;
     context.conditionDurationTypes = CONDITION_DURATION_TYPES;
+    context.talentOptions = TALENTS.map(t => ({ key: t.key, name: t.name }));
     return context;
   }
 
@@ -54,6 +55,28 @@ export default class AshfordItemSheet extends ItemSheet {
       const effects = foundry.utils.deepClone(this.item.system.effects ?? []);
       effects.splice(index, 1);
       this.item.update({ "system.effects": effects });
+    });
+    html.find(".ashford-talentbonus-add").on("click", () => {
+      const talentBonuses = foundry.utils.deepClone(this.item.system.talentBonuses ?? []);
+      talentBonuses.push({ talentKey: "", value: 1 });
+      this.item.update({ "system.talentBonuses": talentBonuses });
+    });
+    html.find(".ashford-talentbonus-remove").on("click", ev => {
+      const index = Number(ev.currentTarget.dataset.index);
+      const talentBonuses = foundry.utils.deepClone(this.item.system.talentBonuses ?? []);
+      talentBonuses.splice(index, 1);
+      this.item.update({ "system.talentBonuses": talentBonuses });
+    });
+    html.find(".ashford-combo-add").on("click", () => {
+      const comboItems = foundry.utils.deepClone(this.item.system.comboItems ?? []);
+      comboItems.push({ name: "", quantity: 1 });
+      this.item.update({ "system.comboItems": comboItems });
+    });
+    html.find(".ashford-combo-remove").on("click", ev => {
+      const index = Number(ev.currentTarget.dataset.index);
+      const comboItems = foundry.utils.deepClone(this.item.system.comboItems ?? []);
+      comboItems.splice(index, 1);
+      this.item.update({ "system.comboItems": comboItems });
     });
   }
 }

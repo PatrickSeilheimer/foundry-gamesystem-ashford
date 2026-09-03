@@ -930,25 +930,15 @@
 
 /* ---------- Inventory ---------- */
 
+/* 5 Körper-Slots, einspaltig gestapelt — Waffen sind bewusst NICHT Teil dieser Silhouette
+   (eigenes .weapons-panel darunter), weil sie unabhängig von jedem Körper-Slot geführt werden. */
 .equip-silhouette {
   display: grid;
-  grid-template-columns: 1fr 1.3fr 1fr;
-  grid-template-areas:
-    ".    head  ."
-    "arms chest hands"
-    ".    legs  ."
-    ".    feet  .";
+  grid-template-columns: 1fr;
   gap: 8px;
-  max-width: 460px;
+  max-width: 220px;
   margin-bottom: 16px;
 }
-
-.equip-slot.slot-head { grid-area: head; }
-.equip-slot.slot-arms { grid-area: arms; }
-.equip-slot.slot-chest { grid-area: chest; }
-.equip-slot.slot-hands { grid-area: hands; }
-.equip-slot.slot-legs { grid-area: legs; }
-.equip-slot.slot-feet { grid-area: feet; }
 
 .equip-slot {
   display: flex;
@@ -1009,6 +999,37 @@
 
 .equip-slot .slot-item-actions a { color: var(--ashford-text-dim); }
 .equip-slot .slot-item-actions a:hover { color: var(--ashford-accent); }
+
+.weapons-panel { margin-bottom: 14px; }
+
+.weapons-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.weapon-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  background: var(--ashford-panel-2);
+  border: 1px solid var(--ashford-edge);
+  border-left: 3px solid var(--ashford-accent);
+}
+
+.weapon-row .row-name { font-weight: bold; }
+
+.ashford-roll-weapon-damage {
+  background: var(--ashford-panel);
+  border: 1px solid var(--ashford-accent);
+  color: var(--ashford-accent);
+  font-size: 11px;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+
+.ashford-roll-weapon-damage:hover { background: var(--ashford-accent); color: var(--ashford-bg); }
 
 .inventory-panel { margin-bottom: 10px; }
 

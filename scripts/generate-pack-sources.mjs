@@ -17,6 +17,15 @@ import { fileURLToPath } from "node:url";
 import { idFor } from "./ids.mjs";
 import { slugifyName } from "./slug.mjs";
 import { buildings, persons, missions } from "./data/ashford-codex-content.mjs";
+import {
+  WEAPON_ITEMS,
+  WEAPON_CATS,
+  ARMOR_ITEMS,
+  ARMOR_CATS,
+  DAMAGE_TYPE_MAP,
+  TALENT_NAME_MAP
+} from "./data/ashford-equipment-content.mjs";
+import { CONSUMABLE_ITEMS, SURVIVAL_EQUIPMENT_ITEMS } from "./data/ashford-survival-content.mjs";
 import { TALENTS } from "../module/rules/talents.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -383,6 +392,166 @@ for (const trait of EXAMPLE_TRAITS) {
   writeJSON(traitsDir, `${trait.slug}.json`, doc);
 }
 
+/* -------------------------------------------- */
+/*  Waffen (44 Einzelstücke über 7 Waffentalente) */
+/* -------------------------------------------- */
+
+const weaponsDir = ensureCleanDir("packs/_source/weapons");
+
+for (const w of WEAPON_ITEMS) {
+  const catInfo = WEAPON_CATS[w.cat];
+  const slug = slugifyName(w.name);
+  const id = idFor(`weapon-${w.cat}-${slug}`);
+  const doc = {
+    _id: id,
+    _key: `!items!${id}`,
+    name: w.name,
+    type: "weapon",
+    img: "icons/svg/sword.svg",
+    system: {
+      description: w.note ? `<p>${w.diy ? "Anfällig — " : ""}${w.note}</p>` : "",
+      weaponSkill: catInfo.weaponSkill,
+      damageFormula: w.schaden,
+      accuracyBonus: w.bonus ?? 0,
+      initiativeMod: w.init ?? 0,
+      equipped: false,
+      ammo: w.munition ?? "",
+      quantity: 1,
+      weight: 0
+    },
+    effects: [],
+    folder: null,
+    sort: 0,
+    ownership: { default: 2 },
+    flags: {},
+    _stats: stats()
+  };
+  writeJSON(weaponsDir, `${slug}.json`, doc);
+}
+
+/* -------------------------------------------- */
+/*  Ausrüstung (30 Körperteile über 5 Slots)      */
+/* -------------------------------------------- */
+
+const armorDir = ensureCleanDir("packs/_source/armor");
+
+/** "Rüstung gegen X: Y" Einträge -> die vier AshfordArmor#armor-Felder, pro Schadensart aufsummiert. */
+function buildArmorValues(ruestungList = []) {
+  const armor = { ballistic: 0, pierce: 0, blunt: 0, slash: 0 };
+  for (const r of ruestungList) {
+    const type = DAMAGE_TYPE_MAP[r.gegen];
+    if (type) armor[type] += r.wert;
+  }
+  return armor;
+}
+
+/** Talent-Boni-Liste -> {bonuses, meleeDamageBonus}. "Waffenloser Kampf – Schaden" ist kein
+ * Talent-Wurf-Bonus, sondern ein flacher Nahkampfschaden-Bonus (siehe AshfordArmor#meleeDamageBonus). */
+function buildTalentBonuses(talentList = []) {
+  const bonuses = [];
+  let meleeDamageBonus = 0;
+  for (const t of talentList) {
+    if (t.name === "Waffenloser Kampf – Schaden") {
+      meleeDamageBonus += t.wert;
+      continue;
+    }
+    const talentKey = TALENT_NAME_MAP[t.name];
+    if (talentKey) bonuses.push({ talentKey, value: t.wert });
+  }
+  return { bonuses, meleeDamageBonus };
+}
+
+for (const a of ARMOR_ITEMS) {
+  const slot = ARMOR_CATS[a.cat];
+  const { bonuses, meleeDamageBonus } = buildTalentBonuses(a.talent);
+  const slug = slugifyName(a.name);
+  const id = idFor(`armor-${a.cat}-${slug}`);
+  const doc = {
+    _id: id,
+    _key: `!items!${id}`,
+    name: a.name,
+    type: "armor",
+    img: "icons/svg/shield.svg",
+    system: {
+      description: a.note ? `<p>${a.newRule ? "Neue Regel — " : "Besonderheit — "}${a.note}</p>` : "",
+      armor: buildArmorValues(a.ruestung),
+      slot,
+      equipped: false,
+      initiativeMod: a.init ?? 0,
+      meleeDamageBonus,
+      talentBonuses: bonuses,
+      quantity: 1,
+      weight: 0
+    },
+    effects: [],
+    folder: null,
+    sort: 0,
+    ownership: { default: 2 },
+    flags: {},
+    _stats: stats()
+  };
+  writeJSON(armorDir, `${slug}.json`, doc);
+}
+
+/* -------------------------------------------- */
+/*  Vorräte: Medizin & sonstige Überlebens-Items  */
+/* -------------------------------------------- */
+
+const suppliesDir = ensureCleanDir("packs/_source/supplies");
+
+for (const c of CONSUMABLE_ITEMS) {
+  const slug = slugifyName(c.name);
+  const id = idFor(`consumable-${slug}`);
+  const doc = {
+    _id: id,
+    _key: `!items!${id}`,
+    name: c.name,
+    type: "consumable",
+    img: "icons/svg/item-bag.svg",
+    system: {
+      description: `<p>${c.description}</p>`,
+      category: c.category,
+      usesRemaining: c.usesRemaining ?? 1,
+      actionLabel: c.actionLabel,
+      comboItems: c.comboItems ?? [],
+      quantity: 1,
+      weight: 0
+    },
+    effects: [],
+    folder: null,
+    sort: 0,
+    ownership: { default: 2 },
+    flags: {},
+    _stats: stats()
+  };
+  writeJSON(suppliesDir, `${slug}.json`, doc);
+}
+
+for (const e of SURVIVAL_EQUIPMENT_ITEMS) {
+  const slug = slugifyName(e.name);
+  const id = idFor(`equipment-${slug}`);
+  const doc = {
+    _id: id,
+    _key: `!items!${id}`,
+    name: e.name,
+    type: "equipment",
+    img: "icons/svg/item-bag.svg",
+    system: {
+      description: `<p>${e.description}</p>`,
+      category: e.category,
+      quantity: 1,
+      weight: 0
+    },
+    effects: [],
+    folder: null,
+    sort: 0,
+    ownership: { default: 2 },
+    flags: {},
+    _stats: stats()
+  };
+  writeJSON(suppliesDir, `${slug}.json`, doc);
+}
+
 console.log(
-  `\nFertig: ${Object.keys(persons).length} NPCs, ${buildings.length} Gebäude, ${missions.length} Missionen, ${TALENTS.length} Talente, ${EXAMPLE_TRAITS.length} Traits.`
+  `\nFertig: ${Object.keys(persons).length} NPCs, ${buildings.length} Gebäude, ${missions.length} Missionen, ${TALENTS.length} Talente, ${EXAMPLE_TRAITS.length} Traits, ${WEAPON_ITEMS.length} Waffen, ${ARMOR_ITEMS.length} Ausrüstungsteile, ${CONSUMABLE_ITEMS.length + SURVIVAL_EQUIPMENT_ITEMS.length} Vorräte.`
 );

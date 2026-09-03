@@ -1,0 +1,34 @@
+{
+  "_id": "84b910c8888e6e47",
+  "_key": "!items!84b910c8888e6e47",
+  "name": "Beretta",
+  "type": "weapon",
+  "img": "icons/svg/sword.svg",
+  "system": {
+    "description": "",
+    "weaponSkill": "pistolen",
+    "damageFormula": "2d6+7",
+    "accuracyBonus": 0,
+    "initiativeMod": 1,
+    "equipped": false,
+    "ammo": "9mm",
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

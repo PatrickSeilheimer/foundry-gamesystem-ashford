@@ -1,0 +1,32 @@
+{
+  "_id": "0790f2b9e75896c5",
+  "_key": "!items!0790f2b9e75896c5",
+  "name": "Feuerzeug / Streichhölzer",
+  "type": "consumable",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "<p>Entzündet Feuer (Wärme, Kochen, Molotov anzünden).</p>",
+    "category": "sonstiges",
+    "usesRemaining": 20,
+    "actionLabel": "Entzünden",
+    "comboItems": [],
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

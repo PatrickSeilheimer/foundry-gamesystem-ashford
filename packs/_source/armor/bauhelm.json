@@ -1,0 +1,39 @@
+{
+  "_id": "cae0d59fa0a86fd2",
+  "_key": "!items!cae0d59fa0a86fd2",
+  "name": "Bauhelm",
+  "type": "armor",
+  "img": "icons/svg/shield.svg",
+  "system": {
+    "description": "",
+    "armor": {
+      "ballistic": 0,
+      "pierce": 0,
+      "blunt": 3,
+      "slash": 0
+    },
+    "slot": "head",
+    "equipped": false,
+    "initiativeMod": -1,
+    "meleeDamageBonus": 0,
+    "talentBonuses": [],
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

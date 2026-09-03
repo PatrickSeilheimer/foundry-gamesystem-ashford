@@ -11,10 +11,9 @@ import {
 const SLOT_ICONS = {
   head: "fas fa-hard-hat",
   chest: "fas fa-vest",
-  arms: "fas fa-band-aid",
+  hands: "fas fa-hand-paper",
   legs: "fas fa-socks",
-  feet: "fas fa-shoe-prints",
-  hands: "fas fa-hand-fist"
+  feet: "fas fa-shoe-prints"
 };
 
 /** One emoji per canonical Talent — reads at a glance in the tile grid, no icon font guessing for weapon types. */
@@ -86,7 +85,8 @@ export default class AshfordActorSheet extends ActorSheet {
     }));
     context.hasTalents = talents.length > 0;
 
-    // Ausrüstung: 6 Slots (Kopf/Brust/Arme/Beine/Füße/Hände) + zwei getrennte Rucksack-Bereiche.
+    // Ausrüstung: 5 Körper-Slots (Kopf/Brust/Hände/Beine/Füße) + unabhängig davon geführte Waffen
+    // (ein Item kann gleichzeitig Handschuhe UND eine Waffe geführt haben) + zwei Rucksack-Bereiche.
     context.equipSlots = EQUIP_SLOTS.map(key => {
       const item = this._findSlotItem(gear, key);
       return {
@@ -98,8 +98,13 @@ export default class AshfordActorSheet extends ActorSheet {
     });
     const slottedIds = new Set(context.equipSlots.filter(s => s.item).map(s => s.item.id));
 
+    context.equippedWeapons = gear
+      .filter(i => i.type === "weapon" && i.system.equipped)
+      .map(i => this._serializeGearItem(i));
+    const equippedWeaponIds = new Set(context.equippedWeapons.map(w => w.id));
+
     context.equippableItems = gear
-      .filter(i => ["armor", "weapon"].includes(i.type) && !slottedIds.has(i.id))
+      .filter(i => ["armor", "weapon"].includes(i.type) && !slottedIds.has(i.id) && !equippedWeaponIds.has(i.id))
       .map(i => this._serializeEquippable(i, context.equipSlots));
 
     context.miscItems = gear
@@ -136,15 +141,8 @@ export default class AshfordActorSheet extends ActorSheet {
     return context;
   }
 
-  /** Which gear item currently occupies `slotKey` — "hands" prefers an equipped weapon over hand-armor (only one free pair of hands). */
+  /** Which equipped ARMOR item currently occupies `slotKey`. Weapons never occupy a body slot — see getData. */
   _findSlotItem(gear, slotKey) {
-    if (slotKey === "hands") {
-      return (
-        gear.find(i => i.type === "weapon" && i.system.equipped) ??
-        gear.find(i => i.type === "armor" && i.system.equipped && i.system.slot === "hands") ??
-        null
-      );
-    }
     return gear.find(i => i.type === "armor" && i.system.equipped && i.system.slot === slotKey) ?? null;
   }
 
@@ -157,20 +155,31 @@ export default class AshfordActorSheet extends ActorSheet {
       quantity: item.system.quantity,
       weight: item.system.weight
     };
-    if (item.type === "armor") base.armor = item.system.armor;
-    if (item.type === "weapon") base.baseDamage = item.system.baseDamage;
+    if (item.type === "armor") {
+      base.armor = item.system.armor;
+      base.initiativeMod = item.system.initiativeMod;
+      base.meleeDamageBonus = item.system.meleeDamageBonus;
+    }
+    if (item.type === "weapon") {
+      base.damageFormula = item.system.damageFormula;
+      base.accuracyBonus = item.system.accuracyBonus;
+      base.initiativeMod = item.system.initiativeMod;
+      base.isRanged = item.system.isRanged;
+    }
     return base;
   }
 
+  /** Armor items get a slot + comparison drawer against whatever's currently in that slot; weapons
+   * (no slot of their own, see gear.mjs) just show their own stats. */
   _serializeEquippable(item, equipSlots) {
     const base = this._serializeGearItem(item);
-    const slotKey = item.type === "armor" ? item.system.slot || null : "hands";
-    base.slot = slotKey;
-    base.slotLabel = slotKey ? localizeSlot(slotKey) : "";
-    base.hasSlot = !!slotKey;
     base.category = item.type === "weapon" ? "waffen" : "ruestung";
-    const equippedInSlot = slotKey ? equipSlots.find(s => s.key === slotKey)?.item ?? null : null;
     if (item.type === "armor") {
+      const slotKey = item.system.slot || null;
+      base.slot = slotKey;
+      base.slotLabel = slotKey ? localizeSlot(slotKey) : "";
+      base.hasSlot = !!slotKey;
+      const equippedInSlot = slotKey ? equipSlots.find(s => s.key === slotKey)?.item ?? null : null;
       const cur = equippedInSlot?.armor ?? { ballistic: 0, pierce: 0, blunt: 0, slash: 0 };
       base.comparison = ARMOR_TYPES.map(key => ({
         key,
@@ -178,9 +187,6 @@ export default class AshfordActorSheet extends ActorSheet {
         to: item.system.armor[key] ?? 0,
         delta: (item.system.armor[key] ?? 0) - (cur[key] ?? 0)
       }));
-    } else {
-      const cur = equippedInSlot?.baseDamage ?? 0;
-      base.comparison = [{ key: "baseDamage", from: cur, to: item.system.baseDamage, delta: item.system.baseDamage - cur }];
     }
     return base;
   }
@@ -309,6 +315,10 @@ export default class AshfordActorSheet extends ActorSheet {
     html.find(".ashford-use-consumable").on("click", ev => {
       const itemId = ev.currentTarget.closest("[data-item-id]").dataset.itemId;
       this.actor.items.get(itemId)?.useConsumable();
+    });
+    html.find(".ashford-roll-weapon-damage").on("click", ev => {
+      const itemId = ev.currentTarget.closest("[data-item-id]").dataset.itemId;
+      this.actor.rollWeaponDamage(itemId);
     });
 
     // Inventar-Suche/Filter: rein clientseitig, kein Re-Render nötig.

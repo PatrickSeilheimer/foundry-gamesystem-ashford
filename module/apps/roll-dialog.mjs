@@ -40,6 +40,26 @@ export default class AshfordRollDialog {
       }
     }
 
+    // Angelegte Ausrüstung gibt einen FLACHEN Bonus aufs Würfelergebnis (nicht extra Würfel wie
+    // Zustände oben) — siehe AshfordArmor#talentBonuses. Additiv über alle Trägerstücke.
+    let gearFlatBonus = 0;
+    const gearNames = new Set();
+    for (const item of actor.items) {
+      if (item.type !== "armor" || !item.system.equipped) continue;
+      for (const bonus of item.system.talentBonuses ?? []) {
+        if (bonus.talentKey !== talent.system.talentKey || !bonus.value) continue;
+        gearFlatBonus += bonus.value;
+        gearNames.add(item.name);
+      }
+    }
+
+    // Die geführte Waffe selbst kann ebenfalls einen Treffer-Bonus/-Malus haben — zusätzlich zu den
+    // Reichweitenklassen-Modifikatoren bei Fernkampfwaffen (Abschnitt 6a), unabhängig vom Zielmodus.
+    const equippedWeapon = isWeapon
+      ? actor.items.find(i => i.type === "weapon" && i.system.equipped && i.system.weaponSkill === talent.system.talentKey)
+      : null;
+    const weaponAccuracyBonus = equippedWeapon?.system.accuracyBonus ?? 0;
+
     const content = await foundry.applications.handlebars.renderTemplate(
       "systems/ashford/templates/dice/roll-dialog.hbs",
       {
@@ -54,7 +74,11 @@ export default class AshfordRollDialog {
         targetName: target?.name ?? "",
         targetAusweichen,
         conditionNames: [...conditionNames],
-        conditionNet: conditionStaerken - conditionSchwaechen
+        conditionNet: conditionStaerken - conditionSchwaechen,
+        gearNames: [...gearNames],
+        gearFlatBonus,
+        weaponName: equippedWeapon?.name ?? "",
+        weaponAccuracyBonus
       }
     );
 
@@ -84,7 +108,7 @@ export default class AshfordRollDialog {
             const mode = form.querySelector('[name="targetMode"]')?.value ?? "none";
             let targetValue = null;
             let targetLabel = "";
-            let modifier = flatModifier;
+            let modifier = flatModifier + gearFlatBonus + weaponAccuracyBonus;
             let autoFail = false;
             let autoFailReason = "";
 

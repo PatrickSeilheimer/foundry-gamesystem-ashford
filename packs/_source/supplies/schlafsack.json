@@ -1,0 +1,29 @@
+{
+  "_id": "47b2bebe52d9437c",
+  "_key": "!items!47b2bebe52d9437c",
+  "name": "Schlafsack",
+  "type": "equipment",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "<p>Passiv, während einer Rast. Garantiert volle LP-Regeneration über Nacht (ohne Schlafsack reduziert).</p>",
+    "category": "sonstiges",
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

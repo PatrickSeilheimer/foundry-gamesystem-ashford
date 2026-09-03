@@ -1,0 +1,34 @@
+{
+  "_id": "2713e1f7751bad2d",
+  "_key": "!items!2713e1f7751bad2d",
+  "name": "Ranzige DIY Knarre",
+  "type": "weapon",
+  "img": "icons/svg/sword.svg",
+  "system": {
+    "description": "<p>Anfällig — Bei jedem Einsatz 1W8 würfeln. Bei einer 8 geht die Waffe kaputt. Bonus zusätzlich zu den Reichweitenklassen-Werten.</p>",
+    "weaponSkill": "pistolen",
+    "damageFormula": "2d6+5",
+    "accuracyBonus": -2,
+    "initiativeMod": 0,
+    "equipped": false,
+    "ammo": "9mm",
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

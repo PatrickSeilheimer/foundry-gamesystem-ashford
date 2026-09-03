@@ -1,0 +1,34 @@
+{
+  "_id": "c8e0ddd796076215",
+  "_key": "!items!c8e0ddd796076215",
+  "name": "Katana",
+  "type": "weapon",
+  "img": "icons/svg/sword.svg",
+  "system": {
+    "description": "",
+    "weaponSkill": "hiebwaffen",
+    "damageFormula": "1d8+4",
+    "accuracyBonus": 1,
+    "initiativeMod": 5,
+    "equipped": false,
+    "ammo": "",
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

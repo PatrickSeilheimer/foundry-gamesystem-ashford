@@ -1,0 +1,32 @@
+{
+  "_id": "93a886b594fb3fb4",
+  "_key": "!items!93a886b594fb3fb4",
+  "name": "Batterien",
+  "type": "consumable",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "<p>Kein eigener Effekt, hält Taschenlampe/Funkgerät/Nachtsichtgerät am Laufen.</p>",
+    "category": "material",
+    "usesRemaining": 1,
+    "actionLabel": "Wechseln",
+    "comboItems": [],
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

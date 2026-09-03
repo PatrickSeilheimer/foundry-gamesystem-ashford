@@ -21,6 +21,29 @@ export default class AshfordActor extends Actor {
     });
   }
 
+  /**
+   * Rolls one equipped weapon's own damage dice (absolute, printed on the item — no talent or
+   * Stärken/Schwächen involved). Melee weapons additionally add the character's Nahkampfschaden
+   * (Kraft + Ausrüstungs-Boni, see AshfordCharacter#prepareDerivedData); ranged weapons don't.
+   */
+  async rollWeaponDamage(itemId) {
+    const weapon = this.items.get(itemId);
+    if (!weapon || weapon.type !== "weapon") return ui.notifications?.warn("Waffe nicht gefunden.");
+    const formula = weapon.system.damageFormula?.trim();
+    if (!formula) return ui.notifications?.warn(`${weapon.name} hat keinen Schadenswürfel eingetragen.`);
+
+    const isMelee = !!weapon.system.weaponSkill && !weapon.system.isRanged;
+    const meleeBonus = isMelee ? this.system.derived?.nahkampfschaden ?? 0 : 0;
+    const fullFormula = meleeBonus ? `${formula} + ${meleeBonus}` : formula;
+
+    const roll = new Roll(fullFormula);
+    await roll.evaluate();
+    return roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      flavor: `${weapon.name} — Schaden`
+    });
+  }
+
   /** Open the roll dialog for one embedded talent Item (the normal way to roll in Ashford). */
   async rollTalent(talentId, options = {}) {
     const talent = this.items.get(talentId);

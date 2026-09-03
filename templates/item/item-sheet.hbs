@@ -45,8 +45,12 @@
           {{/each}}
         </select>
       </label>
-      <label>Waffenbasisschaden <input type="number" name="system.baseDamage" value="{{system.baseDamage}}" min="0"></label>
-      <label><input type="checkbox" name="system.equipped" {{#if system.equipped}}checked{{/if}}> Aktuell geführt (belegt den Hände-Slot, speist Nahkampfschaden)</label>
+      <label>Schaden (Würfelausdruck, z.B. 2d6+7 — absolut, bei Nahkampfwaffen kommt der charaktereigene Nahkampfschaden-Bonus beim Wurf automatisch dazu)
+        <input type="text" name="system.damageFormula" value="{{system.damageFormula}}" placeholder="1d6">
+      </label>
+      <label>Treffer-Bonus (zusätzlich zu Reichweitenklassen bei Fernkampf) <input type="number" name="system.accuracyBonus" value="{{system.accuracyBonus}}"></label>
+      <label>Initiative-Modifikator (während geführt) <input type="number" name="system.initiativeMod" value="{{system.initiativeMod}}"></label>
+      <label><input type="checkbox" name="system.equipped" {{#if system.equipped}}checked{{/if}}> Aktuell geführt (unabhängig von den Körper-Slots)</label>
       <label>Munition <input type="text" name="system.ammo" value="{{system.ammo}}"></label>
     {{/if}}
 
@@ -67,6 +71,26 @@
         </select>
       </label>
       <label><input type="checkbox" name="system.equipped" {{#if system.equipped}}checked{{/if}}> Angelegt</label>
+      <label>Initiative-Modifikator (während angelegt) <input type="number" name="system.initiativeMod" value="{{system.initiativeMod}}"></label>
+      <label>Nahkampfschaden-Bonus (z.B. Schlagring) <input type="number" name="system.meleeDamageBonus" value="{{system.meleeDamageBonus}}"></label>
+
+      <h4>Talent-Boni</h4>
+      <p class="hint">Flacher Bonus/Malus aufs Würfelergebnis (nicht auf den Würfelpool) des gewählten Talents, solange dieses Item angelegt ist.</p>
+      <ol class="fact-list ashford-effect-list">
+        {{#each system.talentBonuses as |bonus index|}}
+          <li>
+            <select name="system.talentBonuses.{{index}}.talentKey">
+              <option value="">— Talent wählen —</option>
+              {{#each ../talentOptions}}
+                <option value="{{this.key}}" {{#if (eq bonus.talentKey this.key)}}selected{{/if}}>{{this.name}}</option>
+              {{/each}}
+            </select>
+            <input type="number" name="system.talentBonuses.{{index}}.value" value="{{bonus.value}}">
+            <a class="ashford-talentbonus-remove" data-index="{{index}}" title="Entfernen"><i class="fas fa-trash"></i></a>
+          </li>
+        {{/each}}
+      </ol>
+      <a class="item-create ashford-talentbonus-add">+ Talent-Bonus</a>
     {{/if}}
 
     {{#if (or (eq item.type "equipment") (eq item.type "consumable"))}}
@@ -82,6 +106,19 @@
     {{#if (eq item.type "consumable")}}
       <label>Verbleibende Nutzungen <input type="number" name="system.usesRemaining" value="{{system.usesRemaining}}"></label>
       <label>Aktions-Label <input type="text" name="system.actionLabel" value="{{system.actionLabel}}" placeholder="Benutzen / Essen / Trinken / Anwenden"></label>
+
+      <h4>Combi-Item</h4>
+      <p class="hint">Falls gefüllt: Benutzen erzeugt diese Consumables im Inventar und löscht DIESES Item komplett (z.B. Erste-Hilfe-Kasten). Leer lassen für ein normales Einzel-Item.</p>
+      <ol class="fact-list ashford-effect-list">
+        {{#each system.comboItems as |entry index|}}
+          <li>
+            <input type="text" name="system.comboItems.{{index}}.name" value="{{entry.name}}" placeholder="Name, z.B. Verband">
+            <input type="number" name="system.comboItems.{{index}}.quantity" value="{{entry.quantity}}" min="1">
+            <a class="ashford-combo-remove" data-index="{{index}}" title="Entfernen"><i class="fas fa-trash"></i></a>
+          </li>
+        {{/each}}
+      </ol>
+      <a class="item-create ashford-combo-add">+ Inhalt</a>
     {{/if}}
 
     {{#if (eq item.type "condition")}}

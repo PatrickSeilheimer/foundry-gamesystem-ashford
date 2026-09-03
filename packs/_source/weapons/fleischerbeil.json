@@ -1,0 +1,34 @@
+{
+  "_id": "0b3584156f265b84",
+  "_key": "!items!0b3584156f265b84",
+  "name": "Fleischerbeil",
+  "type": "weapon",
+  "img": "icons/svg/sword.svg",
+  "system": {
+    "description": "",
+    "weaponSkill": "hiebwaffen",
+    "damageFormula": "1d6+3",
+    "accuracyBonus": -1,
+    "initiativeMod": 3,
+    "equipped": false,
+    "ammo": "",
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

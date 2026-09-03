@@ -1,0 +1,32 @@
+{
+  "_id": "42420506bffefa5f",
+  "_key": "!items!42420506bffefa5f",
+  "name": "Schiene",
+  "type": "consumable",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "<p>Hebt einen Bewegungs-/Athletik-Malus durch einen gebrochenen Knochen auf. Heilt keine LP.</p>",
+    "category": "medizin",
+    "usesRemaining": 1,
+    "actionLabel": "Anlegen",
+    "comboItems": [],
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "_id": "ff945af387bedba0",
+  "_key": "!items!ff945af387bedba0",
+  "name": "Schlagring",
+  "type": "armor",
+  "img": "icons/svg/shield.svg",
+  "system": {
+    "description": "",
+    "armor": {
+      "ballistic": 0,
+      "pierce": 0,
+      "blunt": 0,
+      "slash": 0
+    },
+    "slot": "hands",
+    "equipped": false,
+    "initiativeMod": 0,
+    "meleeDamageBonus": 5,
+    "talentBonuses": [],
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

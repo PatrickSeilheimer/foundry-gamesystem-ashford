@@ -1,0 +1,49 @@
+{
+  "_id": "2ed466e43258f95a",
+  "_key": "!items!2ed466e43258f95a",
+  "name": "Erste-Hilfe-Kasten",
+  "type": "consumable",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "<p>Erzeugt beim Einsatz im Inventar des Benutzers: 2× Verband, 1× Schmerzmittel, 1× Adrenalin-Spritze, 1× Desinfektionsmittel. Der Kasten selbst ist danach aufgebraucht.</p>",
+    "category": "medizin",
+    "usesRemaining": 1,
+    "actionLabel": "Öffnen",
+    "comboItems": [
+      {
+        "name": "Verband",
+        "quantity": 2
+      },
+      {
+        "name": "Schmerzmittel",
+        "quantity": 1
+      },
+      {
+        "name": "Adrenalin-Spritze",
+        "quantity": 1
+      },
+      {
+        "name": "Desinfektionsmittel",
+        "quantity": 1
+      }
+    ],
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

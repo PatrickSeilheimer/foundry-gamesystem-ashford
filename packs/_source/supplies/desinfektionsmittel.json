@@ -1,0 +1,32 @@
+{
+  "_id": "88d87291257ac1f4",
+  "_key": "!items!88d87291257ac1f4",
+  "name": "Desinfektionsmittel",
+  "type": "consumable",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "<p>Heilt eine Infektion vollständig — aber nur, wenn es in derselben oder der direkt folgenden Runde nach der Ansteckung eingesetzt wird.</p>",
+    "category": "medizin",
+    "usesRemaining": 1,
+    "actionLabel": "Anwenden",
+    "comboItems": [],
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

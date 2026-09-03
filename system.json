@@ -97,6 +97,33 @@
       "system": "ashford",
       "ownership": { "PLAYER": "OBSERVER", "ASSISTANT": "OWNER" },
       "locked": false
+    },
+    {
+      "name": "weapons",
+      "label": "Waffen",
+      "path": "packs/weapons",
+      "type": "Item",
+      "system": "ashford",
+      "ownership": { "PLAYER": "OBSERVER", "ASSISTANT": "OWNER" },
+      "locked": false
+    },
+    {
+      "name": "armor",
+      "label": "Ausrüstung",
+      "path": "packs/armor",
+      "type": "Item",
+      "system": "ashford",
+      "ownership": { "PLAYER": "OBSERVER", "ASSISTANT": "OWNER" },
+      "locked": false
+    },
+    {
+      "name": "supplies",
+      "label": "Vorräte & Medizin",
+      "path": "packs/supplies",
+      "type": "Item",
+      "system": "ashford",
+      "ownership": { "PLAYER": "OBSERVER", "ASSISTANT": "OWNER" },
+      "locked": false
     }
   ],
   "grid": {

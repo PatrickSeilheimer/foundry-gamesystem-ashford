@@ -1,0 +1,34 @@
+{
+  "_id": "003e73a6bb010df5",
+  "_key": "!items!003e73a6bb010df5",
+  "name": "Bajonett",
+  "type": "weapon",
+  "img": "icons/svg/sword.svg",
+  "system": {
+    "description": "",
+    "weaponSkill": "stichwaffen",
+    "damageFormula": "1d8+3",
+    "accuracyBonus": -1,
+    "initiativeMod": 2,
+    "equipped": false,
+    "ammo": "",
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

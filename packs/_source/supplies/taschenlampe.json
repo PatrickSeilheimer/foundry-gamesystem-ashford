@@ -1,0 +1,29 @@
+{
+  "_id": "68a139d81ce583ab",
+  "_key": "!items!68a139d81ce583ab",
+  "name": "Taschenlampe",
+  "type": "equipment",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "<p>Passiv (an/aus, keine Handlung pro Nutzung). Hebt Wahrnehmungs-Malus in Dunkelheit auf. Verbraucht mit der Zeit Batterien.</p>",
+    "category": "sonstiges",
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

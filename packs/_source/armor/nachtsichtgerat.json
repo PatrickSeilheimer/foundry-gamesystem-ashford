@@ -1,0 +1,44 @@
+{
+  "_id": "ec201d87b4176496",
+  "_key": "!items!ec201d87b4176496",
+  "name": "Nachtsichtgerät",
+  "type": "armor",
+  "img": "icons/svg/shield.svg",
+  "system": {
+    "description": "<p>Besonderheit — Wahrnehmungsbonus gilt bei Dunkelheit.</p>",
+    "armor": {
+      "ballistic": 0,
+      "pierce": 0,
+      "blunt": 0,
+      "slash": 0
+    },
+    "slot": "head",
+    "equipped": false,
+    "initiativeMod": -1,
+    "meleeDamageBonus": 0,
+    "talentBonuses": [
+      {
+        "talentKey": "wahrnehmung",
+        "value": 2
+      }
+    ],
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

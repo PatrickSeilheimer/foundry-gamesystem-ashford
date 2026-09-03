@@ -1,0 +1,34 @@
+{
+  "_id": "4e8a7abdb6e84526",
+  "_key": "!items!4e8a7abdb6e84526",
+  "name": "Glock",
+  "type": "weapon",
+  "img": "icons/svg/sword.svg",
+  "system": {
+    "description": "<p>Kann 2 Schüsse abfeuern. Beide Schüsse erhalten zusätzlich −4.</p>",
+    "weaponSkill": "pistolen",
+    "damageFormula": "2d6+6",
+    "accuracyBonus": -2,
+    "initiativeMod": 1,
+    "equipped": false,
+    "ammo": "9mm",
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

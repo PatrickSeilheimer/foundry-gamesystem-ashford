@@ -1,0 +1,34 @@
+{
+  "_id": "26361f187a97453a",
+  "_key": "!items!26361f187a97453a",
+  "name": "Eispickel",
+  "type": "weapon",
+  "img": "icons/svg/sword.svg",
+  "system": {
+    "description": "",
+    "weaponSkill": "stichwaffen",
+    "damageFormula": "1d6+3",
+    "accuracyBonus": 0,
+    "initiativeMod": 3,
+    "equipped": false,
+    "ammo": "",
+    "quantity": 1,
+    "weight": 0
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}
