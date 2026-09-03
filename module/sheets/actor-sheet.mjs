@@ -310,7 +310,7 @@ export default class AshfordActorSheet extends ActorSheet {
     // Inventar: ausrüsten/ablegen, Vergleichs-Drawer, Verbrauchsgegenstände benutzen, Slot per Item-Sheet.
     html.find(".ashford-equip").on("click", ev => {
       const itemId = ev.currentTarget.closest("[data-item-id]").dataset.itemId;
-      this.actor.items.get(itemId)?.update({ "system.equipped": true });
+      this._equipItem(itemId);
     });
     html.find(".ashford-unequip").on("click", ev => {
       const itemId = ev.currentTarget.closest("[data-item-id]").dataset.itemId;
@@ -354,8 +354,7 @@ export default class AshfordActorSheet extends ActorSheet {
     html.find(".equip-slot").on("drop", ev => {
       ev.preventDefault();
       const itemId = ev.originalEvent.dataTransfer.getData("text/ashford-item-id");
-      const item = itemId && this.actor.items.get(itemId);
-      if (item) item.update({ "system.equipped": true });
+      if (itemId) this._equipItem(itemId);
     });
 
     // Zustand-Tab: Katalog-Raster — linksklick fügt hinzu, rechtsklick entfernt (nur wenn schon aktiv).
@@ -391,6 +390,26 @@ export default class AshfordActorSheet extends ActorSheet {
       const itemId = ev.currentTarget.closest("[data-item-id]").dataset.itemId;
       this.actor.items.get(itemId)?.delete();
     });
+  }
+
+  /**
+   * Equips an item — for armor with a slot, this FIRST unequips whatever else already occupies that
+   * same slot, so a slot only ever holds one item. Without this, two armor pieces on the same slot
+   * would both stay `equipped: true` and their stats would incorrectly stack (armor/initiative/melee
+   * bonuses are summed over ALL equipped items, which is correct across different slots, but not
+   * when two items claim the same one). Weapons aren't slot-exclusive (see gear.mjs) — equipping a
+   * second one is a deliberate "carry multiple weapons" case, not a bug, so it's untouched here.
+   */
+  async _equipItem(itemId) {
+    const item = this.actor.items.get(itemId);
+    if (!item) return;
+    if (item.type === "armor" && item.system.slot) {
+      const occupant = this.actor.items.find(
+        i => i.id !== item.id && i.type === "armor" && i.system.equipped && i.system.slot === item.system.slot
+      );
+      if (occupant) await occupant.update({ "system.equipped": false });
+    }
+    return item.update({ "system.equipped": true });
   }
 
   /** Filters the equippable/misc inventory lists by free-text name and category, purely in the DOM. */

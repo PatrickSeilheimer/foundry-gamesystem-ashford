@@ -84,5 +84,22 @@ Hooks.on("createActor", (actor, options, userId) => {
   actor.ensureCanonicalTalents();
 });
 
+// Ausrüstungsslots sind exklusiv: legt man ein Rüstungsteil an, wird alles andere im selben Slot
+// automatisch abgelegt. Als Hook (statt nur in actor-sheet.mjs) deckt das JEDEN Weg ab, ein Item
+// anzulegen — Bogen-Buttons, Drag&Drop, die Checkbox auf dem Item-Sheet selbst, ein Makro — nicht
+// nur den einen Klick-Pfad. Ohne das würden zwei angelegte Items im selben Slot ihre Werte addieren
+// statt dass das neue das alte ersetzt.
+Hooks.on("updateItem", (item, changes, options, userId) => {
+  if (game.user.id !== userId) return;
+  if (item.type !== "armor" || !item.actor) return;
+  if (foundry.utils.getProperty(changes, "system.equipped") !== true) return;
+  const slot = item.system.slot;
+  if (!slot) return;
+  const occupant = item.actor.items.find(
+    i => i.id !== item.id && i.type === "armor" && i.system.equipped && i.system.slot === slot
+  );
+  occupant?.update({ "system.equipped": false });
+});
+
 registerCodexControls();
 registerInfectionTrackerControls();
