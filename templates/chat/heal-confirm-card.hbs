@@ -1,0 +1,21 @@
+<div class="ashford-heal-card">
+  <header>
+    <strong>{{itemName}}</strong>
+  </header>
+  <div class="heal-amount-row">Geworfene Heilung: <span class="heal-total">{{amount}}</span> LP</div>
+  <div class="heal-target-row">Ziel: {{targetName}}</div>
+  {{#if resolved}}
+    <div class="heal-resolved">
+      Angewendet: {{#if (gt appliedAmount 0)}}+{{/if}}{{appliedAmount}} LP ({{appliedLabel}})
+    </div>
+  {{else}}
+    <div class="heal-gm-actions">
+      <p class="hint">Spielleiter bestätigt die Heilung:</p>
+      <div class="heal-buttons">
+        <button type="button" class="ashford-heal-apply" data-multiplier="0.5">Halbiert</button>
+        <button type="button" class="ashford-heal-apply" data-multiplier="1">Normal</button>
+        <button type="button" class="ashford-heal-apply" data-multiplier="2">Doppelt</button>
+      </div>
+    </div>
+  {{/if}}
+</div>

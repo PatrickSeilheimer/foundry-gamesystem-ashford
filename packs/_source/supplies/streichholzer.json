@@ -1,11 +1,11 @@
 {
-  "_id": "0790f2b9e75896c5",
-  "_key": "!items!0790f2b9e75896c5",
-  "name": "Feuerzeug / Streichhölzer",
+  "_id": "84907dd5599246de",
+  "_key": "!items!84907dd5599246de",
+  "name": "Streichhölzer",
   "type": "consumable",
   "img": "icons/svg/item-bag.svg",
   "system": {
-    "description": "<p>Entzündet Feuer (Wärme, Kochen, Molotov anzünden).</p>",
+    "description": "<p>Entzündet Feuer (Wärme, Kochen, Molotov anzünden). Wirft dabei kurz ein extrem schwaches, kreisförmiges Licht um den Charakter, das nach etwa einer Minute von selbst erlischt.</p>",
     "category": "sonstiges",
     "usesRemaining": 20,
     "actionLabel": "Entzünden",
@@ -13,7 +13,15 @@
     "infectionDelta": 0,
     "healFormula": "",
     "quantity": 1,
-    "weight": 0
+    "weight": 0,
+    "lightSource": {
+      "enabled": true,
+      "dim": 2,
+      "bright": 0,
+      "angle": 360,
+      "color": "#f6b23a",
+      "durationSeconds": 60
+    }
   },
   "effects": [],
   "folder": null,

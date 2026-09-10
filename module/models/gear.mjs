@@ -137,7 +137,18 @@ export class AshfordConsumable extends AshfordPhysicalItem {
       infectionDelta: new NumberField({ required: true, integer: true, initial: 0 }),
       // Falls gefüllt (z.B. Adrenalin-Spritze: "3d6"): eigener Würfel-Button im Rucksack würfelt diese
       // Formel und addiert das Ergebnis auf die Gesundheit des Ziels (AshfordActor#rollConsumableHeal).
-      healFormula: new StringField({ required: false, blank: true })
+      healFormula: new StringField({ required: false, blank: true }),
+      // Einmaliges "Entzünden" statt An/Aus-Schalter (siehe AshfordEquipment#lightSource) — z.B.
+      // Streichhölzer: leuchtet für durationSeconds, dann fällt das Token-Licht automatisch zurück
+      // auf das, was aus aktiver Ausrüstung folgt (AshfordActor#igniteConsumableLight).
+      lightSource: new SchemaField({
+        enabled: new BooleanField({ required: true, initial: false }),
+        dim: new NumberField({ required: true, initial: 2, min: 0 }),
+        bright: new NumberField({ required: true, initial: 0, min: 0 }),
+        angle: new NumberField({ required: true, initial: 360, min: 1, max: 360 }),
+        color: new StringField({ required: false, blank: true, initial: "#f6b23a" }),
+        durationSeconds: new NumberField({ required: true, integer: true, initial: 60, min: 1 })
+      })
     };
   }
 }

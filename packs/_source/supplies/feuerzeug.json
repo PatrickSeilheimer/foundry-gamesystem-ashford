@@ -1,0 +1,37 @@
+{
+  "_id": "1e7f89733cfe08b1",
+  "_key": "!items!1e7f89733cfe08b1",
+  "name": "Feuerzeug",
+  "type": "equipment",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "<p>Passiv (an/aus, keine Handlung pro Nutzung). Wirft ein extrem schwaches, kreisförmiges Licht direkt um den Charakter — deutlich schwächer und ungerichtet im Vergleich zur Taschenlampe.</p>",
+    "category": "sonstiges",
+    "quantity": 1,
+    "weight": 0,
+    "lightSource": {
+      "active": false,
+      "enabled": true,
+      "dim": 2,
+      "bright": 0,
+      "angle": 360,
+      "color": "#f6b23a"
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

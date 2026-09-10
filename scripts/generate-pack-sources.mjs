@@ -517,7 +517,8 @@ for (const c of CONSUMABLE_ITEMS) {
       infectionDelta: c.infectionDelta ?? 0,
       healFormula: c.healFormula ?? "",
       quantity: 1,
-      weight: 0
+      weight: 0,
+      ...(c.lightSource ? { lightSource: c.lightSource } : {})
     },
     effects: [],
     folder: null,

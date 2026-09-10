@@ -17,6 +17,7 @@ import AshfordItemSheet from "./module/sheets/item-sheet.mjs";
 import registerHandlebarsHelpers from "./module/handlebars-helpers.mjs";
 import registerCodexControls from "./module/apps/codex-app.mjs";
 import registerInfectionTrackerControls from "./module/apps/infection-tracker.mjs";
+import registerHealConfirmChatControls from "./module/apps/heal-confirm-chat.mjs";
 import { TALENTS, POINTS_BUDGET } from "./module/rules/talents.mjs";
 
 Hooks.once("init", () => {
@@ -103,3 +104,4 @@ Hooks.on("updateItem", (item, changes, options, userId) => {
 
 registerCodexControls();
 registerInfectionTrackerControls();
+registerHealConfirmChatControls();

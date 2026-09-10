@@ -296,7 +296,7 @@
               {{#if this.weight}}<span class="row-weight">{{this.weight}} kg</span>{{/if}}
               <span class="row-category">{{this.category}}</span>
               {{#if this.actionLabel}}
-                <button type="button" class="ashford-use-consumable" {{#if this.healFormula}}title="Öffnet einen Bestätigungsdialog mit Heilen-Button"{{/if}}>{{this.actionLabel}}</button>
+                <button type="button" class="ashford-use-consumable" {{#if this.healFormula}}title="Würfelt sofort; der Spielleiter bestätigt die Heilung im Chat"{{/if}}>{{this.actionLabel}}</button>
                 <span class="row-uses">({{this.usesRemaining}})</span>
               {{/if}}
               {{#if this.isLightSource}}

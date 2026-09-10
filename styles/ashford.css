@@ -1192,12 +1192,47 @@
 .ashford-toggle-light:hover { border-color: var(--ashford-accent); color: var(--ashford-accent); }
 .ashford-toggle-light.active:hover { color: var(--ashford-bg); }
 
-/* Confirm dialog for consumables with a healFormula (module/apps/consumable-dialog.mjs) — plain
-   DialogV2 content, so this stays outside .ashford-v2/.ashford.sheet scoping. */
-.ashford-consumable-prompt .hint {
-  color: var(--ashford-text-dim);
+/* Heal-confirm chat card (module/apps/heal-confirm-chat.mjs) — lives inside the Foundry chat log,
+   so this stays outside .ashford-v2/.ashford.sheet scoping like .ashford-roll-card above it. */
+.ashford-heal-card {
+  border: 1px solid var(--ashford-edge);
+  background: var(--ashford-panel-2);
+  color: var(--ashford-text);
+  padding: 6px 8px;
   font-size: 12px;
+}
+
+.ashford-heal-card header { margin-bottom: 4px; }
+.ashford-heal-card .heal-total { color: var(--ashford-accent); font-weight: bold; }
+.ashford-heal-card .heal-target-row { color: var(--ashford-text-dim); margin-bottom: 4px; }
+
+.ashford-heal-card .heal-gm-actions .hint {
+  color: var(--ashford-text-dim);
+  font-size: 11px;
   font-style: italic;
+  margin: 4px 0;
+}
+
+.ashford-heal-card .heal-buttons {
+  display: flex;
+  gap: 4px;
+}
+
+.ashford-heal-card .ashford-heal-apply {
+  flex: 1 1 auto;
+  background: var(--ashford-panel);
+  border: 1px solid var(--ashford-accent);
+  color: var(--ashford-accent);
+  font-size: 11px;
+  padding: 2px 4px;
+}
+
+.ashford-heal-card .ashford-heal-apply:hover { background: var(--ashford-accent); color: var(--ashford-bg); }
+
+.ashford-heal-card .heal-resolved {
+  color: var(--ashford-accent-2);
+  font-weight: bold;
+  margin-top: 4px;
 }
 
 /* ---------- Zustand (conditions) ---------- */

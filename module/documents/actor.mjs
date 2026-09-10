@@ -56,11 +56,15 @@ export default class AshfordActor extends Actor {
   }
 
   /**
-   * Rolls a consumable's healing dice (e.g. Adrenalin-Spritze) and adds the total to the CURRENT
-   * Foundry target's health if exactly one token is targeted, otherwise to this actor itself
-   * ("Ziel: anvisiert oder self" — same targeting convention as the attack-roll dialog). Still
-   * ticks down usesRemaining like a normal use, but posts one combined chat message instead of
-   * calling useConsumable() too (which would double up the flavor text).
+   * Rolls a consumable's healing dice (e.g. Adrenalin-Spritze) against the CURRENT Foundry target
+   * if exactly one token is targeted, otherwise against this actor itself ("Ziel: anvisiert oder
+   * self" — same targeting convention as the attack-roll dialog), and posts a chat card with the
+   * result. Ticks down usesRemaining right away ("der Würfel wird automatisch gefeuert"), but does
+   * NOT apply the healing to the target's HP itself — a player using this on someone else's
+   * character often lacks OWNER permission on that actor, so the actual Actor#update has to happen
+   * from the GM's own client. Instead, the chat card carries Normal/Doppelt/Halbiert buttons that
+   * only the GM sees, and clicking one applies the (possibly scaled) amount — see
+   * module/apps/heal-confirm-chat.mjs.
    */
   async rollConsumableHeal(itemId) {
     const item = this.items.get(itemId);
@@ -69,15 +73,35 @@ export default class AshfordActor extends Actor {
     if (!formula) return ui.notifications?.warn(`${item.name} hat keinen Heilungswürfel eingetragen.`);
     if (item.system.usesRemaining <= 0) return ui.notifications?.warn(`${item.name} ist aufgebraucht.`);
 
-    const targetActor = game.user?.targets?.size === 1 ? [...game.user.targets][0]?.actor ?? this : this;
+    const targetToken = game.user?.targets?.size === 1 ? [...game.user.targets][0] : null;
+    const targetActor = targetToken?.actor ?? this;
+    const isSelf = targetActor === this;
+
     const roll = new Roll(formula);
     await roll.evaluate();
-    await targetActor.applyHealthDelta(roll.total);
     await item.update({ "system.usesRemaining": item.system.usesRemaining - 1 });
+
+    const flavor = `${this.name} injiziert ${isSelf ? "sich selbst" : targetActor.name} eine ${item.name}.`;
+    const content = await foundry.applications.handlebars.renderTemplate(
+      "systems/ashford/templates/chat/heal-confirm-card.hbs",
+      { itemName: item.name, targetName: targetActor.name, amount: roll.total, resolved: false }
+    );
 
     return roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this }),
-      flavor: `${item.name} — Heilung für ${targetActor.name} (+${roll.total} LP)`
+      flavor,
+      content,
+      flags: {
+        ashford: {
+          healConfirm: {
+            targetUuid: targetActor.uuid,
+            targetName: targetActor.name,
+            itemName: item.name,
+            amount: roll.total,
+            resolved: false
+          }
+        }
+      }
     });
   }
 
@@ -110,6 +134,40 @@ export default class AshfordActor extends Actor {
       target,
       targetLabel
     });
+  }
+
+  /**
+   * "Entzündet" a one-shot light consumable (e.g. Streichhölzer): applies its light immediately,
+   * ticks down usesRemaining, and after `lightSource.durationSeconds` falls back to whatever a
+   * currently-active equipped light source (e.g. Taschenlampe) would produce, via refreshLightSources
+   * — or off entirely if none is active. The burn-out timer is a plain client-side setTimeout, since
+   * Foundry has no server-side scheduled jobs: it only fires if THIS client stays open for the full
+   * duration. That's an accepted approximation ("brennt für eine Minute", nicht rundenbasiert) — if
+   * the tab closes early, the light simply stays lit until the next time anything calls
+   * refreshLightSources() (e.g. toggling a light-capable equipment item).
+   */
+  async igniteConsumableLight(itemId) {
+    const item = this.items.get(itemId);
+    if (!item || item.type !== "consumable") return ui.notifications?.warn("Gegenstand nicht gefunden.");
+    const cfg = item.system.lightSource;
+    if (!cfg?.enabled) return ui.notifications?.warn(`${item.name} kann nicht entzündet werden.`);
+    if (item.system.usesRemaining <= 0) return ui.notifications?.warn(`${item.name} ist aufgebraucht.`);
+
+    await item.update({ "system.usesRemaining": item.system.usesRemaining - 1 });
+
+    const light = { dim: cfg.dim, bright: cfg.bright, angle: cfg.angle, color: cfg.color || null };
+    await this.update({ "prototypeToken.light": light });
+    const tokenDocs = this.getActiveTokens(false, true);
+    if (tokenDocs.length) await Promise.all(tokenDocs.map(td => td.update({ light })));
+
+    const minutes = Math.round((cfg.durationSeconds / 60) * 10) / 10;
+    await ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      content: `<p><strong>${item.name}</strong> entzündet — brennt ca. ${minutes} Minute(n).</p>`
+    });
+
+    setTimeout(() => this.refreshLightSources(), cfg.durationSeconds * 1000);
+    return light;
   }
 
   /**

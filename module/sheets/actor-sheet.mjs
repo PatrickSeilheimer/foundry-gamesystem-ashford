@@ -7,7 +7,6 @@ import {
   conditionCategoryLabel,
   conditionDurationLabel
 } from "../rules/conditions.mjs";
-import AshfordConsumablePrompt from "../apps/consumable-dialog.mjs";
 
 const SLOT_ICONS = {
   head: "fas fa-hard-hat",
@@ -323,13 +322,17 @@ export default class AshfordActorSheet extends ActorSheet {
       if ($(ev.target).closest("button, a, input, select").length) return;
       $(ev.currentTarget).closest(".equippable-row").toggleClass("expanded");
     });
-    // Items mit einem healFormula (z.B. Adrenalin-Spritze) öffnen statt direkt zu wirken erst einen
-    // Bestätigungsdialog mit einem eigenen "Heilen"-Button darin — ein Knopf im Rucksack reicht so.
+    // Items mit einem healFormula (z.B. Adrenalin-Spritze) würfeln sofort und posten eine Chat-Karte
+    // mit GM-Bestätigungs-Buttons statt direkt zu heilen (siehe AshfordActor#rollConsumableHeal).
+    // Items mit lightSource (z.B. Streichhölzer) entzünden sich einmalig statt an/aus geschaltet zu
+    // werden (siehe AshfordActor#igniteConsumableLight — das ist der Unterschied zur Taschenlampe/
+    // zum Feuerzeug, die als Ausrüstung dauerhaft an-/ausgeschaltet werden, siehe .ashford-toggle-light).
     html.find(".ashford-use-consumable").on("click", ev => {
       const itemId = ev.currentTarget.closest("[data-item-id]").dataset.itemId;
       const item = this.actor.items.get(itemId);
       if (!item) return;
-      if (item.system.healFormula) AshfordConsumablePrompt.prompt(this.actor, item);
+      if (item.system.healFormula) this.actor.rollConsumableHeal(itemId);
+      else if (item.system.lightSource?.enabled) this.actor.igniteConsumableLight(itemId);
       else item.useConsumable();
     });
     html.find(".ashford-roll-weapon-damage").on("click", ev => {

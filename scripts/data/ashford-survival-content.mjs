@@ -21,6 +21,9 @@
  * @property {{name:string, quantity:number}[]} [comboItems] - macht daraus ein Combi-Item (siehe oben)
  * @property {number} [infectionDelta] - verschiebt beim Benutzen direkt den (spielerunsichtbaren) Infektionswert
  * @property {string} [healFormula] - z.B. "3d6": eigener Würfel-Button, addiert das Ergebnis auf das Ziel/self
+ * @property {{enabled:boolean, dim:number, bright:number, angle:number, color?:string, durationSeconds:number}} [lightSource] -
+ *   einmaliges "Entzünden" statt An/Aus-Schalter (siehe SURVIVAL_EQUIPMENT_ITEMS): leuchtet für durationSeconds,
+ *   dann fällt das Token-Licht automatisch zurück auf das, was aus aktiver Ausrüstung folgt (AshfordActor#igniteConsumableLight).
  */
 
 /** @type {ConsumableEntry[]} */
@@ -89,11 +92,12 @@ export const CONSUMABLE_ITEMS = [
     ]
   },
   {
-    name: "Feuerzeug / Streichhölzer",
+    name: "Streichhölzer",
     category: "sonstiges",
     actionLabel: "Entzünden",
-    description: "Entzündet Feuer (Wärme, Kochen, Molotov anzünden).",
-    usesRemaining: 20
+    description: "Entzündet Feuer (Wärme, Kochen, Molotov anzünden). Wirft dabei kurz ein extrem schwaches, kreisförmiges Licht um den Charakter, das nach etwa einer Minute von selbst erlischt.",
+    usesRemaining: 20,
+    lightSource: { enabled: true, dim: 2, bright: 0, angle: 360, color: "#f6b23a", durationSeconds: 60 }
   },
   {
     name: "Batterien",
@@ -126,6 +130,8 @@ export const CONSUMABLE_ITEMS = [
  * @property {string} name
  * @property {string} category
  * @property {string} description
+ * @property {{enabled:boolean, dim:number, bright:number, angle:number, color?:string}} [lightSource] -
+ *   An/Aus-Schalter im Rucksack (module/documents/actor.mjs#refreshLightSources), bleibt aktiv bis wieder ausgeschaltet.
  */
 
 /** @type {EquipmentEntry[]} */
@@ -139,12 +145,18 @@ export const SURVIVAL_EQUIPMENT_ITEMS = [
     lightSource: { enabled: true, dim: 12, bright: 6, angle: 70, color: "#f6e6b8" }
   },
   {
+    name: "Feuerzeug",
+    category: "sonstiges",
+    description: "Passiv (an/aus, keine Handlung pro Nutzung). Wirft ein extrem schwaches, kreisförmiges Licht direkt um den Charakter — deutlich schwächer und ungerichtet im Vergleich zur Taschenlampe.",
+    lightSource: { enabled: true, dim: 2, bright: 0, angle: 360, color: "#f6b23a" }
+  },
+  {
     name: "Seil (10 m)",
     category: "werkzeug",
     description: "Athletik-Probe zum Klettern/Sichern erhält +1 Würfel; verhindert Sturzschaden bei Erfolg."
   },
   {
-    name: "Funkgerät (Paar)",
+    name: "Funkgerät",
     category: "sonstiges",
     description: "Passiv, solange eingeschaltet. Kommunikation über Distanz ohne Sichtkontakt — kein Kampfeffekt, aber wichtig für Gruppentaktik."
   },
