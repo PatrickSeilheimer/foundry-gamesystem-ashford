@@ -42,4 +42,13 @@ export default class AshfordItem extends Item {
       content: `<p><strong>${this.name}</strong> — ${verb}.</p>`
     });
   }
+
+  /** Flips an equipment item's flashlight-style light emission on/off and pushes the change to the
+   * actor's token(s) right away (see AshfordActor#refreshLightSources). No-op for anything that
+   * isn't a light-capable equipment item (system.lightSource.enabled). */
+  async toggleLightSource() {
+    if (this.type !== "equipment" || !this.system.lightSource?.enabled) return null;
+    await this.update({ "system.lightSource.active": !this.system.lightSource.active });
+    return this.actor?.refreshLightSources();
+  }
 }

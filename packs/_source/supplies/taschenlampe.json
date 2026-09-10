@@ -8,7 +8,15 @@
     "description": "<p>Passiv (an/aus, keine Handlung pro Nutzung). Hebt Wahrnehmungs-Malus in Dunkelheit auf. Verbraucht mit der Zeit Batterien.</p>",
     "category": "sonstiges",
     "quantity": 1,
-    "weight": 0
+    "weight": 0,
+    "lightSource": {
+      "active": false,
+      "enabled": true,
+      "dim": 12,
+      "bright": 6,
+      "angle": 70,
+      "color": "#f6e6b8"
+    }
   },
   "effects": [],
   "folder": null,

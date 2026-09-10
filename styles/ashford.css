@@ -1159,8 +1159,7 @@
   white-space: nowrap;
 }
 
-.ashford-use-consumable,
-.ashford-roll-heal {
+.ashford-use-consumable {
   background: var(--ashford-panel);
   border: 1px solid var(--ashford-accent);
   color: var(--ashford-accent);
@@ -1170,13 +1169,36 @@
   white-space: nowrap;
 }
 
-.ashford-use-consumable:hover,
-.ashford-roll-heal:hover { background: var(--ashford-accent); color: var(--ashford-bg); }
-
-.ashford-roll-heal { border-color: var(--ashford-accent-2); color: var(--ashford-accent-2); }
-.ashford-roll-heal:hover { background: var(--ashford-accent-2); color: var(--ashford-bg); }
+.ashford-use-consumable:hover { background: var(--ashford-accent); color: var(--ashford-bg); }
 
 .row-uses { font-size: 11px; color: var(--ashford-text-dim); }
+
+.ashford-toggle-light {
+  background: var(--ashford-panel);
+  border: 1px solid var(--ashford-edge);
+  color: var(--ashford-text-dim);
+  font-size: 10px;
+  line-height: 1;
+  padding: 2px 6px;
+  white-space: nowrap;
+}
+
+.ashford-toggle-light.active {
+  background: var(--ashford-accent);
+  border-color: var(--ashford-accent);
+  color: var(--ashford-bg);
+}
+
+.ashford-toggle-light:hover { border-color: var(--ashford-accent); color: var(--ashford-accent); }
+.ashford-toggle-light.active:hover { color: var(--ashford-bg); }
+
+/* Confirm dialog for consumables with a healFormula (module/apps/consumable-dialog.mjs) — plain
+   DialogV2 content, so this stays outside .ashford-v2/.ashford.sheet scoping. */
+.ashford-consumable-prompt .hint {
+  color: var(--ashford-text-dim);
+  font-size: 12px;
+  font-style: italic;
+}
 
 /* ---------- Zustand (conditions) ---------- */
 

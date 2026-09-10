@@ -133,7 +133,10 @@ export const SURVIVAL_EQUIPMENT_ITEMS = [
   {
     name: "Taschenlampe",
     category: "sonstiges",
-    description: "Passiv (an/aus, keine Handlung pro Nutzung). Hebt Wahrnehmungs-Malus in Dunkelheit auf. Verbraucht mit der Zeit Batterien."
+    description: "Passiv (an/aus, keine Handlung pro Nutzung). Hebt Wahrnehmungs-Malus in Dunkelheit auf. Verbraucht mit der Zeit Batterien.",
+    // An/Aus-Knopf im Rucksack lässt einen echten Lichtkegel vom Token in Blickrichtung scheinen
+    // (module/documents/actor.mjs#refreshLightSources) statt nur beschreibender Text zu sein.
+    lightSource: { enabled: true, dim: 12, bright: 6, angle: 70, color: "#f6e6b8" }
   },
   {
     name: "Seil (10 m)",

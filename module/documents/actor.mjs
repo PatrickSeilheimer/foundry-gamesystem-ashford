@@ -112,6 +112,34 @@ export default class AshfordActor extends Actor {
     });
   }
 
+  /**
+   * Recomputes token light emission from any currently-active "lightSource" equipment (e.g. an
+   * activated Taschenlampe, toggled via AshfordItem#toggleLightSource) and pushes it to every
+   * placed token AND the prototype token (so a freshly dropped token keeps the same state). A
+   * light with angle < 360 automatically follows the token's facing/rotation in Foundry — no
+   * extra rotation-tracking code needed. If more than one light source is active at once, the
+   * brightest one wins rather than stacking additively (Foundry tokens only carry one light config).
+   */
+  async refreshLightSources() {
+    const active = this.items
+      .filter(i => i.type === "equipment" && i.system.lightSource?.enabled && i.system.lightSource?.active)
+      .sort((a, b) => b.system.lightSource.bright - a.system.lightSource.bright)[0];
+
+    const light = active
+      ? {
+          dim: active.system.lightSource.dim,
+          bright: active.system.lightSource.bright,
+          angle: active.system.lightSource.angle,
+          color: active.system.lightSource.color || null
+        }
+      : { dim: 0, bright: 0, angle: 360, color: null };
+
+    await this.update({ "prototypeToken.light": light });
+    const tokenDocs = this.getActiveTokens(false, true);
+    if (tokenDocs.length) await Promise.all(tokenDocs.map(td => td.update({ light })));
+    return light;
+  }
+
   /** Creates any of the 19 canonical talents this actor doesn't have yet (fresh characters, or repairing an older sheet). */
   async ensureCanonicalTalents() {
     const existingKeys = new Set(

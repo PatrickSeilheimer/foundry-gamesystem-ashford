@@ -295,12 +295,14 @@
               <span class="row-qty">x{{this.quantity}}</span>
               {{#if this.weight}}<span class="row-weight">{{this.weight}} kg</span>{{/if}}
               <span class="row-category">{{this.category}}</span>
-              {{#if this.healFormula}}
-                <button type="button" class="ashford-roll-heal" title="Heilung würfeln (Ziel: anvisiert oder self)"><i class="fas fa-dice-d6"></i> {{localize "ASHFORD.Sheet.rollHeal"}}</button>
-              {{/if}}
               {{#if this.actionLabel}}
-                <button type="button" class="ashford-use-consumable">{{this.actionLabel}}</button>
+                <button type="button" class="ashford-use-consumable" {{#if this.healFormula}}title="Öffnet einen Bestätigungsdialog mit Heilen-Button"{{/if}}>{{this.actionLabel}}</button>
                 <span class="row-uses">({{this.usesRemaining}})</span>
+              {{/if}}
+              {{#if this.isLightSource}}
+                <button type="button" class="ashford-toggle-light {{#if this.lightActive}}active{{/if}}" title="Licht an/aus — leuchtet in Blickrichtung des Tokens">
+                  <i class="fas fa-lightbulb"></i> {{#if this.lightActive}}An{{else}}Aus{{/if}}
+                </button>
               {{/if}}
               {{#if @root.isGM}}<a class="item-edit"><i class="fas fa-edit"></i></a>{{/if}}
               <a class="item-delete"><i class="fas fa-trash"></i></a>

@@ -7,6 +7,7 @@ import {
   conditionCategoryLabel,
   conditionDurationLabel
 } from "../rules/conditions.mjs";
+import AshfordConsumablePrompt from "../apps/consumable-dialog.mjs";
 
 const SLOT_ICONS = {
   head: "fas fa-hard-hat",
@@ -209,7 +210,9 @@ export default class AshfordActorSheet extends ActorSheet {
       category: item.system.category || "sonstiges",
       usesRemaining: item.type === "consumable" ? item.system.usesRemaining : null,
       actionLabel: item.type === "consumable" ? item.system.actionLabel || "Benutzen" : null,
-      healFormula: item.type === "consumable" ? item.system.healFormula || "" : ""
+      healFormula: item.type === "consumable" ? item.system.healFormula || "" : "",
+      isLightSource: item.type === "equipment" && !!item.system.lightSource?.enabled,
+      lightActive: item.type === "equipment" && !!item.system.lightSource?.active
     };
   }
 
@@ -320,9 +323,14 @@ export default class AshfordActorSheet extends ActorSheet {
       if ($(ev.target).closest("button, a, input, select").length) return;
       $(ev.currentTarget).closest(".equippable-row").toggleClass("expanded");
     });
+    // Items mit einem healFormula (z.B. Adrenalin-Spritze) öffnen statt direkt zu wirken erst einen
+    // Bestätigungsdialog mit einem eigenen "Heilen"-Button darin — ein Knopf im Rucksack reicht so.
     html.find(".ashford-use-consumable").on("click", ev => {
       const itemId = ev.currentTarget.closest("[data-item-id]").dataset.itemId;
-      this.actor.items.get(itemId)?.useConsumable();
+      const item = this.actor.items.get(itemId);
+      if (!item) return;
+      if (item.system.healFormula) AshfordConsumablePrompt.prompt(this.actor, item);
+      else item.useConsumable();
     });
     html.find(".ashford-roll-weapon-damage").on("click", ev => {
       const itemId = ev.currentTarget.closest("[data-item-id]").dataset.itemId;
@@ -332,9 +340,10 @@ export default class AshfordActorSheet extends ActorSheet {
       const talentId = ev.currentTarget.dataset.talentId;
       if (talentId) this.actor.rollTalent(talentId);
     });
-    html.find(".ashford-roll-heal").on("click", ev => {
+    // Taschenlampe & Co.: An/Aus-Schalter im Rucksack, der einen echten Lichtkegel vom Token ausgehen lässt.
+    html.find(".ashford-toggle-light").on("click", ev => {
       const itemId = ev.currentTarget.closest("[data-item-id]").dataset.itemId;
-      this.actor.rollConsumableHeal(itemId);
+      this.actor.items.get(itemId)?.toggleLightSource();
     });
 
     // Inventar-Suche/Filter: rein clientseitig, kein Re-Render nötig.

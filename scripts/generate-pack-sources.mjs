@@ -542,7 +542,8 @@ for (const e of SURVIVAL_EQUIPMENT_ITEMS) {
       description: `<p>${e.description}</p>`,
       category: e.category,
       quantity: 1,
-      weight: 0
+      weight: 0,
+      ...(e.lightSource ? { lightSource: { active: false, ...e.lightSource } } : {})
     },
     effects: [],
     folder: null,

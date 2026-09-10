@@ -95,7 +95,20 @@ export class AshfordEquipment extends AshfordPhysicalItem {
   static defineSchema() {
     return {
       ...super.defineSchema(),
-      category: new StringField({ required: false, blank: true, initial: "sonstiges", choices: ITEM_CATEGORIES })
+      category: new StringField({ required: false, blank: true, initial: "sonstiges", choices: ITEM_CATEGORIES }),
+      // Manche Ausrüstung (z.B. Taschenlampe) lässt sich an-/ausschalten und wirft dabei einen ECHTEN
+      // Lichtkegel vom Token aus (Foundry TokenDocument#light, siehe AshfordActor#refreshLightSources).
+      // `enabled` markiert die Fähigkeit selbst (nur die Taschenlampe hat sie), `active` den aktuellen
+      // Schalterzustand. Ein Winkel < 360° dreht sich in Foundry automatisch mit der Token-Blickrichtung
+      // mit — dafür ist kein eigener Code zur Blickrichtungs-Verfolgung nötig.
+      lightSource: new SchemaField({
+        enabled: new BooleanField({ required: true, initial: false }),
+        active: new BooleanField({ required: true, initial: false }),
+        dim: new NumberField({ required: true, initial: 12, min: 0 }),
+        bright: new NumberField({ required: true, initial: 6, min: 0 }),
+        angle: new NumberField({ required: true, initial: 70, min: 1, max: 360 }),
+        color: new StringField({ required: false, blank: true, initial: "#f6e6b8" })
+      })
     };
   }
 }
