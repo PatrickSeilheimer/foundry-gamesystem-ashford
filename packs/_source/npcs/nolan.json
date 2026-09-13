@@ -1,9 +1,9 @@
 {
   "_id": "a9dcabe55e87acc9",
   "_key": "!actors!a9dcabe55e87acc9",
-  "name": "Gary Nolan",
+  "name": "Daryl Nolan",
   "type": "npc",
-  "img": "systems/ashford/assets/portraits/gary-nolan.png",
+  "img": "systems/ashford/assets/portraits/daryl-nolan.png",
   "system": {
     "role": "Ehemaliger Gefängniswärter, Miguels engster Verbündeter",
     "buildingId": "",
@@ -26,9 +26,9 @@
         "value": "Kurzgeschorenes graues Haar, trägt noch immer den alten Schlüsselbund seines Dienstes als eine Art Andenken"
       }
     ],
-    "story": "<p>Gary war Wärter in dem Gefängnis, in dem Miguel einsaß, und stand am Tag des Falls vor der Anweisung, sämtliche Häftlinge einfach zurückzulassen. Er warf sämtliche Protokolle über den Haufen und befreite so viele Insassen wie möglich, Miguel darunter. Auf der gemeinsamen Flucht retteten die beiden sich mehrfach gegenseitig das Leben, ein Erlebnis, das eine Verbindung geschaffen hat, die enger ist als die meisten Familienbande in Ashford. Gary trägt bis heute seinen alten Schlüsselbund bei sich, nicht aus Nostalgie für den alten Job, sondern als Erinnerung daran, dass er die eine Entscheidung getroffen hat, auf die er wirklich stolz ist.</p>",
+    "story": "<p>Daryl war Wärter in dem Gefängnis, in dem Miguel einsaß, und stand am Tag des Falls vor der Anweisung, sämtliche Häftlinge einfach zurückzulassen. Er warf sämtliche Protokolle über den Haufen und befreite so viele Insassen wie möglich, Miguel darunter. Auf der gemeinsamen Flucht retteten die beiden sich mehrfach gegenseitig das Leben, ein Erlebnis, das eine Verbindung geschaffen hat, die enger ist als die meisten Familienbande in Ashford. Daryl trägt bis heute seinen alten Schlüsselbund bei sich, nicht aus Nostalgie für den alten Job, sondern als Erinnerung daran, dass er die eine Entscheidung getroffen hat, auf die er wirklich stolz ist.</p>",
     "isCodexEntry": true,
-    "initials": "GN",
+    "initials": "DN",
     "meta": {
       "gender": "m",
       "age": 38,
@@ -60,9 +60,9 @@
   },
   "flags": {},
   "prototypeToken": {
-    "name": "Gary Nolan",
+    "name": "Daryl Nolan",
     "texture": {
-      "src": "systems/ashford/assets/portraits/gary-nolan.png"
+      "src": "systems/ashford/assets/portraits/daryl-nolan.png"
     },
     "width": 1,
     "height": 1,

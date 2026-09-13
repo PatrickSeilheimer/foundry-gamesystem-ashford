@@ -278,18 +278,18 @@ export const persons = {
     facts: {
       Alter: "39",
       "Vor der Apokalypse": "Saß im Gefängnis, worüber er nie spricht, und niemand in Ashford fragt",
-      Verbindung: `Untrennbar verbunden mit ${personLink("nolan", "Gary Nolan")}, dem ehemaligen Wärter, der ihn beim Ausbruch befreite`,
+      Verbindung: `Untrennbar verbunden mit ${personLink("nolan", "Daryl Nolan")}, dem ehemaligen Wärter, der ihn beim Ausbruch befreite`,
       Aussehen: "Kantiges Gesicht mit von Natur aus hart und wütend wirkenden Zügen, dabei aber fast durchgehend ausdruckslose Miene, Gefängnistätowierungen über weite Teile des Körpers bis auf die Gesichtsseite, wacher, ruhiger Blick"
     },
     note: "Kein offizieller Posten, aber eine feste Größe im Alltag der Siedlung.",
-    story: "Jeder in Ashford weiß, dass Miguel gesessen hat, aber niemand weiß wofür, und in all den Jahren in der Siedlung hat er sich nie das Geringste zuschulden kommen lassen. Als der Fall über das Gefängnis hereinbrach, in dem er einsaß, ignorierte der Wärter Gary Nolan die Anweisung, sämtliche Häftlinge zurückzulassen, und befreite ihn. Auf der gemeinsamen Flucht durch das Chaos retteten sie sich mehrfach gegenseitig das Leben, ein Bund, der bis heute unzertrennlich ist. Miguel redet wenig über sich selbst, auch nicht über sein Leben vor der Haft, aber wer ihn kennt, weiß, dass er zuverlässiger ist als die meisten, die viel mehr reden."
+    story: "Jeder in Ashford weiß, dass Miguel gesessen hat, aber niemand weiß wofür, und in all den Jahren in der Siedlung hat er sich nie das Geringste zuschulden kommen lassen. Als der Fall über das Gefängnis hereinbrach, in dem er einsaß, ignorierte der Wärter Daryl Nolan die Anweisung, sämtliche Häftlinge zurückzulassen, und befreite ihn. Auf der gemeinsamen Flucht durch das Chaos retteten sie sich mehrfach gegenseitig das Leben, ein Bund, der bis heute unzertrennlich ist. Miguel redet wenig über sich selbst, auch nicht über sein Leben vor der Haft, aber wer ihn kennt, weiß, dass er zuverlässiger ist als die meisten, die viel mehr reden."
   },
   nolan: {
-    name: "Gary Nolan",
+    name: "Daryl Nolan",
     role: "Ehemaliger Gefängniswärter, Miguels engster Verbündeter",
     building: null,
     buildingName: null,
-    initials: "GN",
+    initials: "DN",
     meta: { gender: "m", age: 38, relationship: "Ledig", workplace: "Außentrupp", nationality: "USA" },
     facts: {
       Alter: "38",
@@ -298,7 +298,7 @@ export const persons = {
       Aussehen: "Kurzgeschorenes graues Haar, trägt noch immer den alten Schlüsselbund seines Dienstes als eine Art Andenken"
     },
     note: "Kein offizieller Posten, aber eine feste Größe im Alltag der Siedlung.",
-    story: "Gary war Wärter in dem Gefängnis, in dem Miguel einsaß, und stand am Tag des Falls vor der Anweisung, sämtliche Häftlinge einfach zurückzulassen. Er warf sämtliche Protokolle über den Haufen und befreite so viele Insassen wie möglich, Miguel darunter. Auf der gemeinsamen Flucht retteten die beiden sich mehrfach gegenseitig das Leben, ein Erlebnis, das eine Verbindung geschaffen hat, die enger ist als die meisten Familienbande in Ashford. Gary trägt bis heute seinen alten Schlüsselbund bei sich, nicht aus Nostalgie für den alten Job, sondern als Erinnerung daran, dass er die eine Entscheidung getroffen hat, auf die er wirklich stolz ist."
+    story: "Daryl war Wärter in dem Gefängnis, in dem Miguel einsaß, und stand am Tag des Falls vor der Anweisung, sämtliche Häftlinge einfach zurückzulassen. Er warf sämtliche Protokolle über den Haufen und befreite so viele Insassen wie möglich, Miguel darunter. Auf der gemeinsamen Flucht retteten die beiden sich mehrfach gegenseitig das Leben, ein Erlebnis, das eine Verbindung geschaffen hat, die enger ist als die meisten Familienbande in Ashford. Daryl trägt bis heute seinen alten Schlüsselbund bei sich, nicht aus Nostalgie für den alten Job, sondern als Erinnerung daran, dass er die eine Entscheidung getroffen hat, auf die er wirklich stolz ist."
   },
   finn: {
     name: "Finn",
@@ -583,9 +583,9 @@ export const missions = [
   {
     id: "gefaengnis",
     title: "Spuren aus dem Gefängnis",
-    auftraggeber: "Gary Nolan, mit stillschweigender Zustimmung von Miguel Vega",
+    auftraggeber: "Daryl Nolan, mit stillschweigender Zustimmung von Miguel Vega",
     auftraggeberId: "nolan",
-    grobesZiel: "Vergangenheitsbewältigung und Erkundung – Rückkehr zu dem Gefängnis, aus dem Gary und Miguel einst geflohen sind.",
+    grobesZiel: "Vergangenheitsbewältigung und Erkundung – Rückkehr zu dem Gefängnis, aus dem Daryl und Miguel einst geflohen sind.",
     exaktesZiel: "Im Gefängnis sollen persönliche Gegenstände, alte Akten oder möglicherweise noch überlebende, eingeschlossene Häftlinge gefunden werden.",
     ereignisse: [
       "Verriegelte Zellentrakte mit noch immer eingesperrten, längst verwandelten Insassen",
@@ -593,7 +593,7 @@ export const missions = [
       "Ein versteckter Waffen- oder Ausrüstungscache der ehemaligen Wachmannschaft",
       "Ein moralisches Dilemma, falls tatsächlich noch lebende, eingesperrte Menschen gefunden werden"
     ],
-    sonstiges: "Starkes Potenzial für Charakterentwicklung bei Miguel und Gary, gut geeignet als emotional aufgeladener Höhepunkt einer Session, unabhängig davon, ob Miguels Geheimnis am Ende wirklich aufgedeckt wird."
+    sonstiges: "Starkes Potenzial für Charakterentwicklung bei Miguel und Daryl, gut geeignet als emotional aufgeladener Höhepunkt einer Session, unabhängig davon, ob Miguels Geheimnis am Ende wirklich aufgedeckt wird."
   },
   {
     id: "handelsweg",
