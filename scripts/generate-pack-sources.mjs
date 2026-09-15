@@ -26,6 +26,7 @@ import {
   TALENT_NAME_MAP
 } from "./data/ashford-equipment-content.mjs";
 import { CONSUMABLE_ITEMS, SURVIVAL_EQUIPMENT_ITEMS } from "./data/ashford-survival-content.mjs";
+import { SCENES } from "./data/ashford-scene-content.mjs";
 import { TALENTS } from "../module/rules/talents.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -51,6 +52,19 @@ function resolvePortraitPath(slug) {
     }
   }
   return `systems/ashford/assets/portraits/${slug}.svg`;
+}
+
+const SCENES_DIR = path.join(ROOT, "assets/scenes");
+
+/** Same "prefer real art over the generated placeholder" logic as resolvePortraitPath, for Scene
+ * backgrounds -- scripts/generate-scene-art.mjs always creates the .svg fallback. */
+function resolveScenePath(slug) {
+  for (const ext of PORTRAIT_EXTENSIONS) {
+    if (fs.existsSync(path.join(SCENES_DIR, `${slug}.${ext}`))) {
+      return `systems/ashford/assets/scenes/${slug}.${ext}`;
+    }
+  }
+  return `systems/ashford/assets/scenes/${slug}.svg`;
 }
 
 function stats() {
@@ -556,6 +570,67 @@ for (const e of SURVIVAL_EQUIPMENT_ITEMS) {
   writeJSON(suppliesDir, `${slug}.json`, doc);
 }
 
+/* -------------------------------------------- */
+/*  Szenen: fertige Umgebungen mit Wänden & Licht */
+/* -------------------------------------------- */
+
+const scenesDir = ensureCleanDir("packs/_source/scenes");
+
+for (const scene of SCENES) {
+  const slug = slugifyName(scene.name);
+  const sceneId = idFor(`scene-${slug}`);
+  const background = resolveScenePath(slug);
+
+  // Wand-Felder folgen Foundrys WALL_SENSE_TYPES: weggelassen = 20 (NORMAL, blockierend).
+  // Ein Fenster hebt nur light/sight auf 0 auf (durchsichtig), move bleibt blockierend.
+  const walls = scene.walls.map((wall, i) => {
+    const wallId = idFor(`scene-${slug}-wall-${i}`);
+    const doc = {
+      _id: wallId,
+      _key: `!scenes.walls!${sceneId}.${wallId}`,
+      c: wall.c
+    };
+    if (wall.door) doc.door = 1;
+    if (wall.window) {
+      doc.light = 0;
+      doc.sight = 0;
+    }
+    return doc;
+  });
+
+  const lights = (scene.lights ?? []).map((light, i) => {
+    const lightId = idFor(`scene-${slug}-light-${i}`);
+    return {
+      _id: lightId,
+      _key: `!scenes.lights!${sceneId}.${lightId}`,
+      x: light.x,
+      y: light.y,
+      config: { dim: light.dim, bright: light.bright, color: light.color }
+    };
+  });
+
+  const doc = {
+    _id: sceneId,
+    _key: `!scenes!${sceneId}`,
+    name: scene.name,
+    background: { src: background },
+    width: scene.width,
+    height: scene.height,
+    grid: { type: 1, size: scene.gridSize, distance: 1, units: "m" },
+    // Bewusst dunkel voreingestellt: die Taschenlampe/das Feuerzeug (module/documents/actor.mjs
+    // #refreshLightSources) sollen auf fertigen Umgebungen tatsächlich einen Unterschied machen.
+    environment: { darknessLevel: scene.darknessLevel ?? 0 },
+    walls,
+    lights,
+    folder: null,
+    sort: 0,
+    ownership: { default: 2 },
+    flags: {},
+    _stats: stats()
+  };
+  writeJSON(scenesDir, `${slug}.json`, doc);
+}
+
 console.log(
-  `\nFertig: ${Object.keys(persons).length} NPCs, ${buildings.length} Gebäude, ${missions.length} Missionen, ${TALENTS.length} Talente, ${EXAMPLE_TRAITS.length} Traits, ${WEAPON_ITEMS.length} Waffen, ${ARMOR_ITEMS.length} Ausrüstungsteile, ${CONSUMABLE_ITEMS.length + SURVIVAL_EQUIPMENT_ITEMS.length} Vorräte.`
+  `\nFertig: ${Object.keys(persons).length} NPCs, ${buildings.length} Gebäude, ${missions.length} Missionen, ${TALENTS.length} Talente, ${EXAMPLE_TRAITS.length} Traits, ${WEAPON_ITEMS.length} Waffen, ${ARMOR_ITEMS.length} Ausrüstungsteile, ${CONSUMABLE_ITEMS.length + SURVIVAL_EQUIPMENT_ITEMS.length} Vorräte, ${SCENES.length} Szenen.`
 );

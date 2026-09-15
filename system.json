@@ -124,6 +124,15 @@
       "system": "ashford",
       "ownership": { "PLAYER": "OBSERVER", "ASSISTANT": "OWNER" },
       "locked": false
+    },
+    {
+      "name": "scenes",
+      "label": "Umgebungen",
+      "path": "packs/scenes",
+      "type": "Scene",
+      "system": "ashford",
+      "ownership": { "PLAYER": "OBSERVER", "ASSISTANT": "OWNER" },
+      "locked": false
     }
   ],
   "grid": {
