@@ -1,21 +1,22 @@
 /**
  * Ready-made canvas Scenes ("Umgebungen") shipped with the system: real Foundry `Scene`
- * documents with pre-placed Walls and AmbientLights, not just a description. This is the single
- * source of truth for each scene's geometry — scripts/generate-scene-art.mjs draws the matching
- * background SVG from the SAME `walls`/`features` data, and scripts/generate-pack-sources.mjs
- * turns it into the compendium source JSON — so the artwork and the collision walls can never
- * drift apart.
+ * documents with pre-placed Walls and AmbientLights over a real background image supplied under
+ * assets/scenes/<slug>.png — scripts/generate-pack-sources.mjs turns this into the compendium
+ * source JSON (see resolveScenePath there for how the background path is resolved).
  *
- * Coordinates are in pixels at `gridSize` px/square (Foundry's default 100px = 1 grid square =
- * 1m, matching system.json's grid config). Wall fields follow Foundry's WALL_SENSE_TYPES/
- * WALL_DOOR_TYPES conventions: omitted light/move/sight/sound default to 20 (NORMAL, i.e.
- * blocking); a "window" only overrides light/sight to 0 so it stays see-through while still
- * blocking movement; `door: 1` makes a segment an openable door instead of solid wall.
+ * Wall/room coordinates below were measured by hand against the actual pixel art (grid-overlay +
+ * brightness-transition sampling at the wall/floor boundary), NOT guessed — they follow the real
+ * floorplan. Where the art itself doesn't clearly mark a door (several interior boundaries here are
+ * fully solid in the source image), a door was added anyway so every room stays reachable; those
+ * are called out below so they're easy to move if the real intent was different.
+ *
+ * Coordinates are in pixels at `gridSize` px/square. Wall fields follow Foundry's
+ * WALL_SENSE_TYPES/WALL_DOOR_TYPES conventions: omitted light/move/sight/sound default to 20
+ * (NORMAL, i.e. blocking); `door: 1` makes a segment an openable door instead of solid wall.
  *
  * @typedef {object} WallEntry
  * @property {[number,number,number,number]} c - [x1, y1, x2, y2]
  * @property {1} [door] - openable door instead of solid wall
- * @property {boolean} [window] - blocks movement but not light/sight (shop display window)
  *
  * @typedef {object} LightEntry
  * @property {number} x
@@ -26,7 +27,7 @@
  *
  * @typedef {object} SceneEntry
  * @property {string} name
- * @property {number} gridSize
+ * @property {number} gridSize - measured against the art (car/parking-space width), not assumed
  * @property {number} width
  * @property {number} height
  * @property {number} darknessLevel - 0 (full daylight) - 1 (pitch black); this system leans dark
@@ -34,59 +35,60 @@
  *   actually matters on these maps.
  * @property {WallEntry[]} walls
  * @property {LightEntry[]} lights
- * @property {FeatureEntry[]} features - purely visual (scripts/generate-scene-art.mjs); no collision
- *
- * @typedef {object} FeatureEntry
- * @property {"asphalt"|"floor"|"road"|"canopy"|"pump"|"wreck"} type
- * @property {[number,number,number,number]} [rect] - [x, y, w, h] (all but "wreck")
- * @property {string} [color] - only "floor" overrides the default floor tone
- * @property {number} [x] - "wreck" only
- * @property {number} [y] - "wreck" only
  */
 
 /** @type {SceneEntry[]} */
 export const SCENES = [
   {
     name: "Tankstelle",
-    gridSize: 100,
-    width: 2000,
-    height: 1400,
+    gridSize: 64,
+    width: 1536,
+    height: 2048,
     darknessLevel: 0.6,
-    features: [
-      { type: "asphalt", rect: [700, 100, 1300, 900] },
-      { type: "floor", rect: [100, 200, 400, 600], color: "#c9c2b0" }, // Shop
-      { type: "floor", rect: [500, 200, 200, 600], color: "#a89f8c" }, // Lagerraum
-      { type: "road", rect: [0, 1200, 2000, 200] },
-      { type: "canopy", rect: [950, 300, 700, 400] },
-      { type: "pump", rect: [1050, 450, 100, 150] },
-      { type: "pump", rect: [1450, 450, 100, 150] },
-      { type: "wreck", x: 280, y: 1020 }
-    ],
-    // Kleiner Shop (6x6 Felder) mit einem abgetrennten Lagerraum im Osten, offener Zapfsäulen-
-    // Vorplatz mit Vordach davor (rein optisch, siehe generate-scene-art.mjs — Tankstellen-Vordächer
-    // haben keine Wände) und einer Zufahrtsstraße am unteren Rand.
     walls: [
-      // Nordwand, mit Anlieferungstür in den Lagerraum
-      { c: [100, 200, 550, 200] },
-      { c: [550, 200, 650, 200], door: 1 },
-      { c: [650, 200, 700, 200] },
-      // Südwand (zum Vorplatz hin): Kundeneingang, Schaufenster, Lagerraum-Außenwand
-      { c: [100, 800, 250, 800] },
-      { c: [250, 800, 350, 800], door: 1 },
-      { c: [350, 800, 500, 800], window: true },
-      { c: [500, 800, 700, 800] },
-      // West- und Ostwand
-      { c: [100, 200, 100, 800] },
-      { c: [700, 200, 700, 800] },
-      // Innenwand Shop/Lagerraum, mit Durchgangstür
-      { c: [500, 200, 500, 450] },
-      { c: [500, 450, 500, 550], door: 1 },
-      { c: [500, 550, 500, 800] }
+      // Gebäude-Außenwand: Norden, Westen, Osten (oberer Shop-Teil) -- durchgehend, keine Tür im Bild erkennbar
+      { c: [300, 300, 1220, 300] },
+      { c: [300, 300, 300, 1064] },
+      { c: [1220, 300, 1220, 764] },
+
+      // Trennwand Büro/Lager (links) zu Shop (rechts), x=750: im Original durchgehend solide.
+      // Tür hier selbst ergänzt (Lager <-> Shop), da sonst kein Weg vom Lager in den Verkaufsraum bestünde.
+      { c: [750, 300, 750, 650] },
+      { c: [750, 650, 750, 714], door: 1 },
+      { c: [750, 714, 750, 1064] },
+
+      // Südwand Shop (Knick des Gebäudegrundrisses zum offenen Vorplatz mit Behindertenparkplatz).
+      // Kundeneingang hier selbst ergänzt -- im Bild keine erkennbare Tür.
+      { c: [750, 764, 850, 764] },
+      { c: [850, 764, 978, 764], door: 1 },
+      { c: [978, 764, 1220, 764] },
+
+      // Südwand Lagerraum (unterer, schmalerer Gebäudeteil)
+      { c: [300, 1064, 750, 1064] },
+
+      // Trennwand Büro (oben) / Lagerraum (unten), y=496: im Original durchgehend solide.
+      // Tür hier selbst ergänzt, sonst wäre das Büro komplett abgeriegelt.
+      { c: [300, 496, 550, 496] },
+      { c: [550, 496, 614, 496], door: 1 },
+      { c: [614, 496, 750, 496] },
+
+      // Toilette (kleiner Raum in der Südwest-Ecke des Lagerraums) -- Tür im Bild sichtbar (rötliches Türblatt)
+      { c: [408, 918, 408, 1064] },
+      { c: [408, 918, 500, 918] },
+      { c: [500, 918, 500, 944] },
+      { c: [500, 944, 500, 1000], door: 1 },
+      { c: [500, 1000, 500, 1064] },
+
+      // Kleiner Versorgungs-Unterstand unten links auf dem Vorplatz (Luft/Wasser-Station), nach Süden offen
+      { c: [16, 1820, 224, 1820] },
+      { c: [16, 1820, 16, 1940] },
+      { c: [224, 1820, 224, 1940] }
     ],
     lights: [
-      { x: 1100, y: 400, dim: 8, bright: 4, color: "#fff2cc" }, // Vordach-Beleuchtung West
-      { x: 1500, y: 400, dim: 8, bright: 4, color: "#fff2cc" }, // Vordach-Beleuchtung Ost
-      { x: 300, y: 500, dim: 5, bright: 3, color: "#e8f0ff" } // Shop-Innenbeleuchtung
+      { x: 980, y: 500, dim: 6, bright: 3, color: "#e8f0ff" }, // Shop-Innenbeleuchtung
+      { x: 500, y: 650, dim: 6, bright: 3, color: "#e8f0ff" }, // Lager-Innenbeleuchtung
+      { x: 420, y: 1330, dim: 10, bright: 5, color: "#fff2cc" }, // Zapfsäulen-Insel West
+      { x: 830, y: 1330, dim: 10, bright: 5, color: "#fff2cc" } // Zapfsäulen-Insel Ost
     ]
   }
 ];
