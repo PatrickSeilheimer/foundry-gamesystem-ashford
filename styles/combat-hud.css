@@ -1,0 +1,87 @@
+/* BG3/Divinity-OS2-style turn-order bar (module/apps/combat-hud.mjs) -- fixed HUD overlay, lives
+   outside the .ashford-v2/.ashford.sheet scoping entirely (it's not part of any sheet). */
+
+#ashford-combat-hud {
+  position: fixed;
+  top: 46px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 60;
+  pointer-events: none;
+}
+
+#ashford-combat-hud[hidden] { display: none; }
+
+.ashford-combat-hud-bar {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  padding: 6px 10px 4px;
+}
+
+.ashford-combat-hud-bar .chud-portrait {
+  pointer-events: all;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.ashford-combat-hud-bar .chud-portrait:hover { opacity: 0.95; }
+
+.ashford-combat-hud-bar .chud-portrait.active {
+  opacity: 1;
+  transform: translateY(-6px) scale(1.25);
+  z-index: 2;
+}
+
+.ashford-combat-hud-bar .chud-portrait.defeated { opacity: 0.35; filter: grayscale(1); }
+
+.ashford-combat-hud-bar .chud-frame {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid var(--ashford-edge, #6b5d42);
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.ashford-combat-hud-bar .chud-portrait.active .chud-frame {
+  border-color: var(--ashford-accent, #d9922f);
+  box-shadow: 0 0 12px 2px var(--ashford-accent, #d9922f);
+}
+
+.ashford-combat-hud-bar .chud-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ashford-combat-hud-bar .chud-health {
+  width: 44px;
+  height: 4px;
+  margin-top: 3px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid #000;
+}
+
+.ashford-combat-hud-bar .chud-portrait.active .chud-health { width: 56px; }
+
+.ashford-combat-hud-bar .chud-health-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #8bb27a, #e8877a);
+}
+
+.ashford-combat-hud-bar .chud-name {
+  margin-top: 2px;
+  max-width: 64px;
+  font-size: 10px;
+  color: #f5f1e6;
+  text-shadow: 0 1px 2px #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

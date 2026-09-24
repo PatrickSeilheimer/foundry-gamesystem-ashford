@@ -1,0 +1,12 @@
+<div class="ashford-combat-hud-bar">
+  {{#each combatants}}
+    <div class="chud-portrait {{#if this.active}}active{{/if}} {{#if this.defeated}}defeated{{/if}}"
+         data-combatant-id="{{this.id}}" title="{{this.name}}">
+      <div class="chud-frame">
+        <img src="{{this.img}}" alt="{{this.name}}">
+      </div>
+      <div class="chud-health"><div class="chud-health-fill" style="width:{{this.healthPct}}%"></div></div>
+      <div class="chud-name">{{this.name}}</div>
+    </div>
+  {{/each}}
+</div>

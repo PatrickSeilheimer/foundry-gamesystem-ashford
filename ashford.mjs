@@ -18,6 +18,7 @@ import registerHandlebarsHelpers from "./module/handlebars-helpers.mjs";
 import registerCodexControls from "./module/apps/codex-app.mjs";
 import registerInfectionTrackerControls from "./module/apps/infection-tracker.mjs";
 import registerHealConfirmChatControls from "./module/apps/heal-confirm-chat.mjs";
+import registerCombatHudControls from "./module/apps/combat-hud.mjs";
 import { TALENTS, POINTS_BUDGET } from "./module/rules/talents.mjs";
 
 Hooks.once("init", () => {
@@ -85,6 +86,20 @@ Hooks.on("createActor", (actor, options, userId) => {
   actor.ensureCanonicalTalents();
 });
 
+// Ashford hat keine Fantasy-Sinne (kein Dunkelsicht o.ä.) — alle Charaktere sind gewöhnliche
+// Menschen. Jeder neu erstellte Charakter bekommt daher immer eine normale menschliche Sichtweite:
+// eine großzügige Reichweite (begrenzt effektiv nur durch tatsächlich vorhandenes Licht auf der
+// Szene, nicht künstlich), kein 360°-Ausschluss. Genau DAS macht Taschenlampe/Feuerzeug
+// (module/documents/actor.mjs#refreshLightSources) auf abgedunkelten Szenen erst relevant.
+Hooks.on("preCreateActor", (actor, data, options, userId) => {
+  if (actor.type !== "character") return;
+  actor.updateSource({
+    "prototypeToken.sight.enabled": true,
+    "prototypeToken.sight.range": 60,
+    "prototypeToken.sight.visionMode": "basic"
+  });
+});
+
 // Ausrüstungsslots sind exklusiv: legt man ein Rüstungsteil an, wird alles andere im selben Slot
 // automatisch abgelegt. Als Hook (statt nur in actor-sheet.mjs) deckt das JEDEN Weg ab, ein Item
 // anzulegen — Bogen-Buttons, Drag&Drop, die Checkbox auf dem Item-Sheet selbst, ein Makro — nicht
@@ -105,3 +120,4 @@ Hooks.on("updateItem", (item, changes, options, userId) => {
 registerCodexControls();
 registerInfectionTrackerControls();
 registerHealConfirmChatControls();
+registerCombatHudControls();

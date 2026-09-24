@@ -18,7 +18,8 @@
   ],
   "styles": [
     "styles/ashford.css",
-    "styles/codex.css"
+    "styles/codex.css",
+    "styles/combat-hud.css"
   ],
   "languages": [
     {
@@ -121,15 +122,6 @@
       "label": "Vorräte & Medizin",
       "path": "packs/supplies",
       "type": "Item",
-      "system": "ashford",
-      "ownership": { "PLAYER": "OBSERVER", "ASSISTANT": "OWNER" },
-      "locked": false
-    },
-    {
-      "name": "scenes",
-      "label": "Umgebungen",
-      "path": "packs/scenes",
-      "type": "Scene",
       "system": "ashford",
       "ownership": { "PLAYER": "OBSERVER", "ASSISTANT": "OWNER" },
       "locked": false
