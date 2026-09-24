@@ -10,7 +10,9 @@
       "ballistic": 0,
       "pierce": 0,
       "blunt": 0,
-      "slash": 0
+      "slash": 0,
+      "explosion": 0,
+      "fire": 0
     },
     "slot": "hands",
     "equipped": false,

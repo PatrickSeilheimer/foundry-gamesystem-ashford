@@ -187,7 +187,7 @@ export default class AshfordActorSheet extends ActorSheet {
       base.slotLabel = slotKey ? localizeSlot(slotKey) : "";
       base.hasSlot = !!slotKey;
       const equippedInSlot = slotKey ? equipSlots.find(s => s.key === slotKey)?.item ?? null : null;
-      const cur = equippedInSlot?.armor ?? { ballistic: 0, pierce: 0, blunt: 0, slash: 0 };
+      const cur = equippedInSlot?.armor ?? {};
       base.comparison = ARMOR_TYPES.map(key => ({
         key,
         from: cur[key] ?? 0,

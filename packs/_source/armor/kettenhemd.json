@@ -10,7 +10,9 @@
       "ballistic": 0,
       "pierce": 3,
       "blunt": 0,
-      "slash": 4
+      "slash": 4,
+      "explosion": 0,
+      "fire": 0
     },
     "slot": "chest",
     "equipped": false,

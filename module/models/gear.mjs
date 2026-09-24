@@ -11,8 +11,8 @@ const { ArrayField, BooleanField, NumberField, SchemaField, StringField } = foun
  */
 export const EQUIP_SLOTS = ["head", "chest", "hands", "legs", "feet"];
 
-/** The 4 fully separate damage types armor protects against. */
-export const ARMOR_TYPES = ["ballistic", "pierce", "blunt", "slash"];
+/** The 6 fully separate damage types armor protects against. */
+export const ARMOR_TYPES = ["ballistic", "pierce", "blunt", "slash", "explosion", "fire"];
 
 /** Free-item categories used for inventory search/filter (weapon/armor already imply their own category via item.type). */
 export const ITEM_CATEGORIES = ["medizin", "nahrung", "munition", "werkzeug", "material", "sonstiges"];
@@ -70,7 +70,9 @@ export class AshfordArmor extends AshfordPhysicalItem {
         ballistic: new NumberField({ required: true, integer: true, initial: 0, min: 0 }),
         pierce: new NumberField({ required: true, integer: true, initial: 0, min: 0 }),
         blunt: new NumberField({ required: true, integer: true, initial: 0, min: 0 }),
-        slash: new NumberField({ required: true, integer: true, initial: 0, min: 0 })
+        slash: new NumberField({ required: true, integer: true, initial: 0, min: 0 }),
+        explosion: new NumberField({ required: true, integer: true, initial: 0, min: 0 }),
+        fire: new NumberField({ required: true, integer: true, initial: 0, min: 0 })
       }),
       slot: new StringField({ required: false, blank: true, choices: EQUIP_SLOTS }),
       equipped: new BooleanField({ required: true, initial: false }),

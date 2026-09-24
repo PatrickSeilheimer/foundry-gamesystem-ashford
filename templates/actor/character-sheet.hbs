@@ -79,6 +79,8 @@
           <span title="{{localize 'ASHFORD.Sheet.armorPierce'}}">🗡️ {{system.armor.pierce}}</span>
           <span title="{{localize 'ASHFORD.Sheet.armorBlunt'}}">🔨 {{system.armor.blunt}}</span>
           <span title="{{localize 'ASHFORD.Sheet.armorSlash'}}">⚔️ {{system.armor.slash}}</span>
+          <span title="{{localize 'ASHFORD.Sheet.armorExplosion'}}">💥 {{system.armor.explosion}}</span>
+          <span title="{{localize 'ASHFORD.Sheet.armorFire'}}">🔥 {{system.armor.fire}}</span>
         </div>
       </div>
 
@@ -189,7 +191,7 @@
               <div class="slot-item" data-item-id="{{this.item.id}}">
                 <span class="slot-item-name">{{this.item.name}}</span>
                 {{#if this.item.armor}}
-                  <span class="slot-item-armor">🔫{{this.item.armor.ballistic}} 🗡️{{this.item.armor.pierce}} 🔨{{this.item.armor.blunt}} ⚔️{{this.item.armor.slash}}</span>
+                  <span class="slot-item-armor">🔫{{this.item.armor.ballistic}} 🗡️{{this.item.armor.pierce}} 🔨{{this.item.armor.blunt}} ⚔️{{this.item.armor.slash}} 💥{{this.item.armor.explosion}} 🔥{{this.item.armor.fire}}</span>
                 {{/if}}
                 <div class="slot-item-actions">
                   {{#if @root.isGM}}<a class="item-edit" title="Öffnen"><i class="fas fa-edit"></i></a>{{/if}}
@@ -240,7 +242,7 @@
                 <img class="row-img" src="{{this.img}}" alt="">
                 <span class="row-name">{{this.name}}</span>
                 {{#if this.armor}}
-                  <span class="row-stats">🔫{{this.armor.ballistic}} 🗡️{{this.armor.pierce}} 🔨{{this.armor.blunt}} ⚔️{{this.armor.slash}}</span>
+                  <span class="row-stats">🔫{{this.armor.ballistic}} 🗡️{{this.armor.pierce}} 🔨{{this.armor.blunt}} ⚔️{{this.armor.slash}} 💥{{this.armor.explosion}} 🔥{{this.armor.fire}}</span>
                   <span class="row-slot">{{this.slotLabel}}</span>
                   {{#if this.hasSlot}}
                     <button type="button" class="ashford-equip">{{localize "ASHFORD.Sheet.equip"}}</button>

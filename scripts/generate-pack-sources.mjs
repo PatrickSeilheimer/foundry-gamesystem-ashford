@@ -437,7 +437,7 @@ const armorDir = ensureCleanDir("packs/_source/armor");
 
 /** "Rüstung gegen X: Y" Einträge -> die vier AshfordArmor#armor-Felder, pro Schadensart aufsummiert. */
 function buildArmorValues(ruestungList = []) {
-  const armor = { ballistic: 0, pierce: 0, blunt: 0, slash: 0 };
+  const armor = { ballistic: 0, pierce: 0, blunt: 0, slash: 0, explosion: 0, fire: 0 };
   for (const r of ruestungList) {
     const type = DAMAGE_TYPE_MAP[r.gegen];
     if (type) armor[type] += r.wert;

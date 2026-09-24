@@ -26,6 +26,8 @@
   "ASHFORD.Sheet.armorPierce": "Pierce (Stich)",
   "ASHFORD.Sheet.armorBlunt": "Blunt (Stumpf)",
   "ASHFORD.Sheet.armorSlash": "Slash (Schnitt)",
+  "ASHFORD.Sheet.armorExplosion": "Explosion",
+  "ASHFORD.Sheet.armorFire": "Feuer",
   "ASHFORD.Sheet.initiativeMod": "Initiative",
   "ASHFORD.Sheet.rollInitiative": "Würfeln",
   "ASHFORD.Sheet.meleeDamage": "Nahkampf",
