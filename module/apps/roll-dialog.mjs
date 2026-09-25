@@ -106,7 +106,7 @@ export default class AshfordRollDialog {
             const staerken = talent.system.staerken + activeStrengthNames.length + extraStaerken + conditionStaerken;
             const schwaechen = talent.system.schwaechen + activeWeaknessNames.length + extraSchwaechen + conditionSchwaechen;
 
-            const mode = form.querySelector('[name="targetMode"]')?.value ?? "none";
+            const mode = form.querySelector('[name="targetMode"]:checked')?.value ?? "none";
             let targetValue = null;
             let targetLabel = "";
             let modifier = flatModifier + gearFlatBonus + weaponAccuracyBonus;
