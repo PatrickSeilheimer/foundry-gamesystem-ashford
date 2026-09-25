@@ -1,4 +1,4 @@
-import { rollAshfordCheck } from "../dice/dice-pool.mjs";
+import { rollAshfordCheck, postRollMessage } from "../dice/dice-pool.mjs";
 import AshfordRollDialog from "../apps/roll-dialog.mjs";
 import { TALENTS } from "../rules/talents.mjs";
 import { ARMOR_TYPE_LABELS, AMMO_TYPE_LABELS } from "../models/gear.mjs";
@@ -27,7 +27,7 @@ export default class AshfordActor extends Actor {
     const mod = this.system.derived?.initiativeMod ?? 0;
     const roll = new Roll("1d12 + @mod", { mod });
     await roll.evaluate();
-    return roll.toMessage({
+    return postRollMessage(roll, {
       speaker: ChatMessage.getSpeaker({ actor: this }),
       flavor: "Initiative"
     });
@@ -133,7 +133,7 @@ export default class AshfordActor extends Actor {
 
     const target = targetActor ?? (game.user?.targets?.size === 1 ? [...game.user.targets][0]?.actor : null);
     if (!target) {
-      return roll.toMessage({
+      return postRollMessage(roll, {
         speaker: ChatMessage.getSpeaker({ actor: this }),
         flavor: `${weapon.name} — Schaden`
       });
@@ -158,7 +158,7 @@ export default class AshfordActor extends Actor {
       cardData
     );
 
-    return roll.toMessage({
+    return postRollMessage(roll, {
       speaker: ChatMessage.getSpeaker({ actor: this }),
       flavor: `${weapon.name} — Schaden gegen ${target.name}`,
       content,
@@ -338,7 +338,7 @@ export default class AshfordActor extends Actor {
       { itemName: item.name, targetName: targetActor.name, amount: roll.total, resolved: false }
     );
 
-    return roll.toMessage({
+    return postRollMessage(roll, {
       speaker: ChatMessage.getSpeaker({ actor: this }),
       flavor,
       content,

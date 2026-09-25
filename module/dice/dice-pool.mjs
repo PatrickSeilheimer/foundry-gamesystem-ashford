@@ -27,6 +27,28 @@ export async function rollExplodingPool(diceCount) {
 }
 
 /**
+ * Wraps `roll.toMessage()` — on some worlds Foundry's own rollMode/messageMode resolution inside
+ * ChatMessage.applyMode throws ("Cannot read properties of undefined (reading 'handler')"), which
+ * looks like a stale/invalid `core.rollMode` (pre-v14) / `core.messageMode` (v14+) world setting —
+ * unrelated to anything this system sets itself. Rather than depend on that resolution working,
+ * fall back to posting the same message directly (always a normal public message, since we can't
+ * safely re-derive whatever rollMode the world intended once the built-in resolution is broken).
+ */
+export async function postRollMessage(roll, messageData = {}) {
+  try {
+    return await roll.toMessage(messageData);
+  } catch (err) {
+    console.error("Ashford | roll.toMessage() failed, falling back to a plain ChatMessage.create", err);
+    return ChatMessage.create({
+      user: game.user?.id,
+      sound: CONFIG.sounds.dice,
+      rolls: [roll],
+      ...messageData
+    });
+  }
+}
+
+/**
  * Rolls a full Ashford check and posts a chat card.
  * @param {object} options
  * @param {Actor} options.actor
@@ -97,7 +119,7 @@ export async function rollAshfordCheck({
     }
   );
 
-  const message = await roll.toMessage({
+  const message = await postRollMessage(roll, {
     speaker: ChatMessage.getSpeaker({ actor }),
     flavor: label,
     content
