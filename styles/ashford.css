@@ -1103,6 +1103,15 @@
 .ashford-roll-weapon-attack { border-color: var(--ashford-accent-2); color: var(--ashford-accent-2); }
 .ashford-roll-weapon-attack:hover { background: var(--ashford-accent-2); color: var(--ashford-bg); }
 
+.ashford-roll-weapon-damage:disabled {
+  border-color: var(--ashford-edge);
+  color: var(--ashford-text-dim);
+  background: var(--ashford-panel);
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.ashford-roll-weapon-damage:disabled:hover { background: var(--ashford-panel); color: var(--ashford-text-dim); }
+
 /* Munitionsanzeige auf der Waffen-Zeile (character-sheet.hbs/creature-sheet.hbs) und im
    Munitions-Rucksack-Panel unten: leer/aufgebraucht fällt sofort ins Auge. */
 .ammo-empty { color: var(--ashford-danger); font-weight: bold; }
@@ -1309,6 +1318,30 @@
 }
 
 .ashford-damage-card header { margin-bottom: 4px; }
+.ashford-damage-card .pool-size {
+  color: var(--ashford-text-dim);
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+.ashford-damage-card .dice-row { display: flex; gap: 4px; margin-bottom: 6px; }
+.ashford-damage-card .die {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--ashford-edge);
+  background: var(--ashford-panel);
+  color: var(--ashford-text-dim);
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+}
+.ashford-damage-card .die.exploded {
+  border-color: var(--ashford-danger);
+  color: var(--ashford-danger);
+  font-weight: bold;
+}
 .ashford-damage-card .damage-row { color: var(--ashford-text-dim); }
 .ashford-damage-card .damage-row .raw { color: var(--ashford-text); font-weight: bold; }
 .ashford-damage-card .damage-row .armor { color: var(--ashford-accent-2); }

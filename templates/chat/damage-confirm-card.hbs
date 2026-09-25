@@ -2,6 +2,14 @@
   <header>
     <strong>{{weaponName}}</strong> → {{targetName}}
   </header>
+  {{#if diceResults.length}}
+    <div class="pool-size">{{formula}}</div>
+    <div class="dice-row">
+      {{#each diceResults}}
+        <span class="die {{#if this.exploded}}exploded{{/if}}">{{this.result}}</span>
+      {{/each}}
+    </div>
+  {{/if}}
   <div class="damage-row">Rohschaden: <span class="raw">{{rawDamage}}</span></div>
   {{#if armorValue}}
     <div class="damage-row">Rüstung ({{damageTypeLabel}}): <span class="armor">−{{armorValue}}</span></div>

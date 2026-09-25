@@ -203,6 +203,11 @@ export default class AshfordActorSheet extends ActorSheet {
       base.talentId = this.actor.items.find(
         t => t.type === "talent" && t.system.talentKey === item.system.weaponSkill
       )?.id ?? null;
+      // Der "Schaden"-Button ist nur freigegeben, solange der letzte Treffer-Wurf dieser Waffe ein
+      // Erfolg war (oder sich gar nicht prüfen ließ, z.B. ohne anvisiertes Ziel) — gesetzt/gelöscht
+      // von AshfordActor#rollWeaponAttack / #rollWeaponDamage. Default false: vor dem ersten
+      // Treffer-Wurf gibt es nichts, dessen Schaden manuell nachgerollt werden dürfte.
+      base.canRollDamage = item.getFlag("ashford", "canRollDamage") ?? false;
     }
     return base;
   }

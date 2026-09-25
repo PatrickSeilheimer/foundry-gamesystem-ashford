@@ -70,10 +70,16 @@ export default class AshfordActor extends Actor {
 
     const targetToken = game.user?.targets?.size === 1 ? [...game.user.targets][0] : null;
     const targetActor = targetToken?.actor ?? null;
-    if (!targetActor) return this.rollTalent(talent.id, { label: weapon.name });
+    if (!targetActor) {
+      // Kein anvisiertes Ziel -> kein Ausweichen zum Prüfen, also lässt sich "Treffer oder nicht"
+      // gar nicht feststellen. Der Schaden-Button bleibt in diesem Fall freigegeben.
+      await weapon.setFlag("ashford", "canRollDamage", true);
+      return this.rollTalent(talent.id, { label: weapon.name });
+    }
 
     const result = await AshfordRollDialog.prompt(this, talent, { label: weapon.name, defaultMode: "attack" });
     if (!result || result === "cancel" || typeof result !== "object") return result;
+    await weapon.setFlag("ashford", "canRollDamage", !!result.success);
 
     // Munitions-Abzug — welches Item (Waffe selbst oder das eingeladene Magazin) betroffen ist, hängt
     // vom feedType ab; ammoRestore hält fest, was/wo zurückzusetzen ist, falls der GM den Schaden
@@ -124,12 +130,20 @@ export default class AshfordActor extends Actor {
     const formula = weapon.system.damageFormula?.trim();
     if (!formula) return ui.notifications?.warn(`${weapon.name} hat keinen Schadenswürfel eingetragen.`);
 
+    // Verbraucht den durch rollWeaponAttack gesetzten Freigabe-Flag: nach diesem Schadenswurf braucht
+    // es wieder einen frischen (oder ungeprüften) Treffer, bevor der "Schaden"-Button erneut geht.
+    await weapon.unsetFlag("ashford", "canRollDamage");
+
     const isMelee = !!weapon.system.weaponSkill && !weapon.system.isRanged;
     const meleeBonus = isMelee ? this.system.derived?.nahkampfschaden ?? 0 : 0;
     const fullFormula = meleeBonus ? `max(${formula} + ${meleeBonus}, 1)` : formula;
 
     const roll = new Roll(fullFormula);
     await roll.evaluate();
+    // Einzelne Würfelergebnisse fürs Chatkarten-Layout (module/apps/roll-dialog.mjs' Treffer-Karte
+    // zeigt dieselbe Aufschlüsselung) — flatMap über alle Würfelterme, falls die Formel mehrere
+    // Würfelarten kombiniert (z.B. "1d8+1d4").
+    const diceResults = roll.dice.flatMap(term => term.results.map(r => ({ result: r.result, exploded: !!r.exploded })));
 
     const target = targetActor ?? (game.user?.targets?.size === 1 ? [...game.user.targets][0]?.actor : null);
     if (!target) {
@@ -146,6 +160,8 @@ export default class AshfordActor extends Actor {
     const cardData = {
       weaponName: weapon.name,
       targetName: target.name,
+      formula: fullFormula,
+      diceResults,
       rawDamage: roll.total,
       armorValue,
       damageTypeLabel: ARMOR_TYPE_LABELS[damageType] ?? damageType,

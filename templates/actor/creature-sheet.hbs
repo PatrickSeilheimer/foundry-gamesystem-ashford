@@ -122,7 +122,7 @@
             {{#if this.talentId}}
               <button type="button" class="ashford-roll-weapon-attack" title="Treffer würfeln (Ziel anvisieren für Munition/Schaden)"><i class="fas fa-crosshairs"></i> {{localize "ASHFORD.Sheet.rollAttack"}}</button>
             {{/if}}
-            <button type="button" class="ashford-roll-weapon-damage" title="Schaden würfeln"><i class="fas fa-dice-d6"></i> {{localize "ASHFORD.Sheet.rollDamage"}}</button>
+            <button type="button" class="ashford-roll-weapon-damage" {{#unless this.canRollDamage}}disabled{{/unless}} title="{{#if this.canRollDamage}}Schaden würfeln{{else}}Erst einen Treffer würfeln{{/if}}"><i class="fas fa-dice-d6"></i> {{localize "ASHFORD.Sheet.rollDamage"}}</button>
             {{#unless (eq this.feedType "none")}}
               <button type="button" class="ashford-reload-weapon" title="{{localize 'ASHFORD.Sheet.reload'}}"><i class="fas fa-sync-alt"></i> {{localize "ASHFORD.Sheet.reload"}}</button>
             {{/unless}}
