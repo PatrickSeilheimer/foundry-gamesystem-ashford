@@ -26,7 +26,9 @@ import {
   TALENT_NAME_MAP
 } from "./data/ashford-equipment-content.mjs";
 import { CONSUMABLE_ITEMS, SURVIVAL_EQUIPMENT_ITEMS } from "./data/ashford-survival-content.mjs";
-import { TALENTS } from "../module/rules/talents.mjs";
+import { MAGAZINE_ITEMS, AMMO_ITEMS } from "./data/ashford-ammo-content.mjs";
+import { CREATURES } from "./data/ashford-creature-content.mjs";
+import { TALENTS, levelToStrengthsWeaknesses } from "../module/rules/talents.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -398,6 +400,29 @@ for (const trait of EXAMPLE_TRAITS) {
 
 const weaponsDir = ensureCleanDir("packs/_source/weapons");
 
+/** Waffentalent -> Schadensart, damit der automatische Schadenswurf (AshfordActor#rollWeaponDamage)
+ * weiß, welchen der 6 Rüstungswerte er gegenrechnen muss. */
+const WEAPON_SKILL_DAMAGE_TYPE = {
+  pistolen: "ballistic",
+  gewehre: "ballistic",
+  schrotflinten: "ballistic",
+  boegen: "pierce",
+  schlagwaffen: "blunt",
+  hiebwaffen: "slash",
+  stichwaffen: "pierce",
+  waffenloserkampf: "blunt"
+};
+
+/** Rohdaten-Munitionslabel (WEAPON_ITEMS#munition) -> stabiler AMMO_TYPES-Schlüssel (module/models/gear.mjs). */
+const MUNITION_TO_AMMO_TYPE = {
+  "9mm": "9mm",
+  Magnum: "magnum",
+  "5.56mm": "5.56mm",
+  "7.62mm": "7.62mm",
+  Schrot: "schrot",
+  Pfeil: "pfeil"
+};
+
 for (const w of WEAPON_ITEMS) {
   const catInfo = WEAPON_CATS[w.cat];
   const slug = slugifyName(w.name);
@@ -412,12 +437,18 @@ for (const w of WEAPON_ITEMS) {
       description: w.note ? `<p>${w.diy ? "Anfällig — " : ""}${w.note}</p>` : "",
       weaponSkill: catInfo.weaponSkill,
       damageFormula: w.schaden,
+      damageType: WEAPON_SKILL_DAMAGE_TYPE[catInfo.weaponSkill] ?? "blunt",
       accuracyBonus: w.bonus ?? 0,
       initiativeMod: w.init ?? 0,
       equipped: false,
-      ammo: w.munition ?? "",
       quantity: 1,
-      weight: 0
+      weight: 0,
+      ...(w.munition ? { ammoType: MUNITION_TO_AMMO_TYPE[w.munition] ?? "" } : {}),
+      ...(w.feedType ? { feedType: w.feedType } : {}),
+      // Frisch aus dem Kompendium gezogen ist eine feedType-"internal"-Waffe bereits voll geladen
+      // (kein separates "leere Waffe"-Startszenario); "magazine"-Waffen bleiben absichtlich ungeladen
+      // (loadedMagazineId leer) -- das passende Magazin muss erst separat besorgt und eingelegt werden.
+      ...(w.feedType === "internal" ? { capacity: w.capacity ?? 0, ammoRemaining: w.capacity ?? 0 } : {})
     },
     effects: [],
     folder: null,
@@ -556,6 +587,189 @@ for (const e of SURVIVAL_EQUIPMENT_ITEMS) {
   writeJSON(suppliesDir, `${slug}.json`, doc);
 }
 
+/* -------------------------------------------- */
+/*  Munition & Magazine                           */
+/* -------------------------------------------- */
+
+const ammoDir = ensureCleanDir("packs/_source/ammo");
+
+for (const m of MAGAZINE_ITEMS) {
+  const slug = slugifyName(m.name);
+  const id = idFor(`magazine-${slug}`);
+  writeJSON(ammoDir, `${slug}.json`, {
+    _id: id,
+    _key: `!items!${id}`,
+    name: m.name,
+    type: "magazine",
+    img: "icons/svg/upgrade.svg",
+    // Kompendium-Referenzexemplar startet voll geladen -- ein GM/Spieler, der es auf einen Charakter
+    // zieht, hat sofort ein einsatzbereites Magazin statt erst nachladen zu müssen.
+    system: { ammoType: m.ammoType, capacity: m.capacity, roundsLoaded: m.capacity },
+    effects: [],
+    folder: null,
+    sort: 0,
+    ownership: { default: 2 },
+    flags: {},
+    _stats: stats()
+  });
+}
+
+for (const a of AMMO_ITEMS) {
+  const slug = slugifyName(a.name);
+  const id = idFor(`ammo-${slug}`);
+  writeJSON(ammoDir, `${slug}.json`, {
+    _id: id,
+    _key: `!items!${id}`,
+    name: a.name,
+    type: "ammo",
+    img: "icons/svg/bag.svg",
+    system: { ammoType: a.ammoType, quantity: a.quantity },
+    effects: [],
+    folder: null,
+    sort: 0,
+    ownership: { default: 2 },
+    flags: {},
+    _stats: stats()
+  });
+}
+
+/* -------------------------------------------- */
+/*  Kreaturen: Zombie-NSC-Statblocks              */
+/* -------------------------------------------- */
+
+const creaturesDir = ensureCleanDir("packs/_source/creatures");
+
+/** Embedded Items brauchen wie Scene-Wände/-Lichter (siehe Kommentar oben) ihr eigenes `_key` nach
+ * dem Hierarchie-Schema `!actors.items!<actorId>.<itemId>` -- sonst kollidiert das Kompilieren. */
+function embeddedItem(actorId, slug, doc) {
+  const id = idFor(`creature-${actorId}-item-${slug}`);
+  return {
+    _id: id,
+    _key: `!actors.items!${actorId}.${id}`,
+    folder: null,
+    sort: 0,
+    ownership: { default: 2 },
+    flags: {},
+    effects: [],
+    _stats: stats(),
+    ...doc
+  };
+}
+
+function talentItem(actorId, slug, { talentKey, name, stufe, level, waffentalent = false, kategorie = "" }) {
+  const { staerken, schwaechen } = levelToStrengthsWeaknesses(level);
+  return embeddedItem(actorId, slug, {
+    name,
+    type: "talent",
+    img: "icons/svg/d20-black.svg",
+    system: { description: "", talentKey, stufe, staerken, schwaechen, waffentalent, kategorie }
+  });
+}
+
+for (const c of CREATURES) {
+  const slug = slugifyName(c.name);
+  const actorId = idFor(`creature-${slug}`);
+
+  const items = [
+    talentItem(actorId, "kraft", { talentKey: "kraft", name: "Kraft", stufe: 2, level: c.kraftMod }),
+    talentItem(actorId, "athletik", { talentKey: "athletik", name: "Athletik", stufe: 2, level: c.athletikMod }),
+    talentItem(actorId, "waffenloserkampf", {
+      talentKey: "waffenloserkampf",
+      name: "Waffenloser Kampf",
+      stufe: 3,
+      level: c.unarmedLevel,
+      waffentalent: true,
+      kategorie: "nahkampf_unbewaffnet"
+    }),
+    embeddedItem(actorId, "natuerliche-waffe", {
+      name: c.naturalWeaponName,
+      type: "weapon",
+      img: "icons/svg/sword.svg",
+      system: {
+        description: "",
+        weaponSkill: "waffenloserkampf",
+        damageFormula: c.naturalWeaponFormula,
+        damageType: WEAPON_SKILL_DAMAGE_TYPE.waffenloserkampf,
+        accuracyBonus: 0,
+        initiativeMod: 0,
+        equipped: true,
+        quantity: 1,
+        weight: 0
+      }
+    })
+  ];
+
+  // Nur der Tank hat aktuell eine rein numerische Sondermechanik ("Wall aus totem Fleisch") --
+  // als eingebettetes Rüstungs-Item ohne Körper-Slot, damit es ganz normal in
+  // AshfordCreature#prepareDerivedData mitgezählt wird (siehe module/models/creature.mjs).
+  if (c.innateArmor) {
+    items.push(
+      embeddedItem(actorId, "innate-armor", {
+        name: "Zähe Muskelmasse",
+        type: "armor",
+        img: "icons/svg/shield.svg",
+        system: {
+          description: "",
+          armor: {
+            ballistic: 0,
+            pierce: 0,
+            blunt: c.innateArmor.blunt ?? 0,
+            slash: 0,
+            explosion: 0,
+            fire: 0
+          },
+          slot: "",
+          equipped: true,
+          initiativeMod: 0,
+          meleeDamageBonus: 0,
+          talentBonuses: [],
+          quantity: 1,
+          weight: 0
+        }
+      })
+    );
+  }
+
+  const doc = {
+    _id: actorId,
+    _key: `!actors!${actorId}`,
+    name: c.name,
+    type: "creature",
+    img: "icons/svg/skull.svg",
+    system: {
+      biography: c.biography ?? "",
+      resources: {
+        health: { value: c.healthMax, max: c.healthMax },
+        infection: { value: 0, max: 7 }
+      },
+      dice: { basePool: 3 },
+      tier: c.tier ?? "",
+      attackPool: 3,
+      infectious: c.infectious ?? true,
+      specialAbility: {
+        name: c.specialAbility?.name ?? "",
+        description: c.specialAbility?.description ?? ""
+      }
+    },
+    items,
+    effects: [],
+    folder: null,
+    sort: 0,
+    ownership: { default: 2 },
+    flags: {},
+    prototypeToken: {
+      name: c.name,
+      texture: { src: "icons/svg/skull.svg" },
+      width: 1,
+      height: 1,
+      actorLink: false,
+      disposition: -1 // CONST.TOKEN_DISPOSITIONS.HOSTILE
+    },
+    _stats: stats()
+  };
+  writeJSON(creaturesDir, `${slug}.json`, doc);
+}
+
 console.log(
-  `\nFertig: ${Object.keys(persons).length} NPCs, ${buildings.length} Gebäude, ${missions.length} Missionen, ${TALENTS.length} Talente, ${EXAMPLE_TRAITS.length} Traits, ${WEAPON_ITEMS.length} Waffen, ${ARMOR_ITEMS.length} Ausrüstungsteile, ${CONSUMABLE_ITEMS.length + SURVIVAL_EQUIPMENT_ITEMS.length} Vorräte.`
+  `\nFertig: ${Object.keys(persons).length} NPCs, ${buildings.length} Gebäude, ${missions.length} Missionen, ${TALENTS.length} Talente, ${EXAMPLE_TRAITS.length} Traits, ${WEAPON_ITEMS.length} Waffen, ${ARMOR_ITEMS.length} Ausrüstungsteile, ${CONSUMABLE_ITEMS.length + SURVIVAL_EQUIPMENT_ITEMS.length} Vorräte, ${MAGAZINE_ITEMS.length + AMMO_ITEMS.length} Munition/Magazine, ${CREATURES.length} Kreaturen.`
 );

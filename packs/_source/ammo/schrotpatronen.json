@@ -1,0 +1,27 @@
+{
+  "_id": "40e24802acc3d740",
+  "_key": "!items!40e24802acc3d740",
+  "name": "Schrotpatronen",
+  "type": "ammo",
+  "img": "icons/svg/bag.svg",
+  "system": {
+    "ammoType": "schrot",
+    "quantity": 12
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

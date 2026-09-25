@@ -1,0 +1,188 @@
+{
+  "_id": "13947a2827b36884",
+  "_key": "!actors!13947a2827b36884",
+  "name": "Screamer",
+  "type": "creature",
+  "img": "icons/svg/skull.svg",
+  "system": {
+    "biography": "<p>Ein seltener, unangenehmer Sonderfall: ein Zombie mit einem dauerhaft übererregten Nervensystem, der bei jeder Wahrnehmung von Beute reflexartig losschreit – so unkontrolliert und sofort, dass er selbst kaum zum eigentlichen Kämpfen kommt. Körperlich ist er dabei erschreckend zerbrechlich.</p><p><strong>GM-Hinweis:</strong> Eher seltener Sonderfall als Standard-Gegner. Besonders fies in Kombination mit Heimlichkeits-lastigen Spielgruppen: Ein einziger Fehltritt kann die Horde auslösen, bevor überhaupt gekämpft wird.</p><p><strong>Punkte-Äquivalent:</strong> +3 (schwächster Nahkämpfer der Liste nach dem Newbie, die Gefahr liegt vollständig im Schrei)</p>",
+    "resources": {
+      "health": {
+        "value": 10,
+        "max": 10
+      },
+      "infection": {
+        "value": 0,
+        "max": 7
+      }
+    },
+    "dice": {
+      "basePool": 3
+    },
+    "tier": "Streuner",
+    "attackPool": 3,
+    "infectious": true,
+    "specialAbility": {
+      "name": "Sofortiger Alarmruf",
+      "description": "<p>Es ist <strong>keine Wahrnehmungsprobe nötig</strong>. Sobald der Screamer von den Charakteren entdeckt wird oder selbst Sichtkontakt zur Gruppe bekommt, schreit er noch in derselben Runde, sofort und ohne Verzögerung. Der Spielleiter würfelt danach wie gewohnt für die nächsten 1W6 Runden zusätzliche Zombies (Newbies, Walker, was passt) in die Szene, sofern welche in der Umgebung plausibel sind. Wegen seiner extrem niedrigen HP ist der Screamer oft schon tot, bevor die herbeigerufene Horde überhaupt eintrifft – der Schrei lässt sich aber nicht zurücknehmen, sobald er raus ist. Wer die Horde verhindern will, muss den Screamer erledigen, bevor er entdeckt wird oder selbst entdeckt – nicht danach.</p>"
+    }
+  },
+  "items": [
+    {
+      "_id": "250c9e4a383555dd",
+      "_key": "!actors.items!13947a2827b36884.250c9e4a383555dd",
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {},
+      "effects": [],
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      },
+      "name": "Kraft",
+      "type": "talent",
+      "img": "icons/svg/d20-black.svg",
+      "system": {
+        "description": "",
+        "talentKey": "kraft",
+        "stufe": 2,
+        "staerken": 0,
+        "schwaechen": 2,
+        "waffentalent": false,
+        "kategorie": ""
+      }
+    },
+    {
+      "_id": "b5000097b0f1a72d",
+      "_key": "!actors.items!13947a2827b36884.b5000097b0f1a72d",
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {},
+      "effects": [],
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      },
+      "name": "Athletik",
+      "type": "talent",
+      "img": "icons/svg/d20-black.svg",
+      "system": {
+        "description": "",
+        "talentKey": "athletik",
+        "stufe": 2,
+        "staerken": 1,
+        "schwaechen": 0,
+        "waffentalent": false,
+        "kategorie": ""
+      }
+    },
+    {
+      "_id": "6457c78b588dc22e",
+      "_key": "!actors.items!13947a2827b36884.6457c78b588dc22e",
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {},
+      "effects": [],
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      },
+      "name": "Waffenloser Kampf",
+      "type": "talent",
+      "img": "icons/svg/d20-black.svg",
+      "system": {
+        "description": "",
+        "talentKey": "waffenloserkampf",
+        "stufe": 3,
+        "staerken": 0,
+        "schwaechen": 1,
+        "waffentalent": true,
+        "kategorie": "nahkampf_unbewaffnet"
+      }
+    },
+    {
+      "_id": "eb17430a05992234",
+      "_key": "!actors.items!13947a2827b36884.eb17430a05992234",
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {},
+      "effects": [],
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      },
+      "name": "Biss/Kratzen",
+      "type": "weapon",
+      "img": "icons/svg/sword.svg",
+      "system": {
+        "description": "",
+        "weaponSkill": "waffenloserkampf",
+        "damageFormula": "1d4+1",
+        "damageType": "blunt",
+        "accuracyBonus": 0,
+        "initiativeMod": 0,
+        "equipped": true,
+        "quantity": 1,
+        "weight": 0
+      }
+    }
+  ],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Screamer",
+    "texture": {
+      "src": "icons/svg/skull.svg"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": -1
+  },
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

@@ -48,10 +48,63 @@
       <label>Schaden (Würfelausdruck, z.B. 2d6+7 — absolut, bei Nahkampfwaffen kommt der charaktereigene Nahkampfschaden-Bonus beim Wurf automatisch dazu)
         <input type="text" name="system.damageFormula" value="{{system.damageFormula}}" placeholder="1d6">
       </label>
+      <label>Schadensart (wird beim Schadenswurf automatisch gegen die passende Rüstung des Ziels verrechnet)
+        <select name="system.damageType">
+          {{#each damageTypeOptions}}
+            <option value="{{this.key}}" {{#if (eq ../system.damageType this.key)}}selected{{/if}}>{{this.name}}</option>
+          {{/each}}
+        </select>
+      </label>
       <label>Treffer-Bonus (zusätzlich zu Reichweitenklassen bei Fernkampf) <input type="number" name="system.accuracyBonus" value="{{system.accuracyBonus}}"></label>
       <label>Initiative-Modifikator (während geführt) <input type="number" name="system.initiativeMod" value="{{system.initiativeMod}}"></label>
       <label><input type="checkbox" name="system.equipped" {{#if system.equipped}}checked{{/if}}> Aktuell geführt (unabhängig von den Körper-Slots)</label>
-      <label>Munition <input type="text" name="system.ammo" value="{{system.ammo}}"></label>
+      <label>Munitionsart (leer lassen = verbraucht keine Munition)
+        <select name="system.ammoType">
+          <option value="">— keine —</option>
+          {{#each ammoTypeOptions}}
+            <option value="{{this.key}}" {{#if (eq ../system.ammoType this.key)}}selected{{/if}}>{{this.name}}</option>
+          {{/each}}
+        </select>
+      </label>
+      <label>Munitionszufuhr
+        <select name="system.feedType">
+          {{#each feedTypeOptions}}
+            <option value="{{this.key}}" {{#if (eq ../system.feedType this.key)}}selected{{/if}}>{{this.name}}</option>
+          {{/each}}
+        </select>
+      </label>
+      {{#if (eq system.feedType "internal")}}
+        <label>Kapazität (max. lose Munition direkt in der Waffe — Schrotrohr/Trommel/Bogensehne)
+          <input type="number" name="system.capacity" value="{{system.capacity}}" min="0">
+        </label>
+        <label>Munition übrig <input type="number" name="system.ammoRemaining" value="{{system.ammoRemaining}}" min="0"></label>
+      {{/if}}
+      {{#if (eq system.feedType "magazine")}}
+        <p class="hint">Welches Magazin aktuell geladen ist, wird ausschließlich über den "Nachladen"-Button auf dem Charakterbogen gesteuert, nicht hier im Item-Sheet.</p>
+      {{/if}}
+    {{/if}}
+
+    {{#if (eq item.type "ammo")}}
+      <label>Munitionsart
+        <select name="system.ammoType">
+          {{#each ammoTypeOptions}}
+            <option value="{{this.key}}" {{#if (eq ../system.ammoType this.key)}}selected{{/if}}>{{this.name}}</option>
+          {{/each}}
+        </select>
+      </label>
+    {{/if}}
+
+    {{#if (eq item.type "magazine")}}
+      <label>Munitionsart
+        <select name="system.ammoType">
+          {{#each ammoTypeOptions}}
+            <option value="{{this.key}}" {{#if (eq ../system.ammoType this.key)}}selected{{/if}}>{{this.name}}</option>
+          {{/each}}
+        </select>
+      </label>
+      <label>Kapazität <input type="number" name="system.capacity" value="{{system.capacity}}" min="1"></label>
+      <label>Geladene Schuss <input type="number" name="system.roundsLoaded" value="{{system.roundsLoaded}}" min="0"></label>
+      <p class="hint">Jedes Magazin-Item ist ein einzelnes physisches Exemplar — bei mehreren identischen Ersatzmagazinen jeweils ein eigenes Item mit Menge 1 anlegen, statt die Menge eines Items hochzuzählen (roundsLoaded gilt pro Item, nicht pro Stück).</p>
     {{/if}}
 
     {{#if (eq item.type "armor")}}
@@ -180,7 +233,7 @@
       <a class="item-create ashford-effect-add">+ Auswirkung</a>
     {{/if}}
 
-    {{#if (or (eq item.type "weapon") (eq item.type "armor") (eq item.type "equipment") (eq item.type "consumable"))}}
+    {{#if (or (eq item.type "weapon") (eq item.type "armor") (eq item.type "equipment") (eq item.type "consumable") (eq item.type "ammo") (eq item.type "magazine"))}}
       <label>Menge <input type="number" name="system.quantity" value="{{system.quantity}}"></label>
       <label>Gewicht <input type="number" name="system.weight" value="{{system.weight}}"></label>
     {{/if}}

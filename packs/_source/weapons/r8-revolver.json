@@ -8,12 +8,16 @@
     "description": "",
     "weaponSkill": "pistolen",
     "damageFormula": "3d6+8",
+    "damageType": "ballistic",
     "accuracyBonus": 0,
     "initiativeMod": 0,
     "equipped": false,
-    "ammo": "Magnum",
     "quantity": 1,
-    "weight": 0
+    "weight": 0,
+    "ammoType": "magnum",
+    "feedType": "internal",
+    "capacity": 6,
+    "ammoRemaining": 6
   },
   "effects": [],
   "folder": null,

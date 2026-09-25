@@ -1,0 +1,28 @@
+{
+  "_id": "f9a2de40db687573",
+  "_key": "!items!f9a2de40db687573",
+  "name": "7.62mm-Magazin",
+  "type": "magazine",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "ammoType": "7.62mm",
+    "capacity": 20,
+    "roundsLoaded": 20
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

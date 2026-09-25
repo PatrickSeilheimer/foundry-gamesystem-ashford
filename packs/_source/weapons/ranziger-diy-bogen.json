@@ -8,12 +8,16 @@
     "description": "<p>Anfällig — Bei jedem Einsatz 1W8 würfeln. Bei einer 8 geht die Waffe kaputt.</p>",
     "weaponSkill": "boegen",
     "damageFormula": "1d8+5",
+    "damageType": "pierce",
     "accuracyBonus": -2,
     "initiativeMod": -3,
     "equipped": false,
-    "ammo": "Pfeil",
     "quantity": 1,
-    "weight": 0
+    "weight": 0,
+    "ammoType": "pfeil",
+    "feedType": "internal",
+    "capacity": 1,
+    "ammoRemaining": 1
   },
   "effects": [],
   "folder": null,

@@ -12,7 +12,7 @@ const { DialogV2 } = foundry.applications.api;
  * Fernkampf-Waffentalente) before rolling.
  */
 export default class AshfordRollDialog {
-  static async prompt(actor, talent, { label } = {}) {
+  static async prompt(actor, talent, { label, defaultMode = "none" } = {}) {
     const rollLabel = label ?? `${talent.name} (Stufe ${talent.system.stufe})`;
     const { strengths: permStrengths, weaknesses: permWeaknesses } = actor.system.permanentTraits ?? {
       strengths: [],
@@ -71,6 +71,7 @@ export default class AshfordRollDialog {
         difficulties: DIFFICULTIES,
         isWeapon,
         isRanged,
+        defaultMode,
         targetName: target?.name ?? "",
         targetAusweichen,
         conditionNames: [...conditionNames],

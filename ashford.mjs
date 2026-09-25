@@ -6,7 +6,15 @@ import AshfordCreature from "./module/models/creature.mjs";
 import AshfordItemBase from "./module/models/base-item.mjs";
 import AshfordTrait from "./module/models/trait.mjs";
 import AshfordTalent from "./module/models/talent.mjs";
-import { AshfordWeapon, AshfordArmor, AshfordEquipment, AshfordConsumable, AshfordCondition } from "./module/models/gear.mjs";
+import {
+  AshfordWeapon,
+  AshfordArmor,
+  AshfordEquipment,
+  AshfordConsumable,
+  AshfordCondition,
+  AshfordAmmo,
+  AshfordMagazine
+} from "./module/models/gear.mjs";
 
 import AshfordActor from "./module/documents/actor.mjs";
 import AshfordItem from "./module/documents/item.mjs";
@@ -18,6 +26,7 @@ import registerHandlebarsHelpers from "./module/handlebars-helpers.mjs";
 import registerCodexControls from "./module/apps/codex-app.mjs";
 import registerInfectionTrackerControls from "./module/apps/infection-tracker.mjs";
 import registerHealConfirmChatControls from "./module/apps/heal-confirm-chat.mjs";
+import registerDamageConfirmChatControls from "./module/apps/damage-confirm-chat.mjs";
 import registerCombatHudControls from "./module/apps/combat-hud.mjs";
 import { TALENTS, POINTS_BUDGET } from "./module/rules/talents.mjs";
 
@@ -47,7 +56,9 @@ Hooks.once("init", () => {
     armor: AshfordArmor,
     equipment: AshfordEquipment,
     consumable: AshfordConsumable,
-    condition: AshfordCondition
+    condition: AshfordCondition,
+    ammo: AshfordAmmo,
+    magazine: AshfordMagazine
   };
 
   // Sheets
@@ -66,7 +77,7 @@ Hooks.once("init", () => {
   });
   foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
   foundry.documents.collections.Items.registerSheet("ashford", AshfordItemSheet, {
-    types: ["trait", "talent", "weapon", "armor", "equipment", "consumable", "condition"],
+    types: ["trait", "talent", "weapon", "armor", "equipment", "consumable", "condition", "ammo", "magazine"],
     makeDefault: true
   });
 
@@ -120,4 +131,5 @@ Hooks.on("updateItem", (item, changes, options, userId) => {
 registerCodexControls();
 registerInfectionTrackerControls();
 registerHealConfirmChatControls();
+registerDamageConfirmChatControls();
 registerCombatHudControls();

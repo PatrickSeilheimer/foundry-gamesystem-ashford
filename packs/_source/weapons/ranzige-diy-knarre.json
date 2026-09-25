@@ -8,12 +8,14 @@
     "description": "<p>Anfällig — Bei jedem Einsatz 1W8 würfeln. Bei einer 8 geht die Waffe kaputt. Bonus zusätzlich zu den Reichweitenklassen-Werten.</p>",
     "weaponSkill": "pistolen",
     "damageFormula": "2d6+5",
+    "damageType": "ballistic",
     "accuracyBonus": -2,
     "initiativeMod": 0,
     "equipped": false,
-    "ammo": "9mm",
     "quantity": 1,
-    "weight": 0
+    "weight": 0,
+    "ammoType": "9mm",
+    "feedType": "magazine"
   },
   "effects": [],
   "folder": null,

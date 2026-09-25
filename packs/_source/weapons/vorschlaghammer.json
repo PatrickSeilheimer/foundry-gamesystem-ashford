@@ -8,10 +8,10 @@
     "description": "",
     "weaponSkill": "schlagwaffen",
     "damageFormula": "1d10+5",
+    "damageType": "blunt",
     "accuracyBonus": -2,
     "initiativeMod": 1,
     "equipped": false,
-    "ammo": "",
     "quantity": 1,
     "weight": 0
   },

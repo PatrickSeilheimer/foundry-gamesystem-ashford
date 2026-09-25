@@ -41,6 +41,10 @@ export async function rollExplodingPool(diceCount) {
  * @param {string} [options.targetLabel] - e.g. "Schwer (16)" or "Ausweichen (13)"
  * @param {boolean} [options.autoFail] - short-circuits to an automatic miss without rolling (außer Reichweite)
  * @param {string} [options.autoFailReason]
+ * @returns {Promise<{message: ChatMessage, success: boolean|null, total: number|null}>} `success` is
+ *   null when there's no target (a plain, un-gated roll); callers that need to chain further logic
+ *   after an attack roll (module/documents/actor.mjs#rollWeaponAttack) read `success`/`total` instead
+ *   of re-parsing the posted chat card.
  */
 export async function rollAshfordCheck({
   actor,
@@ -61,11 +65,12 @@ export async function rollAshfordCheck({
       "systems/ashford/templates/chat/roll-card.hbs",
       { label, autoFail: true, autoFailReason }
     );
-    return ChatMessage.create({
+    const message = await ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor }),
       flavor: label,
       content
     });
+    return { message, success: false, total: null };
   }
 
   const diceCount = computeDiceCount({ staerken, schwaechen });
@@ -92,9 +97,10 @@ export async function rollAshfordCheck({
     }
   );
 
-  return roll.toMessage({
+  const message = await roll.toMessage({
     speaker: ChatMessage.getSpeaker({ actor }),
     flavor: label,
     content
   });
+  return { message, success, total };
 }

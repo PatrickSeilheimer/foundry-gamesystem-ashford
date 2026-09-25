@@ -41,7 +41,9 @@
       "armor": {},
       "equipment": {},
       "consumable": {},
-      "condition": {}
+      "condition": {},
+      "ammo": {},
+      "magazine": {}
     }
   },
   "packs": [
@@ -121,6 +123,15 @@
       "name": "supplies",
       "label": "Vorräte & Medizin",
       "path": "packs/supplies",
+      "type": "Item",
+      "system": "ashford",
+      "ownership": { "PLAYER": "OBSERVER", "ASSISTANT": "OWNER" },
+      "locked": false
+    },
+    {
+      "name": "ammo",
+      "label": "Munition & Magazine",
+      "path": "packs/ammo",
       "type": "Item",
       "system": "ashford",
       "ownership": { "PLAYER": "OBSERVER", "ASSISTANT": "OWNER" },

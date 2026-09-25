@@ -8,12 +8,14 @@
     "description": "",
     "weaponSkill": "gewehre",
     "damageFormula": "3d8+13",
+    "damageType": "ballistic",
     "accuracyBonus": 0,
     "initiativeMod": 0,
     "equipped": false,
-    "ammo": "7.62mm",
     "quantity": 1,
-    "weight": 0
+    "weight": 0,
+    "ammoType": "7.62mm",
+    "feedType": "magazine"
   },
   "effects": [],
   "folder": null,

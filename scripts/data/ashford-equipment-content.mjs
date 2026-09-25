@@ -58,43 +58,48 @@ function diyNote(die) {
  * @property {string} schaden - Foundry-Würfelsyntax, z.B. "2d6+5"
  * @property {boolean} [diy] - "Anfällig": löst bei jedem Einsatz eine Bruchprobe aus (nicht automatisiert, siehe note)
  * @property {string} [note]
+ * @property {"magazine"|"internal"} [feedType] - siehe module/models/gear.mjs FEED_TYPES. Fehlt bei
+ *   Nahkampfwaffen komplett (Schema-Default "none"). "magazine" braucht kein `capacity` hier — die
+ *   Kapazität hängt am Magazin-Item (scripts/data/ashford-ammo-content.mjs), nicht an der Waffe.
+ * @property {number} [capacity] - nur bei feedType "internal": max. lose Munition direkt in der Waffe.
  */
 
 /** @type {WeaponEntry[]} */
 export const WEAPON_ITEMS = [
-  // ---- PISTOLEN ----
-  { cat: "pistolen", name: "Ranzige DIY Knarre", munition: "9mm", bonus: -2, init: 0, schaden: "2d6+5", diy: true, note: `${diyNote(8)} Bonus zusätzlich zu den Reichweitenklassen-Werten.` },
-  { cat: "pistolen", name: "Beretta", munition: "9mm", bonus: 0, init: 1, schaden: "2d6+7" },
-  { cat: "pistolen", name: "Desert Eagle", munition: "Magnum", bonus: -3, init: 0, schaden: "3d8+15" },
-  { cat: "pistolen", name: "R8 Revolver", munition: "Magnum", bonus: 0, init: 0, schaden: "3d6+8" },
-  { cat: "pistolen", name: "Glock", munition: "9mm", bonus: -2, init: 1, schaden: "2d6+6", note: "Kann 2 Schüsse abfeuern. Beide Schüsse erhalten zusätzlich −4." },
-  { cat: "pistolen", name: "M1911", munition: "9mm", bonus: 0, init: 1, schaden: "3d6+5" },
-  { cat: "pistolen", name: "FN Five-seveN", munition: "9mm", bonus: 2, init: 1, schaden: "2d6+5", note: "Ignoriert 3 Punkte Rüstung." },
-  { cat: "pistolen", name: "Tec-9", munition: "9mm", bonus: 0, init: 2, schaden: "2d6+2", note: "Kann 3 Schüsse abfeuern. Alle Schüsse erhalten −3." },
+  // ---- PISTOLEN ---- (teilen sich alle ein 9mm-Magazin außer der Deagle mit eigenem Magnum-Magazin;
+  // der Revolver lädt wie eine Schrotflinte lose Munition direkt in die Trommel, kein Magazin)
+  { cat: "pistolen", name: "Ranzige DIY Knarre", munition: "9mm", bonus: -2, init: 0, schaden: "2d6+5", diy: true, note: `${diyNote(8)} Bonus zusätzlich zu den Reichweitenklassen-Werten.`, feedType: "magazine" },
+  { cat: "pistolen", name: "Beretta", munition: "9mm", bonus: 0, init: 1, schaden: "2d6+7", feedType: "magazine" },
+  { cat: "pistolen", name: "Desert Eagle", munition: "Magnum", bonus: -3, init: 0, schaden: "3d8+15", feedType: "magazine" },
+  { cat: "pistolen", name: "R8 Revolver", munition: "Magnum", bonus: 0, init: 0, schaden: "3d6+8", feedType: "internal", capacity: 6 },
+  { cat: "pistolen", name: "Glock", munition: "9mm", bonus: -2, init: 1, schaden: "2d6+6", note: "Kann 2 Schüsse abfeuern. Beide Schüsse erhalten zusätzlich −4.", feedType: "magazine" },
+  { cat: "pistolen", name: "M1911", munition: "9mm", bonus: 0, init: 1, schaden: "3d6+5", feedType: "magazine" },
+  { cat: "pistolen", name: "FN Five-seveN", munition: "9mm", bonus: 2, init: 1, schaden: "2d6+5", note: "Ignoriert 3 Punkte Rüstung.", feedType: "magazine" },
+  { cat: "pistolen", name: "Tec-9", munition: "9mm", bonus: 0, init: 2, schaden: "2d6+2", note: "Kann 3 Schüsse abfeuern. Alle Schüsse erhalten −3.", feedType: "magazine" },
 
-  // ---- GEWEHRE ----
-  { cat: "gewehre", name: "Ranziges DIY Gewehr", munition: "7.62mm", bonus: -2, init: 0, schaden: "2d8+8", diy: true, note: diyNote(8) },
-  { cat: "gewehre", name: "M4A1", munition: "5.56mm", bonus: 2, init: 1, schaden: "2d8+8" },
-  { cat: "gewehre", name: "AK-47", munition: "5.56mm", bonus: -2, init: 1, schaden: "3d8+10" },
-  { cat: "gewehre", name: "M1", munition: "7.62mm", bonus: 0, init: 0, schaden: "3d8+13" },
-  { cat: "gewehre", name: "FN Scar-H", munition: "7.62mm", bonus: 0, init: 0, schaden: "3d8+14", note: "Ignoriert 6 Punkte Rüstung." },
-  { cat: "gewehre", name: "SVD Dragunov", munition: "7.62mm", bonus: 2, init: 0, schaden: "3d8+10" },
+  // ---- GEWEHRE ---- (je nach Kaliber ein 5.56mm- oder 7.62mm-Magazin)
+  { cat: "gewehre", name: "Ranziges DIY Gewehr", munition: "7.62mm", bonus: -2, init: 0, schaden: "2d8+8", diy: true, note: diyNote(8), feedType: "magazine" },
+  { cat: "gewehre", name: "M4A1", munition: "5.56mm", bonus: 2, init: 1, schaden: "2d8+8", feedType: "magazine" },
+  { cat: "gewehre", name: "AK-47", munition: "5.56mm", bonus: -2, init: 1, schaden: "3d8+10", feedType: "magazine" },
+  { cat: "gewehre", name: "M1", munition: "7.62mm", bonus: 0, init: 0, schaden: "3d8+13", feedType: "magazine" },
+  { cat: "gewehre", name: "FN Scar-H", munition: "7.62mm", bonus: 0, init: 0, schaden: "3d8+14", note: "Ignoriert 6 Punkte Rüstung.", feedType: "magazine" },
+  { cat: "gewehre", name: "SVD Dragunov", munition: "7.62mm", bonus: 2, init: 0, schaden: "3d8+10", feedType: "magazine" },
 
-  // ---- SCHROTFLINTEN ----
-  { cat: "schrot", name: "Ranzige DIY Flinte", munition: "Schrot", bonus: -2, init: -1, schaden: "4d8+5", diy: true, note: diyNote(8) },
-  { cat: "schrot", name: "Abgesägte Schrotflinte", munition: "Schrot", bonus: -2, init: -1, schaden: "5d8+4" },
-  { cat: "schrot", name: "Pump Action Shotgun", munition: "Schrot", bonus: 0, init: -1, schaden: "4d8+7" },
-  { cat: "schrot", name: "XM1014", munition: "Schrot", bonus: 1, init: 0, schaden: "4d8+8" },
-  { cat: "schrot", name: "Saiga-12", munition: "Schrot", bonus: 2, init: -1, schaden: "4d8+10" },
+  // ---- SCHROTFLINTEN ---- (kein Magazin, lose Schrotmunition direkt im Rohr, Kapazität pro Waffe)
+  { cat: "schrot", name: "Ranzige DIY Flinte", munition: "Schrot", bonus: -2, init: -1, schaden: "4d8+5", diy: true, note: diyNote(8), feedType: "internal", capacity: 1 },
+  { cat: "schrot", name: "Abgesägte Schrotflinte", munition: "Schrot", bonus: -2, init: -1, schaden: "5d8+4", feedType: "internal", capacity: 2 },
+  { cat: "schrot", name: "Pump Action Shotgun", munition: "Schrot", bonus: 0, init: -1, schaden: "4d8+7", feedType: "internal", capacity: 8 },
+  { cat: "schrot", name: "XM1014", munition: "Schrot", bonus: 1, init: 0, schaden: "4d8+8", feedType: "internal", capacity: 10 },
+  { cat: "schrot", name: "Saiga-12", munition: "Schrot", bonus: 2, init: -1, schaden: "4d8+10", feedType: "internal", capacity: 6 },
 
-  // ---- BÖGEN ----
-  { cat: "boegen", name: "Ranziger DIY Bogen", munition: "Pfeil", bonus: -2, init: -3, schaden: "1d8+5", diy: true, note: diyNote(8) },
-  { cat: "boegen", name: "Kurzbogen", munition: "Pfeil", bonus: 0, init: 0, schaden: "1d8+5" },
-  { cat: "boegen", name: "Langbogen", munition: "Pfeil", bonus: 1, init: -3, schaden: "1d8+7" },
-  { cat: "boegen", name: "Recurve Bogen", munition: "Pfeil", bonus: 1, init: -6, schaden: "2d8+4" },
-  { cat: "boegen", name: "Armbrust", munition: "Pfeil", bonus: 1, init: -6, schaden: "2d8+4" },
-  { cat: "boegen", name: "Compound Bogen", munition: "Pfeil", bonus: 1, init: -2, schaden: "1d8+11" },
-  { cat: "boegen", name: "Compound Armbrust", munition: "Pfeil", bonus: 1, init: -5, schaden: "2d8+9" },
+  // ---- BÖGEN ---- (kein Magazin, Pfeile werden einzeln genockt — Kapazität einheitlich 1)
+  { cat: "boegen", name: "Ranziger DIY Bogen", munition: "Pfeil", bonus: -2, init: -3, schaden: "1d8+5", diy: true, note: diyNote(8), feedType: "internal", capacity: 1 },
+  { cat: "boegen", name: "Kurzbogen", munition: "Pfeil", bonus: 0, init: 0, schaden: "1d8+5", feedType: "internal", capacity: 1 },
+  { cat: "boegen", name: "Langbogen", munition: "Pfeil", bonus: 1, init: -3, schaden: "1d8+7", feedType: "internal", capacity: 1 },
+  { cat: "boegen", name: "Recurve Bogen", munition: "Pfeil", bonus: 1, init: -6, schaden: "2d8+4", feedType: "internal", capacity: 1 },
+  { cat: "boegen", name: "Armbrust", munition: "Pfeil", bonus: 1, init: -6, schaden: "2d8+4", feedType: "internal", capacity: 1 },
+  { cat: "boegen", name: "Compound Bogen", munition: "Pfeil", bonus: 1, init: -2, schaden: "1d8+11", feedType: "internal", capacity: 1 },
+  { cat: "boegen", name: "Compound Armbrust", munition: "Pfeil", bonus: 1, init: -5, schaden: "2d8+9", feedType: "internal", capacity: 1 },
 
   // ---- SCHLAGWAFFEN ---- (kein Munitionsbedarf: niedriger, gleichmäßiger Schaden, dafür sehr gute Initiative)
   { cat: "schlag", name: "Hammer", munition: null, bonus: -1, init: 3, schaden: "1d6+2" },

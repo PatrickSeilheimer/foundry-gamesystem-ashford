@@ -8,12 +8,16 @@
     "description": "",
     "weaponSkill": "schrotflinten",
     "damageFormula": "4d8+7",
+    "damageType": "ballistic",
     "accuracyBonus": 0,
     "initiativeMod": -1,
     "equipped": false,
-    "ammo": "Schrot",
     "quantity": 1,
-    "weight": 0
+    "weight": 0,
+    "ammoType": "schrot",
+    "feedType": "internal",
+    "capacity": 8,
+    "ammoRemaining": 8
   },
   "effects": [],
   "folder": null,

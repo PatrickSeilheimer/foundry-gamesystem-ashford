@@ -68,7 +68,7 @@
   <fieldset>
     <legend>Zielwert</legend>
     <label class="ashford-radio-row">
-      <input type="radio" name="targetMode" value="none" checked> Kein Zielwert, nur Ergebnis
+      <input type="radio" name="targetMode" value="none" {{#unless (eq defaultMode "attack")}}checked{{/unless}}> Kein Zielwert, nur Ergebnis
     </label>
     <label class="ashford-radio-row">
       <input type="radio" name="targetMode" value="difficulty"> Schwierigkeit
@@ -84,7 +84,7 @@
     </label>
     {{#if isWeapon}}
       <label class="ashford-radio-row">
-        <input type="radio" name="targetMode" value="attack"> Angriff gegen Ausweichen
+        <input type="radio" name="targetMode" value="attack" {{#if (eq defaultMode "attack")}}checked{{/if}}> Angriff gegen Ausweichen
         <input type="number" name="ausweichenValue" value="{{#if targetAusweichen}}{{targetAusweichen}}{{else}}10{{/if}}">
         {{#if targetName}}<span class="hint">(Ziel: {{targetName}})</span>{{/if}}
       </label>

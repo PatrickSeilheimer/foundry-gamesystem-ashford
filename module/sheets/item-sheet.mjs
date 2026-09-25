@@ -1,5 +1,15 @@
 import { TALENTS, WEAPON_TALENT_KEYS } from "../rules/talents.mjs";
-import { EQUIP_SLOTS, ITEM_CATEGORIES, ITEM_CATEGORY_LABELS } from "../models/gear.mjs";
+import {
+  EQUIP_SLOTS,
+  ITEM_CATEGORIES,
+  ITEM_CATEGORY_LABELS,
+  ARMOR_TYPES,
+  ARMOR_TYPE_LABELS,
+  AMMO_TYPES,
+  AMMO_TYPE_LABELS,
+  FEED_TYPES,
+  FEED_TYPE_LABELS
+} from "../models/gear.mjs";
 import { CONDITION_CATEGORIES, CONDITION_SEVERITIES, CONDITION_DURATION_TYPES } from "../rules/conditions.mjs";
 
 export default class AshfordItemSheet extends ItemSheet {
@@ -35,6 +45,9 @@ export default class AshfordItemSheet extends ItemSheet {
       name: game.i18n.localize(`ASHFORD.Sheet.slot${key.charAt(0).toUpperCase()}${key.slice(1)}`)
     }));
     context.itemCategoryOptions = ITEM_CATEGORIES.map(key => ({ key, name: ITEM_CATEGORY_LABELS[key] ?? key }));
+    context.damageTypeOptions = ARMOR_TYPES.map(key => ({ key, name: ARMOR_TYPE_LABELS[key] ?? key }));
+    context.ammoTypeOptions = AMMO_TYPES.map(key => ({ key, name: AMMO_TYPE_LABELS[key] ?? key }));
+    context.feedTypeOptions = FEED_TYPES.map(key => ({ key, name: FEED_TYPE_LABELS[key] ?? key }));
     context.conditionCategories = CONDITION_CATEGORIES;
     context.conditionSeverities = CONDITION_SEVERITIES;
     context.conditionDurationTypes = CONDITION_DURATION_TYPES;

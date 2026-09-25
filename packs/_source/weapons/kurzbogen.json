@@ -8,12 +8,16 @@
     "description": "",
     "weaponSkill": "boegen",
     "damageFormula": "1d8+5",
+    "damageType": "pierce",
     "accuracyBonus": 0,
     "initiativeMod": 0,
     "equipped": false,
-    "ammo": "Pfeil",
     "quantity": 1,
-    "weight": 0
+    "weight": 0,
+    "ammoType": "pfeil",
+    "feedType": "internal",
+    "capacity": 1,
+    "ammoRemaining": 1
   },
   "effects": [],
   "folder": null,

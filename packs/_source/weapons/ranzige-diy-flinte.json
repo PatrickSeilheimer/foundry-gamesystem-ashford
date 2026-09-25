@@ -8,12 +8,16 @@
     "description": "<p>Anfällig — Bei jedem Einsatz 1W8 würfeln. Bei einer 8 geht die Waffe kaputt.</p>",
     "weaponSkill": "schrotflinten",
     "damageFormula": "4d8+5",
+    "damageType": "ballistic",
     "accuracyBonus": -2,
     "initiativeMod": -1,
     "equipped": false,
-    "ammo": "Schrot",
     "quantity": 1,
-    "weight": 0
+    "weight": 0,
+    "ammoType": "schrot",
+    "feedType": "internal",
+    "capacity": 1,
+    "ammoRemaining": 1
   },
   "effects": [],
   "folder": null,

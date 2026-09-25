@@ -1,0 +1,28 @@
+{
+  "_id": "757314cc215b4e0d",
+  "_key": "!items!757314cc215b4e0d",
+  "name": "5.56mm-Magazin",
+  "type": "magazine",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "ammoType": "5.56mm",
+    "capacity": 20,
+    "roundsLoaded": 20
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

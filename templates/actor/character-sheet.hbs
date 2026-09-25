@@ -211,11 +211,27 @@
           {{#each equippedWeapons}}
             <div class="weapon-row" data-item-id="{{this.id}}">
               <span class="row-name">{{this.name}}</span>
-              <span class="row-stats">🎲 {{this.damageFormula}}{{#if this.accuracyBonus}} · {{signed this.accuracyBonus}} Treffer{{/if}}{{#if this.initiativeMod}} · {{signed this.initiativeMod}} Ini{{/if}}</span>
+              <span class="row-stats">
+                🎲 {{this.damageFormula}}{{#if this.accuracyBonus}} · {{signed this.accuracyBonus}} Treffer{{/if}}{{#if this.initiativeMod}} · {{signed this.initiativeMod}} Ini{{/if}}
+                {{#if (eq this.feedType "internal")}}
+                  · {{this.ammoTypeLabel}}: <span class="{{#if (eq this.ammoRemaining 0)}}ammo-empty{{/if}}">{{this.ammoRemaining}}/{{this.capacity}}</span>
+                  <span class="row-ammo-backpack">(Rucksack: {{this.ammoInBackpack}})</span>
+                {{else if (eq this.feedType "magazine")}}
+                  {{#if this.loadedMagazine}}
+                    · {{this.loadedMagazine.name}}: <span class="{{#if (eq this.loadedMagazine.roundsLoaded 0)}}ammo-empty{{/if}}">{{this.loadedMagazine.roundsLoaded}}/{{this.loadedMagazine.capacity}}</span>
+                  {{else}}
+                    · <span class="ammo-empty">Kein Magazin geladen</span>
+                  {{/if}}
+                  <span class="row-ammo-backpack">({{this.ammoTypeLabel}} lose: {{this.ammoInBackpack}})</span>
+                {{/if}}
+              </span>
               {{#if this.talentId}}
-                <button type="button" class="ashford-roll-weapon-attack" data-talent-id="{{this.talentId}}" title="Treffer würfeln"><i class="fas fa-crosshairs"></i> {{localize "ASHFORD.Sheet.rollAttack"}}</button>
+                <button type="button" class="ashford-roll-weapon-attack" title="Treffer würfeln (Ziel anvisieren für Munition/Schaden)"><i class="fas fa-crosshairs"></i> {{localize "ASHFORD.Sheet.rollAttack"}}</button>
               {{/if}}
               <button type="button" class="ashford-roll-weapon-damage" title="Schaden würfeln"><i class="fas fa-dice-d6"></i> {{localize "ASHFORD.Sheet.rollDamage"}}</button>
+              {{#unless (eq this.feedType "none")}}
+                <button type="button" class="ashford-reload-weapon" title="{{localize 'ASHFORD.Sheet.reload'}}"><i class="fas fa-sync-alt"></i> {{localize "ASHFORD.Sheet.reload"}}</button>
+              {{/unless}}
               {{#if @root.isGM}}<a class="item-edit" title="Öffnen"><i class="fas fa-edit"></i></a>{{/if}}
               <a class="ashford-unequip" title="{{localize 'ASHFORD.Sheet.unequip'}}"><i class="fas fa-times"></i></a>
             </div>
@@ -316,6 +332,43 @@
         {{#if isGM}}
           <a class="item-create" data-type="equipment">+ Ausrüstung</a>
           <a class="item-create" data-type="consumable">+ Verbrauchsgegenstand</a>
+        {{/if}}
+      </div>
+
+      <div class="inventory-panel">
+        <h3>{{localize "ASHFORD.Sheet.munitionBackpack"}}</h3>
+        <div class="inventory-toolbar">
+          <input type="search" class="inventory-search" placeholder="{{localize 'ASHFORD.Sheet.searchPlaceholder'}}">
+          <select class="inventory-filter">
+            <option value="all">{{localize "ASHFORD.Sheet.filterAll"}}</option>
+            {{#each ammoTypeOptions}}
+              <option value="{{this.key}}">{{this.name}}</option>
+            {{/each}}
+          </select>
+        </div>
+        <div class="munition-list">
+          {{#each munitionItems}}
+            <div class="munition-row" data-item-id="{{this.id}}" data-item-row data-name="{{this.name}}" data-category="{{this.ammoType}}">
+              <img class="row-img" src="{{this.img}}" alt="">
+              <span class="row-name">{{this.name}}</span>
+              <span class="row-ammotype">{{this.ammoTypeLabel}}</span>
+              {{#if (eq this.type "ammo")}}
+                <span class="row-qty">x{{this.quantity}}</span>
+              {{else}}
+                <span class="row-stats {{#if (eq this.roundsLoaded 0)}}ammo-empty{{/if}}">{{this.roundsLoaded}}/{{this.capacity}}</span>
+                {{#if this.loadedInWeaponName}}<span class="row-loaded-in">geladen in: {{this.loadedInWeaponName}}</span>{{/if}}
+                <button type="button" class="ashford-refill-magazine" title="Mit loser Munition auffüllen">{{localize "ASHFORD.Sheet.refill"}}</button>
+              {{/if}}
+              {{#if @root.isGM}}<a class="item-edit"><i class="fas fa-edit"></i></a>{{/if}}
+              <a class="item-delete"><i class="fas fa-trash"></i></a>
+            </div>
+          {{else}}
+            <p class="hint">Keine Munition/Magazine im Rucksack.</p>
+          {{/each}}
+        </div>
+        {{#if isGM}}
+          <a class="item-create" data-type="ammo">+ Munition</a>
+          <a class="item-create" data-type="magazine">+ Magazin</a>
         {{/if}}
       </div>
     </div>

@@ -1,0 +1,188 @@
+{
+  "_id": "6214f48b9d066a2f",
+  "_key": "!actors!6214f48b9d066a2f",
+  "name": "Runner",
+  "type": "creature",
+  "img": "icons/svg/skull.svg",
+  "system": {
+    "biography": "<p>Ein Typ, der nicht schlurft. Ob es an einer noch nicht vollständig verfallenen Muskulatur liegt oder etwas anderem, weiß niemand in Ashford genau – nur, dass man ihm nicht einfach davonlaufen kann. Runner sind im direkten Kampf kaum gefährlicher als ein Newbie, aber sie geben nicht auf und werden nicht langsamer.</p><p><strong>GM-Hinweis:</strong> Weniger als Kampf-, mehr als Verfolgungsgegner gedacht – gut geeignet, um eine Flucht spannend statt trivial zu machen, ohne im direkten Schlagabtausch überzogen tödlich zu sein.</p><p><strong>Punkte-Äquivalent:</strong> −2 (leicht über der Basis, die Stärke liegt in der Sondermechanik, nicht im Kampfwert)</p>",
+    "resources": {
+      "health": {
+        "value": 25,
+        "max": 25
+      },
+      "infection": {
+        "value": 0,
+        "max": 7
+      }
+    },
+    "dice": {
+      "basePool": 3
+    },
+    "tier": "Streuner",
+    "attackPool": 3,
+    "infectious": true,
+    "specialAbility": {
+      "name": "Ausdauerläufer",
+      "description": "<p>Das System hat aktuell keine eigene Bewegungsraten- oder Verfolgungsmechanik, daher vorerst rein narrativ zu handhaben: Dieser Typ ermüdet praktisch nicht und kann eine Gruppe über extrem lange Strecken verfolgen, ohne langsamer zu werden. Zu Fuß wegrennen funktioniert gegen ihn nicht zuverlässig – ein Fahrzeug, eine verschlossene Tür, ein Höhenunterschied oder eine gezielte Ablenkung schon.</p>"
+    }
+  },
+  "items": [
+    {
+      "_id": "a9693d7777c726a9",
+      "_key": "!actors.items!6214f48b9d066a2f.a9693d7777c726a9",
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {},
+      "effects": [],
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      },
+      "name": "Kraft",
+      "type": "talent",
+      "img": "icons/svg/d20-black.svg",
+      "system": {
+        "description": "",
+        "talentKey": "kraft",
+        "stufe": 2,
+        "staerken": 0,
+        "schwaechen": 1,
+        "waffentalent": false,
+        "kategorie": ""
+      }
+    },
+    {
+      "_id": "acb00f71518a1d3d",
+      "_key": "!actors.items!6214f48b9d066a2f.acb00f71518a1d3d",
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {},
+      "effects": [],
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      },
+      "name": "Athletik",
+      "type": "talent",
+      "img": "icons/svg/d20-black.svg",
+      "system": {
+        "description": "",
+        "talentKey": "athletik",
+        "stufe": 2,
+        "staerken": 3,
+        "schwaechen": 0,
+        "waffentalent": false,
+        "kategorie": ""
+      }
+    },
+    {
+      "_id": "d51e04f65f68bc97",
+      "_key": "!actors.items!6214f48b9d066a2f.d51e04f65f68bc97",
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {},
+      "effects": [],
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      },
+      "name": "Waffenloser Kampf",
+      "type": "talent",
+      "img": "icons/svg/d20-black.svg",
+      "system": {
+        "description": "",
+        "talentKey": "waffenloserkampf",
+        "stufe": 3,
+        "staerken": 0,
+        "schwaechen": 0,
+        "waffentalent": true,
+        "kategorie": "nahkampf_unbewaffnet"
+      }
+    },
+    {
+      "_id": "6f2c2e48d821b362",
+      "_key": "!actors.items!6214f48b9d066a2f.6f2c2e48d821b362",
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {},
+      "effects": [],
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      },
+      "name": "Biss/Kratzen",
+      "type": "weapon",
+      "img": "icons/svg/sword.svg",
+      "system": {
+        "description": "",
+        "weaponSkill": "waffenloserkampf",
+        "damageFormula": "1d4+1",
+        "damageType": "blunt",
+        "accuracyBonus": 0,
+        "initiativeMod": 0,
+        "equipped": true,
+        "quantity": 1,
+        "weight": 0
+      }
+    }
+  ],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Runner",
+    "texture": {
+      "src": "icons/svg/skull.svg"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": -1
+  },
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

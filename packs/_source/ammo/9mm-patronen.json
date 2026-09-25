@@ -1,0 +1,27 @@
+{
+  "_id": "6367853c6712ae21",
+  "_key": "!items!6367853c6712ae21",
+  "name": "9mm-Patronen",
+  "type": "ammo",
+  "img": "icons/svg/bag.svg",
+  "system": {
+    "ammoType": "9mm",
+    "quantity": 20
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

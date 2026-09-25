@@ -1,0 +1,188 @@
+{
+  "_id": "2b7839cacc12ef32",
+  "_key": "!actors!2b7839cacc12ef32",
+  "name": "Walker",
+  "type": "creature",
+  "img": "icons/svg/skull.svg",
+  "system": {
+    "biography": "<p>Der Standard-Zombie ohne Schnickschnack: kein Sonderfall, keine Story, kein Gimmick – einfach ein durchschnittlich kräftiger, durchschnittlich schneller Untoter. Sein Ausweichen von 10 ist genau der „Standard-Verteidiger“, gegen den im Kernmechanik-Dokument alle Trefferwahrscheinlichkeiten durchgerechnet wurden – dieser Typ ist im wörtlichen Sinn der Maßstab.</p><p><strong>GM-Hinweis:</strong> Der Typ für „einfach ein Zombie“ – etwas härter als die beiden vorigen Typen, aber ohne Überraschungen. Gut geeignet, um eine Horde aus Newbies mit ein paar Walkern durchzumischen und die Bedrohung graduell zu steigern.</p><p><strong>Punkte-Äquivalent:</strong> −2 (leicht über Basis, spürbar robuster als Newbie und Runner)</p>",
+    "resources": {
+      "health": {
+        "value": 45,
+        "max": 45
+      },
+      "infection": {
+        "value": 0,
+        "max": 7
+      }
+    },
+    "dice": {
+      "basePool": 3
+    },
+    "tier": "Streuner",
+    "attackPool": 3,
+    "infectious": true,
+    "specialAbility": {
+      "name": "",
+      "description": ""
+    }
+  },
+  "items": [
+    {
+      "_id": "5426820b8098dbd9",
+      "_key": "!actors.items!2b7839cacc12ef32.5426820b8098dbd9",
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {},
+      "effects": [],
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      },
+      "name": "Kraft",
+      "type": "talent",
+      "img": "icons/svg/d20-black.svg",
+      "system": {
+        "description": "",
+        "talentKey": "kraft",
+        "stufe": 2,
+        "staerken": 1,
+        "schwaechen": 0,
+        "waffentalent": false,
+        "kategorie": ""
+      }
+    },
+    {
+      "_id": "0b982487164baee5",
+      "_key": "!actors.items!2b7839cacc12ef32.0b982487164baee5",
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {},
+      "effects": [],
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      },
+      "name": "Athletik",
+      "type": "talent",
+      "img": "icons/svg/d20-black.svg",
+      "system": {
+        "description": "",
+        "talentKey": "athletik",
+        "stufe": 2,
+        "staerken": 0,
+        "schwaechen": 0,
+        "waffentalent": false,
+        "kategorie": ""
+      }
+    },
+    {
+      "_id": "7de01a38183ed2e3",
+      "_key": "!actors.items!2b7839cacc12ef32.7de01a38183ed2e3",
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {},
+      "effects": [],
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      },
+      "name": "Waffenloser Kampf",
+      "type": "talent",
+      "img": "icons/svg/d20-black.svg",
+      "system": {
+        "description": "",
+        "talentKey": "waffenloserkampf",
+        "stufe": 3,
+        "staerken": 0,
+        "schwaechen": 0,
+        "waffentalent": true,
+        "kategorie": "nahkampf_unbewaffnet"
+      }
+    },
+    {
+      "_id": "125f3c056f95b487",
+      "_key": "!actors.items!2b7839cacc12ef32.125f3c056f95b487",
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {},
+      "effects": [],
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      },
+      "name": "Biss/Kratzen",
+      "type": "weapon",
+      "img": "icons/svg/sword.svg",
+      "system": {
+        "description": "",
+        "weaponSkill": "waffenloserkampf",
+        "damageFormula": "1d6+2",
+        "damageType": "blunt",
+        "accuracyBonus": 0,
+        "initiativeMod": 0,
+        "equipped": true,
+        "quantity": 1,
+        "weight": 0
+      }
+    }
+  ],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Walker",
+    "texture": {
+      "src": "icons/svg/skull.svg"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": -1
+  },
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

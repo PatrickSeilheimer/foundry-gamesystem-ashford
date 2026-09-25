@@ -14,6 +14,42 @@ export const EQUIP_SLOTS = ["head", "chest", "hands", "legs", "feet"];
 /** The 6 fully separate damage types armor protects against. */
 export const ARMOR_TYPES = ["ballistic", "pierce", "blunt", "slash", "explosion", "fire"];
 
+/** Display label + emoji per damage type — reused on chat cards (module/documents/actor.mjs) and
+ * anywhere else a damage/armor type needs a human-readable tag outside the sheet's own localized titles. */
+export const ARMOR_TYPE_LABELS = {
+  ballistic: "Ballistic 🔫",
+  pierce: "Pierce 🗡️",
+  blunt: "Blunt 🔨",
+  slash: "Slash ⚔️",
+  explosion: "Explosion 💥",
+  fire: "Feuer 🔥"
+};
+
+/** Munitionsarten — teilen sich Waffen (AshfordWeapon#ammoType), lose Munition (AshfordAmmo) und
+ * Magazine (AshfordMagazine), damit Nachladen/Auffüllen per Schlüssel zueinander passen. */
+export const AMMO_TYPES = ["9mm", "magnum", "5.56mm", "7.62mm", "schrot", "pfeil"];
+
+export const AMMO_TYPE_LABELS = {
+  "9mm": "9mm",
+  magnum: "Magnum Rounds",
+  "5.56mm": "5.56mm",
+  "7.62mm": "7.62mm",
+  schrot: "Schrot",
+  pfeil: "Pfeil"
+};
+
+/** Wie eine Waffe an ihre Munition kommt (AshfordWeapon#feedType): "magazine" lädt aus einem
+ * separaten, wechselbaren AshfordMagazine-Item (AshfordActor#reloadWeapon), "internal" lädt lose
+ * Munition direkt in die Waffe (Schrotrohr/Trommel/Bogensehne, eigene Kapazität pro Waffe), "none"
+ * verbraucht gar keine Munition (Nahkampf). */
+export const FEED_TYPES = ["none", "magazine", "internal"];
+
+export const FEED_TYPE_LABELS = {
+  none: "Keine",
+  magazine: "Magazin",
+  internal: "Intern (lose Munition)"
+};
+
 /** Free-item categories used for inventory search/filter (weapon/armor already imply their own category via item.type). */
 export const ITEM_CATEGORIES = ["medizin", "nahrung", "munition", "werkzeug", "material", "sonstiges"];
 
@@ -51,13 +87,69 @@ export class AshfordWeapon extends AshfordPhysicalItem {
       // Manche Waffen sind schneller/langsamer zu führen als der reine Athletik-Wert.
       initiativeMod: new NumberField({ required: true, integer: true, initial: 0 }),
       equipped: new BooleanField({ required: true, initial: false }), // unabhängig von den 5 Körper-Slots
-      ammo: new StringField({ required: false, blank: true })
+      // Welcher der 6 Rüstungswerte (ARMOR_TYPES) beim automatischen Schadenswurf gegengerechnet wird
+      // (AshfordActor#rollWeaponDamage) — ohne diesen Wert wäre die ganze Rüstungswerte-Anzeige rein
+      // informativ, ohne dass sie beim Würfeln je tatsächlich etwas abzieht.
+      damageType: new StringField({ required: true, blank: false, initial: "blunt", choices: ARMOR_TYPES }),
+      // Welche Munitionsart diese Waffe braucht — leer = verbraucht keine Munition (Nahkampfwaffen).
+      ammoType: new StringField({ required: false, blank: true, choices: AMMO_TYPES }),
+      feedType: new StringField({ required: true, blank: false, initial: "none", choices: FEED_TYPES }),
+      // NUR bei feedType "internal" die Quelle der Wahrheit (aktuell geladene lose Schuss, gedeckelt
+      // von `capacity`) — bei "magazine" bleibt dieses Feld ungenutzt bei 0, der tatsächliche
+      // Munitionsstand lebt stattdessen auf dem eingelegten AshfordMagazine-Item (`loadedMagazineId`
+      // -> #loadedMagazine -> system.roundsLoaded). Bei "none" bedeutungslos. Kein Zwei-Felder-Rätsel
+      // pro Waffe: welches der beiden Felder gilt, ergibt sich rein aus feedType.
+      ammoRemaining: new NumberField({ required: true, integer: true, initial: 0, min: 0 }),
+      // Max. lose Munition direkt in der Waffe (Schrotrohr/Trommel/Bogensehne) — nur bei feedType "internal".
+      capacity: new NumberField({ required: true, integer: true, initial: 0, min: 0 }),
+      // Welches eingebettete "magazine"-Item aktuell geladen ist — nur bei feedType "magazine", leer
+      // = kein Magazin eingelegt. Wird ausschließlich von AshfordActor#reloadWeapon geschrieben (kein
+      // eigenes Eingabefeld im Item-Sheet), das ist zugleich die einzige Exklusivitäts-Garantie:
+      // ein Magazin kann so nie versehentlich in zwei Waffen gleichzeitig stecken.
+      loadedMagazineId: new StringField({ required: false, blank: true })
     };
   }
 
   /** True for the 4 Fernkampf-Waffentalente (Pistolen/Gewehre/Schrotflinten/Bögen) — has a range-band table. */
   get isRanged() {
     return RANGED_WEAPON_TALENT_KEYS.includes(this.weaponSkill);
+  }
+
+  /** The embedded AshfordMagazine currently racked, or null — only meaningful when feedType === "magazine". */
+  get loadedMagazine() {
+    if (this.feedType !== "magazine" || !this.loadedMagazineId) return null;
+    return this.parent?.actor?.items.get(this.loadedMagazineId) ?? null;
+  }
+}
+
+/** Lose, stapelbare Munition (z.B. "9mm-Patronen", quantity = Stückzahl) — wird beim Nachladen
+ * (feedType "internal") oder Magazin-Auffüllen von AshfordActor#_consumeLooseAmmo verbraucht. */
+export class AshfordAmmo extends AshfordPhysicalItem {
+  static defineSchema() {
+    return {
+      ...super.defineSchema(),
+      ammoType: new StringField({ required: true, blank: false, initial: "9mm", choices: AMMO_TYPES })
+    };
+  }
+}
+
+/**
+ * Ein einzelnes, physisches Magazin mit eigenem Füllstand (roundsLoaded, gedeckelt von capacity) —
+ * für Waffen mit feedType "magazine" (AshfordActor#reloadWeapon lädt eins davon in eine Waffe,
+ * #refillMagazine füllt es aus loser Munition wieder auf). Jedes Magazin-Item ist EIN physisches
+ * Exemplar: wer mehrere gleichartige Ersatzmagazine besitzt, legt mehrere Items mit quantity 1 an
+ * statt die quantity eines einzigen Items hochzuzählen — sonst ließe sich roundsLoaded nicht mehr
+ * eindeutig einem einzelnen Magazin zuordnen (genau wie quantity>1 bei Waffen schon heute nicht
+ * mehrere unabhängig ladbare Exemplare bedeutet).
+ */
+export class AshfordMagazine extends AshfordPhysicalItem {
+  static defineSchema() {
+    return {
+      ...super.defineSchema(),
+      ammoType: new StringField({ required: true, blank: false, initial: "9mm", choices: AMMO_TYPES }),
+      capacity: new NumberField({ required: true, integer: true, initial: 10, min: 1 }),
+      roundsLoaded: new NumberField({ required: true, integer: true, initial: 0, min: 0 })
+    };
   }
 }
 

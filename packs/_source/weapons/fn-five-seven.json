@@ -8,12 +8,14 @@
     "description": "<p>Ignoriert 3 Punkte Rüstung.</p>",
     "weaponSkill": "pistolen",
     "damageFormula": "2d6+5",
+    "damageType": "ballistic",
     "accuracyBonus": 2,
     "initiativeMod": 1,
     "equipped": false,
-    "ammo": "9mm",
     "quantity": 1,
-    "weight": 0
+    "weight": 0,
+    "ammoType": "9mm",
+    "feedType": "magazine"
   },
   "effects": [],
   "folder": null,

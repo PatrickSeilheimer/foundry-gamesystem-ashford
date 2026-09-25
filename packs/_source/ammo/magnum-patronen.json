@@ -1,0 +1,27 @@
+{
+  "_id": "49065a96a1713b01",
+  "_key": "!items!49065a96a1713b01",
+  "name": "Magnum-Patronen",
+  "type": "ammo",
+  "img": "icons/svg/bag.svg",
+  "system": {
+    "ammoType": "magnum",
+    "quantity": 10
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

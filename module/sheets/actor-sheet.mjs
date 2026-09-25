@@ -1,4 +1,11 @@
-import { EQUIP_SLOTS, ARMOR_TYPES, ITEM_CATEGORIES, ITEM_CATEGORY_LABELS } from "../models/gear.mjs";
+import {
+  EQUIP_SLOTS,
+  ARMOR_TYPES,
+  ITEM_CATEGORIES,
+  ITEM_CATEGORY_LABELS,
+  AMMO_TYPES,
+  AMMO_TYPE_LABELS
+} from "../models/gear.mjs";
 import { talentOrderIndex, levelToStrengthsWeaknesses } from "../rules/talents.mjs";
 import {
   CONDITIONS,
@@ -114,7 +121,12 @@ export default class AshfordActorSheet extends ActorSheet {
       .filter(i => ["equipment", "consumable"].includes(i.type))
       .map(i => this._serializeMisc(i));
 
+    context.munitionItems = gear
+      .filter(i => ["ammo", "magazine"].includes(i.type))
+      .map(i => this._serializeMunition(i));
+
     context.itemCategories = ITEM_CATEGORIES.map(key => ({ key, name: ITEM_CATEGORY_LABELS[key] ?? key }));
+    context.ammoTypeOptions = AMMO_TYPES.map(key => ({ key, name: AMMO_TYPE_LABELS[key] ?? key }));
 
     // Zustand-Tab: aktiv vs. archiviert, plus eine kuratierte Teilmenge fürs Header-Badge-Leiste.
     const conditions = items.filter(i => i.type === "condition");
@@ -168,6 +180,25 @@ export default class AshfordActorSheet extends ActorSheet {
       base.accuracyBonus = item.system.accuracyBonus;
       base.initiativeMod = item.system.initiativeMod;
       base.isRanged = item.system.isRanged;
+      base.damageType = item.system.damageType;
+      base.feedType = item.system.feedType;
+      base.ammoType = item.system.ammoType;
+      base.ammoTypeLabel = item.system.ammoType ? AMMO_TYPE_LABELS[item.system.ammoType] ?? item.system.ammoType : "";
+      base.capacity = item.system.capacity;
+      base.ammoRemaining = item.system.ammoRemaining;
+      // Wie viel lose Munition dieses Typs insgesamt noch im Rucksack liegt (unabhängig davon, ob
+      // internal-Waffe oder Magazin-Waffe) — hilft bei der Nachladen-Entscheidung, ohne extra ins
+      // Munitions-Panel wechseln zu müssen.
+      base.ammoInBackpack = item.system.ammoType ? this._totalLooseAmmo(item.system.ammoType) : 0;
+      // Nur bei feedType "magazine" relevant: das aktuell eingeladene Magazin-Item, aufgelöst für die
+      // Anzeige (Name + eigener Füllstand) — die Waffe selbst führt hier nur die ID (loadedMagazineId).
+      base.loadedMagazine = null;
+      if (item.system.feedType === "magazine" && item.system.loadedMagazineId) {
+        const mag = this.actor.items.get(item.system.loadedMagazineId);
+        if (mag) {
+          base.loadedMagazine = { id: mag.id, name: mag.name, roundsLoaded: mag.system.roundsLoaded, capacity: mag.system.capacity };
+        }
+      }
       // Für den "Treffer"-Button: welches Talent auf diesem Actor zur Waffen-Kategorie gehört.
       base.talentId = this.actor.items.find(
         t => t.type === "talent" && t.system.talentKey === item.system.weaponSkill
@@ -213,6 +244,36 @@ export default class AshfordActorSheet extends ActorSheet {
       isLightSource: item.type === "equipment" && !!item.system.lightSource?.enabled,
       lightActive: item.type === "equipment" && !!item.system.lightSource?.active
     };
+  }
+
+  /** Summe der `quantity` über alle losen "ammo"-Items dieses Typs — für die Waffen-Zeile ("Rucksack: X")
+   * und als Vorschau, wie viel Nachladen tatsächlich bringen würde. */
+  _totalLooseAmmo(ammoType) {
+    if (!ammoType) return 0;
+    return this.actor.items
+      .filter(i => i.type === "ammo" && i.system.ammoType === ammoType)
+      .reduce((sum, i) => sum + (i.system.quantity ?? 0), 0);
+  }
+
+  /** Lose Munition und Magazine — eigene Rucksack-Sektion (weder equippableItems noch miscItems). */
+  _serializeMunition(item) {
+    const base = {
+      id: item.id,
+      name: item.name,
+      img: item.img,
+      type: item.type,
+      quantity: item.system.quantity,
+      weight: item.system.weight,
+      ammoType: item.system.ammoType,
+      ammoTypeLabel: AMMO_TYPE_LABELS[item.system.ammoType] ?? item.system.ammoType
+    };
+    if (item.type === "magazine") {
+      base.capacity = item.system.capacity;
+      base.roundsLoaded = item.system.roundsLoaded;
+      const loadedIn = this.actor.items.find(w => w.type === "weapon" && w.system.loadedMagazineId === item.id);
+      base.loadedInWeaponName = loadedIn?.name ?? null;
+    }
+    return base;
   }
 
   _serializeCondition(item) {
@@ -340,8 +401,16 @@ export default class AshfordActorSheet extends ActorSheet {
       this.actor.rollWeaponDamage(itemId);
     });
     html.find(".ashford-roll-weapon-attack").on("click", ev => {
-      const talentId = ev.currentTarget.dataset.talentId;
-      if (talentId) this.actor.rollTalent(talentId);
+      const itemId = ev.currentTarget.closest("[data-item-id]").dataset.itemId;
+      this.actor.rollWeaponAttack(itemId);
+    });
+    html.find(".ashford-reload-weapon").on("click", ev => {
+      const itemId = ev.currentTarget.closest("[data-item-id]").dataset.itemId;
+      this.actor.reloadWeapon(itemId);
+    });
+    html.find(".ashford-refill-magazine").on("click", ev => {
+      const itemId = ev.currentTarget.closest("[data-item-id]").dataset.itemId;
+      this.actor.refillMagazine(itemId);
     });
     // Taschenlampe & Co.: An/Aus-Schalter im Rucksack, der einen echten Lichtkegel vom Token ausgehen lässt.
     html.find(".ashford-toggle-light").on("click", ev => {

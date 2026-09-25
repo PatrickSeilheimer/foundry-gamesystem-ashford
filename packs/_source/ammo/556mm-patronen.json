@@ -1,0 +1,27 @@
+{
+  "_id": "58f7e95bc146bd12",
+  "_key": "!items!58f7e95bc146bd12",
+  "name": "5.56mm-Patronen",
+  "type": "ammo",
+  "img": "icons/svg/bag.svg",
+  "system": {
+    "ammoType": "5.56mm",
+    "quantity": 30
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

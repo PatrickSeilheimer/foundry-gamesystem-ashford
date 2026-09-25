@@ -950,6 +950,47 @@
   min-height: 60px;
 }
 
+/* ---------- Kreaturen-Bogen (templates/actor/creature-sheet.hbs) ---------- */
+
+.creature-body { padding-top: 4px; }
+
+.creature-special {
+  margin-top: 14px;
+  padding: 8px 10px;
+  background: var(--ashford-panel-2);
+  border: 1px solid var(--ashford-danger);
+}
+
+.creature-special h3 {
+  margin: 0 0 4px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--ashford-danger);
+}
+
+.creature-special-text { font-size: 12px; color: var(--ashford-text); }
+
+.creature-biography {
+  margin-top: 14px;
+}
+
+.creature-biography h3 {
+  margin: 0 0 4px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--ashford-text-dim);
+}
+
+.creature-biography .editor-content,
+.creature-biography .editor {
+  background: var(--ashford-panel-2);
+  border: 1px solid var(--ashford-edge);
+  padding: 6px 8px;
+  min-height: 60px;
+}
+
 /* ---------- Inventory ---------- */
 
 /* 5 Körper-Slots in EINER Reihe statt untereinander — spart deutlich vertikalen Platz. Waffen sind
@@ -1043,7 +1084,9 @@
 .weapon-row .row-name { font-weight: bold; }
 
 .ashford-roll-weapon-damage,
-.ashford-roll-weapon-attack {
+.ashford-roll-weapon-attack,
+.ashford-reload-weapon,
+.ashford-refill-magazine {
   background: var(--ashford-panel);
   border: 1px solid var(--ashford-accent);
   color: var(--ashford-accent);
@@ -1053,10 +1096,22 @@
 }
 
 .ashford-roll-weapon-damage:hover,
-.ashford-roll-weapon-attack:hover { background: var(--ashford-accent); color: var(--ashford-bg); }
+.ashford-roll-weapon-attack:hover,
+.ashford-reload-weapon:hover,
+.ashford-refill-magazine:hover { background: var(--ashford-accent); color: var(--ashford-bg); }
 
 .ashford-roll-weapon-attack { border-color: var(--ashford-accent-2); color: var(--ashford-accent-2); }
 .ashford-roll-weapon-attack:hover { background: var(--ashford-accent-2); color: var(--ashford-bg); }
+
+/* Munitionsanzeige auf der Waffen-Zeile (character-sheet.hbs/creature-sheet.hbs) und im
+   Munitions-Rucksack-Panel unten: leer/aufgebraucht fällt sofort ins Auge. */
+.ammo-empty { color: var(--ashford-danger); font-weight: bold; }
+
+.row-ammo-backpack {
+  font-size: 10px;
+  color: var(--ashford-text-dim);
+  white-space: nowrap;
+}
 
 .inventory-panel { margin-bottom: 10px; }
 
@@ -1144,7 +1199,8 @@
 .compare-row.up .compare-delta { color: var(--ashford-accent-2); font-weight: bold; }
 .compare-row.down .compare-delta { color: var(--ashford-danger); font-weight: bold; }
 
-.misc-row {
+.misc-row,
+.munition-row {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1153,9 +1209,15 @@
   border: 1px solid var(--ashford-edge);
 }
 
-.row-qty, .row-weight, .row-category {
+.row-qty, .row-weight, .row-category, .row-ammotype {
   font-size: 11px;
   color: var(--ashford-text-dim);
+  white-space: nowrap;
+}
+
+.row-loaded-in {
+  font-size: 10px;
+  color: var(--ashford-accent-2);
   white-space: nowrap;
 }
 
@@ -1234,6 +1296,51 @@
   font-weight: bold;
   margin-top: 4px;
 }
+
+/* Damage-confirm chat card (module/apps/damage-confirm-chat.mjs) — same treatment as the heal card
+   above, but the target's armor is auto-applied on render instead of waiting for a GM click; only
+   the undo afterward needs a button. */
+.ashford-damage-card {
+  border: 1px solid var(--ashford-danger);
+  background: var(--ashford-panel-2);
+  color: var(--ashford-text);
+  padding: 6px 8px;
+  font-size: 12px;
+}
+
+.ashford-damage-card header { margin-bottom: 4px; }
+.ashford-damage-card .damage-row { color: var(--ashford-text-dim); }
+.ashford-damage-card .damage-row .raw { color: var(--ashford-text); font-weight: bold; }
+.ashford-damage-card .damage-row .armor { color: var(--ashford-accent-2); }
+.ashford-damage-card .damage-row.final { color: var(--ashford-text); margin: 2px 0 4px; }
+.ashford-damage-card .damage-row.final .final { color: var(--ashford-danger); font-weight: bold; font-size: 13px; }
+
+.ashford-damage-card .damage-pending {
+  color: var(--ashford-text-dim);
+  font-size: 11px;
+  font-style: italic;
+}
+
+.ashford-damage-card .damage-resolved {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ashford-danger);
+  font-weight: bold;
+}
+
+.ashford-damage-card .reverted-label { color: var(--ashford-text-dim); font-weight: normal; font-style: italic; }
+
+.ashford-damage-card .ashford-damage-undo {
+  background: var(--ashford-panel);
+  border: 1px solid var(--ashford-edge);
+  color: var(--ashford-text-dim);
+  font-size: 10px;
+  font-weight: normal;
+  padding: 2px 6px;
+}
+
+.ashford-damage-card .ashford-damage-undo:hover { border-color: var(--ashford-danger); color: var(--ashford-danger); }
 
 /* ---------- Zustand (conditions) ---------- */
 

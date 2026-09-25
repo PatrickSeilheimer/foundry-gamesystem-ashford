@@ -8,10 +8,10 @@
     "description": "",
     "weaponSkill": "stichwaffen",
     "damageFormula": "1d6+4",
+    "damageType": "pierce",
     "accuracyBonus": 2,
     "initiativeMod": 6,
     "equipped": false,
-    "ammo": "",
     "quantity": 1,
     "weight": 0
   },

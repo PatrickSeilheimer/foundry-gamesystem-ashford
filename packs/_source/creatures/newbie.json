@@ -1,0 +1,188 @@
+{
+  "_id": "db4a337017d0f2dd",
+  "_key": "!actors!db4a337017d0f2dd",
+  "name": "Newbie",
+  "type": "creature",
+  "img": "icons/svg/skull.svg",
+  "system": {
+    "biography": "<p>Kürzlich Verwandelte – Menschen, die erst vor Kurzem der überall in der Luft liegenden Sporenlast erlegen sind, nicht Überreste der ursprünglichen Verwandlungswelle vom Tag des Falls. Der Grund, warum niemand in Ashford allein zur Tür hinausgeht: kein besonderer Zombie, keine Geschichte, kein Wiedererkennungswert – einfach kürzlich draufgegangenes, noch nicht lange totes Fleisch in Mengen. Gedacht für Szenen, in denen die schiere Zahl die Bedrohung ist, nicht der einzelne Gegner.</p><p><strong>GM-Hinweis:</strong> Für Massenszenen mit rund 10 gleichzeitigen Gegnern gedacht, z. B. wenn eine Palisaden-Lücke überrannt wird. Ein einzelner Treffer reicht meist, um einen von ihnen zu erledigen.</p><p><strong>Punkte-Äquivalent:</strong> +8 (deutlich unter PC-Niveau, absichtlich schwach)</p>",
+    "resources": {
+      "health": {
+        "value": 20,
+        "max": 20
+      },
+      "infection": {
+        "value": 0,
+        "max": 7
+      }
+    },
+    "dice": {
+      "basePool": 3
+    },
+    "tier": "Horde",
+    "attackPool": 3,
+    "infectious": true,
+    "specialAbility": {
+      "name": "",
+      "description": ""
+    }
+  },
+  "items": [
+    {
+      "_id": "dfcfe24fd760ec1e",
+      "_key": "!actors.items!db4a337017d0f2dd.dfcfe24fd760ec1e",
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {},
+      "effects": [],
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      },
+      "name": "Kraft",
+      "type": "talent",
+      "img": "icons/svg/d20-black.svg",
+      "system": {
+        "description": "",
+        "talentKey": "kraft",
+        "stufe": 2,
+        "staerken": 0,
+        "schwaechen": 1,
+        "waffentalent": false,
+        "kategorie": ""
+      }
+    },
+    {
+      "_id": "8cc5d26f4a3ab2c0",
+      "_key": "!actors.items!db4a337017d0f2dd.8cc5d26f4a3ab2c0",
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {},
+      "effects": [],
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      },
+      "name": "Athletik",
+      "type": "talent",
+      "img": "icons/svg/d20-black.svg",
+      "system": {
+        "description": "",
+        "talentKey": "athletik",
+        "stufe": 2,
+        "staerken": 0,
+        "schwaechen": 2,
+        "waffentalent": false,
+        "kategorie": ""
+      }
+    },
+    {
+      "_id": "9755e601f2494ffe",
+      "_key": "!actors.items!db4a337017d0f2dd.9755e601f2494ffe",
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {},
+      "effects": [],
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      },
+      "name": "Waffenloser Kampf",
+      "type": "talent",
+      "img": "icons/svg/d20-black.svg",
+      "system": {
+        "description": "",
+        "talentKey": "waffenloserkampf",
+        "stufe": 3,
+        "staerken": 0,
+        "schwaechen": 0,
+        "waffentalent": true,
+        "kategorie": "nahkampf_unbewaffnet"
+      }
+    },
+    {
+      "_id": "e0ac02efde5bd06b",
+      "_key": "!actors.items!db4a337017d0f2dd.e0ac02efde5bd06b",
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {},
+      "effects": [],
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      },
+      "name": "Biss/Kratzen",
+      "type": "weapon",
+      "img": "icons/svg/sword.svg",
+      "system": {
+        "description": "",
+        "weaponSkill": "waffenloserkampf",
+        "damageFormula": "1d4+1",
+        "damageType": "blunt",
+        "accuracyBonus": 0,
+        "initiativeMod": 0,
+        "equipped": true,
+        "quantity": 1,
+        "weight": 0
+      }
+    }
+  ],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Newbie",
+    "texture": {
+      "src": "icons/svg/skull.svg"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": -1
+  },
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

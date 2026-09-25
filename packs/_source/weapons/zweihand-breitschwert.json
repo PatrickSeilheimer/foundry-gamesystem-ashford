@@ -8,10 +8,10 @@
     "description": "",
     "weaponSkill": "hiebwaffen",
     "damageFormula": "1d10+6",
+    "damageType": "slash",
     "accuracyBonus": -2,
     "initiativeMod": 1,
     "equipped": false,
-    "ammo": "",
     "quantity": 1,
     "weight": 0
   },

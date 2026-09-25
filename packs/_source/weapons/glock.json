@@ -8,12 +8,14 @@
     "description": "<p>Kann 2 Schüsse abfeuern. Beide Schüsse erhalten zusätzlich −4.</p>",
     "weaponSkill": "pistolen",
     "damageFormula": "2d6+6",
+    "damageType": "ballistic",
     "accuracyBonus": -2,
     "initiativeMod": 1,
     "equipped": false,
-    "ammo": "9mm",
     "quantity": 1,
-    "weight": 0
+    "weight": 0,
+    "ammoType": "9mm",
+    "feedType": "magazine"
   },
   "effects": [],
   "folder": null,

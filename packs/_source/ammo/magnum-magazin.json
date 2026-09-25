@@ -1,0 +1,28 @@
+{
+  "_id": "f67a86e229b90bb3",
+  "_key": "!items!f67a86e229b90bb3",
+  "name": "Magnum-Magazin",
+  "type": "magazine",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "ammoType": "magnum",
+    "capacity": 7,
+    "roundsLoaded": 7
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

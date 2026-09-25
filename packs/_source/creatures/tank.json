@@ -1,0 +1,229 @@
+{
+  "_id": "18320e258a6ab315",
+  "_key": "!actors!18320e258a6ab315",
+  "name": "Tank",
+  "type": "creature",
+  "img": "icons/svg/skull.svg",
+  "system": {
+    "biography": "<p>Ein Zombie, der zu Lebzeiten Bodybuilder, Türsteher oder Profisportler gewesen sein könnte – die Statur ist selbst nach Jahren des Verfalls unübersehbar. Langsam, aber wenn dieser Griff einmal zupackt, ist es fast egal, was man trägt.</p><p><strong>GM-Hinweis:</strong> Der Gegenpol zum Berserker – ähnlich viel HP, aber langsamer, dafür mit eingebauter Schadensreduktion statt eines ausnutzbaren Verhaltensmusters. Guter „Wall“, den die Gruppe entweder umgehen oder mit vereinten Kräften niederringen muss.</p><p><strong>Punkte-Äquivalent:</strong> −7 (innerhalb des PC-Budgets, guter Elite-Einzelgegner)</p>",
+    "resources": {
+      "health": {
+        "value": 55,
+        "max": 55
+      },
+      "infection": {
+        "value": 0,
+        "max": 7
+      }
+    },
+    "dice": {
+      "basePool": 3
+    },
+    "tier": "Mutation",
+    "attackPool": 3,
+    "infectious": true,
+    "specialAbility": {
+      "name": "Wall aus totem Fleisch",
+      "description": "<p>Ignoriert die ersten 3 Punkte Schaden aus jedem Treffer mit einer Schlagwaffe (dicke, vernarbte Muskelmasse dämpft stumpfe Wucht) – analog zur Rüstungsmechanik aus <code>ausruestung-und-waffen.md</code>. Bereits als Rüstungswert (Blunt 3) auf diesem Bogen hinterlegt. Gegen Hieb-, Stich- und Schusswaffen gilt der volle Schaden.</p>"
+    }
+  },
+  "items": [
+    {
+      "_id": "664185e71e67bdef",
+      "_key": "!actors.items!18320e258a6ab315.664185e71e67bdef",
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {},
+      "effects": [],
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      },
+      "name": "Kraft",
+      "type": "talent",
+      "img": "icons/svg/d20-black.svg",
+      "system": {
+        "description": "",
+        "talentKey": "kraft",
+        "stufe": 2,
+        "staerken": 3,
+        "schwaechen": 0,
+        "waffentalent": false,
+        "kategorie": ""
+      }
+    },
+    {
+      "_id": "159674b140401bdc",
+      "_key": "!actors.items!18320e258a6ab315.159674b140401bdc",
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {},
+      "effects": [],
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      },
+      "name": "Athletik",
+      "type": "talent",
+      "img": "icons/svg/d20-black.svg",
+      "system": {
+        "description": "",
+        "talentKey": "athletik",
+        "stufe": 2,
+        "staerken": 0,
+        "schwaechen": 1,
+        "waffentalent": false,
+        "kategorie": ""
+      }
+    },
+    {
+      "_id": "86add4da535dd4b4",
+      "_key": "!actors.items!18320e258a6ab315.86add4da535dd4b4",
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {},
+      "effects": [],
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      },
+      "name": "Waffenloser Kampf",
+      "type": "talent",
+      "img": "icons/svg/d20-black.svg",
+      "system": {
+        "description": "",
+        "talentKey": "waffenloserkampf",
+        "stufe": 3,
+        "staerken": 1,
+        "schwaechen": 0,
+        "waffentalent": true,
+        "kategorie": "nahkampf_unbewaffnet"
+      }
+    },
+    {
+      "_id": "45b23c8317f2505c",
+      "_key": "!actors.items!18320e258a6ab315.45b23c8317f2505c",
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {},
+      "effects": [],
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      },
+      "name": "Biss/Kratzen bzw. Packen",
+      "type": "weapon",
+      "img": "icons/svg/sword.svg",
+      "system": {
+        "description": "",
+        "weaponSkill": "waffenloserkampf",
+        "damageFormula": "1d8+4",
+        "damageType": "blunt",
+        "accuracyBonus": 0,
+        "initiativeMod": 0,
+        "equipped": true,
+        "quantity": 1,
+        "weight": 0
+      }
+    },
+    {
+      "_id": "0f8cbc7f94c51e49",
+      "_key": "!actors.items!18320e258a6ab315.0f8cbc7f94c51e49",
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {},
+      "effects": [],
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      },
+      "name": "Zähe Muskelmasse",
+      "type": "armor",
+      "img": "icons/svg/shield.svg",
+      "system": {
+        "description": "",
+        "armor": {
+          "ballistic": 0,
+          "pierce": 0,
+          "blunt": 3,
+          "slash": 0,
+          "explosion": 0,
+          "fire": 0
+        },
+        "slot": "",
+        "equipped": true,
+        "initiativeMod": 0,
+        "meleeDamageBonus": 0,
+        "talentBonuses": [],
+        "quantity": 1,
+        "weight": 0
+      }
+    }
+  ],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Tank",
+    "texture": {
+      "src": "icons/svg/skull.svg"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": -1
+  },
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

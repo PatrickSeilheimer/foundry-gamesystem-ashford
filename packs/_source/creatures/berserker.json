@@ -1,0 +1,188 @@
+{
+  "_id": "1a41ce20da5d99cd",
+  "_key": "!actors!1a41ce20da5d99cd",
+  "name": "Berserker",
+  "type": "creature",
+  "img": "icons/svg/skull.svg",
+  "system": {
+    "biography": "<p>Einer der ältesten noch aktiven Zombies um Ashford – ein Übriggebliebener der ursprünglichen Verwandlungswelle vom Tag des Falls, seit Jahren in einem ausgezehrten Streifgebiet unterwegs, in dem kaum noch etwas Lebendiges übrig ist. Der Körper ist bis auf Muskeln und Sehnen abgemagert, aber genau das macht ihn nicht schwach, sondern gefährlich: jede Bewegung ist von roher, unstillbarer Gier getrieben. Enorm aggressiv, enorm stark – aber auch berechenbar genug, um ihn gezielt auszutricksen.</p><p><strong>GM-Hinweis:</strong> Höchster Einzeltreffer-Schaden im gesamten Dokument (1W10+7, Schnitt ca. 12,5 pro Treffer plus mögliche Explosionen) und die zweithöchste HP nach Tank – ein Gegner, den man ernst nehmen muss, gegen den es aber dank des Hunger-Triebs echte, planbare Gegenstrategien gibt statt reinem Würfelglück.</p><p><strong>Punkte-Äquivalent:</strong> −14 (über PC-Budget, bewusst überdurchschnittlich gefährlich)</p>",
+    "resources": {
+      "health": {
+        "value": 55,
+        "max": 55
+      },
+      "infection": {
+        "value": 0,
+        "max": 7
+      }
+    },
+    "dice": {
+      "basePool": 3
+    },
+    "tier": "Mutation",
+    "attackPool": 3,
+    "infectious": true,
+    "specialAbility": {
+      "name": "Getrieben vom Hunger",
+      "description": "<p>Jahre der Unterversorgung haben aus diesem Zombie ein reines Hunger-Wesen gemacht. Trifft er auf mehrere potenzielle Ziele gleichzeitig – Charaktere, andere NPCs, aber auch offen daliegende Nahrung, Aas oder frisches Fleisch –, stürzt er sich immer zuerst auf das nächstgelegene oder am leichtesten erreichbare „Essbare“, unabhängig davon, wie gefährlich es für ihn selbst ist oder wie sinnvoll es taktisch wäre, zuerst die größte Bedrohung anzugreifen. Spielercharaktere können das gezielt ausnutzen: rohes Fleisch, ein Kadaver oder sogar ein bewusst geopfertes NPC in Wurfweite lenkt ihn zuverlässig ab, bevor er die eigentliche Gruppe überhaupt bemerkt.</p>"
+    }
+  },
+  "items": [
+    {
+      "_id": "7ea9f132b6205bd8",
+      "_key": "!actors.items!1a41ce20da5d99cd.7ea9f132b6205bd8",
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {},
+      "effects": [],
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      },
+      "name": "Kraft",
+      "type": "talent",
+      "img": "icons/svg/d20-black.svg",
+      "system": {
+        "description": "",
+        "talentKey": "kraft",
+        "stufe": 2,
+        "staerken": 3,
+        "schwaechen": 0,
+        "waffentalent": false,
+        "kategorie": ""
+      }
+    },
+    {
+      "_id": "b6f460adf348246d",
+      "_key": "!actors.items!1a41ce20da5d99cd.b6f460adf348246d",
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {},
+      "effects": [],
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      },
+      "name": "Athletik",
+      "type": "talent",
+      "img": "icons/svg/d20-black.svg",
+      "system": {
+        "description": "",
+        "talentKey": "athletik",
+        "stufe": 2,
+        "staerken": 1,
+        "schwaechen": 0,
+        "waffentalent": false,
+        "kategorie": ""
+      }
+    },
+    {
+      "_id": "2a867a92925a61b0",
+      "_key": "!actors.items!1a41ce20da5d99cd.2a867a92925a61b0",
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {},
+      "effects": [],
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      },
+      "name": "Waffenloser Kampf",
+      "type": "talent",
+      "img": "icons/svg/d20-black.svg",
+      "system": {
+        "description": "",
+        "talentKey": "waffenloserkampf",
+        "stufe": 3,
+        "staerken": 2,
+        "schwaechen": 0,
+        "waffentalent": true,
+        "kategorie": "nahkampf_unbewaffnet"
+      }
+    },
+    {
+      "_id": "1de41910489437de",
+      "_key": "!actors.items!1a41ce20da5d99cd.1de41910489437de",
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 2
+      },
+      "flags": {},
+      "effects": [],
+      "_stats": {
+        "systemId": "ashford",
+        "systemVersion": "0.1.0",
+        "coreVersion": "14",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "duplicateSource": null
+      },
+      "name": "Biss/Kratzen",
+      "type": "weapon",
+      "img": "icons/svg/sword.svg",
+      "system": {
+        "description": "",
+        "weaponSkill": "waffenloserkampf",
+        "damageFormula": "1d10+4",
+        "damageType": "blunt",
+        "accuracyBonus": 0,
+        "initiativeMod": 0,
+        "equipped": true,
+        "quantity": 1,
+        "weight": 0
+      }
+    }
+  ],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "prototypeToken": {
+    "name": "Berserker",
+    "texture": {
+      "src": "icons/svg/skull.svg"
+    },
+    "width": 1,
+    "height": 1,
+    "actorLink": false,
+    "disposition": -1
+  },
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}

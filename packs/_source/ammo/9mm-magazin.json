@@ -1,0 +1,28 @@
+{
+  "_id": "b87e1ff26133bddc",
+  "_key": "!items!b87e1ff26133bddc",
+  "name": "9mm-Magazin",
+  "type": "magazine",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "ammoType": "9mm",
+    "capacity": 10,
+    "roundsLoaded": 10
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 2
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "ashford",
+    "systemVersion": "0.1.0",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "duplicateSource": null
+  }
+}
