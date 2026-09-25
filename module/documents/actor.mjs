@@ -99,12 +99,10 @@ export default class AshfordActor extends Actor {
 
     if (!result.success) return result.message;
 
-    await new Promise(resolve => setTimeout(resolve, 700));
-    await ChatMessage.create({
-      speaker: ChatMessage.getSpeaker({ actor: this }),
-      content: `<p>🎯 <strong>Treffer!</strong> ${weapon.name} würfelt Schaden …</p>`
-    });
-    await new Promise(resolve => setTimeout(resolve, 700));
+    // Kurze Pause statt einer eigenen "Treffer!"-Zwischennachricht (der Erfolg ist schon auf der
+    // Treffer-Karte selbst zu sehen) — nur genug Zeit, damit Dice So Nice den Angriffswurf fertig
+    // animiert hat, bevor der Schadenswurf hinterherkommt.
+    await new Promise(resolve => setTimeout(resolve, 900));
     return this.rollWeaponDamage(itemId, { targetActor, ammoRestore });
   }
 
@@ -138,7 +136,10 @@ export default class AshfordActor extends Actor {
     const meleeBonus = isMelee ? this.system.derived?.nahkampfschaden ?? 0 : 0;
     const fullFormula = meleeBonus ? `max(${formula} + ${meleeBonus}, 1)` : formula;
 
-    const roll = new Roll(fullFormula);
+    // "Ashford Schaden"-Tag für Dice So Nice (module/dice/dice-pool.mjs#rollExplodingPool hat das
+    // Gegenstück "Ashford Angriff") — sonst sind Treffer- und Schadenswurf, die Sekundenbruchteile
+    // hintereinander laufen, farblich nicht zu unterscheiden.
+    const roll = new Roll(fullFormula, {}, { flavor: "Ashford Schaden" });
     await roll.evaluate();
     // Einzelne Würfelergebnisse fürs Chatkarten-Layout (module/apps/roll-dialog.mjs' Treffer-Karte
     // zeigt dieselbe Aufschlüsselung) — flatMap über alle Würfelterme, falls die Formel mehrere

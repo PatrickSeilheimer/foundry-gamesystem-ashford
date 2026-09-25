@@ -22,8 +22,26 @@ export default class AshfordRollDialog {
     const isRanged = RANGED_WEAPON_TALENT_KEYS.includes(talent.system.talentKey);
     const isWeapon = !!talent.system.waffentalent;
 
-    const target = game.user?.targets?.size === 1 ? [...game.user.targets][0]?.actor : null;
+    const targetToken = game.user?.targets?.size === 1 ? [...game.user.targets][0] : null;
+    const target = targetToken?.actor ?? null;
     const targetAusweichen = target?.system?.derived?.ausweichen ?? null;
+
+    // Vorausgefüllte Entfernung per Foundrys eigenem Grid-Messwerkzeug (canvas.grid.measurePath) —
+    // genau wie bei Ausweichen nur eine Vorbelegung, die im Dialog noch überschrieben werden kann.
+    // Braucht sowohl ein anvisiertes Ziel als auch einen platzierten Token dieses Actors auf der
+    // aktuell angezeigten Szene; schlägt beides fehl, bleibt das Feld beim manuellen Standardwert.
+    let autoRangeMeters = null;
+    if (isRanged && targetToken) {
+      try {
+        const attackerToken = actor.getActiveTokens()[0] ?? null;
+        if (attackerToken) {
+          const measured = canvas.grid.measurePath([attackerToken.center, targetToken.center]);
+          autoRangeMeters = Math.round(measured.distance);
+        }
+      } catch (err) {
+        console.warn("Ashford | Automatische Entfernungsmessung fehlgeschlagen", err);
+      }
+    }
 
     // Aktive Zustände mit einem "talentMod"-Effekt auf genau dieses Talent fließen automatisch
     // in den Pool ein (module/rules/conditions.mjs) — situativ statt fest im Talent gespeichert,
@@ -74,6 +92,7 @@ export default class AshfordRollDialog {
         defaultMode,
         targetName: target?.name ?? "",
         targetAusweichen,
+        autoRangeMeters,
         conditionNames: [...conditionNames],
         conditionNet: conditionStaerken - conditionSchwaechen,
         gearNames: [...gearNames],
@@ -150,6 +169,7 @@ export default class AshfordRollDialog {
               modifierLabel: modifier ? "Modifikator" : "",
               target: targetValue,
               targetLabel,
+              isAttack: mode === "attack",
               autoFail,
               autoFailReason
             });

@@ -18,10 +18,14 @@ export function computeDiceCount({ staerken = 0, schwaechen = 0 } = {}) {
  * Rolls `diceCount` exploding d6 and returns the evaluated Roll (its `.total`
  * is the sum of every die, including all explosions).
  * @param {number} diceCount
+ * @param {string} [flavor] - tags `roll.options.flavor` (e.g. "Ashford Angriff") so a module like
+ *   Dice So Nice can assign this roll its own dice colors via a "Dice Roles" detector rule, distinct
+ *   from the immediately-following damage roll (module/documents/actor.mjs#rollWeaponDamage) —
+ *   otherwise the two look identical when they fire back-to-back.
  * @returns {Promise<Roll>}
  */
-export async function rollExplodingPool(diceCount) {
-  const roll = new Roll(`${Math.max(1, diceCount)}d6x6`);
+export async function rollExplodingPool(diceCount, flavor) {
+  const roll = new Roll(`${Math.max(1, diceCount)}d6x6`, {}, flavor ? { flavor } : {});
   await roll.evaluate();
   return roll;
 }
@@ -61,6 +65,9 @@ export async function postRollMessage(roll, messageData = {}) {
  * @param {string} [options.modifierLabel] - label for that flat modifier, shown on the card
  * @param {number|null} [options.target] - Zielwert or Ausweichen to beat; null = no pass/fail shown
  * @param {string} [options.targetLabel] - e.g. "Schwer (16)" or "Ausweichen (13)"
+ * @param {boolean} [options.isAttack] - true only for an actual attack-vs-Ausweichen roll (not a plain
+ *   Schwierigkeit/custom Zielwert check) — tags the dice for Dice So Nice so an attack roll can get a
+ *   different color than the damage roll that follows it (module/documents/actor.mjs#rollWeaponDamage).
  * @param {boolean} [options.autoFail] - short-circuits to an automatic miss without rolling (außer Reichweite)
  * @param {string} [options.autoFailReason]
  * @returns {Promise<{message: ChatMessage, success: boolean|null, total: number|null}>} `success` is
@@ -79,6 +86,7 @@ export async function rollAshfordCheck({
   modifierLabel = "",
   target = null,
   targetLabel = "",
+  isAttack = false,
   autoFail = false,
   autoFailReason = ""
 } = {}) {
@@ -96,7 +104,9 @@ export async function rollAshfordCheck({
   }
 
   const diceCount = computeDiceCount({ staerken, schwaechen });
-  const roll = await rollExplodingPool(diceCount);
+  // Nur echte Angriffswürfe bekommen den DSN-Tag — Schwierigkeits-/Zielwert-Proben ohne Gegner
+  // bleiben in der persönlichen Standardfarbe des Spielers.
+  const roll = await rollExplodingPool(diceCount, isAttack ? "Ashford Angriff" : undefined);
   const dice = (roll.dice[0]?.results ?? []).map(d => ({ result: d.result, exploded: !!d.exploded }));
   const total = roll.total + modifier;
   const success = target != null ? total >= target : null;

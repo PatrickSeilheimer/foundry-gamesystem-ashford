@@ -91,7 +91,8 @@
       {{#if isRanged}}
         <label>
           Entfernung (Meter)
-          <input type="number" name="rangeMeters" value="0" min="0">
+          <input type="number" name="rangeMeters" value="{{#if autoRangeMeters}}{{autoRangeMeters}}{{else}}0{{/if}}" min="0">
+          {{#if autoRangeMeters}}<span class="hint">(automatisch gemessen, bei Bedarf überschreiben)</span>{{/if}}
         </label>
       {{/if}}
     {{/if}}
