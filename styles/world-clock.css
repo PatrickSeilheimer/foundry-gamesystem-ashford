@@ -35,3 +35,47 @@
 }
 
 .awc-controls button:hover { background: var(--ashford-accent, #d9922f); color: var(--ashford-bg, #0b0a08); }
+
+/* Geplante-Ereignisse-Fenster (module/apps/event-schedule-app.mjs) — ein echtes ApplicationV2-Fenster,
+   kein passives HUD, daher normal im Fenster-Inhalt gescoped statt fixed positioniert. */
+.ashford-event-schedule .aes-form { padding: 8px; font-size: 12px; }
+
+.ashford-event-schedule .aes-add {
+  border: 1px solid var(--ashford-edge, #6b5d42);
+  margin-bottom: 10px;
+  padding: 6px 8px;
+}
+
+.ashford-event-schedule .aes-mode-toggle { display: flex; gap: 12px; margin-bottom: 6px; }
+
+.ashford-event-schedule .aes-mode-relative,
+.ashford-event-schedule .aes-mode-fixed {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.ashford-event-schedule .aes-label-field { display: block; margin-bottom: 6px; }
+.ashford-event-schedule .aes-label-field input { width: 100%; }
+
+.ashford-event-schedule .aes-add-btn {
+  background: var(--ashford-panel-2, #1e1a15);
+  border: 1px solid var(--ashford-accent-2, #8bb27a);
+  color: var(--ashford-accent-2, #8bb27a);
+  padding: 3px 10px;
+}
+
+.ashford-event-schedule .aes-list { list-style: none; margin: 0; padding: 0; }
+
+.ashford-event-schedule .aes-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 2px;
+  border-bottom: 1px solid var(--ashford-panel-2, #1e1a15);
+}
+
+.ashford-event-schedule .aes-abs { font-family: "Courier New", monospace; color: var(--ashford-text-dim, #d6c9a8); white-space: nowrap; }
+.ashford-event-schedule .aes-rel { color: var(--ashford-accent, #d9922f); white-space: nowrap; }
+.ashford-event-schedule .aes-label { flex: 1; }
+.ashford-event-schedule .aes-remove { color: var(--ashford-danger, #e8877a); cursor: pointer; }

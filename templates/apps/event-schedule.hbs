@@ -1,0 +1,36 @@
+<form class="aes-form" autocomplete="off">
+  <fieldset class="aes-add">
+    <legend>Neues Ereignis</legend>
+    <div class="aes-mode-toggle">
+      <label><input type="radio" name="mode" value="relative" checked> Relative Zeit</label>
+      <label><input type="radio" name="mode" value="fixed"> Feste Uhrzeit</label>
+    </div>
+    <div class="aes-mode-relative">
+      <label>Tage <input type="number" name="relDays" value="0" min="0"></label>
+      <label>Stunden <input type="number" name="relHours" value="0" min="0" max="23"></label>
+      <label>Minuten <input type="number" name="relMinutes" value="60" min="0" max="59"></label>
+    </div>
+    <div class="aes-mode-fixed" hidden>
+      <label>Tag <input type="number" name="fixDay" value="{{nowDay}}" min="1"></label>
+      <label>Stunde <input type="number" name="fixHour" value="0" min="0" max="23"></label>
+      <label>Minute <input type="number" name="fixMinute" value="0" min="0" max="59"></label>
+    </div>
+    <label class="aes-label-field">Was passiert?
+      <input type="text" name="label" placeholder="z.B. Funkgerät meldet sich">
+    </label>
+    <button type="button" class="aes-add-btn">+ Planen</button>
+  </fieldset>
+
+  <ol class="aes-list">
+    {{#each events}}
+      <li class="aes-row" data-event-id="{{this.id}}">
+        <span class="aes-abs">{{this.absolute}}</span>
+        <span class="aes-rel">{{this.relative}}</span>
+        <span class="aes-label">{{this.label}}</span>
+        <a class="aes-remove" data-id="{{this.id}}" title="Entfernen"><i class="fas fa-trash"></i></a>
+      </li>
+    {{else}}
+      <li class="hint">Keine geplanten Ereignisse.</li>
+    {{/each}}
+  </ol>
+</form>
