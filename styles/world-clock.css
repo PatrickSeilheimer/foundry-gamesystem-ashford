@@ -1,0 +1,37 @@
+/* Always-on world-clock widget (module/apps/world-clock.mjs) — fixed corner overlay, not a sheet. */
+
+#ashford-world-clock {
+  position: fixed;
+  top: 6px;
+  right: 56px;
+  z-index: 61;
+  pointer-events: none;
+}
+
+.awc-bar {
+  pointer-events: all;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: var(--ashford-panel, #161310);
+  border: 1px solid var(--ashford-edge, #6b5d42);
+  color: var(--ashford-text, #f5f1e6);
+  font-size: 12px;
+  border-radius: 2px;
+}
+
+.awc-label { font-family: "Courier New", monospace; white-space: nowrap; }
+
+.awc-controls { display: flex; gap: 2px; }
+
+.awc-controls button {
+  background: var(--ashford-panel-2, #1e1a15);
+  border: 1px solid var(--ashford-edge, #6b5d42);
+  color: var(--ashford-accent, #d9922f);
+  font-size: 10px;
+  padding: 1px 4px;
+  line-height: 1.4;
+}
+
+.awc-controls button:hover { background: var(--ashford-accent, #d9922f); color: var(--ashford-bg, #0b0a08); }

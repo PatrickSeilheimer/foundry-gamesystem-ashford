@@ -7,6 +7,16 @@
       </div>
       <div class="chud-health"><div class="chud-health-fill" style="width:{{this.healthPct}}%"></div></div>
       <div class="chud-name">{{this.name}}</div>
+      {{#if this.shotDots.length}}
+        <div class="chud-shots">
+          {{#each this.shotDots}}
+            <span class="chud-shot-dot {{this}}"></span>
+          {{/each}}
+        </div>
+      {{/if}}
+      {{#if this.ammoLabel}}
+        <div class="chud-ammo" title="Nur für den Spielleiter sichtbar">{{this.ammoLabel}}</div>
+      {{/if}}
     </div>
   {{/each}}
 </div>

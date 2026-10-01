@@ -69,6 +69,17 @@ export default class AshfordItemSheet extends ItemSheet {
       effects.splice(index, 1);
       this.item.update({ "system.effects": effects });
     });
+    html.find(".ashford-ingredient-add").on("click", () => {
+      const ingredients = foundry.utils.deepClone(this.item.system.recipe?.ingredients ?? []);
+      ingredients.push({ name: "", quantity: 1, consumed: true });
+      this.item.update({ "system.recipe.ingredients": ingredients });
+    });
+    html.find(".ashford-ingredient-remove").on("click", ev => {
+      const index = Number(ev.currentTarget.dataset.index);
+      const ingredients = foundry.utils.deepClone(this.item.system.recipe?.ingredients ?? []);
+      ingredients.splice(index, 1);
+      this.item.update({ "system.recipe.ingredients": ingredients });
+    });
     html.find(".ashford-talentbonus-add").on("click", () => {
       const talentBonuses = foundry.utils.deepClone(this.item.system.talentBonuses ?? []);
       talentBonuses.push({ talentKey: "", value: 1 });

@@ -19,7 +19,9 @@
   "styles": [
     "styles/ashford.css",
     "styles/codex.css",
-    "styles/combat-hud.css"
+    "styles/combat-hud.css",
+    "styles/world-clock.css",
+    "styles/rest.css"
   ],
   "languages": [
     {

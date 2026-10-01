@@ -67,7 +67,26 @@ class AshfordPhysicalItem extends AshfordItemBase {
     return {
       ...super.defineSchema(),
       quantity: new NumberField({ required: true, integer: true, initial: 1, min: 0 }),
-      weight: new NumberField({ required: true, initial: 0, min: 0 })
+      weight: new NumberField({ required: true, initial: 0, min: 0 }),
+      // Optionales Herstellungs-Rezept für DIESES Item — macht es als "Herstellen"-Aktivität während
+      // einer Rast wählbar (module/apps/rest.mjs), wenn die Zutaten im Inventar des herstellenden
+      // Charakters vorhanden sind. `craftable: false` (Default) blendet es aus der Rast-Aktivitätenliste
+      // aus; Zutaten werden über ihren NAMEN gematcht (nicht UUID), `consumed: false` markiert reine
+      // Werkzeug-Voraussetzungen (z.B. "Messer"), die nur vorhanden, aber nicht verbraucht sein müssen.
+      recipe: new SchemaField({
+        craftable: new BooleanField({ required: true, initial: false }),
+        minutes: new NumberField({ required: true, integer: true, initial: 30, min: 0 }),
+        requiresFire: new BooleanField({ required: true, initial: false }),
+        yield: new NumberField({ required: true, integer: true, initial: 1, min: 1 }),
+        ingredients: new ArrayField(
+          new SchemaField({
+            name: new StringField({ required: true, blank: false }),
+            quantity: new NumberField({ required: true, integer: true, initial: 1, min: 1 }),
+            consumed: new BooleanField({ required: true, initial: true })
+          }),
+          { required: true, initial: [] }
+        )
+      })
     };
   }
 }
@@ -87,6 +106,10 @@ export class AshfordWeapon extends AshfordPhysicalItem {
       // Manche Waffen sind schneller/langsamer zu führen als der reine Athletik-Wert.
       initiativeMod: new NumberField({ required: true, integer: true, initial: 0 }),
       equipped: new BooleanField({ required: true, initial: false }), // unabhängig von den 5 Körper-Slots
+      // Wie oft diese Waffe während EINES eigenen Kampfzugs abgefeuert/geführt werden kann (Halbautomatik
+      // vs. Schnellfeuer/mehrere schnelle Hiebe) — unabhängig vom Munitionsvorrat, der weiterhin pro
+      // einzelnem Schuss abgezogen wird (AshfordActor#rollWeaponAttack). 1-5, Standard 1 Schuss/Zug.
+      shotsPerRound: new NumberField({ required: true, integer: true, initial: 1, min: 1, max: 5 }),
       // Welcher der 6 Rüstungswerte (ARMOR_TYPES) beim automatischen Schadenswurf gegengerechnet wird
       // (AshfordActor#rollWeaponDamage) — ohne diesen Wert wäre die ganze Rüstungswerte-Anzeige rein
       // informativ, ohne dass sie beim Würfeln je tatsächlich etwas abzieht.

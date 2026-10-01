@@ -1,0 +1,14 @@
+<div class="awc-bar">
+  <i class="fas fa-clock"></i>
+  <span class="awc-label">{{label}}</span>
+  {{#if isGM}}
+    <div class="awc-controls">
+      <button type="button" data-minutes="-60" title="-1 Stunde">−1h</button>
+      <button type="button" data-minutes="-15" title="-15 Minuten">−15m</button>
+      <button type="button" data-minutes="15" title="+15 Minuten">+15m</button>
+      <button type="button" data-minutes="60" title="+1 Stunde">+1h</button>
+      <button type="button" data-minutes="360" title="+6 Stunden">+6h</button>
+      <button type="button" class="awc-schedule" title="Ereignis planen"><i class="fas fa-bell"></i></button>
+    </div>
+  {{/if}}
+</div>

@@ -55,6 +55,9 @@
           {{/each}}
         </select>
       </label>
+      <label>Schüsse pro Kampfzug (1–5, z.B. Halbautomatik = 1, Schnellfeuer/mehrere Hiebe = mehr — unabhängig von der Munition)
+        <input type="number" name="system.shotsPerRound" value="{{system.shotsPerRound}}" min="1" max="5">
+      </label>
       <label>Treffer-Bonus (zusätzlich zu Reichweitenklassen bei Fernkampf) <input type="number" name="system.accuracyBonus" value="{{system.accuracyBonus}}"></label>
       <label>Initiative-Modifikator (während geführt) <input type="number" name="system.initiativeMod" value="{{system.initiativeMod}}"></label>
       <label><input type="checkbox" name="system.equipped" {{#if system.equipped}}checked{{/if}}> Aktuell geführt (unabhängig von den Körper-Slots)</label>
@@ -236,6 +239,26 @@
     {{#if (or (eq item.type "weapon") (eq item.type "armor") (eq item.type "equipment") (eq item.type "consumable") (eq item.type "ammo") (eq item.type "magazine"))}}
       <label>Menge <input type="number" name="system.quantity" value="{{system.quantity}}"></label>
       <label>Gewicht <input type="number" name="system.weight" value="{{system.weight}}"></label>
+
+      <h3>Rezept (Herstellen während einer Rast)</h3>
+      <label><input type="checkbox" name="system.recipe.craftable" {{#if system.recipe.craftable}}checked{{/if}}> Herstellbar</label>
+      {{#if system.recipe.craftable}}
+        <label>Dauer (Minuten) <input type="number" name="system.recipe.minutes" value="{{system.recipe.minutes}}" min="0"></label>
+        <label>Ausbeute (Anzahl) <input type="number" name="system.recipe.yield" value="{{system.recipe.yield}}" min="1"></label>
+        <label><input type="checkbox" name="system.recipe.requiresFire" {{#if system.recipe.requiresFire}}checked{{/if}}> Benötigt Feuer</label>
+        <p class="hint">Zutaten per Name gematcht. "Verbraucht" unmarkiert = reines Werkzeug (muss nur vorhanden sein, z.B. "Messer").</p>
+        <ol class="ashford-ingredient-list">
+          {{#each system.recipe.ingredients as |ingredient index|}}
+            <li class="ashford-ingredient-row">
+              <input type="text" name="system.recipe.ingredients.{{index}}.name" value="{{ingredient.name}}" placeholder="Zutat-Name">
+              <input type="number" name="system.recipe.ingredients.{{index}}.quantity" value="{{ingredient.quantity}}" min="1">
+              <label><input type="checkbox" name="system.recipe.ingredients.{{index}}.consumed" {{#if ingredient.consumed}}checked{{/if}}> Verbraucht</label>
+              <a class="ashford-ingredient-remove" data-index="{{index}}" title="Entfernen"><i class="fas fa-trash"></i></a>
+            </li>
+          {{/each}}
+        </ol>
+        <a class="item-create ashford-ingredient-add">+ Zutat</a>
+      {{/if}}
     {{/if}}
 
     <h3>Beschreibung</h3>

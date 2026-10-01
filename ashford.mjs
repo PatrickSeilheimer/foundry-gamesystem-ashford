@@ -28,6 +28,8 @@ import registerInfectionTrackerControls from "./module/apps/infection-tracker.mj
 import registerHealConfirmChatControls from "./module/apps/heal-confirm-chat.mjs";
 import registerDamageConfirmChatControls from "./module/apps/damage-confirm-chat.mjs";
 import registerCombatHudControls from "./module/apps/combat-hud.mjs";
+import registerWorldClockControls from "./module/apps/world-clock.mjs";
+import registerRestControls from "./module/apps/rest.mjs";
 import { TALENTS, POINTS_BUDGET } from "./module/rules/talents.mjs";
 
 Hooks.once("init", () => {
@@ -133,3 +135,5 @@ registerInfectionTrackerControls();
 registerHealConfirmChatControls();
 registerDamageConfirmChatControls();
 registerCombatHudControls();
+registerWorldClockControls();
+registerRestControls();

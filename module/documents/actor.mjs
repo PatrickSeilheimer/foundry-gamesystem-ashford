@@ -34,6 +34,30 @@ export default class AshfordActor extends Actor {
   }
 
   /**
+   * True exactly during this actor's own turn in an active Combat encounter — the shots-per-round
+   * cap below only applies then; outside combat (or on someone else's turn) firing stays unlimited,
+   * ammo remains the only real constraint. Compares by `id` rather than object identity so it works
+   * for both linked and unlinked token actors.
+   */
+  get isMyCombatTurn() {
+    return !!(game.combat?.started && game.combat.combatant?.actor?.id === this.id);
+  }
+
+  /**
+   * Resets every currently-equipped weapon's per-turn "shot tracker" (module/models/gear.mjs
+   * AshfordWeapon#shotsPerRound) to all-"available" — called once when this actor's turn begins
+   * (the updateCombat hook in module/apps/combat-hud.mjs). A weapon equipped mid-turn (after this
+   * reset already ran) simply gets a fresh tracker lazily the first time it's fired (see below),
+   * which is an acceptable "drawing a weapon mid-turn" simplification.
+   */
+  async resetShotTrackersForTurn() {
+    const updates = this.items
+      .filter(i => i.type === "weapon" && i.system.equipped)
+      .map(i => ({ _id: i.id, "flags.ashford.shotTracker": Array(i.system.shotsPerRound).fill("available") }));
+    if (updates.length) await this.updateEmbeddedDocuments("Item", updates);
+  }
+
+  /**
    * Full attack pipeline for the sheet's "Treffer"-Button (module/sheets/actor-sheet.mjs): rolls
    * the weapon's talent against the single currently-targeted token's Ausweichen (same dialog as
    * any other talent roll, module/apps/roll-dialog.mjs), then ticks the weapon's ammo down by
@@ -68,18 +92,43 @@ export default class AshfordActor extends Actor {
       }
     }
 
+    // Schüsse-pro-Zug-Deckel (nur während des eigenen Kampfzugs, siehe isMyCombatTurn) — reserviert
+    // hier nur den Slot-Index, markiert ihn aber erst unten als "hit"/"miss", sobald das Ergebnis
+    // feststeht (blau = frei, grün = getroffen, rot = verfehlt — Anzeige auf Sheet + Combat-HUD).
+    let shotTracker = null;
+    let shotIndex = null;
+    if (this.isMyCombatTurn) {
+      shotTracker = weapon.getFlag("ashford", "shotTracker");
+      if (!Array.isArray(shotTracker) || shotTracker.length !== weapon.system.shotsPerRound) {
+        shotTracker = Array(weapon.system.shotsPerRound).fill("available");
+      }
+      shotIndex = shotTracker.indexOf("available");
+      if (shotIndex === -1) {
+        return ui.notifications?.warn(`${weapon.name}: keine Schüsse mehr in diesem Zug.`);
+      }
+    }
+
     const targetToken = game.user?.targets?.size === 1 ? [...game.user.targets][0] : null;
     const targetActor = targetToken?.actor ?? null;
     if (!targetActor) {
       // Kein anvisiertes Ziel -> kein Ausweichen zum Prüfen, also lässt sich "Treffer oder nicht"
-      // gar nicht feststellen. Der Schaden-Button bleibt in diesem Fall freigegeben.
+      // gar nicht feststellen. Der Schaden-Button bleibt in diesem Fall freigegeben, und ein reservierter
+      // Schuss zählt als "getroffen" (grün) statt als Fehlschlag.
       await weapon.setFlag("ashford", "canRollDamage", true);
+      if (shotIndex != null) {
+        shotTracker[shotIndex] = "hit";
+        await weapon.setFlag("ashford", "shotTracker", shotTracker);
+      }
       return this.rollTalent(talent.id, { label: weapon.name });
     }
 
     const result = await AshfordRollDialog.prompt(this, talent, { label: weapon.name, defaultMode: "attack" });
     if (!result || result === "cancel" || typeof result !== "object") return result;
     await weapon.setFlag("ashford", "canRollDamage", !!result.success);
+    if (shotIndex != null) {
+      shotTracker[shotIndex] = result.success ? "hit" : "miss";
+      await weapon.setFlag("ashford", "shotTracker", shotTracker);
+    }
 
     // Munitions-Abzug — welches Item (Waffe selbst oder das eingeladene Magazin) betroffen ist, hängt
     // vom feedType ab; ammoRestore hält fest, was/wo zurückzusetzen ist, falls der GM den Schaden

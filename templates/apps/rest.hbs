@@ -1,0 +1,53 @@
+{{#if active}}
+<div class="rest-panel">
+  <header class="rest-header">
+    <strong>🏕️ Rast — aktuelle Dauer: {{groupDuration}} min</strong>
+    <label class="rest-fire"><input type="checkbox" class="rest-fire-toggle" {{#if fireMade}}checked{{/if}}> 🔥 Feuer gemacht (+30 min, einmalig)</label>
+    {{#if isGM}}
+      <div class="rest-gm-controls">
+        <button type="button" class="rest-force-resolve" title="Rast sofort auswerten, egal ob alle bereit sind">Erzwingen</button>
+        <button type="button" class="rest-cancel" title="Rast ohne Auswertung abbrechen">Abbrechen</button>
+      </div>
+    {{/if}}
+  </header>
+
+  <div class="rest-participants">
+    {{#each participants}}
+      <div class="rest-row" data-actor-id="{{this.actorId}}">
+        <div class="rest-row-head">
+          <span class="rest-name">{{this.name}}</span>
+          <span class="rest-total">{{this.own}} / {{../groupDuration}} min</span>
+          <label class="rest-ready">
+            <input type="checkbox" class="rest-ready-toggle" {{#if this.ready}}checked{{/if}} {{#unless this.canControl}}disabled{{/unless}}>
+            Bereit
+          </label>
+        </div>
+        <div class="rest-queue">
+          {{#each this.queue}}
+            <span class="rest-chip">
+              {{this.displayLabel}} ({{this.minutes}}m)
+              {{#if ../canControl}}<a class="rest-activity-remove" data-index="{{this.index}}" title="Entfernen"><i class="fas fa-times"></i></a>{{/if}}
+            </span>
+          {{else}}
+            <span class="hint">Keine Aktivität gewählt.</span>
+          {{/each}}
+        </div>
+        {{#if this.canControl}}
+          <div class="rest-add">
+            <select class="rest-activity-picker">
+              {{#each this.options}}
+                <option value="{{this.key}}" data-key="{{this.key}}" data-minutes="{{this.minutes}}" data-label="{{this.label}}" data-item-id="{{this.itemId}}">{{this.label}} ({{this.minutes}} min)</option>
+              {{/each}}
+            </select>
+            <button type="button" class="rest-activity-add">+ Hinzufügen</button>
+          </div>
+        {{/if}}
+      </div>
+    {{/each}}
+  </div>
+</div>
+{{else if isGM}}
+<div class="rest-panel rest-panel-idle">
+  <button type="button" class="rest-start">🏕️ Rast beginnen</button>
+</div>
+{{/if}}

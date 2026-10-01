@@ -85,3 +85,31 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* Schüsse-pro-Zug (module/models/gear.mjs AshfordWeapon#shotsPerRound) — für ALLE Spieler sichtbar,
+   anders als die Munitionsanzeige direkt darunter, die bewusst nur der GM sieht. */
+.ashford-combat-hud-bar .chud-shots {
+  display: flex;
+  gap: 2px;
+  margin-top: 3px;
+}
+
+.ashford-combat-hud-bar .chud-shot-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ashford-shot-available, #5b9bd5);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
+}
+
+.ashford-combat-hud-bar .chud-shot-dot.hit { background: var(--ashford-accent-2, #8bb27a); }
+.ashford-combat-hud-bar .chud-shot-dot.miss { background: var(--ashford-danger, #e8877a); }
+
+/* Munitionsstand im HUD — nur der GM bekommt dieses Element überhaupt gerendert (module/apps/combat-hud.mjs). */
+.ashford-combat-hud-bar .chud-ammo {
+  margin-top: 2px;
+  font-size: 9px;
+  font-family: "Courier New", monospace;
+  color: var(--ashford-accent, #d9922f);
+  text-shadow: 0 1px 2px #000;
+}

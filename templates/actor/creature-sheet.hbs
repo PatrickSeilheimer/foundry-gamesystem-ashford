@@ -119,6 +119,11 @@
                 <span class="row-ammo-backpack">({{this.ammoTypeLabel}} lose: {{this.ammoInBackpack}})</span>
               {{/if}}
             </span>
+            <div class="shot-tracker" title="Schüsse diesen Kampfzug">
+              {{#each this.shotTracker}}
+                <span class="shot-dot {{this}}"></span>
+              {{/each}}
+            </div>
             {{#if this.talentId}}
               <button type="button" class="ashford-roll-weapon-attack" title="Treffer würfeln (Ziel anvisieren für Munition/Schaden)"><i class="fas fa-crosshairs"></i> {{localize "ASHFORD.Sheet.rollAttack"}}</button>
             {{/if}}

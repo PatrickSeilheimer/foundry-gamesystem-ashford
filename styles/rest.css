@@ -1,0 +1,95 @@
+/* Group rest panel (module/apps/rest.mjs) — fixed overlay, not a sheet, shared live across all
+   connected clients via the "ashford.restSession" world setting. */
+
+#ashford-rest-hud {
+  position: fixed;
+  bottom: 8px;
+  right: 8px;
+  z-index: 62;
+  max-width: 360px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+#ashford-rest-hud[hidden] { display: none; }
+
+.rest-panel {
+  background: var(--ashford-panel, #161310);
+  border: 1px solid var(--ashford-edge, #6b5d42);
+  border-left: 4px solid var(--ashford-accent, #d9922f);
+  color: var(--ashford-text, #f5f1e6);
+  padding: 8px 10px;
+  font-size: 12px;
+}
+
+.rest-panel-idle { display: flex; justify-content: center; }
+
+.rest-panel .rest-start {
+  background: var(--ashford-panel-2, #1e1a15);
+  border: 1px solid var(--ashford-accent, #d9922f);
+  color: var(--ashford-accent, #d9922f);
+  padding: 4px 10px;
+}
+
+.rest-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--ashford-edge, #6b5d42);
+}
+
+.rest-fire { display: flex; align-items: center; gap: 4px; font-size: 11px; }
+
+.rest-gm-controls { display: flex; gap: 6px; }
+.rest-gm-controls button {
+  background: var(--ashford-panel-2, #1e1a15);
+  border: 1px solid var(--ashford-edge, #6b5d42);
+  color: var(--ashford-text-dim, #d6c9a8);
+  font-size: 10px;
+  padding: 2px 6px;
+}
+.rest-gm-controls button:hover { border-color: var(--ashford-danger, #e8877a); color: var(--ashford-danger, #e8877a); }
+
+.rest-row {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--ashford-panel-2, #1e1a15);
+}
+.rest-row:last-child { border-bottom: none; }
+
+.rest-row-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.rest-name { font-weight: bold; flex: 1; }
+.rest-total { font-family: "Courier New", monospace; color: var(--ashford-text-dim, #d6c9a8); }
+.rest-ready { display: flex; align-items: center; gap: 3px; font-size: 11px; white-space: nowrap; }
+
+.rest-queue { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 4px; }
+
+.rest-chip {
+  background: var(--ashford-panel-2, #1e1a15);
+  border: 1px solid var(--ashford-edge, #6b5d42);
+  padding: 1px 5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+}
+
+.rest-activity-remove { color: var(--ashford-danger, #e8877a); cursor: pointer; }
+
+.rest-add { display: flex; gap: 4px; }
+.rest-add select { flex: 1; font-size: 10px; }
+.rest-add button {
+  background: var(--ashford-panel-2, #1e1a15);
+  border: 1px solid var(--ashford-accent-2, #8bb27a);
+  color: var(--ashford-accent-2, #8bb27a);
+  font-size: 10px;
+  padding: 2px 6px;
+  white-space: nowrap;
+}

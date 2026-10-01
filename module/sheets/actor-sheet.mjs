@@ -208,6 +208,13 @@ export default class AshfordActorSheet extends ActorSheet {
       // von AshfordActor#rollWeaponAttack / #rollWeaponDamage. Default false: vor dem ersten
       // Treffer-Wurf gibt es nichts, dessen Schaden manuell nachgerollt werden dürfte.
       base.canRollDamage = item.getFlag("ashford", "canRollDamage") ?? false;
+      // Schüsse-pro-Zug-Punkte (blau = frei, grün = getroffen, rot = verfehlt) — außerhalb eines
+      // eigenen Kampfzugs zeigt das einfach die volle, unbenutzte Kapazität (AshfordActor#rollWeaponAttack
+      // schreibt den Tracker nur während isMyCombatTurn tatsächlich fort).
+      const shotTracker = item.getFlag("ashford", "shotTracker");
+      base.shotTracker = Array.isArray(shotTracker) && shotTracker.length === item.system.shotsPerRound
+        ? shotTracker
+        : Array(item.system.shotsPerRound).fill("available");
     }
     return base;
   }

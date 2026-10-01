@@ -15,6 +15,7 @@
   --ashford-accent: #d9922f;
   --ashford-accent-2: #8bb27a;
   --ashford-danger: #e8877a;
+  --ashford-shot-available: #5b9bd5;
   /* Zustand-Schweregrade, aufsteigend — jede Stufe einzeln gegen --ashford-panel-2 auf ≥4.5:1 geprüft. */
   --ashford-sev-gering: #8bb27a;
   --ashford-sev-mittel: #d9922f;
@@ -1115,6 +1116,19 @@
 /* Munitionsanzeige auf der Waffen-Zeile (character-sheet.hbs/creature-sheet.hbs) und im
    Munitions-Rucksack-Panel unten: leer/aufgebraucht fällt sofort ins Auge. */
 .ammo-empty { color: var(--ashford-danger); font-weight: bold; }
+
+/* Schüsse-pro-Zug-Punkte auf der Waffen-Zeile (character-sheet.hbs/creature-sheet.hbs) — gleiche
+   Farblogik wie im Combat-HUD (styles/combat-hud.css), nur fürs Sheet selbst etwas größer. */
+.shot-tracker { display: flex; gap: 3px; align-items: center; }
+.shot-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--ashford-shot-available);
+  border: 1px solid var(--ashford-edge);
+}
+.shot-dot.hit { background: var(--ashford-accent-2); }
+.shot-dot.miss { background: var(--ashford-danger); }
 
 .row-ammo-backpack {
   font-size: 10px;

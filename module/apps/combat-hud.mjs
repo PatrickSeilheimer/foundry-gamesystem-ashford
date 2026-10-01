@@ -51,13 +51,39 @@ class AshfordCombatHud {
       .map(c => {
         const health = c.actor?.system?.resources?.health;
         const healthPct = health?.max ? Math.max(0, Math.min(100, Math.round((health.value / health.max) * 100))) : 100;
+
+        // Die "aktive" Waffe fürs HUD: die erste aktuell geführte Waffe — bei mehreren gleichzeitig
+        // geführten Waffen (Pistole + Messer o.ä.) zeigt die kompakte Leiste bewusst nur eine, den
+        // Rest sieht man im Detail auf dem Charakterbogen.
+        const weapon = c.actor?.items.find(i => i.type === "weapon" && i.system.equipped) ?? null;
+        let shotDots = [];
+        let ammoLabel = null;
+        if (weapon) {
+          const tracker = weapon.getFlag("ashford", "shotTracker");
+          shotDots = Array.isArray(tracker) && tracker.length === weapon.system.shotsPerRound
+            ? tracker
+            : Array(weapon.system.shotsPerRound).fill("available");
+          // Munitionsstand ist Spielleiter-Wissen — Spieler sehen ihn nur auf dem eigenen Charakterbogen,
+          // nicht im HUD für alle sichtbar (gilt auch für die eigene Waffe, aus Konsistenzgründen).
+          if (game.user.isGM) {
+            if (weapon.system.feedType === "internal") {
+              ammoLabel = `${weapon.system.ammoRemaining}/${weapon.system.capacity}`;
+            } else if (weapon.system.feedType === "magazine") {
+              const mag = weapon.system.loadedMagazineId ? c.actor.items.get(weapon.system.loadedMagazineId) : null;
+              ammoLabel = mag ? `${mag.system.roundsLoaded}/${mag.system.capacity}` : "kein Magazin";
+            }
+          }
+        }
+
         return {
           id: c.id,
           name: c.name,
           img: c.img || c.actor?.img || "icons/svg/mystery-man.svg",
           active: c.id === combat?.combatant?.id,
           defeated: !!c.isDefeated,
-          healthPct
+          healthPct,
+          shotDots,
+          ammoLabel
         };
       });
 
@@ -82,14 +108,27 @@ export default function registerCombatHudControls() {
   });
 
   Hooks.on("createCombat", rerender);
-  Hooks.on("updateCombat", rerender);
   Hooks.on("deleteCombat", rerender);
   Hooks.on("createCombatant", rerender);
   Hooks.on("updateCombatant", rerender);
   Hooks.on("deleteCombatant", rerender);
 
-  // Lebensbalken unter den Portraits sollen live mitgehen, wenn im Kampf Schaden/Heilung passiert.
+  Hooks.on("updateCombat", async (combat, changed) => {
+    rerender();
+    // Neuer Zug (Runde ODER Kämpfer gewechselt) -> die Schüsse-pro-Zug-Tracker des jetzt aktiven
+    // Kämpfers zurücksetzen. Nur der GM-Client schreibt, damit nicht jeder verbundene Client
+    // dieselbe Reset-Anfrage gleichzeitig abschickt.
+    if (!game.user.isGM) return;
+    if (!("turn" in changed) && !("round" in changed) && !("started" in changed)) return;
+    const actor = combat.combatant?.actor;
+    if (actor) await actor.resetShotTrackersForTurn();
+  });
+
+  // Lebensbalken + Munition/Schüsse unter den Portraits sollen live mitgehen, wenn im Kampf etwas passiert.
   Hooks.on("updateActor", actor => {
     if (game.combat?.combatants.some(c => c.actor?.id === actor.id)) rerender();
+  });
+  Hooks.on("updateItem", item => {
+    if (item.actor && game.combat?.combatants.some(c => c.actor?.id === item.actor.id)) rerender();
   });
 }
