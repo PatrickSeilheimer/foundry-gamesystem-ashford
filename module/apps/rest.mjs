@@ -336,7 +336,11 @@ class AshfordRestHud {
 }
 
 export default function registerRestControls() {
-  game.settings.register("ashford", SESSION_KEY, { scope: "world", config: false, type: Object, default: IDLE_SESSION });
+  // game.settings existiert erst ab Foundrys "init"-Hook, nicht schon beim reinen Laden dieses
+  // Moduls (siehe module/apps/world-clock.mjs für dieselbe Korrektur).
+  Hooks.once("init", () => {
+    game.settings.register("ashford", SESSION_KEY, { scope: "world", config: false, type: Object, default: IDLE_SESSION });
+  });
 
   const rerender = () => AshfordRestHud.instance.render();
 

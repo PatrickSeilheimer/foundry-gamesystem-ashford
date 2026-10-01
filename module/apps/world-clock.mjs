@@ -106,10 +106,14 @@ class AshfordWorldClock {
   }
 }
 
-/** Registers the two settings plus the always-on clock widget. Called once at module load. */
+/** Registers the two settings plus the always-on clock widget. Called once at module load — but
+ * game.settings doesn't exist yet at that exact point (it's built in response to Foundry's own
+ * "init" hook), so the actual settings.register() calls must wait for that hook, not run immediately. */
 export default function registerWorldClockControls() {
-  game.settings.register("ashford", CLOCK_KEY, { scope: "world", config: false, type: Object, default: DEFAULT_CLOCK });
-  game.settings.register("ashford", EVENTS_KEY, { scope: "world", config: false, type: Array, default: [] });
+  Hooks.once("init", () => {
+    game.settings.register("ashford", CLOCK_KEY, { scope: "world", config: false, type: Object, default: DEFAULT_CLOCK });
+    game.settings.register("ashford", EVENTS_KEY, { scope: "world", config: false, type: Array, default: [] });
+  });
 
   Hooks.on("ready", () => {
     game.ashford ??= {};
