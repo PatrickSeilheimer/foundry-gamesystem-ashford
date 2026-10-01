@@ -2,25 +2,26 @@ import { REST_ACTIVITIES, restActivityByKey } from "../rules/activities.mjs";
 import { advanceWorldClock } from "./world-clock.mjs";
 
 const TEMPLATE = "systems/ashford/templates/apps/rest.hbs";
-const SESSION_KEY = "restSession";
-const SOCKET = "system.ashford";
+const JOURNAL_MARKER = "isRestSession";
 
 /**
  * Group rest ("Rast"): the whole party rests together, and each character independently queues
  * minutes-costed activities (module/rules/activities.mjs) for themselves while everyone watches the
- * shared duration update live. The session itself lives in a single WORLD setting (`restSession`) —
- * Foundry replicates every change to all connected clients via its own Setting-document machinery,
- * which is also what re-renders everyone's panel (see the `updateSetting` hook below).
+ * shared duration update live.
  *
- * World settings can only be WRITTEN by a user with the Settings-modify permission (normally GM-only
- * in Foundry) — so a player's own actions (queue an activity, toggle ready, …) are relayed over a
- * plain socket message to the GM's client, which performs the actual write after validating it. The
- * GM's own actions skip the relay and write directly. This is the standard pattern for "shared,
- * player-writable state" in Foundry systems that don't want to depend on a module like socketlib.
+ * The session state lives as FLAGS on a single, hidden JournalEntry (found via a marker flag, not
+ * by name/id) instead of a world Setting — world settings can only ever be WRITTEN by the GM, which
+ * would force every player action through a GM-relay. A Document's per-USER ownership is a separate,
+ * much simpler mechanism: this JournalEntry is created with `ownership.default: OWNER`, so every
+ * CURRENT and FUTURE user can write its flags directly like any other owned document (same as a
+ * player updating their own Actor) — no relay needed. Only the GM creates it in the first place
+ * (on the very first "Rast beginnen"); every later write, by anyone, just updates the existing doc.
+ *
+ * Effect RESOLUTION (healing/crafting/ammo on potentially other players' actors, advancing the
+ * world clock) stays gated to the GM's own client though — that part genuinely needs elevated
+ * permission, a player's client could easily lack OWNER on another party member's actor.
  */
 
-/** `default: null` on a `type: Object` setting gets rejected by Foundry's own settings validation —
- * so "no active rest" is its own plain object (`active: false`) instead of null. */
 const IDLE_SESSION = { active: false, fireMade: false, participants: {} };
 
 function emptySession() {
@@ -31,8 +32,33 @@ function emptySession() {
   return { active: true, fireMade: false, participants };
 }
 
+function findRestJournal() {
+  return game.journal.find(j => j.getFlag("ashford", JOURNAL_MARKER)) ?? null;
+}
+
+/** Only the GM can CREATE the journal (players never need to — by the time a player interacts with
+ * the rest panel at all, the GM has already started a rest, so it already exists). */
+async function ensureRestJournal() {
+  const existing = findRestJournal();
+  if (existing) return existing;
+  if (!game.user.isGM) return null;
+  return JournalEntry.create({
+    name: "Ashford: Rast (intern, bitte nicht löschen)",
+    ownership: { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER },
+    flags: { ashford: { [JOURNAL_MARKER]: true, session: IDLE_SESSION } }
+  });
+}
+
 function getSession() {
-  return game.settings.get("ashford", SESSION_KEY);
+  return findRestJournal()?.getFlag("ashford", "session") ?? IDLE_SESSION;
+}
+
+/** Any client may call this — writing to an existing, already-OWNER-for-everyone JournalEntry needs
+ * no special permission beyond what every user already has on this specific document. */
+async function writeSession(session) {
+  const journal = await ensureRestJournal();
+  if (!journal) return;
+  await journal.setFlag("ashford", "session", session);
 }
 
 function computeGroupDuration(session) {
@@ -69,20 +95,13 @@ function availableActivitiesFor(session, actor, participant) {
   return [...options, ...recipes];
 }
 
-async function sendRestAction(payload) {
-  if (game.user.isGM) return handleRestSocketAction(payload);
-  game.socket.emit(SOCKET, payload);
-}
-
-/** Only ever runs on the GM's client (see the socket listener + sendRestAction above). */
-async function handleRestSocketAction(payload) {
-  if (!game.user.isGM) return;
+/** Writes the action directly (works for GM and players alike, see the JournalEntry comment above),
+ * then — only on the GM's own client — checks whether everyone is now ready and resolves if so. */
+async function applyRestAction(payload) {
   const session = getSession();
-  if (!session?.active) return;
+  if (!session.active) return;
   const updated = foundry.utils.deepClone(session);
 
-  // "toggleFire" ist eine GRUPPEN-Aktion ohne actorId — muss daher vor der Teilnehmer-Suche
-  // behandelt werden, sonst würde sie immer am "kein Teilnehmer gefunden"-Guard unten scheitern.
   if (payload.action === "toggleFire") {
     updated.fireMade = !updated.fireMade;
   } else {
@@ -106,10 +125,11 @@ async function handleRestSocketAction(payload) {
     }
   }
 
-  await game.settings.set("ashford", SESSION_KEY, updated);
+  await writeSession(updated);
+  if (!game.user.isGM) return; // Auswertung bleibt GM-exklusiv, siehe Kommentar oben an resolveRest
+  const participantList = Object.values(updated.participants);
   // Leere Teilnehmerliste würde "alle bereit" sonst fälschlich sofort erfüllen (Array#every auf []
   // ist immer true) und die gerade erst begonnene Rast sofort wieder auflösen.
-  const participantList = Object.values(updated.participants);
   if (participantList.length && participantList.every(p => p.ready)) await resolveRest(updated);
 }
 
@@ -249,7 +269,7 @@ async function resolveRest(session) {
   await ChatMessage.create({
     content: `<p>🏕️ <strong>Rast beendet</strong> (${groupDuration} min)</p><p>${lines.join("</p><p>")}</p>`
   });
-  await game.settings.set("ashford", SESSION_KEY, IDLE_SESSION);
+  await writeSession(IDLE_SESSION);
 }
 
 class AshfordRestHud {
@@ -269,18 +289,18 @@ class AshfordRestHud {
     document.body.appendChild(el);
 
     el.addEventListener("click", ev => {
-      if (ev.target.closest(".rest-start")) return game.user.isGM && game.settings.set("ashford", SESSION_KEY, emptySession());
-      if (ev.target.closest(".rest-cancel")) return game.user.isGM && game.settings.set("ashford", SESSION_KEY, IDLE_SESSION);
+      if (ev.target.closest(".rest-start")) return game.user.isGM && writeSession(emptySession());
+      if (ev.target.closest(".rest-cancel")) return game.user.isGM && writeSession(IDLE_SESSION);
       if (ev.target.closest(".rest-force-resolve")) {
         const session = getSession();
-        return game.user.isGM && session?.active && resolveRest(session);
+        return game.user.isGM && session.active && resolveRest(session);
       }
-      if (ev.target.closest(".rest-fire-toggle")) return sendRestAction({ action: "toggleFire" });
+      if (ev.target.closest(".rest-fire-toggle")) return applyRestAction({ action: "toggleFire" });
 
       const removeBtn = ev.target.closest(".rest-activity-remove");
       if (removeBtn) {
         const row = removeBtn.closest("[data-actor-id]");
-        return sendRestAction({ action: "removeActivity", actorId: row.dataset.actorId, index: Number(removeBtn.dataset.index) });
+        return applyRestAction({ action: "removeActivity", actorId: row.dataset.actorId, index: Number(removeBtn.dataset.index) });
       }
 
       const addBtn = ev.target.closest(".rest-activity-add");
@@ -291,13 +311,13 @@ class AshfordRestHud {
         if (!opt?.value) return;
         const activity = { key: opt.dataset.key, minutes: Number(opt.dataset.minutes), label: opt.dataset.label };
         if (opt.dataset.itemId) activity.itemId = opt.dataset.itemId;
-        return sendRestAction({ action: "addActivity", actorId: row.dataset.actorId, activity });
+        return applyRestAction({ action: "addActivity", actorId: row.dataset.actorId, activity });
       }
 
       const readyBox = ev.target.closest(".rest-ready-toggle");
       if (readyBox) {
         const row = readyBox.closest("[data-actor-id]");
-        return sendRestAction({ action: "setReady", actorId: row.dataset.actorId, ready: readyBox.checked });
+        return applyRestAction({ action: "setReady", actorId: row.dataset.actorId, ready: readyBox.checked });
       }
     });
     this.element = el;
@@ -307,7 +327,7 @@ class AshfordRestHud {
   async render() {
     const el = this.ensureElement();
     const session = getSession();
-    if (!session?.active) {
+    if (!session.active) {
       el.innerHTML = game.user.isGM
         ? await foundry.applications.handlebars.renderTemplate(TEMPLATE, { active: false, isGM: true })
         : "";
@@ -343,22 +363,15 @@ class AshfordRestHud {
 }
 
 export default function registerRestControls() {
-  // game.settings existiert erst ab Foundrys "init"-Hook, nicht schon beim reinen Laden dieses
-  // Moduls (siehe module/apps/world-clock.mjs für dieselbe Korrektur).
-  Hooks.once("init", () => {
-    game.settings.register("ashford", SESSION_KEY, { scope: "world", config: false, type: Object, default: IDLE_SESSION });
-  });
-
   const rerender = () => AshfordRestHud.instance.render();
 
   Hooks.on("ready", () => {
     game.ashford ??= {};
     game.ashford.rest = AshfordRestHud.instance;
-    game.socket.on(SOCKET, payload => handleRestSocketAction(payload));
     rerender();
   });
 
-  Hooks.on("updateSetting", setting => {
-    if (setting.key === `ashford.${SESSION_KEY}`) rerender();
-  });
+  const isOurJournal = doc => !!doc.getFlag?.("ashford", JOURNAL_MARKER);
+  Hooks.on("createJournalEntry", doc => isOurJournal(doc) && rerender());
+  Hooks.on("updateJournalEntry", doc => isOurJournal(doc) && rerender());
 }
