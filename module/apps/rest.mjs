@@ -19,12 +19,16 @@ const SOCKET = "system.ashford";
  * player-writable state" in Foundry systems that don't want to depend on a module like socketlib.
  */
 
+/** `default: null` on a `type: Object` setting gets rejected by Foundry's own settings validation —
+ * so "no active rest" is its own plain object (`active: false`) instead of null. */
+const IDLE_SESSION = { active: false, fireMade: false, participants: {} };
+
 function emptySession() {
   const participants = {};
   for (const actor of game.actors.filter(a => a.type === "character")) {
     participants[actor.id] = { queue: [], ready: false };
   }
-  return { fireMade: false, participants };
+  return { active: true, fireMade: false, participants };
 }
 
 function getSession() {
@@ -74,7 +78,7 @@ async function sendRestAction(payload) {
 async function handleRestSocketAction(payload) {
   if (!game.user.isGM) return;
   const session = getSession();
-  if (!session) return;
+  if (!session?.active) return;
   const updated = foundry.utils.deepClone(session);
   const participant = updated.participants[payload.actorId];
   if (!participant) return;
@@ -238,7 +242,7 @@ async function resolveRest(session) {
   await ChatMessage.create({
     content: `<p>🏕️ <strong>Rast beendet</strong> (${groupDuration} min)</p><p>${lines.join("</p><p>")}</p>`
   });
-  await game.settings.set("ashford", SESSION_KEY, null);
+  await game.settings.set("ashford", SESSION_KEY, IDLE_SESSION);
 }
 
 class AshfordRestHud {
@@ -259,10 +263,10 @@ class AshfordRestHud {
 
     el.addEventListener("click", ev => {
       if (ev.target.closest(".rest-start")) return game.user.isGM && game.settings.set("ashford", SESSION_KEY, emptySession());
-      if (ev.target.closest(".rest-cancel")) return game.user.isGM && game.settings.set("ashford", SESSION_KEY, null);
+      if (ev.target.closest(".rest-cancel")) return game.user.isGM && game.settings.set("ashford", SESSION_KEY, IDLE_SESSION);
       if (ev.target.closest(".rest-force-resolve")) {
         const session = getSession();
-        return game.user.isGM && session && resolveRest(session);
+        return game.user.isGM && session?.active && resolveRest(session);
       }
       if (ev.target.closest(".rest-fire-toggle")) return sendRestAction({ action: "toggleFire" });
 
@@ -296,7 +300,7 @@ class AshfordRestHud {
   async render() {
     const el = this.ensureElement();
     const session = getSession();
-    if (!session) {
+    if (!session?.active) {
       el.innerHTML = game.user.isGM
         ? await foundry.applications.handlebars.renderTemplate(TEMPLATE, { active: false, isGM: true })
         : "";
@@ -332,7 +336,7 @@ class AshfordRestHud {
 }
 
 export default function registerRestControls() {
-  game.settings.register("ashford", SESSION_KEY, { scope: "world", config: false, type: Object, default: null });
+  game.settings.register("ashford", SESSION_KEY, { scope: "world", config: false, type: Object, default: IDLE_SESSION });
 
   const rerender = () => AshfordRestHud.instance.render();
 

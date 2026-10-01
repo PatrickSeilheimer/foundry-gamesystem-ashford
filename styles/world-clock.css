@@ -4,7 +4,7 @@
   position: fixed;
   top: 6px;
   right: 56px;
-  z-index: 61;
+  z-index: 200;
   pointer-events: none;
 }
 
