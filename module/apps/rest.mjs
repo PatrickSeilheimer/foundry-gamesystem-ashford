@@ -80,30 +80,37 @@ async function handleRestSocketAction(payload) {
   const session = getSession();
   if (!session?.active) return;
   const updated = foundry.utils.deepClone(session);
-  const participant = updated.participants[payload.actorId];
-  if (!participant) return;
 
-  switch (payload.action) {
-    case "addActivity":
-      participant.queue.push(payload.activity);
-      participant.ready = false; // neue Aktivität -> die eigene Bereit-Markierung verfällt
-      break;
-    case "removeActivity":
-      participant.queue.splice(payload.index, 1);
-      participant.ready = false;
-      break;
-    case "toggleFire":
-      updated.fireMade = !updated.fireMade;
-      break;
-    case "setReady":
-      participant.ready = payload.ready;
-      break;
-    default:
-      return;
+  // "toggleFire" ist eine GRUPPEN-Aktion ohne actorId — muss daher vor der Teilnehmer-Suche
+  // behandelt werden, sonst würde sie immer am "kein Teilnehmer gefunden"-Guard unten scheitern.
+  if (payload.action === "toggleFire") {
+    updated.fireMade = !updated.fireMade;
+  } else {
+    const participant = updated.participants[payload.actorId];
+    if (!participant) return;
+
+    switch (payload.action) {
+      case "addActivity":
+        participant.queue.push(payload.activity);
+        participant.ready = false; // neue Aktivität -> die eigene Bereit-Markierung verfällt
+        break;
+      case "removeActivity":
+        participant.queue.splice(payload.index, 1);
+        participant.ready = false;
+        break;
+      case "setReady":
+        participant.ready = payload.ready;
+        break;
+      default:
+        return;
+    }
   }
 
   await game.settings.set("ashford", SESSION_KEY, updated);
-  if (Object.values(updated.participants).every(p => p.ready)) await resolveRest(updated);
+  // Leere Teilnehmerliste würde "alle bereit" sonst fälschlich sofort erfüllen (Array#every auf []
+  // ist immer true) und die gerade erst begonnene Rast sofort wieder auflösen.
+  const participantList = Object.values(updated.participants);
+  if (participantList.length && participantList.every(p => p.ready)) await resolveRest(updated);
 }
 
 /**
