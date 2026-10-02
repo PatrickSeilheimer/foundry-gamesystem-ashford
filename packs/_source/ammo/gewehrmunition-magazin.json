@@ -1,11 +1,11 @@
 {
   "_id": "757314cc215b4e0d",
   "_key": "!items!757314cc215b4e0d",
-  "name": "5.56mm-Magazin",
+  "name": "Gewehrmunition-Magazin",
   "type": "magazine",
   "img": "icons/svg/upgrade.svg",
   "system": {
-    "ammoType": "5.56mm",
+    "ammoType": "gewehrmunition",
     "capacity": 20,
     "roundsLoaded": 20
   },

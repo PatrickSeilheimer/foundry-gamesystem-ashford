@@ -210,7 +210,7 @@
         <div class="weapons-list">
           {{#each equippedWeapons}}
             <div class="weapon-row" data-item-id="{{this.id}}">
-              <span class="row-name">{{this.name}}</span>
+              <span class="row-name">{{this.name}}{{#if this.damaged}} <span class="weapon-damaged" title="Beschädigt — nur 'Waffe reparieren' in der Rast repariert das">⚠ Beschädigt</span>{{/if}}</span>
               <span class="row-stats">
                 🎲 {{this.damageFormula}}{{#if this.accuracyBonus}} · {{signed this.accuracyBonus}} Treffer{{/if}}{{#if this.initiativeMod}} · {{signed this.initiativeMod}} Ini{{/if}}
                 {{#if (eq this.feedType "internal")}}

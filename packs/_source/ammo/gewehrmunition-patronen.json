@@ -1,13 +1,12 @@
 {
-  "_id": "f9a2de40db687573",
-  "_key": "!items!f9a2de40db687573",
-  "name": "7.62mm-Magazin",
-  "type": "magazine",
-  "img": "icons/svg/upgrade.svg",
+  "_id": "58f7e95bc146bd12",
+  "_key": "!items!58f7e95bc146bd12",
+  "name": "Gewehrmunition-Patronen",
+  "type": "ammo",
+  "img": "icons/svg/bag.svg",
   "system": {
-    "ammoType": "7.62mm",
-    "capacity": 20,
-    "roundsLoaded": 20
+    "ammoType": "gewehrmunition",
+    "quantity": 30
   },
   "effects": [],
   "folder": null,

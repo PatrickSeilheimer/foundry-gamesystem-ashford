@@ -186,6 +186,9 @@ export default class AshfordActorSheet extends ActorSheet {
       base.ammoTypeLabel = item.system.ammoType ? AMMO_TYPE_LABELS[item.system.ammoType] ?? item.system.ammoType : "";
       base.capacity = item.system.capacity;
       base.ammoRemaining = item.system.ammoRemaining;
+      // "Beschädigt" (nur bei improvisierten Tier-0-Waffen mit Bruchprobe möglich) — nur die Rast-
+      // Aktivität "Waffe reparieren" setzt das zurück, siehe module/apps/rest.mjs.
+      base.damaged = item.system.damaged;
       // Wie viel lose Munition dieses Typs insgesamt noch im Rucksack liegt (unabhängig davon, ob
       // internal-Waffe oder Magazin-Waffe) — hilft bei der Nachladen-Entscheidung, ohne extra ins
       // Munitions-Panel wechseln zu müssen.

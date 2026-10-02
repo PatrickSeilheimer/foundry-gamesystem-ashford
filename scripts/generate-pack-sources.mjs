@@ -417,8 +417,7 @@ const WEAPON_SKILL_DAMAGE_TYPE = {
 const MUNITION_TO_AMMO_TYPE = {
   "9mm": "9mm",
   Magnum: "magnum",
-  "5.56mm": "5.56mm",
-  "7.62mm": "7.62mm",
+  Gewehrmunition: "gewehrmunition",
   Schrot: "schrot",
   Pfeil: "pfeil"
 };
@@ -434,10 +433,18 @@ for (const w of WEAPON_ITEMS) {
     type: "weapon",
     img: "icons/svg/sword.svg",
     system: {
-      description: w.note ? `<p>${w.diy ? "Anfällig — " : ""}${w.note}</p>` : "",
+      description: w.note ? `<p>${w.note}</p>` : "",
       weaponSkill: catInfo.weaponSkill,
       damageFormula: w.schaden,
       damageType: WEAPON_SKILL_DAMAGE_TYPE[catInfo.weaponSkill] ?? "blunt",
+      // Tier/Feuerrate/Rückstoß/Durchdringung/Bruchprobe: "Waffenerweiterung" (2026-10), siehe
+      // scripts/data/ashford-equipment-content.mjs WeaponEntry-Felder tier/fr/recoil/penetration/breakage.
+      tier: w.tier ?? 1,
+      shotsPerRound: w.fr ?? 1,
+      recoil: w.recoil ?? 0,
+      armorPenetration: w.penetration ?? 0,
+      breakageFormula: w.breakage ?? "",
+      damaged: false,
       accuracyBonus: w.bonus ?? 0,
       initiativeMod: w.init ?? 0,
       equipped: false,

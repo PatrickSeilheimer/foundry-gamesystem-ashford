@@ -27,13 +27,12 @@ export const ARMOR_TYPE_LABELS = {
 
 /** Munitionsarten — teilen sich Waffen (AshfordWeapon#ammoType), lose Munition (AshfordAmmo) und
  * Magazine (AshfordMagazine), damit Nachladen/Auffüllen per Schlüssel zueinander passen. */
-export const AMMO_TYPES = ["9mm", "magnum", "5.56mm", "7.62mm", "schrot", "pfeil"];
+export const AMMO_TYPES = ["9mm", "magnum", "gewehrmunition", "schrot", "pfeil"];
 
 export const AMMO_TYPE_LABELS = {
   "9mm": "9mm",
   magnum: "Magnum Rounds",
-  "5.56mm": "5.56mm",
-  "7.62mm": "7.62mm",
+  gewehrmunition: "Gewehrmunition",
   schrot: "Schrot",
   pfeil: "Pfeil"
 };
@@ -114,6 +113,24 @@ export class AshfordWeapon extends AshfordPhysicalItem {
       // (AshfordActor#rollWeaponDamage) — ohne diesen Wert wäre die ganze Rüstungswerte-Anzeige rein
       // informativ, ohne dass sie beim Würfeln je tatsächlich etwas abzieht.
       damageType: new StringField({ required: true, blank: false, initial: "blunt", choices: ARMOR_TYPES }),
+      // Rein informativer Loot-/Fortschritts-Tier (0 = DIY-Marke, 1-3 aufsteigend) — genau wie das
+      // gleichnamige Feld auf AshfordCreature, keine eigene Spielmechanik daran.
+      tier: new NumberField({ required: true, integer: true, initial: 1, min: 0, max: 3 }),
+      // Rückstoß: zieht sich AshfordActor#rollWeaponAttack selbst als kumulativen Treffer-Malus für
+      // jeden weiteren Schuss MIT DIESER WAFFE im selben Kampfzug (2. Schuss: -recoil, 3. Schuss:
+      // -2x recoil, ...) — nutzt denselben Schuss-Zähler wie shotsPerRound/der Punkte-Tracker.
+      recoil: new NumberField({ required: true, integer: true, initial: 0, min: 0 }),
+      // Wird beim Schadenswurf von der Rüstung des Ziels abgezogen, BEVOR der Rohschaden gegengerechnet
+      // wird (AshfordActor#rollWeaponDamage) — z.B. ein Rüstungswert von 5 bei 3 Durchdringung zählt
+      // beim Treffer effektiv nur noch als 2.
+      armorPenetration: new NumberField({ required: true, integer: true, initial: 0, min: 0 }),
+      // Nur bei improvisierten Tier-0-Waffen gesetzt (z.B. "1d8") — nach JEDEM Schuss (unabhängig von
+      // Treffer/Fehlschlag) wird diese Formel zusätzlich gewürfelt; eine 1 beschädigt die Waffe (siehe
+      // `damaged` unten), zerstört sie aber nicht. Leer = keine Bruchgefahr.
+      breakageFormula: new StringField({ required: false, blank: true }),
+      // Gesetzt von der Bruchprobe oben; eine beschädigte Waffe feuert weiter normal, aber nur die
+      // Rast-Aktivität "Waffe reparieren" (module/apps/rest.mjs, 1 Stunde) setzt sie wieder zurück.
+      damaged: new BooleanField({ required: true, initial: false }),
       // Welche Munitionsart diese Waffe braucht — leer = verbraucht keine Munition (Nahkampfwaffen).
       ammoType: new StringField({ required: false, blank: true, choices: AMMO_TYPES }),
       feedType: new StringField({ required: true, blank: false, initial: "none", choices: FEED_TYPES }),

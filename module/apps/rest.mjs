@@ -255,6 +255,16 @@ async function resolveRest(session) {
         case "maintain-gear":
           actorLines.push("Ausrüstung gewartet.");
           break;
+        case "repair-weapon": {
+          const damaged = actor.items.filter(i => i.type === "weapon" && i.system.damaged);
+          if (!damaged.length) {
+            actorLines.push("Waffe reparieren: keine beschädigte Waffe gefunden.");
+          } else {
+            await actor.updateEmbeddedDocuments("Item", damaged.map(w => ({ _id: w.id, "system.damaged": false })));
+            actorLines.push(`Repariert: ${damaged.map(w => w.name).join(", ")}.`);
+          }
+          break;
+        }
         case "forage":
           actorLines.push("Nahrung/Wasser gesammelt.");
           break;

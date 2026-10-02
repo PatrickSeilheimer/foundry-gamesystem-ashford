@@ -14,6 +14,7 @@ export const REST_ACTIVITIES = [
   { key: "stand-watch", label: "Wache halten", minutes: 60 },
   { key: "clean-infection", label: "Infektionsstelle reinigen", minutes: 15 },
   { key: "maintain-gear", label: "Ausrüstung warten", minutes: 15 },
+  { key: "repair-weapon", label: "Waffe reparieren", minutes: 60 },
   { key: "forage", label: "Nahrung/Wasser sammeln", minutes: 30 }
 ];
 

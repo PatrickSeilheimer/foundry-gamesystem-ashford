@@ -58,7 +58,20 @@
       <label>Schüsse pro Kampfzug (1–5, z.B. Halbautomatik = 1, Schnellfeuer/mehrere Hiebe = mehr — unabhängig von der Munition)
         <input type="number" name="system.shotsPerRound" value="{{system.shotsPerRound}}" min="1" max="5">
       </label>
+      <label>Tier (0 = DIY, 1–3 aufsteigend — rein informativ) <input type="number" name="system.tier" value="{{system.tier}}" min="0" max="3"></label>
       <label>Treffer-Bonus (zusätzlich zu Reichweitenklassen bei Fernkampf) <input type="number" name="system.accuracyBonus" value="{{system.accuracyBonus}}"></label>
+      <label>Rückstoß (kumulativer Treffer-Malus je weiterem Schuss im selben Zug: 2. Schuss −Rückstoß, 3. Schuss −2x, ...)
+        <input type="number" name="system.recoil" value="{{system.recoil}}" min="0">
+      </label>
+      <label>Rüstungsdurchdringung (wird vor dem Schadenswurf von der Rüstung des Ziels abgezogen)
+        <input type="number" name="system.armorPenetration" value="{{system.armorPenetration}}" min="0">
+      </label>
+      <label>Bruchprobe (nur improvisierte Waffen, z.B. "1d8" — leer lassen = keine Bruchgefahr. Nach jedem Schuss gewürfelt, eine 1 beschädigt die Waffe)
+        <input type="text" name="system.breakageFormula" value="{{system.breakageFormula}}" placeholder="1d8">
+      </label>
+      {{#if system.breakageFormula}}
+        <label><input type="checkbox" name="system.damaged" {{#if system.damaged}}checked{{/if}}> Beschädigt (nur "Waffe reparieren" in der Rast setzt das zurück)</label>
+      {{/if}}
       <label>Initiative-Modifikator (während geführt) <input type="number" name="system.initiativeMod" value="{{system.initiativeMod}}"></label>
       <label><input type="checkbox" name="system.equipped" {{#if system.equipped}}checked{{/if}}> Aktuell geführt (unabhängig von den Körper-Slots)</label>
       <label>Munitionsart (leer lassen = verbraucht keine Munition)

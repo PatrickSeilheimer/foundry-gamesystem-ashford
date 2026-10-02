@@ -1083,6 +1083,7 @@
 }
 
 .weapon-row .row-name { font-weight: bold; }
+.weapon-row .weapon-damaged { color: var(--ashford-danger); font-weight: normal; font-size: 11px; }
 
 .ashford-roll-weapon-damage,
 .ashford-roll-weapon-attack,

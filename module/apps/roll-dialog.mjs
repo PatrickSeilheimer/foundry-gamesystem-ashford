@@ -12,7 +12,7 @@ const { DialogV2 } = foundry.applications.api;
  * Fernkampf-Waffentalente) before rolling.
  */
 export default class AshfordRollDialog {
-  static async prompt(actor, talent, { label, defaultMode = "none" } = {}) {
+  static async prompt(actor, talent, { label, defaultMode = "none", recoilPenalty = 0 } = {}) {
     const rollLabel = label ?? `${talent.name} (Stufe ${talent.system.stufe})`;
     const { strengths: permStrengths, weaknesses: permWeaknesses } = actor.system.permanentTraits ?? {
       strengths: [],
@@ -98,7 +98,8 @@ export default class AshfordRollDialog {
         gearNames: [...gearNames],
         gearFlatBonus,
         weaponName: equippedWeapon?.name ?? "",
-        weaponAccuracyBonus
+        weaponAccuracyBonus,
+        recoilPenalty
       }
     );
 
@@ -128,7 +129,7 @@ export default class AshfordRollDialog {
             const mode = form.querySelector('[name="targetMode"]:checked')?.value ?? "none";
             let targetValue = null;
             let targetLabel = "";
-            let modifier = flatModifier + gearFlatBonus + weaponAccuracyBonus;
+            let modifier = flatModifier + gearFlatBonus + weaponAccuracyBonus - recoilPenalty;
             let autoFail = false;
             let autoFailReason = "";
 

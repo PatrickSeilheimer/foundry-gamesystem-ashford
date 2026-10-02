@@ -19,8 +19,7 @@
 export const MAGAZINE_ITEMS = [
   { name: "9mm-Magazin", ammoType: "9mm", capacity: 10 },
   { name: "Magnum-Magazin", ammoType: "magnum", capacity: 7 },
-  { name: "5.56mm-Magazin", ammoType: "5.56mm", capacity: 20 },
-  { name: "7.62mm-Magazin", ammoType: "7.62mm", capacity: 20 }
+  { name: "Gewehrmunition-Magazin", ammoType: "gewehrmunition", capacity: 20 }
 ];
 
 /**
@@ -34,8 +33,7 @@ export const MAGAZINE_ITEMS = [
 export const AMMO_ITEMS = [
   { name: "9mm-Patronen", ammoType: "9mm", quantity: 20 },
   { name: "Magnum-Patronen", ammoType: "magnum", quantity: 10 },
-  { name: "5.56mm-Patronen", ammoType: "5.56mm", quantity: 30 },
-  { name: "7.62mm-Patronen", ammoType: "7.62mm", quantity: 30 },
+  { name: "Gewehrmunition-Patronen", ammoType: "gewehrmunition", quantity: 30 },
   { name: "Schrotpatronen", ammoType: "schrot", quantity: 12 },
   { name: "Pfeile", ammoType: "pfeil", quantity: 12 }
 ];

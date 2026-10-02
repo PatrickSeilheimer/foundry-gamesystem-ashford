@@ -108,6 +108,11 @@ export default class AshfordActor extends Actor {
       }
     }
 
+    // Rückstoß-Malus: shotIndex ist bereits "wie viele Schüsse mit DIESER Waffe in diesem Zug schon
+    // verbraucht sind" (0 beim ersten Schuss), weil Schüsse immer der Reihe nach vom ersten freien
+    // Slot aus verbraucht werden — genau das macht den Malus kumulativ ohne eigenen Zähler.
+    const recoilPenalty = shotIndex != null ? weapon.system.recoil * shotIndex : 0;
+
     const targetToken = game.user?.targets?.size === 1 ? [...game.user.targets][0] : null;
     const targetActor = targetToken?.actor ?? null;
     if (!targetActor) {
@@ -119,16 +124,18 @@ export default class AshfordActor extends Actor {
         shotTracker[shotIndex] = "hit";
         await weapon.setFlag("ashford", "shotTracker", shotTracker);
       }
+      await this._rollBreakage(weapon);
       return this.rollTalent(talent.id, { label: weapon.name });
     }
 
-    const result = await AshfordRollDialog.prompt(this, talent, { label: weapon.name, defaultMode: "attack" });
+    const result = await AshfordRollDialog.prompt(this, talent, { label: weapon.name, defaultMode: "attack", recoilPenalty });
     if (!result || result === "cancel" || typeof result !== "object") return result;
     await weapon.setFlag("ashford", "canRollDamage", !!result.success);
     if (shotIndex != null) {
       shotTracker[shotIndex] = result.success ? "hit" : "miss";
       await weapon.setFlag("ashford", "shotTracker", shotTracker);
     }
+    await this._rollBreakage(weapon);
 
     // Munitions-Abzug — welches Item (Waffe selbst oder das eingeladene Magazin) betroffen ist, hängt
     // vom feedType ab; ammoRestore hält fest, was/wo zurückzusetzen ist, falls der GM den Schaden
@@ -153,6 +160,26 @@ export default class AshfordActor extends Actor {
     // animiert hat, bevor der Schadenswurf hinterherkommt.
     await new Promise(resolve => setTimeout(resolve, 900));
     return this.rollWeaponDamage(itemId, { targetActor, ammoRestore });
+  }
+
+  /**
+   * Nur bei improvisierten Waffen mit gesetzter `breakageFormula` (module/models/gear.mjs) — wird
+   * nach JEDEM Schuss gewürfelt, unabhängig von Treffer/Fehlschlag. Eine 1 beschädigt die Waffe
+   * (feuert weiter normal, aber nur "Waffe reparieren" in der Rast, module/apps/rest.mjs, setzt das
+   * zurück) — bereits beschädigte Waffen werden nicht nochmal gewürfelt, es gibt keinen weiteren
+   * Verschlechterungs-Schritt.
+   */
+  async _rollBreakage(weapon) {
+    const formula = weapon.system.breakageFormula?.trim();
+    if (!formula || weapon.system.damaged) return;
+    const roll = new Roll(formula);
+    await roll.evaluate();
+    const broke = roll.total === 1;
+    if (broke) await weapon.update({ "system.damaged": true });
+    await postRollMessage(roll, {
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      flavor: broke ? `${weapon.name} — Bruchprobe (beschädigt!)` : `${weapon.name} — Bruchprobe`
+    });
   }
 
   /**
@@ -204,7 +231,11 @@ export default class AshfordActor extends Actor {
     }
 
     const damageType = weapon.system.damageType || "blunt";
-    const armorValue = target.system?.armor?.[damageType] ?? 0;
+    const rawArmorValue = target.system?.armor?.[damageType] ?? 0;
+    // Rüstungsdurchdringung zieht sich VOR dem eigentlichen Schadensvergleich von der Rüstung ab
+    // (module/models/gear.mjs AshfordWeapon#armorPenetration) — z.B. Rüstung 5 bei 3 Durchdringung
+    // zählt beim Treffer effektiv nur noch als 2.
+    const armorValue = Math.max(0, rawArmorValue - (weapon.system.armorPenetration ?? 0));
     const finalDamage = Math.max(0, roll.total - armorValue);
 
     const cardData = {
